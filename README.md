@@ -12,6 +12,12 @@ Expected GitHub Pages URL:
 
 `https://minerclass.github.io/dissertationquestionsbeta/`
 
+Role-specific participant URLs:
+
+- University student: `https://minerclass.github.io/dissertationquestionsbeta/university/`
+- K-12 teacher: `https://minerclass.github.io/dissertationquestionsbeta/teacher.html`
+- Principal and school leader: `https://minerclass.github.io/dissertationquestionsbeta/principal.html`
+
 ## What Changed
 
 The front page has been rebuilt as a readable, dependency-free static app instead of a generated bundled HTML artifact.
@@ -50,9 +56,10 @@ Do not use the app for live dissertation data collection until the final protoco
 ## Files
 
 - `index.html` - main local-first interview and card-sort tool
+- `university/index.html` - university student version of the instrument
 - `teacher.html` - teacher-only version of the instrument
 - `principal.html` - principal and school-leader version of the instrument
-- `dashboard.html` - existing analysis dashboard artifact
+- `dashboard.html` - existing analysis dashboard artifact; intentionally not linked from participant-facing pages
 - `.nojekyll` - keeps GitHub Pages from applying Jekyll processing
 
 ## Suggested Research Flow

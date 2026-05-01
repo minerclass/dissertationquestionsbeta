@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>K-12 Teacher Pedagogical Friction App</title>
-  <meta name="description" content="Teacher-facing local-first interview and reflection tool for generative AI, productive struggle, and pedagogical friction.">
+  <title>University Student GenAI Learning App</title>
+  <meta name="description" content="University-student local-first interview tool for generative AI, authorship, learning process, and cognitive friction.">
   <style>
     :root {
       --ink: #172033;
@@ -12,43 +12,28 @@
       --line: #d9e1ea;
       --paper: #ffffff;
       --wash: #f5f7fa;
-      --navy: #1f5f46;
-      --teal: #287a5a;
-      --gold: #6c9a45;
+      --navy: #164a6a;
+      --teal: #1b7895;
+      --gold: #b78028;
       --red: #a53e35;
       --shadow: 0 14px 36px rgba(23, 32, 51, .12);
       font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
-
     * { box-sizing: border-box; }
     body { margin: 0; color: var(--ink); background: var(--wash); line-height: 1.55; }
     button, input, select, textarea { font: inherit; }
-    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-      outline: 3px solid rgba(43, 129, 123, .35);
-      outline-offset: 2px;
-    }
-
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(27,120,149,.35); outline-offset: 2px; }
     .shell { min-height: 100vh; display: grid; grid-template-columns: 310px minmax(0, 1fr); }
     aside { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 22px; color: #fff; background: var(--navy); }
     aside h1 { margin: 0 0 8px; font-size: 1.35rem; line-height: 1.2; }
     aside p { color: rgba(255,255,255,.78); font-size: .94rem; margin: 0 0 18px; }
     main { padding: 30px; }
-
-    .privacy-note {
-      border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.08);
-      border-radius: 8px;
-      padding: 13px;
-      margin: 18px 0;
-      font-size: .86rem;
-    }
+    .privacy-note { border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); border-radius: 8px; padding: 13px; margin: 18px 0; font-size: .86rem; }
     .role-badge { display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 6px 10px; margin-bottom: 14px; color: #fff; background: rgba(255,255,255,.12); font-size: .8rem; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
-
     .progress-list { display: grid; gap: 9px; margin: 22px 0; }
     .step-chip { border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 8px 11px; font-size: .84rem; color: rgba(255,255,255,.76); }
     .step-chip.active { color: #102033; background: #fff; border-color: #fff; font-weight: 700; }
     .step-chip.done { border-color: rgba(255,255,255,.42); color: #fff; }
-
     .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 auto 18px; max-width: 1080px; }
     .meta { color: var(--muted); font-size: .92rem; }
     .panel { max-width: 1080px; margin: 0 auto 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
@@ -56,40 +41,36 @@
     .panel-header h2 { margin: 0 0 7px; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.15; }
     .panel-header p { margin: 0 0 14px; color: var(--muted); max-width: 850px; }
     .panel-body { padding: 22px 24px 26px; }
-
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .field { display: grid; gap: 6px; margin-bottom: 15px; }
     label, legend { font-weight: 700; color: #24334a; }
     input, select, textarea { width: 100%; border: 1px solid #c8d3df; border-radius: 8px; padding: 10px 12px; color: var(--ink); background: #fff; }
     textarea { min-height: 132px; resize: vertical; }
     .hint { color: var(--muted); font-size: .86rem; }
-
     .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid var(--line); margin-top: 18px; }
     .button-row { display: flex; gap: 9px; flex-wrap: wrap; }
     .btn { border: 1px solid #bec9d5; border-radius: 8px; padding: 10px 14px; background: #fff; color: var(--ink); cursor: pointer; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-height: 42px; }
     .btn.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
     .btn.warn { background: var(--red); color: #fff; border-color: var(--red); }
     .btn:disabled { opacity: .52; cursor: not-allowed; }
-
     .choice { border: 1px solid #cfd9e5; border-radius: 8px; padding: 12px; display: flex; gap: 9px; align-items: flex-start; background: #fff; cursor: pointer; }
     .choice input { width: auto; margin-top: 5px; }
     .question-card, .sort-card { border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin-bottom: 14px; background: #fff; }
     .question-card h3, .sort-card h3 { margin: 0 0 8px; font-size: 1.08rem; }
     .question-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-    .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 9px; font-size: .78rem; font-weight: 700; background: #edf5f4; color: #175f5b; }
+    .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 9px; font-size: .78rem; font-weight: 700; background: #e8f5fa; color: #14506b; }
     .tag.gold { background: #fff4dd; color: #7a5018; }
     .tag.gray { background: #eef2f6; color: #4c5b6c; }
-    .callout { border: 1px solid #d9c08d; background: #fff8e8; border-radius: 8px; padding: 14px; margin: 14px 0; }
+    .callout { border: 1px solid #9cc8d8; background: #eef8fb; border-radius: 8px; padding: 14px; margin: 14px 0; }
     .follow-up { margin-top: 12px; padding: 12px; border-left: 4px solid var(--gold); background: #fff9ed; border-radius: 6px; }
     .recorder { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin: 8px 0; }
     .recording-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
-    .recording-dot.on { background: var(--red); box-shadow: 0 0 0 6px rgba(165, 62, 53, .14); }
+    .recording-dot.on { background: var(--red); box-shadow: 0 0 0 6px rgba(165,62,53,.14); }
     .pill-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 9px; }
     .pill-options label { border: 1px solid #cdd7e2; border-radius: 999px; padding: 7px 10px; font-size: .86rem; font-weight: 600; cursor: pointer; }
     .pill-options input { width: auto; margin-right: 5px; }
     .summary-box { border: 1px solid var(--line); background: #f8fafc; border-radius: 8px; padding: 14px; white-space: pre-wrap; max-height: 420px; overflow: auto; font-family: "Cascadia Mono", "Consolas", monospace; font-size: .84rem; }
     .hidden { display: none !important; }
-
     @media (max-width: 860px) {
       .shell { display: block; }
       aside { position: static; height: auto; }
@@ -102,24 +83,24 @@
 <body>
   <div class="shell">
     <aside>
-      <div class="role-badge">Teacher Instrument</div>
-      <h1>K-12 Teacher Pedagogical Friction App</h1>
-      <p>A focused teacher-facing version of the local-first mixed methods interview tool.</p>
+      <div class="role-badge">University Student Instrument</div>
+      <h1>University Student GenAI Learning App</h1>
+      <p>A focused student-facing version for the pre-GenAI to post-GenAI learning transition.</p>
       <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
-      <p class="hint">Use this when you want only the K-12 teacher instrument, without the broader role-selection workflow.</p>
+      <p class="hint">Use this when the participant is a university student reflecting on high school and current academic work.</p>
       <div class="button-row">
-        <a class="btn" href="index.html">Full study app</a>
-        <a class="btn" href="university/">University app</a>
-        <a class="btn" href="principal.html">Principal app</a>
+        <a class="btn" href="../index.html">Full study app</a>
+        <a class="btn" href="../teacher.html">Teacher app</a>
+        <a class="btn" href="../principal.html">Principal app</a>
       </div>
     </aside>
 
     <main>
       <div class="topbar">
         <div>
-          <strong>Teacher Instrument</strong>
-          <div class="meta">Pedagogical Friction, Generative AI, and K-12 classroom practice</div>
+          <strong>University Student Instrument</strong>
+          <div class="meta">GenAI, cognitive struggle, authorship, peer learning, and academic ownership</div>
         </div>
         <div class="button-row">
           <button class="btn" id="saveDraftButton" type="button">Save draft</button>
@@ -130,32 +111,31 @@
       <section class="panel" data-step="0">
         <div class="panel-header">
           <h2>Consent and Context</h2>
-          <p>This page collects adult teacher responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
+          <p>This page collects adult university student responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
         </div>
         <div class="panel-body">
-          <div class="callout"><strong>Research caution:</strong> teachers may skip any question. Avoid collecting names, school names, or identifiable student information in open responses.</div>
+          <div class="callout"><strong>Research caution:</strong> students may skip any question. Avoid collecting school names, course names, instructor names, or other direct identifiers unless approved.</div>
           <div class="grid">
             <div class="field">
               <label for="participantCode">Participant code or pseudonym</label>
-              <input id="participantCode" autocomplete="off" placeholder="Example: T-03">
+              <input id="participantCode" autocomplete="off" placeholder="Example: S-02">
             </div>
             <div class="field">
               <label for="studyDate">Date</label>
               <input id="studyDate" type="date">
             </div>
             <div class="field">
-              <label for="gradeBand">Grade band</label>
-              <select id="gradeBand">
+              <label for="transitionYear">High school year when GenAI became widely available</label>
+              <select id="transitionYear">
                 <option value="">Choose one</option>
-                <option>Elementary</option>
-                <option>Middle school</option>
-                <option>High school</option>
-                <option>Multiple grade bands</option>
+                <option>Sophomore</option>
+                <option>Junior</option>
+                <option>Senior</option>
               </select>
             </div>
             <div class="field">
-              <label for="contentArea">Content area</label>
-              <input id="contentArea" placeholder="Example: ELA, science, math, social studies">
+              <label for="universityContext">Current university context note</label>
+              <input id="universityContext" placeholder="Example: first-year, public university, education major">
             </div>
           </div>
           <label class="choice">
@@ -172,14 +152,14 @@
       <section class="panel hidden" data-step="1">
         <div class="panel-header">
           <h2>Brief Definitions</h2>
-          <p>Use these short definitions for consistency before the teacher begins the instrument.</p>
+          <p>Use these short definitions for consistency before the student begins the instrument.</p>
         </div>
         <div class="panel-body">
           <div class="grid">
-            <div class="callout"><strong>Productive friction:</strong> cognitive effort, ambiguity, revision, or struggle that helps students learn deeply.</div>
-            <div class="callout"><strong>Exclusionary friction:</strong> barriers that block access, dignity, language, disability support, or fair participation.</div>
-            <div class="callout"><strong>Authentic understanding:</strong> the student can explain, defend, revise, or extend the work beyond the polished product.</div>
-            <div class="callout"><strong>AI assistance:</strong> generative tools used for brainstorming, explanation, drafting, editing, summarizing, translation, feedback, or grading support.</div>
+            <div class="callout"><strong>Cognitive struggle:</strong> the effort of organizing, testing, revising, and making sense of difficult ideas.</div>
+            <div class="callout"><strong>Authorship:</strong> the student's sense of ownership and responsibility for the academic claim or product.</div>
+            <div class="callout"><strong>Productive scaffold:</strong> support that removes an unnecessary barrier while keeping the student responsible for understanding.</div>
+            <div class="callout"><strong>Short-circuiting:</strong> AI solves or smooths the task before the student has processed the idea deeply enough.</div>
           </div>
           <div class="actions">
             <button class="btn" type="button" data-prev>Back</button>
@@ -191,7 +171,7 @@
       <section class="panel hidden" data-step="2">
         <div class="panel-header">
           <h2>Quick Response Items</h2>
-          <p>These items provide structured teacher indicators for frequency, confidence, policy support, equity, and assessment practice.</p>
+          <p>These items capture AI use frequency, workflow changes, authorship, peer learning, and long-term learning risk.</p>
         </div>
         <div class="panel-body">
           <div id="quickItems"></div>
@@ -205,21 +185,21 @@
       <section class="panel hidden" data-step="3">
         <div class="panel-header">
           <h2>Typed or Recorded Reflection</h2>
-          <p>Teachers can type, record audio locally, or do both. If recording is used, type or paste a reviewed transcript or summary before export.</p>
+          <p>Students can type, record audio locally, or do both. If recording is used, type or paste a reviewed transcript or summary before export.</p>
         </div>
         <div class="panel-body">
           <div id="reflectionItems"></div>
           <div class="actions">
             <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Continue to teacher card sort</button>
+            <button class="btn primary" type="button" data-next>Continue to student card sort</button>
           </div>
         </div>
       </section>
 
       <section class="panel hidden" data-step="4">
         <div class="panel-header">
-          <h2>Teacher Card Sort</h2>
-          <p>Classify each classroom activity by productive friction and legitimacy of AI use.</p>
+          <h2>Student Card Sort</h2>
+          <p>Classify each academic activity by productive friction and legitimacy of AI use.</p>
         </div>
         <div class="panel-body">
           <div id="cardSortItems"></div>
@@ -233,7 +213,7 @@
       <section class="panel hidden" data-step="5">
         <div class="panel-header">
           <h2>Review and Export</h2>
-          <p>Download the structured teacher response file. Audio files, if recorded, should be downloaded separately from each reflection prompt.</p>
+          <p>Download the structured student response file. Audio files, if recorded, should be downloaded separately from each reflection prompt.</p>
         </div>
         <div class="panel-body">
           <div class="button-row">
@@ -252,37 +232,39 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "teacher-pedagogical-friction-draft-v1";
+    const STORAGE_KEY = "university-student-friction-draft-v1";
     const steps = ["Consent", "Definitions", "Quick response", "Reflection", "Card sort", "Export"];
     const quickItems = [
-      q("planning_frequency", "How often do you actively integrate generative AI tools into instructional design or lesson planning?", "choice", ["Multiple times a day", "Daily", "Weekly", "Monthly", "Rarely or never"], ["infrastructural"]),
-      q("student_outcome", "When students use generative AI in your classroom, what is the most common observed outcome?", "choice", ["Improved final product quality", "Decreased depth of understanding", "Increased engagement", "Loss of student voice", "No significant change"], ["noetic", "existential"]),
-      q("struggle_confidence", "How confident are you in distinguishing authentic cognitive struggle from an unnecessary learning barrier?", "choice", ["Very confident", "Confident", "Neutral", "Unconfident", "Very unconfident"], ["noetic", "equity"]),
-      q("understanding_indicator", "Briefly describe one indicator you use to assess whether a student genuinely understands an AI-assisted assignment.", "short", [], ["noetic", "rhetorical"]),
-      q("policy_support", "To what extent do current district policies support your ability to design lessons that preserve necessary cognitive friction?", "choice", ["Fully support", "Partially support", "Neutral", "Impede", "Strongly impede"], ["policy", "infrastructural"]),
-      q("ell_iep_effect", "How has AI translation or summarization affected English learners or students with IEPs?", "choice", ["Significantly helped", "Somewhat helped", "Mixed results", "Somewhat hindered", "Significantly hindered"], ["equity"]),
-      q("accountability_challenge", "What is the most challenging aspect of holding students personally accountable for AI-assisted work?", "short", [], ["existential", "authorship"]),
-      q("peer_critique", "In peer critique or collaborative settings, how has AI-generated content shifted student interaction?", "choice", ["More critical analysis", "Surface-level agreement", "Less peer reliance", "No change", "Other"], ["rhetorical"]),
-      q("pd_fit", "Do you believe current professional development adequately addresses AI's impact on student cognitive development?", "choice", ["Yes completely", "Yes somewhat", "No, it focuses too much on tool mechanics", "No, it ignores AI entirely", "Unsure"], ["infrastructural"])
+      q("use_frequency", "On average, how frequently do you use generative AI tools for academic coursework?", "choice", ["Daily", "Weekly", "Monthly", "Rarely", "Never"], ["infrastructural"]),
+      q("use_phase", "Which phase of academic work do you rely on generative AI for most?", "choice", ["Brainstorming and ideation", "Outlining and structuring", "Drafting content", "Editing and proofreading", "Concept explanation", "None"], ["noetic", "rhetorical"]),
+      q("concept_wrestling", "Compared to your workflow before late 2022, how has generative AI changed the time you spend wrestling with difficult concepts?", "choice", ["Significantly decreased", "Slightly decreased", "No change", "Slightly increased", "Significantly increased"], ["noetic"]),
+      q("authorship_definition", "In one sentence, what does academic authorship mean to you today?", "short", [], ["existential", "authorship"]),
+      q("accountability", "When you submit an assignment heavily supported by generative AI, how does your sense of personal accountability compare to entirely original work?", "choice", ["Much lower", "Somewhat lower", "About the same", "Somewhat higher", "Much higher"], ["existential", "authorship"]),
+      q("peer_discussion", "How has widespread generative AI availability affected the quality of peer-to-peer academic discussions?", "choice", ["Significantly worsened", "Somewhat worsened", "No clear impact", "Somewhat improved", "Significantly improved"], ["rhetorical"]),
+      q("chosen_nonuse", "Identify one academic task you actively choose not to use generative AI for, and briefly state why.", "short", [], ["authorship", "noetic"]),
+      q("solved_too_soon", "How often has a generative AI tool solved a problem before you had the chance to fully process it yourself?", "choice", ["Very often", "Often", "Sometimes", "Rarely", "Never"], ["noetic"]),
+      q("fairness", "How fair does the current academic landscape feel when students use different levels of AI assistance?", "choice", ["Highly unfair", "Somewhat unfair", "Neutral", "Somewhat fair", "Highly fair"], ["equity", "policy"]),
+      q("long_term_risk", "What is the most significant risk generative AI poses to your long-term learning and retention?", "short", [], ["noetic", "existential"])
     ];
 
     const reflections = [
-      r("lesson_ai_decision", "Describe one lesson or unit where you deliberately allowed, limited, or banned generative AI. What were you trying to protect or support?", "Did AI remove an unnecessary barrier, reduce productive struggle, or do both?", ["noetic", "equity", "infrastructural"]),
-      r("assessment_ownership", "How are you adapting assessment so students maintain accountability and intellectual ownership rather than simply curating AI outputs?", "What evidence would convince you that a student can explain, defend, or extend the work?", ["rhetorical", "existential", "authorship"]),
-      r("policy_practice_gap", "Describe one way district policy, parent expectations, pacing pressure, or tool access shapes what you feel able to do with AI in the classroom.", "What support would make responsible experimentation easier?", ["policy", "infrastructural", "equity"])
+      r("writing_comparison", "Think about writing a difficult paper before ChatGPT became widely available. How did you usually get started, struggle through ideas, and decide the work was yours?", "Now compare that with how you write difficult papers today. What has changed?", ["noetic", "rhetorical", "authorship"]),
+      r("altered_learning_process", "Describe a specific time when generative AI changed your learning process.", "Did it work more like a productive scaffold, a shortcut around necessary thinking, or both?", ["noetic", "existential"]),
+      r("peer_learning_change", "Describe how AI availability has changed the way you talk with classmates about assignments, drafts, or difficult concepts.", "What feels better, worse, or simply different about those conversations?", ["rhetorical", "equity"]),
+      r("transition_confound", "Think about changes from high school to university. Which learning changes seem connected to AI, and which seem connected to becoming a college student?", "What makes you separate those causes?", ["infrastructural", "noetic"])
     ];
 
     const cardSortItems = [
-      cs("Students use AI to brainstorm possible claims, then write the first full draft without AI.", ["noetic", "rhetorical"]),
-      cs("Students submit an AI-assisted essay and then defend the thesis in a short conference.", ["rhetorical", "existential"]),
-      cs("A multilingual learner uses AI translation to understand directions before starting the work.", ["equity", "infrastructural"]),
-      cs("AI summarizes a source before students read the original text.", ["noetic", "rhetorical"]),
-      cs("A teacher uses AI to generate differentiated examples, then students critique which examples are strongest.", ["rhetorical", "equity"]),
-      cs("Students document every AI use and explain what they accepted, rejected, and revised.", ["authorship", "existential"]),
-      cs("AI generates teacher feedback before peer review happens.", ["rhetorical"]),
-      cs("The teacher bans AI for early idea generation so students experience the initial struggle of organizing thoughts.", ["noetic"]),
-      cs("Students ask AI to explain a hard concept three ways, then write their own explanation and analogy.", ["noetic"]),
-      cs("A school blocks all AI tools because policy guidance is unclear.", ["policy", "infrastructural"])
+      cs("A student asks AI to explain a difficult concept in three different ways, then writes their own explanation.", ["noetic"]),
+      cs("AI drafts a full essay, then the student edits for clarity.", ["rhetorical", "authorship"]),
+      cs("A student uses AI to brainstorm possible counterarguments before writing.", ["rhetorical", "noetic"]),
+      cs("AI summarizes a source before the student reads the original text.", ["noetic", "rhetorical"]),
+      cs("A multilingual student uses AI translation to access assignment directions.", ["equity", "infrastructural"]),
+      cs("A student documents where AI helped, where it was rejected, and what they still had to decide themselves.", ["existential", "authorship"]),
+      cs("A student asks AI to solve a problem set before trying any examples independently.", ["noetic"]),
+      cs("A student uses AI feedback after completing a full first draft without AI.", ["rhetorical", "authorship"]),
+      cs("A student uses AI to turn scattered notes into an outline, then writes from the outline.", ["noetic", "rhetorical"]),
+      cs("A student uses AI to prepare for a conference where they must explain and defend their claims.", ["rhetorical", "existential"])
     ];
 
     let currentStep = 0;
@@ -300,8 +282,8 @@
       return {
         participantCode: "",
         studyDate: new Date().toISOString().slice(0, 10),
-        gradeBand: "",
-        contentArea: "",
+        transitionYear: "",
+        universityContext: "",
         consent: false,
         quickResponses: {},
         reflections: {},
@@ -325,8 +307,8 @@
     function hydrate() {
       document.querySelector("#participantCode").value = state.participantCode || "";
       document.querySelector("#studyDate").value = state.studyDate || new Date().toISOString().slice(0, 10);
-      document.querySelector("#gradeBand").value = state.gradeBand || "";
-      document.querySelector("#contentArea").value = state.contentArea || "";
+      document.querySelector("#transitionYear").value = state.transitionYear || "";
+      document.querySelector("#universityContext").value = state.universityContext || "";
       document.querySelector("#consentCheck").checked = Boolean(state.consent);
     }
 
@@ -408,10 +390,10 @@
       if (participantCode) state.participantCode = participantCode.value.trim();
       const studyDate = document.querySelector("#studyDate");
       if (studyDate) state.studyDate = studyDate.value;
-      const gradeBand = document.querySelector("#gradeBand");
-      if (gradeBand) state.gradeBand = gradeBand.value;
-      const contentArea = document.querySelector("#contentArea");
-      if (contentArea) state.contentArea = contentArea.value.trim();
+      const transitionYear = document.querySelector("#transitionYear");
+      if (transitionYear) state.transitionYear = transitionYear.value;
+      const universityContext = document.querySelector("#universityContext");
+      if (universityContext) state.universityContext = universityContext.value.trim();
       const consent = document.querySelector("#consentCheck");
       if (consent) state.consent = consent.checked;
       document.querySelectorAll("[data-quick]").forEach((input) => state.quickResponses[input.dataset.quick] = input.value);
@@ -437,15 +419,15 @@
     function exportData() {
       syncStateFromDom();
       return {
-        app: "K-12 Teacher Pedagogical Friction App",
-        version: "2026-06-teacher-static-v1",
+        app: "University Student GenAI Learning App",
+        version: "2026-06-university-static-v1",
         exportedAt: new Date().toISOString(),
         participant: {
           code: state.participantCode,
-          role: "teacher",
+          role: "university-student",
           studyDate: state.studyDate,
-          gradeBand: state.gradeBand,
-          contentArea: state.contentArea,
+          transitionYear: state.transitionYear,
+          universityContext: state.universityContext,
           consentChecked: state.consent
         },
         frameworkDimensions: ["noetic", "rhetorical", "existential", "infrastructural", "equity", "policy", "authorship"],
@@ -465,7 +447,7 @@
     }
 
     function markdownExport(data) {
-      const lines = [`# K-12 Teacher Pedagogical Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Grade band: ${data.participant.gradeBand || ""}`, `- Content area: ${data.participant.contentArea || ""}`, ""];
+      const lines = [`# University Student GenAI Learning Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Transition year: ${data.participant.transitionYear || ""}`, `- University context: ${data.participant.universityContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
         lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
@@ -498,14 +480,13 @@
     }
 
     function safeFileName(label) {
-      const code = state.participantCode || "teacher-participant";
+      const code = state.participantCode || "university-student-participant";
       return `${code}-${label}`.replace(/[^a-z0-9-_]+/gi, "-").replace(/-+/g, "-");
     }
 
     function escapeText(text) {
       return String(text || "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
     }
-
     function escapeAttr(text) { return escapeText(text).replace(/`/g, "&#96;"); }
 
     async function startRecording(id) {
@@ -569,25 +550,21 @@
       persist();
       alert("Draft saved in this browser.");
     });
-
     document.querySelector("#clearButton").addEventListener("click", () => {
-      if (!confirm("Clear all local teacher responses stored by this page in this browser?")) return;
+      if (!confirm("Clear all local student responses stored by this page in this browser?")) return;
       localStorage.removeItem(STORAGE_KEY);
       state = defaultState();
       hydrate();
       showStep(0);
     });
-
     document.querySelector("#downloadJsonButton").addEventListener("click", () => {
       const data = exportData();
-      download(`${safeFileName("teacher-export")}.json`, JSON.stringify(data, null, 2), "application/json");
+      download(`${safeFileName("student-export")}.json`, JSON.stringify(data, null, 2), "application/json");
     });
-
     document.querySelector("#downloadMarkdownButton").addEventListener("click", () => {
       const data = exportData();
-      download(`${safeFileName("teacher-export")}.md`, markdownExport(data), "text/markdown");
+      download(`${safeFileName("student-export")}.md`, markdownExport(data), "text/markdown");
     });
-
     document.addEventListener("change", (event) => { if (event.target.matches("input, select, textarea")) persist(); });
     document.addEventListener("input", (event) => { if (event.target.matches("input, textarea")) persist(); });
 
