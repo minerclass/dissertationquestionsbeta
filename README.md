@@ -21,6 +21,7 @@ Role-specific participant URLs:
 Researcher review URL:
 
 - Researcher overview: `https://minerclass.github.io/dissertationquestionsbeta/researcher/`
+- Dissertation sites dashboard: `https://minerclass.github.io/dissertationquestionsbeta/dissertation-sites/`
 
 ## What Changed
 
@@ -64,6 +65,7 @@ Do not use the app for live dissertation data collection until the final protoco
 - `teacher.html` - teacher-only version of the instrument
 - `principal.html` - principal and school-leader version of the instrument
 - `researcher/index.html` - researcher-facing overview and review links
+- `dissertation-sites/index.html` - researcher-facing dashboard of public dissertation-related GitHub Pages sites
 - `dashboard.html` - existing analysis dashboard artifact; intentionally not linked from participant-facing pages
 - `.nojekyll` - keeps GitHub Pages from applying Jekyll processing
 
