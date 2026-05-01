@@ -5,115 +5,519 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dissertation Sites Dashboard</title>
   <meta name="description" content="Researcher-facing dashboard of Micah Miner's public dissertation-related GitHub Pages sites.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #172033;
-      --muted: #5d6878;
-      --line: #d9e1ea;
-      --paper: #ffffff;
-      --wash: #f5f7fa;
-      --navy: #203a5f;
-      --teal: #2b817b;
-      --gold: #b78028;
-      --blue: #1b7895;
-      --green: #287a5a;
-      --brown: #8f641f;
-      --purple: #63518f;
-      --red: #a53e35;
-      --shadow: 0 14px 36px rgba(23, 32, 51, .12);
-      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg: #060a08;
+      --bg-2: #0a110d;
+      --ink: #e8e0c8;
+      --ink-dim: #a19f8b;
+      --ink-faded: #62604f;
+      --emerald: #4a8068;
+      --emerald-bright: #6ba588;
+      --bronze: #b08550;
+      --bronze-bright: #d4a268;
+      --plum: #6a4868;
+      --slate: #4a5a6a;
+      --paper: #11161a;
+      --paper-2: #181d20;
+      --rule: #232820;
+      --crimson: #a04030;
     }
 
-    * { box-sizing: border-box; }
-    body { margin: 0; color: var(--ink); background: var(--wash); line-height: 1.55; }
-    a { color: var(--teal); }
-    button, input { font: inherit; }
-    button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid rgba(43,129,123,.35); outline-offset: 2px; }
-    .hero { background: var(--navy); color: #fff; padding: 34px 22px 28px; }
-    .hero-inner, main { max-width: 1180px; margin: 0 auto; }
-    .eyebrow { display: inline-flex; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 6px 10px; margin-bottom: 14px; background: rgba(255,255,255,.1); font-size: .8rem; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
-    h1 { margin: 0 0 10px; font-size: clamp(1.9rem, 4vw, 3.35rem); line-height: 1.08; }
-    .hero p { max-width: 880px; margin: 0; color: rgba(255,255,255,.82); font-size: 1.03rem; }
-    main { padding: 22px 22px 46px; }
-    .toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; margin-bottom: 18px; }
-    .search { border: 1px solid #c8d3df; border-radius: 8px; padding: 11px 13px; background: #fff; width: 100%; }
-    .filter-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-    .chip { border: 1px solid #c8d3df; border-radius: 999px; padding: 9px 12px; background: #fff; cursor: pointer; color: var(--ink); font-weight: 700; }
-    .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
-    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
-    .stat, .card, .panel { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
-    .stat { padding: 16px; }
-    .stat strong { display: block; font-size: 1.7rem; line-height: 1; margin-bottom: 6px; }
-    .stat span { color: var(--muted); font-size: .9rem; }
-    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 20px 0 10px; }
-    .section-title h2 { margin: 0; font-size: 1.35rem; }
-    .section-title span { color: var(--muted); font-size: .9rem; }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .card { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-top: 6px solid var(--teal); min-height: 260px; }
-    .card.qualifying { border-top-color: var(--purple); }
-    .card.dissertation { border-top-color: var(--blue); }
-    .card.instrument { border-top-color: var(--green); }
-    .card.portfolio { border-top-color: var(--brown); }
-    .card h3 { margin: 0; font-size: 1.1rem; line-height: 1.2; }
-    .card p { margin: 0; color: var(--muted); }
-    .meta { display: flex; flex-wrap: wrap; gap: 7px; }
-    .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 9px; font-size: .78rem; font-weight: 800; background: #eef2f6; color: #4c5b6c; }
-    .tag.live { background: #eaf6f2; color: #1f5f46; }
-    .tag.warning { background: #fff4dd; color: #7a5018; }
-    .button-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: auto; }
-    .btn { border: 1px solid #bec9d5; border-radius: 8px; padding: 10px 14px; background: #fff; color: var(--ink); cursor: pointer; font-weight: 800; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-height: 42px; }
-    .btn.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
-    .panel { padding: 20px; margin-top: 18px; }
-    .panel h2 { margin: 0 0 8px; font-size: 1.35rem; }
-    .panel p { margin: 0 0 10px; color: var(--muted); }
-    .empty { display: none; border: 1px dashed #b8c4d0; border-radius: 8px; padding: 18px; color: var(--muted); text-align: center; background: #fff; }
-    .empty.show { display: block; }
-    @media (max-width: 980px) {
-      .grid, .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .toolbar { grid-template-columns: 1fr; }
-      .filter-row { justify-content: flex-start; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter Tight", system-ui, sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
     }
-    @media (max-width: 620px) {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(176,133,80,.035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(74,128,104,.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    button:focus-visible, a:focus-visible, input:focus-visible {
+      outline: 2px solid var(--bronze-bright);
+      outline-offset: 3px;
+    }
+    .mono { font-family: "JetBrains Mono", monospace; }
+
+    header.masthead {
+      position: relative;
+      z-index: 1;
+      min-height: 78vh;
+      display: grid;
+      align-items: end;
+      padding: 4.75rem 2rem 3.2rem;
+      border-bottom: 1px solid var(--rule);
+      background: linear-gradient(180deg, #080d0a 0%, var(--bg) 100%);
+      overflow: hidden;
+    }
+    header.masthead::after {
+      content: "§";
+      position: absolute;
+      right: clamp(1rem, 7vw, 5rem);
+      bottom: -2.5rem;
+      font-family: "Crimson Pro", serif;
+      font-size: clamp(13rem, 26vw, 24rem);
+      color: rgba(176,133,80,.055);
+      line-height: .8;
+      pointer-events: none;
+    }
+    .mast-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .7rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      margin-bottom: 1.35rem;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      margin-right: .9rem;
+      vertical-align: middle;
+      background: var(--bronze);
+    }
+    h1.title {
+      font-family: "Crimson Pro", serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: .92;
+      letter-spacing: 0;
+      max-width: 13ch;
+    }
+    h1.title em {
+      color: var(--bronze);
+      font-style: italic;
+      font-weight: 400;
+    }
+    .subtitle {
+      max-width: 68ch;
+      margin-top: 1.8rem;
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(1.06rem, 1.5vw, 1.38rem);
+      font-style: italic;
+      line-height: 1.6;
+    }
+    .mast-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 2rem;
+    }
+
+    nav.secs {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: .55rem;
+      padding: .85rem 2rem;
+      overflow-x: auto;
+      background: rgba(6,10,8,.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-link, .chip, .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink-dim);
+      min-height: 42px;
+      padding: .58rem .92rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: border-color .2s, color .2s, background .2s, transform .2s;
+    }
+    .nav-link:hover, .chip:hover, .btn:hover {
+      color: var(--ink);
+      border-color: var(--bronze);
+      transform: translateY(-1px);
+    }
+    .btn.primary, .chip.active {
+      background: var(--bronze);
+      border-color: var(--bronze);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .btn.ghost { color: var(--bronze); border-color: rgba(176,133,80,.55); }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+    section.sec {
+      padding: 5.5rem 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+    .sec-header {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 2.5rem;
+      align-items: baseline;
+      margin-bottom: 2.4rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sec-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .72rem;
+      color: var(--bronze);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .sec-tag span {
+      display: block;
+      margin-top: .42rem;
+      color: var(--ink-faded);
+      font-size: .68rem;
+      letter-spacing: .14em;
+    }
+    h2.sec-title {
+      font-family: "Crimson Pro", serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+      line-height: .98;
+    }
+    h2.sec-title em {
+      color: var(--bronze);
+      font-style: italic;
+      font-weight: 400;
+    }
+    .lede {
+      max-width: 72ch;
+      margin-bottom: 2.3rem;
+      color: var(--ink);
+      font-family: "Source Serif 4", serif;
+      font-size: 1.22rem;
+      line-height: 1.7;
+    }
+    .lede::first-letter {
+      float: left;
+      margin: .08em .1em 0 0;
+      color: var(--bronze);
+      font-family: "Crimson Pro", serif;
+      font-size: 4.2rem;
+      line-height: .88;
+    }
+
+    .console {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 1.6rem;
+    }
+    .search-wrap {
+      border: 1px solid var(--rule);
+      background: rgba(17,22,26,.78);
+      padding: .75rem;
+    }
+    .search-label {
+      display: block;
+      margin-bottom: .45rem;
+      color: var(--ink-faded);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .66rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .search {
+      width: 100%;
+      border: 1px solid var(--rule);
+      background: #080d0a;
+      color: var(--ink);
+      padding: .92rem 1rem;
+      font-family: "Source Serif 4", serif;
+      font-size: 1.05rem;
+    }
+    .search::placeholder { color: var(--ink-faded); }
+    .filter-row {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: .55rem;
+      max-width: 620px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin: 0 0 2rem;
+    }
+    .stat {
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      padding: 1rem;
+      min-height: 110px;
+    }
+    .stat strong {
+      display: block;
+      margin-bottom: .55rem;
+      color: var(--bronze-bright);
+      font-family: "Crimson Pro", serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: .9;
+    }
+    .stat span {
+      color: var(--ink-dim);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .66rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .site-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
+      padding: 1.15rem;
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--emerald);
+      background: linear-gradient(180deg, var(--paper) 0%, rgba(17,22,26,.88) 100%);
+      transition: border-color .2s, transform .2s, background .2s;
+    }
+    .site-card:hover {
+      border-color: rgba(176,133,80,.55);
+      transform: translateY(-3px);
+      background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%);
+    }
+    .site-card.qualifying { border-top-color: var(--plum); }
+    .site-card.dissertation { border-top-color: var(--emerald); }
+    .site-card.instrument { border-top-color: var(--bronze); }
+    .site-card.portfolio { border-top-color: var(--slate); }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-bottom: 1rem;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--rule);
+      color: var(--ink-dim);
+      padding: .28rem .55rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .62rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .tag.live {
+      border-color: rgba(107,165,136,.4);
+      color: var(--emerald-bright);
+      background: rgba(74,128,104,.08);
+    }
+    .site-card h3 {
+      margin-bottom: .75rem;
+      font-family: "Crimson Pro", serif;
+      font-size: clamp(1.65rem, 2vw, 2.1rem);
+      font-weight: 450;
+      line-height: 1.02;
+    }
+    .site-card p {
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .site-card .tags-list {
+      margin-top: 1.1rem;
+    }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: auto;
+      padding-top: 1.25rem;
+    }
+    .empty {
+      display: none;
+      border: 1px dashed var(--rule);
+      background: rgba(17,22,26,.75);
+      color: var(--ink-dim);
+      padding: 2rem;
+      text-align: center;
+      font-family: "Source Serif 4", serif;
+      font-size: 1.1rem;
+    }
+    .empty.show { display: block; }
+
+    .map-panel {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+    .field-note, .pathway {
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      padding: 1.35rem;
+    }
+    .field-note h3, .pathway h3 {
+      margin-bottom: .8rem;
+      color: var(--bronze);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .field-note p {
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+    .pathway ol {
+      list-style: none;
+      counter-reset: path;
+    }
+    .pathway li {
+      position: relative;
+      counter-increment: path;
+      padding: .85rem 0 .85rem 2.3rem;
+      border-top: 1px solid var(--rule);
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+    }
+    .pathway li:first-child { border-top: 0; }
+    .pathway li::before {
+      content: counter(path, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: .95rem;
+      color: var(--bronze);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .72rem;
+    }
+
+    @media (max-width: 980px) {
+      header.masthead { min-height: 68vh; }
+      .sec-header, .map-panel, .console { grid-template-columns: 1fr; }
+      .filter-row { justify-content: flex-start; }
+      .grid, .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      header.masthead, section.sec { padding-left: 1.1rem; padding-right: 1.1rem; }
+      nav.secs { padding-left: 1.1rem; padding-right: 1.1rem; }
       .grid, .stats { grid-template-columns: 1fr; }
+      h1.title { font-size: clamp(2.75rem, 18vw, 4.4rem); }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-inner">
+  <header class="masthead">
+    <div class="mast-inner">
       <div class="eyebrow">Researcher Dashboard</div>
-      <h1>Dissertation Sites Dashboard</h1>
-      <p>A public index of the live GitHub Pages resources connected to the qualifying paper, mixed methods proposal, dissertation planning, and research instrument workflow.</p>
+      <h1 class="title">Dissertation <em>Sites</em> Dashboard</h1>
+      <p class="subtitle">A living map of the public web artifacts surrounding the qualifying paper, the mixed methods proposal, the instrument suite, and the dissertation work still taking shape.</p>
+      <div class="mast-actions">
+        <a class="btn primary" href="#catalog">Enter the Catalog</a>
+        <a class="btn ghost" href="../researcher/">Researcher Overview</a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <div class="toolbar">
-      <input class="search" id="searchInput" type="search" placeholder="Search by title, theme, tag, or purpose">
-      <div class="filter-row" id="filters"></div>
-    </div>
+  <nav class="secs" aria-label="Dashboard navigation">
+    <a class="nav-link" href="#catalog">Catalog</a>
+    <a class="nav-link" href="#map">Research Map</a>
+    <a class="nav-link" href="../researcher/">Overview</a>
+    <a class="nav-link" href="../dashboard.html">Instrument Dashboard</a>
+  </nav>
 
-    <section class="stats" aria-label="Dashboard summary">
-      <div class="stat"><strong id="visibleCount">0</strong><span>Visible resources</span></div>
-      <div class="stat"><strong>9</strong><span>Verified live Pages sites</span></div>
-      <div class="stat"><strong>4</strong><span>Research ecosystem categories</span></div>
-      <div class="stat"><strong>May 1</strong><span>Last live check in 2026</span></div>
+  <main>
+    <section class="sec" id="catalog">
+      <div class="inner">
+        <div class="sec-header">
+          <div class="sec-tag">Catalog <span>Public Pages</span></div>
+          <h2 class="sec-title">The dissertation web ecosystem, <em>indexed.</em></h2>
+        </div>
+
+        <p class="lede">This dashboard gathers the live public pages that support the dissertation arc: the theoretical companions, the planning tools, the literature review, the mixed methods proposal, and the participant-facing instrument suite.</p>
+
+        <div class="console">
+          <label class="search-wrap">
+            <span class="search-label">Search the ecosystem</span>
+            <input class="search" id="searchInput" type="search" placeholder="Search by title, theme, tag, or purpose">
+          </label>
+          <div class="filter-row" id="filters"></div>
+        </div>
+
+        <section class="stats" aria-label="Dashboard summary">
+          <div class="stat"><strong id="visibleCount">0</strong><span>Visible resources</span></div>
+          <div class="stat"><strong>9</strong><span>Verified live Pages sites</span></div>
+          <div class="stat"><strong>4</strong><span>Research ecosystem categories</span></div>
+          <div class="stat"><strong>May 1</strong><span>Last live check in 2026</span></div>
+        </section>
+
+        <section class="grid" id="siteGrid"></section>
+        <div class="empty" id="emptyState">No matching resources. Try another search or filter.</div>
+      </div>
     </section>
 
-    <div class="section-title">
-      <h2>Live Dissertation Resources</h2>
-      <span>Public links only; no participant data is stored here.</span>
-    </div>
+    <section class="sec" id="map">
+      <div class="inner">
+        <div class="sec-header">
+          <div class="sec-tag">Map <span>How to Read It</span></div>
+          <h2 class="sec-title">Not a file cabinet. A <em>research constellation.</em></h2>
+        </div>
 
-    <section class="grid" id="siteGrid"></section>
-    <div class="empty" id="emptyState">No matching resources. Try another search or filter.</div>
-
-    <section class="panel">
-      <h2>How To Use This Dashboard</h2>
-      <p>Use this page as the public-facing map of your dissertation web ecosystem. It is safe for links, descriptions, and review navigation. It is not appropriate for participant uploads, interview transcripts, audio files, coded data, or anything private.</p>
-      <div class="button-row">
-        <a class="btn primary" href="../researcher/">Back to researcher overview</a>
-        <a class="btn" href="../dashboard.html">Open instrument analysis dashboard</a>
+        <div class="map-panel">
+          <div class="field-note">
+            <h3>Researcher Note</h3>
+            <p>Use this page as the public-facing map of the dissertation web ecosystem. It is safe for public links, descriptions, and review navigation. It is not a place for participant uploads, interview transcripts, audio files, coded data, or anything private.</p>
+          </div>
+          <div class="pathway">
+            <h3>Suggested Reading Path</h3>
+            <ol>
+              <li>Start with the qualifying paper resource hub to anchor the theoretical frame.</li>
+              <li>Move through the literature review and companion sites to see the scholarly lineage.</li>
+              <li>Open the mixed methods plan to connect the framework to the empirical study.</li>
+              <li>Use the instrument suite only for reviewed, IRB-aligned participant workflows.</li>
+            </ol>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -233,18 +637,19 @@
 
       visibleCount.textContent = String(visible.length);
       emptyState.classList.toggle("show", visible.length === 0);
-      grid.innerHTML = visible.map((site) => `
-        <article class="card ${site.type}">
+      grid.innerHTML = visible.map((site, index) => `
+        <article class="site-card ${site.type}">
           <div class="meta">
             <span class="tag live">Live</span>
+            <span class="tag">${String(index + 1).padStart(2, "0")}</span>
             <span class="tag">${site.category}</span>
           </div>
           <h3>${site.title}</h3>
           <p>${site.summary}</p>
-          <div class="meta">${site.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+          <div class="meta tags-list">${site.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
           <div class="button-row">
             <a class="btn primary" href="${site.live}">Open live site</a>
-            <a class="btn" href="${site.repo}">Open repo</a>
+            <a class="btn ghost" href="${site.repo}">Open repo</a>
           </div>
         </article>
       `).join("");
