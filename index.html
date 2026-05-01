@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pedagogical Friction Interview Tool</title>
-  <meta name="description" content="Local-first mixed methods intake and reflective interview tool for pedagogical friction and generative AI research.">
+  <title>Generative AI and Academic Work Study</title>
+  <meta name="description" content="Neutral landing page for role-specific interview tools about generative AI and academic work.">
   <style>
     :root {
       --ink: #172033;
@@ -16,12 +16,13 @@
       --teal: #2b817b;
       --gold: #b78028;
       --red: #a53e35;
-      --focus: #0f766e;
       --shadow: 0 14px 36px rgba(23, 32, 51, .12);
       font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -30,24 +31,19 @@
       line-height: 1.55;
     }
 
-    a { color: var(--teal); }
-
-    button, input, select, textarea {
-      font: inherit;
+    a {
+      color: var(--teal);
     }
 
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible {
-      outline: 3px solid rgba(15, 118, 110, .35);
-      outline-offset: 2px;
+    a:focus-visible {
+      outline: 3px solid rgba(43, 129, 123, .35);
+      outline-offset: 3px;
     }
 
     .shell {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 320px minmax(0, 1fr);
+      grid-template-columns: 330px minmax(0, 1fr);
     }
 
     aside {
@@ -55,61 +51,34 @@
       top: 0;
       height: 100vh;
       overflow: auto;
-      padding: 28px 22px;
+      padding: 30px 24px;
       color: #fff;
       background: var(--navy);
     }
 
     aside h1 {
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       font-size: 1.35rem;
       line-height: 1.2;
     }
 
     aside p {
       color: rgba(255, 255, 255, .78);
-      font-size: .94rem;
+      font-size: .95rem;
       margin: 0 0 18px;
     }
 
-    .privacy-note {
-      border: 1px solid rgba(255, 255, 255, .2);
-      background: rgba(255, 255, 255, .08);
-      border-radius: 8px;
-      padding: 13px;
-      margin: 18px 0;
-      font-size: .86rem;
-    }
-
-    .progress-list {
-      display: grid;
-      gap: 9px;
-      margin: 22px 0;
-    }
-
-    .step-chip {
-      border: 1px solid rgba(255, 255, 255, .18);
-      border-radius: 999px;
-      padding: 8px 11px;
-      font-size: .84rem;
-      color: rgba(255, 255, 255, .76);
-      background: transparent;
-    }
-
-    .step-chip.active {
-      color: #102033;
-      background: #fff;
-      border-color: #fff;
-      font-weight: 700;
-    }
-
-    .step-chip.done {
-      border-color: rgba(255, 255, 255, .42);
-      color: #fff;
-    }
-
     main {
-      padding: 30px;
+      padding: 32px;
+    }
+
+    .topbar,
+    .hero,
+    .panel,
+    .footer-note {
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .topbar {
@@ -117,317 +86,220 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin: 0 auto 18px;
-      max-width: 1120px;
+      margin-bottom: 18px;
     }
 
-    .topbar .meta {
+    .meta {
       color: var(--muted);
-      font-size: .92rem;
+      font-size: .93rem;
     }
 
+    .hero,
     .panel {
-      max-width: 1120px;
-      margin: 0 auto 18px;
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 8px;
       box-shadow: var(--shadow);
     }
 
-    .panel-header {
-      padding: 22px 24px 8px;
-      border-bottom: 1px solid var(--line);
+    .hero {
+      padding: clamp(28px, 5vw, 52px);
+      margin-bottom: 18px;
     }
 
-    .panel-header h2 {
-      margin: 0 0 7px;
-      font-size: clamp(1.35rem, 3vw, 2rem);
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--teal);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h2,
+    h3 {
+      color: var(--ink);
       line-height: 1.15;
     }
 
-    .panel-header p {
+    h2 {
       margin: 0 0 14px;
-      color: var(--muted);
-      max-width: 860px;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      max-width: 820px;
     }
 
-    .panel-body {
-      padding: 22px 24px 26px;
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+    }
+
+    .lede {
+      margin: 0;
+      max-width: 820px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+    }
+
+    .panel {
+      margin-bottom: 18px;
+      padding: 24px;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+
+    .panel-title p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 760px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
     }
 
-    .grid.three {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .field {
-      display: grid;
-      gap: 6px;
-      margin-bottom: 15px;
-    }
-
-    label,
-    legend {
-      font-weight: 700;
-      color: #24334a;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      border: 1px solid #c8d3df;
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 100%;
+      border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 10px 12px;
-      color: var(--ink);
+      padding: 18px;
       background: #fff;
     }
 
-    textarea {
-      min-height: 132px;
-      resize: vertical;
-    }
-
-    .hint {
+    .card p {
+      margin: 0;
       color: var(--muted);
-      font-size: .86rem;
     }
 
-    .actions {
-      display: flex;
+    .tag {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      margin-top: 18px;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 4px 10px;
+      color: #175f5b;
+      background: #edf5f4;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .02em;
     }
 
-    .button-row {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
+    .tag.gold {
+      color: #7a5018;
+      background: #fff4dd;
+    }
+
+    .tag.gray {
+      color: #4c5b6c;
+      background: #eef2f6;
     }
 
     .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      width: fit-content;
       border: 1px solid #bec9d5;
       border-radius: 8px;
       padding: 10px 14px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
     }
 
     .btn.primary {
+      color: #fff;
+      border-color: var(--teal);
       background: var(--teal);
+    }
+
+    .btn.gold {
       color: #fff;
-      border-color: var(--teal);
+      border-color: var(--gold);
+      background: var(--gold);
     }
 
-    .btn.warn {
-      background: var(--red);
-      color: #fff;
-      border-color: var(--red);
-    }
-
-    .btn:disabled {
-      opacity: .52;
-      cursor: not-allowed;
-    }
-
-    .choice-grid {
-      display: grid;
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
+      margin-top: auto;
     }
 
-    .choice {
-      border: 1px solid #cfd9e5;
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      gap: 9px;
-      align-items: flex-start;
-      background: #fff;
-      cursor: pointer;
-    }
-
-    .choice:hover {
-      border-color: var(--teal);
-      background: #f7fcfb;
-    }
-
-    .choice input {
-      width: auto;
-      margin-top: 5px;
-    }
-
-    .question-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 18px;
-      margin-bottom: 14px;
-      background: #fff;
-    }
-
-    .question-meta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 4px 9px;
-      font-size: .78rem;
-      font-weight: 700;
-      background: #edf5f4;
-      color: #175f5b;
-    }
-
-    .tag.gold {
-      background: #fff4dd;
-      color: #7a5018;
-    }
-
-    .tag.gray {
-      background: #eef2f6;
-      color: #4c5b6c;
-    }
-
-    .question-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.08rem;
-    }
-
-    .follow-up {
-      margin-top: 12px;
-      padding: 12px;
-      border-left: 4px solid var(--gold);
-      background: #fff9ed;
-      border-radius: 6px;
-    }
-
-    .recorder {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      flex-wrap: wrap;
-      margin: 8px 0;
-    }
-
-    .recording-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #cbd5e1;
-    }
-
-    .recording-dot.on {
-      background: var(--red);
-      box-shadow: 0 0 0 6px rgba(165, 62, 53, .14);
-    }
-
-    .mini-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 12px;
-      font-size: .92rem;
-    }
-
-    .mini-table th,
-    .mini-table td {
-      border: 1px solid var(--line);
-      padding: 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    .mini-table th {
-      background: #f2f5f8;
-    }
-
-    .card-sort-grid {
-      display: grid;
-      gap: 12px;
-    }
-
-    .sort-card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-      background: #fff;
-    }
-
-    .sort-card p {
-      margin: 0 0 10px;
-    }
-
-    .pill-options {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 9px;
-    }
-
-    .pill-options label {
-      border: 1px solid #cdd7e2;
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: .86rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .pill-options input {
-      width: auto;
-      margin-right: 5px;
-    }
-
-    .summary-box {
-      border: 1px solid var(--line);
-      background: #f8fafc;
-      border-radius: 8px;
-      padding: 14px;
-      white-space: pre-wrap;
-      max-height: 420px;
-      overflow: auto;
-      font-family: "Cascadia Mono", "Consolas", monospace;
-      font-size: .84rem;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .callout {
+    .notice {
       border: 1px solid #d9c08d;
-      background: #fff8e8;
       border-radius: 8px;
-      padding: 14px;
-      margin: 14px 0;
+      padding: 15px;
+      color: #4f3617;
+      background: #fff8e8;
     }
 
-    .callout strong {
+    .notice strong {
       color: #6c4614;
     }
 
-    @media (max-width: 860px) {
+    .sidebar-box {
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 8px;
+      padding: 14px;
+      margin: 18px 0;
+      background: rgba(255, 255, 255, .08);
+      font-size: .88rem;
+    }
+
+    .side-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .side-links a {
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 8px;
+      padding: 10px 12px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .side-links a:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: .9rem;
+      padding: 4px 0 28px;
+    }
+
+    @media (max-width: 920px) {
       .shell {
         display: block;
       }
@@ -442,11 +314,12 @@
       }
 
       .grid,
-      .grid.three {
+      .grid.two {
         grid-template-columns: 1fr;
       }
 
-      .topbar {
+      .topbar,
+      .panel-title {
         align-items: flex-start;
         flex-direction: column;
       }
@@ -456,742 +329,149 @@
 <body>
   <div class="shell">
     <aside>
-      <h1>Pedagogical Friction Interview Tool</h1>
-      <p>A local-first intake, survey, and reflective interview app for a mixed methods study of generative AI and learning.</p>
-      <div class="privacy-note">
-        <strong>Privacy default:</strong> responses stay in this browser until the participant downloads an export. No server, account, database, or third-party transcription service is used by this page.
+      <h1>Generative AI and Academic Work Study</h1>
+      <p>Role-specific interview tools for adult participants reflecting on academic work, teaching, school leadership, and generative AI.</p>
+
+      <div class="sidebar-box">
+        <strong>Privacy default:</strong> responses stay in the participant's browser until an export is downloaded. This page does not use a server, account, database, or third-party transcription service.
       </div>
-      <div class="progress-list" id="progressList"></div>
-      <p class="hint">Recommended flow: consent, role selection, quick response items, typed or recorded reflection, card sort, review, export.</p>
-      <a class="btn" href="university/">Open university app</a>
-      <a class="btn" href="teacher.html">Open teacher app</a>
-      <a class="btn" href="principal.html">Open principal app</a>
+
+      <div class="sidebar-box">
+        Choose the page that matches your role. Each page explains what to expect before any response is entered.
+      </div>
+
+      <nav class="side-links" aria-label="Role-specific pages">
+        <a href="university/">University student page</a>
+        <a href="teacher.html">K-12 teacher page</a>
+        <a href="principal.html">Principal or school leader page</a>
+      </nav>
     </aside>
 
     <main>
       <div class="topbar">
         <div>
-          <strong>Pedagogical Friction in the Age of Generative AI</strong>
-          <div class="meta">Mixed Methods Proposal Instrument, June 2026 draft</div>
+          <strong>Generative AI and Academic Work Study</strong>
+          <div class="meta">Mixed methods dissertation study tools, draft site</div>
         </div>
-        <div class="button-row">
-          <button class="btn" id="saveDraftButton" type="button">Save draft</button>
-          <button class="btn warn" id="clearButton" type="button">Clear local data</button>
-        </div>
+        <a class="btn" href="dissertation-sites/">Open dissertation hub</a>
       </div>
 
-      <section class="panel" data-step="0">
-        <div class="panel-header">
-          <h2>Consent and Local Data Notice</h2>
-          <p>This tool supports adult participant intake and reflective response collection. It is a draft research instrument and should be used only after IRB approval and final committee review.</p>
+      <section class="hero" aria-labelledby="study-title">
+        <p class="eyebrow">study information and role selection</p>
+        <h2 id="study-title">Share your experience with generative AI and academic work.</h2>
+        <p class="lede">
+          This site provides role-specific pages for adult participants. The questions ask about experiences, decisions, and observations related to generative AI in academic settings. There are no preferred answers, and participants may skip any question.
+        </p>
+      </section>
+
+      <section class="panel" aria-labelledby="choose-role">
+        <div class="panel-title">
+          <div>
+            <h3 id="choose-role">Choose the page that fits your role</h3>
+            <p>Each page uses the same local-first export approach but is tailored to a different participant group.</p>
+          </div>
         </div>
-        <div class="panel-body">
-          <div class="callout">
-            <strong>IRB note:</strong> audio recording is optional and browser-local. The researcher should still describe recording, retention, export, deletion, and transmission procedures in consent materials.
-          </div>
-          <div class="field">
-            <label for="participantCode">Participant code or pseudonym</label>
-            <input id="participantCode" autocomplete="off" placeholder="Example: T-03, S-02, DL-01">
-            <div class="hint">Avoid names, school names, email addresses, or other direct identifiers when possible.</div>
-          </div>
-          <div class="grid">
-            <div class="field">
-              <label for="studyDate">Date</label>
-              <input id="studyDate" type="date">
+
+        <div class="grid">
+          <article class="card">
+            <span class="tag">student perspective</span>
+            <h3>University student</h3>
+            <p>For adult university students reflecting on academic work before and after generative AI tools became widely available.</p>
+            <div class="btn-row">
+              <a class="btn primary" href="university/">Open university page</a>
             </div>
-            <div class="field">
-              <label for="collectionMode">Collection mode</label>
-              <select id="collectionMode">
-                <option value="self-guided">Participant self-guided</option>
-                <option value="researcher-led">Researcher-led interview</option>
-                <option value="pilot">Pilot / instrument test</option>
-              </select>
+          </article>
+
+          <article class="card">
+            <span class="tag gold">classroom perspective</span>
+            <h3>K-12 teacher</h3>
+            <p>For teachers describing classroom practices, assessment decisions, student work, and professional judgment around AI use.</p>
+            <div class="btn-row">
+              <a class="btn primary" href="teacher.html">Open teacher page</a>
             </div>
-          </div>
-          <label class="choice">
-            <input id="consentCheck" type="checkbox">
-            <span>I confirm this adult participant has reviewed the study consent language and may skip any question.</span>
-          </label>
-          <div class="actions">
-            <span class="hint">Nothing is submitted online from this page.</span>
-            <button class="btn primary" type="button" data-next>Continue</button>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <section class="panel hidden" data-step="1">
-        <div class="panel-header">
-          <h2>Role and Instrument Selection</h2>
-          <p>Choose the participant role. The app will load the appropriate selected-response items, reflection prompts, and framework tags.</p>
-        </div>
-        <div class="panel-body">
-          <fieldset class="field">
-            <legend>Participant role</legend>
-            <div class="choice-grid" id="roleChoices"></div>
-          </fieldset>
-          <div class="grid">
-            <div class="field">
-              <label for="stateRegion">State or region</label>
-              <input id="stateRegion" placeholder="Optional">
+          <article class="card">
+            <span class="tag gray">leadership perspective</span>
+            <h3>Principal or school leader</h3>
+            <p>For school and district leaders describing policy, support systems, family communication, access, and implementation conditions.</p>
+            <div class="btn-row">
+              <a class="btn primary" href="principal.html">Open leader page</a>
             </div>
-            <div class="field">
-              <label for="contextNote">Context note</label>
-              <input id="contextNote" placeholder="Example: high-poverty district, suburban university, middle school ELA">
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="what-to-expect">
+        <div class="panel-title">
+          <div>
+            <h3 id="what-to-expect">What to expect</h3>
+            <p>The interview pages are designed to collect both brief structured responses and longer reflections.</p>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>How responses are handled</h3>
+            <ul class="list">
+              <li>Responses remain in the browser until the participant downloads an export.</li>
+              <li>Participants can download a JSON or Markdown file.</li>
+              <li>Audio recording, when available, is optional and browser-local.</li>
+              <li>Exported files should be transferred only through the approved research process.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Participant choice</h3>
+            <ul class="list">
+              <li>Participation should follow the final consent process.</li>
+              <li>Participants may skip any question.</li>
+              <li>Participants can type, record, or use both when reflection prompts allow it.</li>
+              <li>There are no correct responses; the study is interested in lived experience and professional judgment.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="researcher-links">
+        <div class="panel-title">
+          <div>
+            <h3 id="researcher-links">Researcher review links</h3>
+            <p>These links support review of the public research site and instruments. They are not required for participant completion.</p>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <article class="card">
+            <span class="tag gray">researcher</span>
+            <h3>Researcher overview</h3>
+            <p>Review the role-specific pages, instrument links, and local-first workflow from one place.</p>
+            <div class="btn-row">
+              <a class="btn" href="researcher/">Open researcher overview</a>
             </div>
-          </div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Load questions</button>
-          </div>
+          </article>
+
+          <article class="card">
+            <span class="tag gray">public resources</span>
+            <h3>Dissertation hub</h3>
+            <p>Open the public dashboard of dissertation-related GitHub Pages resources and companion sites.</p>
+            <div class="btn-row">
+              <a class="btn gold" href="dissertation-sites/">Open dissertation hub</a>
+            </div>
+          </article>
         </div>
       </section>
 
-      <section class="panel hidden" data-step="2">
-        <div class="panel-header">
-          <h2>Brief Definitions</h2>
-          <p>Use a short, consistent frame before data collection. This avoids over-priming while giving participants enough language to answer thoughtfully.</p>
-        </div>
-        <div class="panel-body">
-          <div class="grid">
-            <div class="callout"><strong>Productive friction:</strong> effort, ambiguity, revision, or struggle that supports deeper learning.</div>
-            <div class="callout"><strong>Exclusionary friction:</strong> barriers that block access, dignity, communication, or fair participation.</div>
-            <div class="callout"><strong>Authorship:</strong> the participant's sense of ownership and responsibility for an academic claim or product.</div>
-            <div class="callout"><strong>AI assistance:</strong> generative tools used for brainstorming, explanation, drafting, editing, summarizing, translation, coding, or feedback.</div>
-          </div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Begin quick response</button>
-          </div>
+      <section class="panel" aria-labelledby="draft-status">
+        <div class="notice">
+          <strong id="draft-status">Draft status:</strong> This public site is for instrument review, piloting, and dissertation planning. It should not be used for live dissertation data collection until the protocol, consent language, data handling procedures, and IRB approval are finalized.
         </div>
       </section>
 
-      <section class="panel hidden" data-step="3">
-        <div class="panel-header">
-          <h2>Quick Response Items</h2>
-          <p>These selected-response and short-answer items create structured indicators for later comparison with qualitative reflections.</p>
-        </div>
-        <div class="panel-body">
-          <div id="quickItems"></div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Continue to reflection</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel hidden" data-step="4">
-        <div class="panel-header">
-          <h2>Typed or Recorded Reflection</h2>
-          <p>Participants may type responses, record audio locally, or do both. If recording, add or edit a transcript/summary before export.</p>
-        </div>
-        <div class="panel-body">
-          <div id="reflectionItems"></div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Continue to card sort</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel hidden" data-step="5">
-        <div class="panel-header">
-          <h2>Card Sort</h2>
-          <p>Sort each activity by the amount of productive cognitive friction it preserves and whether it is a legitimate AI use in education.</p>
-        </div>
-        <div class="panel-body">
-          <div class="card-sort-grid" id="cardSortItems"></div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Review responses</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel hidden" data-step="6">
-        <div class="panel-header">
-          <h2>Review and Export</h2>
-          <p>Review the structured export before downloading. The export includes role, framework tags, selected responses, reflections, follow-up notes, and card-sort placements.</p>
-        </div>
-        <div class="panel-body">
-          <div class="button-row">
-            <button class="btn primary" id="downloadJsonButton" type="button">Download JSON</button>
-            <button class="btn" id="downloadMarkdownButton" type="button">Download Markdown</button>
-          </div>
-          <h3>Export preview</h3>
-          <div class="summary-box" id="exportPreview"></div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <span class="hint">Participant exports the file and chooses how to share it with the researcher.</span>
-          </div>
-        </div>
-      </section>
+      <p class="footer-note">
+        Project owner: Micah J. Miner. This page uses general orientation language so participants can enter the role-specific interview pages with room to describe their own experiences.
+      </p>
     </main>
   </div>
-
-  <script>
-    const STORAGE_KEY = "pedagogical-friction-interview-draft-v2";
-    const steps = [
-      "Consent",
-      "Role",
-      "Definitions",
-      "Quick response",
-      "Reflection",
-      "Card sort",
-      "Export"
-    ];
-
-    const roles = [
-      {
-        id: "university-student",
-        label: "University Student",
-        description: "Adult student who experienced the pre-GenAI to post-GenAI transition during high school."
-      },
-      {
-        id: "teacher",
-        label: "K-12 Teacher",
-        description: "Teacher perspective on AI integration, assessment, and productive struggle."
-      },
-      {
-        id: "administrator",
-        label: "Building Administrator",
-        description: "Building-level leadership, policy implementation, and instructional conditions."
-      },
-      {
-        id: "district-leader",
-        label: "District Leader",
-        description: "System-level AI governance, infrastructure, policy, professional learning, and equity."
-      }
-    ];
-
-    const instruments = {
-      "university-student": {
-        quick: [
-          q("use_frequency", "On average, how frequently do you use generative AI tools for academic coursework?", "choice", ["Daily", "Weekly", "Monthly", "Rarely", "Never"], ["infrastructural"]),
-          q("use_phase", "Which phase of academic work do you rely on generative AI for most?", "choice", ["Brainstorming and ideation", "Outlining and structuring", "Drafting content", "Editing and proofreading", "Concept explanation", "None"], ["noetic", "rhetorical"]),
-          q("concept_wrestling", "Compared to your workflow before late 2022, how has generative AI changed the time you spend wrestling with difficult concepts?", "choice", ["Significantly decreased", "Slightly decreased", "No change", "Slightly increased", "Significantly increased"], ["noetic"]),
-          q("authorship_definition", "In one sentence, what does academic authorship mean to you today?", "short", [], ["existential", "authorship"]),
-          q("accountability", "When you submit work heavily supported by generative AI, how does your sense of accountability compare to entirely original work?", "choice", ["Much lower", "Somewhat lower", "About the same", "Somewhat higher", "Much higher"], ["existential", "authorship"]),
-          q("peer_discussion", "How has widespread generative AI availability affected peer-to-peer academic discussions?", "choice", ["Significantly worsened", "Somewhat worsened", "No clear impact", "Somewhat improved", "Significantly improved"], ["rhetorical"]),
-          q("chosen_nonuse", "Name one academic task you actively choose not to use generative AI for, and why.", "short", [], ["noetic", "existential"]),
-          q("short_circuit", "How often has AI solved a problem before you had the chance to process it yourself?", "choice", ["Very often", "Often", "Sometimes", "Rarely", "Never"], ["noetic"]),
-          q("fairness", "How fair does the current academic landscape feel when students use different levels of AI assistance?", "choice", ["Highly unfair", "Somewhat unfair", "Neutral", "Somewhat fair", "Highly fair"], ["equity"]),
-          q("long_term_risk", "What is the most significant risk generative AI poses to your long-term learning and retention?", "short", [], ["noetic", "existential"])
-        ],
-        reflection: [
-          r("student_writing_transition", "Think about writing a difficult paper before ChatGPT became widely available. How did you usually get started, struggle through ideas, and decide the work was yours?", "Now compare that with how you write difficult papers today. What has changed?", ["noetic", "rhetorical", "existential"]),
-          r("student_ai_intervention", "Describe one time a generative AI tool changed your learning process.", "Did it remove an unnecessary barrier, reduce productive struggle, or do both?", ["noetic", "equity", "authorship"])
-        ]
-      },
-      teacher: {
-        quick: [
-          q("planning_frequency", "How often do you use generative AI for instructional design or lesson planning?", "choice", ["Multiple times a day", "Daily", "Weekly", "Monthly", "Rarely or never"], ["infrastructural"]),
-          q("student_outcome", "When students use generative AI in your classroom, what outcome do you most often observe?", "choice", ["Improved final product quality", "Decreased depth of understanding", "Increased engagement", "Loss of student voice", "No significant change"], ["noetic", "existential"]),
-          q("struggle_confidence", "How confident are you distinguishing authentic cognitive struggle from an unnecessary learning barrier?", "choice", ["Very confident", "Confident", "Neutral", "Unconfident", "Very unconfident"], ["equity", "noetic"]),
-          q("understanding_indicator", "Briefly describe one indicator that a student genuinely understands an AI-assisted assignment.", "short", [], ["noetic", "rhetorical"]),
-          q("policy_support", "To what extent do district policies support your ability to preserve necessary cognitive friction?", "choice", ["Fully support", "Partially support", "Neutral", "Impede", "Strongly impede"], ["infrastructural", "policy"]),
-          q("ell_iep_effect", "How have AI translation or summarization tools affected English learners or students with IEPs?", "choice", ["Significantly helped", "Somewhat helped", "Mixed results", "Somewhat hindered", "Significantly hindered"], ["equity"]),
-          q("accountability_challenge", "What is the hardest part of holding students accountable for AI-assisted work?", "short", [], ["existential", "authorship"]),
-          q("peer_critique", "In peer critique or collaboration, how has AI-generated content shifted student interaction?", "choice", ["More critical analysis", "Surface-level agreement", "Less peer reliance", "No change", "Other"], ["rhetorical"]),
-          q("pd_fit", "Does current professional development address AI's impact on student cognitive development?", "choice", ["Yes completely", "Yes somewhat", "No, it focuses too much on tool mechanics", "No, it ignores AI entirely", "Unsure"], ["infrastructural"])
-        ],
-        reflection: [
-          r("teacher_lesson", "Describe one lesson where you allowed, limited, or banned generative AI. What were you trying to protect or support?", "Did AI remove an unnecessary barrier, reduce productive struggle, or do both?", ["noetic", "equity", "infrastructural"]),
-          r("teacher_assessment", "How are you adapting assessment so students maintain accountability and ownership rather than curating AI outputs?", "What evidence would convince you that the student can explain, defend, or extend the work?", ["rhetorical", "existential", "authorship"])
-        ]
-      },
-      administrator: {
-        quick: [
-          q("policy_driver", "What is the primary driver behind your school or district's current generative AI policy?", "choice", ["Academic integrity", "Data privacy and security", "Pedagogical innovation", "Workforce preparation", "Unsure or no policy"], ["policy"]),
-          q("infrastructure_rating", "How would you rate current infrastructure for equitable, secure AI access?", "choice", ["Excellent", "Good", "Adequate", "Needs improvement", "Poor"], ["infrastructural", "equity"]),
-          q("pd_hurdle", "Briefly state the biggest hurdle to moving AI professional development beyond basic tool proficiency.", "short", [], ["infrastructural"]),
-          q("testing_conflict", "How often do testing, pacing, or administrative constraints conflict with friction-preserving pedagogy?", "choice", ["Always", "Often", "Sometimes", "Rarely", "Never"], ["infrastructural"]),
-          q("platform_priority", "When evaluating AI platforms, what priority is given to learning science over administrative efficiency?", "choice", ["Highest priority", "High priority", "Equal priority", "Low priority", "Not considered"], ["policy", "noetic"]),
-          q("parent_communication", "How effectively does your school or district explain productive struggle versus unnecessary hurdles to families?", "choice", ["Very effectively", "Effectively", "Neutral", "Ineffectively", "Very ineffectively"], ["rhetorical", "policy"]),
-          q("success_metric", "What metric or observation do you use to evaluate AI integration success?", "short", [], ["policy"]),
-          q("infrastructure_gap", "Where is the most significant pedagogical infrastructure gap?", "choice", ["Hardware access", "Teacher training", "Policy development", "Curriculum redesign", "Data privacy compliance"], ["infrastructural", "equity"]),
-          q("ethical_readiness", "How prepared is your leadership team to address ethical and existential implications of student AI use?", "choice", ["Very prepared", "Prepared", "Somewhat prepared", "Unprepared", "Very unprepared"], ["existential", "policy"])
-        ],
-        reflection: [
-          r("admin_structural_change", "Describe one school-level decision needed to support responsible AI use without reducing student thinking.", "What gets in the way: policy, testing pressure, professional development, parent expectations, equity, privacy, or something else?", ["infrastructural", "policy", "equity"]),
-          r("admin_privacy_pedagogy", "How do you balance privacy and cybersecurity compliance with teacher experimentation around AI that challenges student thinking?", "Describe a concrete tension you have seen or expect to see.", ["infrastructural", "policy", "noetic"])
-        ]
-      },
-      "district-leader": {
-        quick: [
-          q("leader_role", "Which category best describes your current leadership role?", "choice", ["School principal or assistant principal", "District-level director", "Superintendent or assistant superintendent", "Other"], ["infrastructural"]),
-          q("ai_work_frequency", "How frequently do you address policy, budget, or professional development related to generative AI?", "choice", ["Daily", "Weekly", "Monthly", "Rarely", "Never"], ["policy"]),
-          q("platform_concern", "When evaluating AI platforms, what is your primary concern?", "choice", ["Data privacy and SOPPA/COPPA/FERPA compliance", "Pedagogical value and learning science", "Cost of ownership", "Integration with existing infrastructure"], ["policy", "infrastructural"]),
-          q("staff_confidence", "How confident are you that staff can distinguish productive AI scaffolding from bypassing cognitive struggle?", "choice", ["Very confident", "Confident", "Neutral", "Unconfident", "Very unconfident"], ["noetic", "infrastructural"]),
-          q("district_gap", "What is the most significant pedagogical infrastructure gap facing your district regarding AI?", "choice", ["Equitable access", "Teacher training on AI pedagogy", "Clear administrative policies", "Community and parent understanding"], ["infrastructural", "equity"]),
-          q("parent_concern", "In a few words, what AI concern or question do you most often hear from parents?", "short", [], ["rhetorical", "policy"]),
-          q("walkthrough_view", "In observations, how do you view a teacher's reliance on GenAI for lesson planning or grading?", "choice", ["Highly encourage", "Somewhat encourage", "Neutral", "Somewhat discourage", "Highly discourage"], ["policy"]),
-          q("testing_pressure", "How does standardized testing or pacing pressure affect friction-preserving AI policy?", "choice", ["Severely limits it", "Somewhat limits it", "No impact", "Somewhat supports it", "Strongly supports it"], ["infrastructural"]),
-          q("pd_shift", "Since GenAI became widely available, how has professional development shifted?", "choice", ["Heavy shift toward tech integration", "Shift toward learning science and pedagogy", "Equal balance of both", "No significant change"], ["infrastructural"]),
-          q("equitable_success", "Briefly define successful and equitable AI integration for your student population.", "short", [], ["equity", "policy"])
-        ],
-        reflection: [
-          r("leader_infrastructural_friction", "Describe a time when AI policy, privacy compliance, budget, or infrastructure conflicted with classroom instruction or student cognitive development.", "How did you navigate the tension between system constraints and teachers' pedagogical needs?", ["infrastructural", "policy", "equity"]),
-          r("leader_pedagogical_leadership", "How are you guiding staff beyond using AI for administrative efficiency toward attention to student thinking, ownership, and productive struggle?", "What would need to change for that guidance to become normal practice?", ["noetic", "existential", "infrastructural"])
-        ]
-      }
-    };
-
-    const cardSortBase = [
-      cs("AI drafts a full essay, then the student edits for clarity.", ["rhetorical", "authorship"]),
-      cs("A student asks AI to explain a difficult concept in three different ways, then writes their own explanation.", ["noetic"]),
-      cs("AI summarizes a source before the student reads the original text.", ["noetic", "rhetorical"]),
-      cs("A multilingual learner uses AI translation to access assignment directions.", ["equity", "infrastructural"]),
-      cs("A teacher requires students to defend AI-assisted claims in conference.", ["rhetorical", "existential"]),
-      cs("AI generates feedback on a draft before peer review.", ["rhetorical"]),
-      cs("A student uses AI to brainstorm possible counterarguments before writing.", ["rhetorical", "noetic"]),
-      cs("A school blocks all AI tools because policy guidance is unclear.", ["infrastructural", "policy"]),
-      cs("Students document where AI helped, where it was rejected, and what they still had to decide themselves.", ["existential", "authorship"]),
-      cs("A teacher designs an AI-free first draft so students experience the initial struggle of organizing ideas.", ["noetic", "rhetorical"])
-    ];
-
-    let currentStep = 0;
-    let mediaRecorder = null;
-    let activeRecordingId = null;
-    let audioChunks = [];
-    let state = loadState();
-
-    function q(id, text, type, options, tags) {
-      return { id, text, type, options, tags };
-    }
-
-    function r(id, text, followUp, tags) {
-      return { id, text, followUp, tags };
-    }
-
-    function cs(text, tags) {
-      return { id: slug(text), text, tags };
-    }
-
-    function slug(text) {
-      return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 54);
-    }
-
-    function defaultState() {
-      return {
-        participantCode: "",
-        studyDate: new Date().toISOString().slice(0, 10),
-        collectionMode: "self-guided",
-        consent: false,
-        role: "university-student",
-        stateRegion: "",
-        contextNote: "",
-        quickResponses: {},
-        reflections: {},
-        cardSort: {},
-        audio: {},
-        updatedAt: null
-      };
-    }
-
-    function loadState() {
-      try {
-        return { ...defaultState(), ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") };
-      } catch {
-        return defaultState();
-      }
-    }
-
-    function persist() {
-      syncStateFromDom();
-      state.updatedAt = new Date().toISOString();
-      const draftState = {
-        ...state,
-        audio: {}
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(draftState));
-    }
-
-    function renderProgress() {
-      const progress = document.querySelector("#progressList");
-      progress.innerHTML = steps.map((label, index) => {
-        const klass = index === currentStep ? "active" : index < currentStep ? "done" : "";
-        return `<div class="step-chip ${klass}">${index + 1}. ${label}</div>`;
-      }).join("");
-    }
-
-    function showStep(index) {
-      currentStep = Math.max(0, Math.min(index, steps.length - 1));
-      document.querySelectorAll("[data-step]").forEach((panel) => {
-        panel.classList.toggle("hidden", Number(panel.dataset.step) !== currentStep);
-      });
-      if (currentStep === 3) renderQuickItems();
-      if (currentStep === 4) renderReflectionItems();
-      if (currentStep === 5) renderCardSortItems();
-      if (currentStep === 6) renderPreview();
-      renderProgress();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function renderRoleChoices() {
-      const holder = document.querySelector("#roleChoices");
-      holder.innerHTML = roles.map((role) => `
-        <label class="choice">
-          <input type="radio" name="participantRole" value="${role.id}" ${state.role === role.id ? "checked" : ""}>
-          <span><strong>${role.label}</strong><br><span class="hint">${role.description}</span></span>
-        </label>
-      `).join("");
-    }
-
-    function selectedInstrument() {
-      return instruments[state.role] || instruments["university-student"];
-    }
-
-    function tagHtml(tags) {
-      return tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
-    }
-
-    function renderQuickItems() {
-      syncStateFromDom();
-      const items = selectedInstrument().quick;
-      document.querySelector("#quickItems").innerHTML = items.map((item, index) => {
-        const value = state.quickResponses[item.id] || "";
-        const input = item.type === "choice"
-          ? `<select data-quick="${item.id}"><option value="">Choose one</option>${item.options.map((option) => `<option ${value === option ? "selected" : ""}>${option}</option>`).join("")}</select>`
-          : `<input data-quick="${item.id}" value="${escapeAttr(value)}" placeholder="Short answer">`;
-        return `
-          <div class="question-card">
-            <div class="question-meta"><span class="tag gray">Q${index + 1}</span>${tagHtml(item.tags)}</div>
-            <h3>${item.text}</h3>
-            ${input}
-          </div>
-        `;
-      }).join("");
-    }
-
-    function renderReflectionItems() {
-      syncStateFromDom();
-      const items = selectedInstrument().reflection;
-      document.querySelector("#reflectionItems").innerHTML = items.map((item, index) => {
-        const response = state.reflections[item.id] || {};
-        const audio = state.audio[item.id];
-        return `
-          <div class="question-card">
-            <div class="question-meta"><span class="tag gold">Reflection ${index + 1}</span>${tagHtml(item.tags)}</div>
-            <h3>${item.text}</h3>
-            <textarea data-reflection="${item.id}" placeholder="Type response, paste reviewed transcript, or summarize a recorded answer.">${escapeText(response.text || "")}</textarea>
-            <div class="recorder">
-              <span class="recording-dot" data-dot="${item.id}"></span>
-              <button class="btn" type="button" data-record="${item.id}">Start recording</button>
-              <button class="btn" type="button" data-stop="${item.id}" disabled>Stop</button>
-              ${audio ? `<a class="btn" href="${audio.dataUrl}" download="${safeFileName(item.id)}.webm">Download audio</a>` : ""}
-              <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Optional browser-local recording"}</span>
-            </div>
-            <div class="follow-up">
-              <strong>Standard follow-up probe:</strong> ${item.followUp}
-              <textarea data-followup="${item.id}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
-            </div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function renderCardSortItems() {
-      syncStateFromDom();
-      document.querySelector("#cardSortItems").innerHTML = cardSortBase.map((card, index) => {
-        const response = state.cardSort[card.id] || {};
-        return `
-          <div class="sort-card">
-            <div class="question-meta"><span class="tag gray">Card ${index + 1}</span>${tagHtml(card.tags)}</div>
-            <p><strong>${card.text}</strong></p>
-            <div class="pill-options" role="group" aria-label="Productive friction level">
-              ${["High friction", "Medium friction", "Low friction"].map((value) => `
-                <label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>
-              `).join("")}
-            </div>
-            <div class="pill-options" role="group" aria-label="Legitimate AI use">
-              ${["Yes", "Maybe", "No"].map((value) => `
-                <label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>AI use: ${value}</label>
-              `).join("")}
-            </div>
-            <textarea data-sort-note="${card.id}" placeholder="Optional rationale.">${escapeText(response.note || "")}</textarea>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function syncStateFromDom() {
-      const participantCode = document.querySelector("#participantCode");
-      if (participantCode) state.participantCode = participantCode.value.trim();
-      const studyDate = document.querySelector("#studyDate");
-      if (studyDate) state.studyDate = studyDate.value;
-      const collectionMode = document.querySelector("#collectionMode");
-      if (collectionMode) state.collectionMode = collectionMode.value;
-      const consent = document.querySelector("#consentCheck");
-      if (consent) state.consent = consent.checked;
-      const checkedRole = document.querySelector("input[name='participantRole']:checked");
-      if (checkedRole) state.role = checkedRole.value;
-      const stateRegion = document.querySelector("#stateRegion");
-      if (stateRegion) state.stateRegion = stateRegion.value.trim();
-      const contextNote = document.querySelector("#contextNote");
-      if (contextNote) state.contextNote = contextNote.value.trim();
-
-      document.querySelectorAll("[data-quick]").forEach((input) => {
-        state.quickResponses[input.dataset.quick] = input.value;
-      });
-      document.querySelectorAll("[data-reflection]").forEach((input) => {
-        state.reflections[input.dataset.reflection] = state.reflections[input.dataset.reflection] || {};
-        state.reflections[input.dataset.reflection].text = input.value;
-      });
-      document.querySelectorAll("[data-followup]").forEach((input) => {
-        state.reflections[input.dataset.followup] = state.reflections[input.dataset.followup] || {};
-        state.reflections[input.dataset.followup].followUp = input.value;
-      });
-      document.querySelectorAll("[data-sort]").forEach((input) => {
-        if (!input.checked) return;
-        state.cardSort[input.dataset.sort] = state.cardSort[input.dataset.sort] || {};
-        state.cardSort[input.dataset.sort][input.dataset.sortField] = input.value;
-      });
-      document.querySelectorAll("[data-sort-note]").forEach((input) => {
-        state.cardSort[input.dataset.sortNote] = state.cardSort[input.dataset.sortNote] || {};
-        state.cardSort[input.dataset.sortNote].note = input.value;
-      });
-    }
-
-    function exportData() {
-      syncStateFromDom();
-      const instrument = selectedInstrument();
-      return {
-        app: "Pedagogical Friction Interview Tool",
-        version: "2026-06-draft-static-v2",
-        exportedAt: new Date().toISOString(),
-        participant: {
-          code: state.participantCode,
-          role: state.role,
-          collectionMode: state.collectionMode,
-          studyDate: state.studyDate,
-          stateRegion: state.stateRegion,
-          contextNote: state.contextNote,
-          consentChecked: state.consent
-        },
-        frameworkDimensions: ["noetic", "rhetorical", "existential", "infrastructural", "equity", "policy", "authorship"],
-        quickResponses: instrument.quick.map((item) => ({
-          id: item.id,
-          prompt: item.text,
-          tags: item.tags,
-          response: state.quickResponses[item.id] || ""
-        })),
-        reflections: instrument.reflection.map((item) => ({
-          id: item.id,
-          prompt: item.text,
-          standardFollowUp: item.followUp,
-          tags: item.tags,
-          response: (state.reflections[item.id] || {}).text || "",
-          followUpResponse: (state.reflections[item.id] || {}).followUp || "",
-          audioCaptured: Boolean(state.audio[item.id])
-        })),
-        cardSort: cardSortBase.map((card) => ({
-          id: card.id,
-          prompt: card.text,
-          tags: card.tags,
-          ...state.cardSort[card.id]
-        })),
-        audioManifest: Object.entries(state.audio).map(([id, item]) => ({
-          reflectionId: id,
-          mimeType: item.mimeType,
-          createdAt: item.createdAt,
-          downloadSeparately: true
-        }))
-      };
-    }
-
-    function markdownExport(data) {
-      const lines = [];
-      lines.push(`# Pedagogical Friction Interview Export`);
-      lines.push("");
-      lines.push(`- Exported: ${data.exportedAt}`);
-      lines.push(`- Participant code: ${data.participant.code || ""}`);
-      lines.push(`- Role: ${data.participant.role}`);
-      lines.push(`- Collection mode: ${data.participant.collectionMode}`);
-      lines.push(`- Date: ${data.participant.studyDate || ""}`);
-      lines.push("");
-      lines.push(`## Quick Responses`);
-      data.quickResponses.forEach((item, index) => {
-        lines.push(`### ${index + 1}. ${item.prompt}`);
-        lines.push(`Tags: ${item.tags.join(", ")}`);
-        lines.push("");
-        lines.push(item.response || "_No response_");
-        lines.push("");
-      });
-      lines.push(`## Reflections`);
-      data.reflections.forEach((item, index) => {
-        lines.push(`### Reflection ${index + 1}: ${item.prompt}`);
-        lines.push(`Tags: ${item.tags.join(", ")}`);
-        lines.push("");
-        lines.push(item.response || "_No response_");
-        lines.push("");
-        lines.push(`**Standard follow-up:** ${item.standardFollowUp}`);
-        lines.push("");
-        lines.push(item.followUpResponse || "_No follow-up response_");
-        lines.push("");
-        lines.push(`Audio captured: ${item.audioCaptured ? "Yes" : "No"}`);
-        lines.push("");
-      });
-      lines.push(`## Card Sort`);
-      data.cardSort.forEach((item, index) => {
-        lines.push(`### Card ${index + 1}: ${item.prompt}`);
-        lines.push(`Tags: ${item.tags.join(", ")}`);
-        lines.push(`Friction: ${item.friction || ""}`);
-        lines.push(`Legitimacy: ${item.legitimacy || ""}`);
-        lines.push(`Rationale: ${item.note || ""}`);
-        lines.push("");
-      });
-      return lines.join("\n");
-    }
-
-    function renderPreview() {
-      const data = exportData();
-      document.querySelector("#exportPreview").textContent = JSON.stringify(data, null, 2);
-    }
-
-    function download(filename, content, type) {
-      const blob = new Blob([content], { type });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    function safeFileName(label) {
-      const code = state.participantCode || "participant";
-      return `${code}-${label}`.replace(/[^a-z0-9-_]+/gi, "-").replace(/-+/g, "-");
-    }
-
-    function escapeText(text) {
-      return String(text || "").replace(/[&<>"']/g, (char) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      }[char]));
-    }
-
-    function escapeAttr(text) {
-      return escapeText(text).replace(/`/g, "&#96;");
-    }
-
-    async function startRecording(id) {
-      if (!navigator.mediaDevices || !window.MediaRecorder) {
-        alert("Audio recording is not supported in this browser. You can still type or paste a transcript.");
-        return;
-      }
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        alert("Stop the current recording before starting another.");
-        return;
-      }
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      audioChunks = [];
-      activeRecordingId = id;
-      mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.ondataavailable = (event) => {
-        if (event.data.size) audioChunks.push(event.data);
-      };
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || "audio/webm" });
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        state.audio[id] = {
-          dataUrl: reader.result,
-          mimeType: blob.type,
-          createdAt: new Date().toISOString()
-        };
-          syncStateFromDom();
-          renderReflectionItems();
-        };
-        reader.readAsDataURL(blob);
-        stream.getTracks().forEach((track) => track.stop());
-      };
-      mediaRecorder.start();
-      updateRecordingUi(id, true);
-    }
-
-    function stopRecording(id) {
-      if (mediaRecorder && activeRecordingId === id && mediaRecorder.state === "recording") {
-        mediaRecorder.stop();
-        updateRecordingUi(id, false);
-        activeRecordingId = null;
-      }
-    }
-
-    function updateRecordingUi(id, isRecording) {
-      const dot = document.querySelector(`[data-dot="${id}"]`);
-      const start = document.querySelector(`[data-record="${id}"]`);
-      const stop = document.querySelector(`[data-stop="${id}"]`);
-      if (dot) dot.classList.toggle("on", isRecording);
-      if (start) start.disabled = isRecording;
-      if (stop) stop.disabled = !isRecording;
-    }
-
-    function hydrateStaticFields() {
-      document.querySelector("#participantCode").value = state.participantCode || "";
-      document.querySelector("#studyDate").value = state.studyDate || new Date().toISOString().slice(0, 10);
-      document.querySelector("#collectionMode").value = state.collectionMode || "self-guided";
-      document.querySelector("#consentCheck").checked = Boolean(state.consent);
-      document.querySelector("#stateRegion").value = state.stateRegion || "";
-      document.querySelector("#contextNote").value = state.contextNote || "";
-      renderRoleChoices();
-    }
-
-    document.addEventListener("click", (event) => {
-      const next = event.target.closest("[data-next]");
-      const prev = event.target.closest("[data-prev]");
-      const record = event.target.closest("[data-record]");
-      const stop = event.target.closest("[data-stop]");
-      if (next) {
-        persist();
-        showStep(currentStep + 1);
-      }
-      if (prev) {
-        persist();
-        showStep(currentStep - 1);
-      }
-      if (record) startRecording(record.dataset.record);
-      if (stop) stopRecording(stop.dataset.stop);
-    });
-
-    document.querySelector("#saveDraftButton").addEventListener("click", () => {
-      persist();
-      alert("Draft saved in this browser.");
-    });
-
-    document.querySelector("#clearButton").addEventListener("click", () => {
-      const ok = confirm("Clear all local responses and audio stored by this page in this browser?");
-      if (!ok) return;
-      localStorage.removeItem(STORAGE_KEY);
-      state = defaultState();
-      hydrateStaticFields();
-      showStep(0);
-    });
-
-    document.querySelector("#downloadJsonButton").addEventListener("click", () => {
-      const data = exportData();
-      download(`${safeFileName("interview-export")}.json`, JSON.stringify(data, null, 2), "application/json");
-    });
-
-    document.querySelector("#downloadMarkdownButton").addEventListener("click", () => {
-      const data = exportData();
-      download(`${safeFileName("interview-export")}.md`, markdownExport(data), "text/markdown");
-    });
-
-    document.addEventListener("change", (event) => {
-      if (event.target.matches("input, select, textarea")) persist();
-    });
-
-    document.addEventListener("input", (event) => {
-      if (event.target.matches("input, textarea")) persist();
-    });
-
-    hydrateStaticFields();
-    showStep(0);
-  </script>
 </body>
 </html>

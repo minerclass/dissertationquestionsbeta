@@ -4,7 +4,7 @@ Static GitHub Pages tool for collecting structured and reflective responses for:
 
 **Pedagogical Friction in the Age of Generative AI: A Mixed Methods Proposal**
 
-The app is designed as a hybrid intake, selected-response, reflective interview, card-sort, and export workflow. It supports the proposed dissertation study while keeping participant data local to the browser until the participant or researcher downloads an export.
+The root site is designed as a neutral project entrance and role-selection page. Role-specific pages provide the intake, selected-response, reflective interview, card-sort, and export workflows. The structure supports the proposed dissertation study while keeping participant data local to the browser until the participant or researcher downloads an export.
 
 ## Live Site
 
@@ -25,12 +25,11 @@ Researcher review URL:
 
 ## What Changed
 
-The front page has been rebuilt as a readable, dependency-free static app instead of a generated bundled HTML artifact.
+The front page has been rebuilt as a readable, dependency-free static project entrance instead of a combined interview instrument. The goal is to orient participants without shaping their responses before they enter a role-specific page.
 
-The app now includes:
+The role-specific apps now include:
 
-- Consent and local-data notice screen
-- Role selection for university students, K-12 teachers, building administrators, and district leaders
+- Consent and local-data notice screens
 - Short shared definitions for productive friction, exclusionary friction, authorship, and AI assistance
 - Role-specific selected-response and short-answer items
 - Typed or browser-local recorded reflection prompts
@@ -60,7 +59,7 @@ Do not use the app for live dissertation data collection until the final protoco
 
 ## Files
 
-- `index.html` - main local-first interview and card-sort tool
+- `index.html` - neutral project entrance and role-selection page
 - `university/index.html` - university student version of the instrument
 - `teacher.html` - teacher-only version of the instrument
 - `principal.html` - principal and school-leader version of the instrument
