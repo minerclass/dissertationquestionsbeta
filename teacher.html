@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>K-12 Teacher Pedagogical Friction App</title>
+  <meta name="description" content="Teacher-facing local-first interview and reflection tool for generative AI, productive struggle, and pedagogical friction.">
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #5d6878;
+      --line: #d9e1ea;
+      --paper: #ffffff;
+      --wash: #f5f7fa;
+      --navy: #203a5f;
+      --teal: #2b817b;
+      --gold: #b78028;
+      --red: #a53e35;
+      --shadow: 0 14px 36px rgba(23, 32, 51, .12);
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--wash); line-height: 1.55; }
+    button, input, select, textarea { font: inherit; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid rgba(43, 129, 123, .35);
+      outline-offset: 2px;
+    }
+
+    .shell { min-height: 100vh; display: grid; grid-template-columns: 310px minmax(0, 1fr); }
+    aside { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 22px; color: #fff; background: var(--navy); }
+    aside h1 { margin: 0 0 8px; font-size: 1.35rem; line-height: 1.2; }
+    aside p { color: rgba(255,255,255,.78); font-size: .94rem; margin: 0 0 18px; }
+    main { padding: 30px; }
+
+    .privacy-note {
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.08);
+      border-radius: 8px;
+      padding: 13px;
+      margin: 18px 0;
+      font-size: .86rem;
+    }
+
+    .progress-list { display: grid; gap: 9px; margin: 22px 0; }
+    .step-chip { border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 8px 11px; font-size: .84rem; color: rgba(255,255,255,.76); }
+    .step-chip.active { color: #102033; background: #fff; border-color: #fff; font-weight: 700; }
+    .step-chip.done { border-color: rgba(255,255,255,.42); color: #fff; }
+
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 auto 18px; max-width: 1080px; }
+    .meta { color: var(--muted); font-size: .92rem; }
+    .panel { max-width: 1080px; margin: 0 auto 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
+    .panel-header { padding: 22px 24px 8px; border-bottom: 1px solid var(--line); }
+    .panel-header h2 { margin: 0 0 7px; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.15; }
+    .panel-header p { margin: 0 0 14px; color: var(--muted); max-width: 850px; }
+    .panel-body { padding: 22px 24px 26px; }
+
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .field { display: grid; gap: 6px; margin-bottom: 15px; }
+    label, legend { font-weight: 700; color: #24334a; }
+    input, select, textarea { width: 100%; border: 1px solid #c8d3df; border-radius: 8px; padding: 10px 12px; color: var(--ink); background: #fff; }
+    textarea { min-height: 132px; resize: vertical; }
+    .hint { color: var(--muted); font-size: .86rem; }
+
+    .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid var(--line); margin-top: 18px; }
+    .button-row { display: flex; gap: 9px; flex-wrap: wrap; }
+    .btn { border: 1px solid #bec9d5; border-radius: 8px; padding: 10px 14px; background: #fff; color: var(--ink); cursor: pointer; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-height: 42px; }
+    .btn.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
+    .btn.warn { background: var(--red); color: #fff; border-color: var(--red); }
+    .btn:disabled { opacity: .52; cursor: not-allowed; }
+
+    .choice { border: 1px solid #cfd9e5; border-radius: 8px; padding: 12px; display: flex; gap: 9px; align-items: flex-start; background: #fff; cursor: pointer; }
+    .choice input { width: auto; margin-top: 5px; }
+    .question-card, .sort-card { border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin-bottom: 14px; background: #fff; }
+    .question-card h3, .sort-card h3 { margin: 0 0 8px; font-size: 1.08rem; }
+    .question-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 9px; font-size: .78rem; font-weight: 700; background: #edf5f4; color: #175f5b; }
+    .tag.gold { background: #fff4dd; color: #7a5018; }
+    .tag.gray { background: #eef2f6; color: #4c5b6c; }
+    .callout { border: 1px solid #d9c08d; background: #fff8e8; border-radius: 8px; padding: 14px; margin: 14px 0; }
+    .follow-up { margin-top: 12px; padding: 12px; border-left: 4px solid var(--gold); background: #fff9ed; border-radius: 6px; }
+    .recorder { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin: 8px 0; }
+    .recording-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
+    .recording-dot.on { background: var(--red); box-shadow: 0 0 0 6px rgba(165, 62, 53, .14); }
+    .pill-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 9px; }
+    .pill-options label { border: 1px solid #cdd7e2; border-radius: 999px; padding: 7px 10px; font-size: .86rem; font-weight: 600; cursor: pointer; }
+    .pill-options input { width: auto; margin-right: 5px; }
+    .summary-box { border: 1px solid var(--line); background: #f8fafc; border-radius: 8px; padding: 14px; white-space: pre-wrap; max-height: 420px; overflow: auto; font-family: "Cascadia Mono", "Consolas", monospace; font-size: .84rem; }
+    .hidden { display: none !important; }
+
+    @media (max-width: 860px) {
+      .shell { display: block; }
+      aside { position: static; height: auto; }
+      main { padding: 18px; }
+      .grid { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <h1>K-12 Teacher Pedagogical Friction App</h1>
+      <p>A focused teacher-facing version of the local-first mixed methods interview tool.</p>
+      <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
+      <div class="progress-list" id="progressList"></div>
+      <p class="hint">Use this when you want only the K-12 teacher instrument, without the broader role-selection workflow.</p>
+      <div class="button-row">
+        <a class="btn" href="index.html">Full study app</a>
+        <a class="btn" href="dashboard.html">Dashboard</a>
+      </div>
+    </aside>
+
+    <main>
+      <div class="topbar">
+        <div>
+          <strong>Teacher Instrument</strong>
+          <div class="meta">Pedagogical Friction, Generative AI, and K-12 classroom practice</div>
+        </div>
+        <div class="button-row">
+          <button class="btn" id="saveDraftButton" type="button">Save draft</button>
+          <button class="btn warn" id="clearButton" type="button">Clear local data</button>
+        </div>
+      </div>
+
+      <section class="panel" data-step="0">
+        <div class="panel-header">
+          <h2>Consent and Context</h2>
+          <p>This page collects adult teacher responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
+        </div>
+        <div class="panel-body">
+          <div class="callout"><strong>Research caution:</strong> teachers may skip any question. Avoid collecting names, school names, or identifiable student information in open responses.</div>
+          <div class="grid">
+            <div class="field">
+              <label for="participantCode">Participant code or pseudonym</label>
+              <input id="participantCode" autocomplete="off" placeholder="Example: T-03">
+            </div>
+            <div class="field">
+              <label for="studyDate">Date</label>
+              <input id="studyDate" type="date">
+            </div>
+            <div class="field">
+              <label for="gradeBand">Grade band</label>
+              <select id="gradeBand">
+                <option value="">Choose one</option>
+                <option>Elementary</option>
+                <option>Middle school</option>
+                <option>High school</option>
+                <option>Multiple grade bands</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="contentArea">Content area</label>
+              <input id="contentArea" placeholder="Example: ELA, science, math, social studies">
+            </div>
+          </div>
+          <label class="choice">
+            <input id="consentCheck" type="checkbox">
+            <span>I confirm this adult participant has reviewed the study consent language and may skip any question.</span>
+          </label>
+          <div class="actions">
+            <span class="hint">All response data remains local until export.</span>
+            <button class="btn primary" type="button" data-next>Continue</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel hidden" data-step="1">
+        <div class="panel-header">
+          <h2>Brief Definitions</h2>
+          <p>Use these short definitions for consistency before the teacher begins the instrument.</p>
+        </div>
+        <div class="panel-body">
+          <div class="grid">
+            <div class="callout"><strong>Productive friction:</strong> cognitive effort, ambiguity, revision, or struggle that helps students learn deeply.</div>
+            <div class="callout"><strong>Exclusionary friction:</strong> barriers that block access, dignity, language, disability support, or fair participation.</div>
+            <div class="callout"><strong>Authentic understanding:</strong> the student can explain, defend, revise, or extend the work beyond the polished product.</div>
+            <div class="callout"><strong>AI assistance:</strong> generative tools used for brainstorming, explanation, drafting, editing, summarizing, translation, feedback, or grading support.</div>
+          </div>
+          <div class="actions">
+            <button class="btn" type="button" data-prev>Back</button>
+            <button class="btn primary" type="button" data-next>Begin quick response</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel hidden" data-step="2">
+        <div class="panel-header">
+          <h2>Quick Response Items</h2>
+          <p>These items provide structured teacher indicators for frequency, confidence, policy support, equity, and assessment practice.</p>
+        </div>
+        <div class="panel-body">
+          <div id="quickItems"></div>
+          <div class="actions">
+            <button class="btn" type="button" data-prev>Back</button>
+            <button class="btn primary" type="button" data-next>Continue to reflection</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel hidden" data-step="3">
+        <div class="panel-header">
+          <h2>Typed or Recorded Reflection</h2>
+          <p>Teachers can type, record audio locally, or do both. If recording is used, type or paste a reviewed transcript or summary before export.</p>
+        </div>
+        <div class="panel-body">
+          <div id="reflectionItems"></div>
+          <div class="actions">
+            <button class="btn" type="button" data-prev>Back</button>
+            <button class="btn primary" type="button" data-next>Continue to teacher card sort</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel hidden" data-step="4">
+        <div class="panel-header">
+          <h2>Teacher Card Sort</h2>
+          <p>Classify each classroom activity by productive friction and legitimacy of AI use.</p>
+        </div>
+        <div class="panel-body">
+          <div id="cardSortItems"></div>
+          <div class="actions">
+            <button class="btn" type="button" data-prev>Back</button>
+            <button class="btn primary" type="button" data-next>Review export</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel hidden" data-step="5">
+        <div class="panel-header">
+          <h2>Review and Export</h2>
+          <p>Download the structured teacher response file. Audio files, if recorded, should be downloaded separately from each reflection prompt.</p>
+        </div>
+        <div class="panel-body">
+          <div class="button-row">
+            <button class="btn primary" id="downloadJsonButton" type="button">Download JSON</button>
+            <button class="btn" id="downloadMarkdownButton" type="button">Download Markdown</button>
+          </div>
+          <h3>Export preview</h3>
+          <div class="summary-box" id="exportPreview"></div>
+          <div class="actions">
+            <button class="btn" type="button" data-prev>Back</button>
+            <span class="hint">Transfer exported files through the IRB-approved process.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "teacher-pedagogical-friction-draft-v1";
+    const steps = ["Consent", "Definitions", "Quick response", "Reflection", "Card sort", "Export"];
+    const quickItems = [
+      q("planning_frequency", "How often do you actively integrate generative AI tools into instructional design or lesson planning?", "choice", ["Multiple times a day", "Daily", "Weekly", "Monthly", "Rarely or never"], ["infrastructural"]),
+      q("student_outcome", "When students use generative AI in your classroom, what is the most common observed outcome?", "choice", ["Improved final product quality", "Decreased depth of understanding", "Increased engagement", "Loss of student voice", "No significant change"], ["noetic", "existential"]),
+      q("struggle_confidence", "How confident are you in distinguishing authentic cognitive struggle from an unnecessary learning barrier?", "choice", ["Very confident", "Confident", "Neutral", "Unconfident", "Very unconfident"], ["noetic", "equity"]),
+      q("understanding_indicator", "Briefly describe one indicator you use to assess whether a student genuinely understands an AI-assisted assignment.", "short", [], ["noetic", "rhetorical"]),
+      q("policy_support", "To what extent do current district policies support your ability to design lessons that preserve necessary cognitive friction?", "choice", ["Fully support", "Partially support", "Neutral", "Impede", "Strongly impede"], ["policy", "infrastructural"]),
+      q("ell_iep_effect", "How has AI translation or summarization affected English learners or students with IEPs?", "choice", ["Significantly helped", "Somewhat helped", "Mixed results", "Somewhat hindered", "Significantly hindered"], ["equity"]),
+      q("accountability_challenge", "What is the most challenging aspect of holding students personally accountable for AI-assisted work?", "short", [], ["existential", "authorship"]),
+      q("peer_critique", "In peer critique or collaborative settings, how has AI-generated content shifted student interaction?", "choice", ["More critical analysis", "Surface-level agreement", "Less peer reliance", "No change", "Other"], ["rhetorical"]),
+      q("pd_fit", "Do you believe current professional development adequately addresses AI's impact on student cognitive development?", "choice", ["Yes completely", "Yes somewhat", "No, it focuses too much on tool mechanics", "No, it ignores AI entirely", "Unsure"], ["infrastructural"])
+    ];
+
+    const reflections = [
+      r("lesson_ai_decision", "Describe one lesson or unit where you deliberately allowed, limited, or banned generative AI. What were you trying to protect or support?", "Did AI remove an unnecessary barrier, reduce productive struggle, or do both?", ["noetic", "equity", "infrastructural"]),
+      r("assessment_ownership", "How are you adapting assessment so students maintain accountability and intellectual ownership rather than simply curating AI outputs?", "What evidence would convince you that a student can explain, defend, or extend the work?", ["rhetorical", "existential", "authorship"]),
+      r("policy_practice_gap", "Describe one way district policy, parent expectations, pacing pressure, or tool access shapes what you feel able to do with AI in the classroom.", "What support would make responsible experimentation easier?", ["policy", "infrastructural", "equity"])
+    ];
+
+    const cardSortItems = [
+      cs("Students use AI to brainstorm possible claims, then write the first full draft without AI.", ["noetic", "rhetorical"]),
+      cs("Students submit an AI-assisted essay and then defend the thesis in a short conference.", ["rhetorical", "existential"]),
+      cs("A multilingual learner uses AI translation to understand directions before starting the work.", ["equity", "infrastructural"]),
+      cs("AI summarizes a source before students read the original text.", ["noetic", "rhetorical"]),
+      cs("A teacher uses AI to generate differentiated examples, then students critique which examples are strongest.", ["rhetorical", "equity"]),
+      cs("Students document every AI use and explain what they accepted, rejected, and revised.", ["authorship", "existential"]),
+      cs("AI generates teacher feedback before peer review happens.", ["rhetorical"]),
+      cs("The teacher bans AI for early idea generation so students experience the initial struggle of organizing thoughts.", ["noetic"]),
+      cs("Students ask AI to explain a hard concept three ways, then write their own explanation and analogy.", ["noetic"]),
+      cs("A school blocks all AI tools because policy guidance is unclear.", ["policy", "infrastructural"])
+    ];
+
+    let currentStep = 0;
+    let mediaRecorder = null;
+    let activeRecordingId = null;
+    let audioChunks = [];
+    let state = loadState();
+
+    function q(id, text, type, options, tags) { return { id, text, type, options, tags }; }
+    function r(id, text, followUp, tags) { return { id, text, followUp, tags }; }
+    function cs(text, tags) { return { id: slug(text), text, tags }; }
+    function slug(text) { return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 54); }
+
+    function defaultState() {
+      return {
+        participantCode: "",
+        studyDate: new Date().toISOString().slice(0, 10),
+        gradeBand: "",
+        contentArea: "",
+        consent: false,
+        quickResponses: {},
+        reflections: {},
+        cardSort: {},
+        audio: {},
+        updatedAt: null
+      };
+    }
+
+    function loadState() {
+      try { return { ...defaultState(), ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") }; }
+      catch { return defaultState(); }
+    }
+
+    function persist() {
+      syncStateFromDom();
+      state.updatedAt = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...state, audio: {} }));
+    }
+
+    function hydrate() {
+      document.querySelector("#participantCode").value = state.participantCode || "";
+      document.querySelector("#studyDate").value = state.studyDate || new Date().toISOString().slice(0, 10);
+      document.querySelector("#gradeBand").value = state.gradeBand || "";
+      document.querySelector("#contentArea").value = state.contentArea || "";
+      document.querySelector("#consentCheck").checked = Boolean(state.consent);
+    }
+
+    function renderProgress() {
+      document.querySelector("#progressList").innerHTML = steps.map((label, index) => {
+        const klass = index === currentStep ? "active" : index < currentStep ? "done" : "";
+        return `<div class="step-chip ${klass}">${index + 1}. ${label}</div>`;
+      }).join("");
+    }
+
+    function showStep(index) {
+      currentStep = Math.max(0, Math.min(index, steps.length - 1));
+      document.querySelectorAll("[data-step]").forEach((panel) => {
+        panel.classList.toggle("hidden", Number(panel.dataset.step) !== currentStep);
+      });
+      if (currentStep === 2) renderQuickItems();
+      if (currentStep === 3) renderReflectionItems();
+      if (currentStep === 4) renderCardSort();
+      if (currentStep === 5) renderPreview();
+      renderProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function tagHtml(tags) { return tags.map((tag) => `<span class="tag">${tag}</span>`).join(""); }
+
+    function renderQuickItems() {
+      syncStateFromDom();
+      document.querySelector("#quickItems").innerHTML = quickItems.map((item, index) => {
+        const value = state.quickResponses[item.id] || "";
+        const input = item.type === "choice"
+          ? `<select data-quick="${item.id}"><option value="">Choose one</option>${item.options.map((option) => `<option ${value === option ? "selected" : ""}>${option}</option>`).join("")}</select>`
+          : `<input data-quick="${item.id}" value="${escapeAttr(value)}" placeholder="Short answer">`;
+        return `<div class="question-card"><div class="question-meta"><span class="tag gray">Q${index + 1}</span>${tagHtml(item.tags)}</div><h3>${item.text}</h3>${input}</div>`;
+      }).join("");
+    }
+
+    function renderReflectionItems() {
+      syncStateFromDom();
+      document.querySelector("#reflectionItems").innerHTML = reflections.map((item, index) => {
+        const response = state.reflections[item.id] || {};
+        const audio = state.audio[item.id];
+        return `
+          <div class="question-card">
+            <div class="question-meta"><span class="tag gold">Reflection ${index + 1}</span>${tagHtml(item.tags)}</div>
+            <h3>${item.text}</h3>
+            <textarea data-reflection="${item.id}" placeholder="Type response, paste reviewed transcript, or summarize recorded answer.">${escapeText(response.text || "")}</textarea>
+            <div class="recorder">
+              <span class="recording-dot" data-dot="${item.id}"></span>
+              <button class="btn" type="button" data-record="${item.id}">Start recording</button>
+              <button class="btn" type="button" data-stop="${item.id}" disabled>Stop</button>
+              ${audio ? `<a class="btn" href="${audio.dataUrl}" download="${safeFileName(item.id)}.webm">Download audio</a>` : ""}
+              <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Optional browser-local recording"}</span>
+            </div>
+            <div class="follow-up">
+              <strong>Standard follow-up probe:</strong> ${item.followUp}
+              <textarea data-followup="${item.id}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    function renderCardSort() {
+      syncStateFromDom();
+      document.querySelector("#cardSortItems").innerHTML = cardSortItems.map((card, index) => {
+        const response = state.cardSort[card.id] || {};
+        return `
+          <div class="sort-card">
+            <div class="question-meta"><span class="tag gray">Card ${index + 1}</span>${tagHtml(card.tags)}</div>
+            <h3>${card.text}</h3>
+            <div class="pill-options">${["High friction", "Medium friction", "Low friction"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <div class="pill-options">${["Yes", "Maybe", "No"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>AI use: ${value}</label>`).join("")}</div>
+            <textarea data-sort-note="${card.id}" placeholder="Optional rationale.">${escapeText(response.note || "")}</textarea>
+          </div>`;
+      }).join("");
+    }
+
+    function syncStateFromDom() {
+      const participantCode = document.querySelector("#participantCode");
+      if (participantCode) state.participantCode = participantCode.value.trim();
+      const studyDate = document.querySelector("#studyDate");
+      if (studyDate) state.studyDate = studyDate.value;
+      const gradeBand = document.querySelector("#gradeBand");
+      if (gradeBand) state.gradeBand = gradeBand.value;
+      const contentArea = document.querySelector("#contentArea");
+      if (contentArea) state.contentArea = contentArea.value.trim();
+      const consent = document.querySelector("#consentCheck");
+      if (consent) state.consent = consent.checked;
+      document.querySelectorAll("[data-quick]").forEach((input) => state.quickResponses[input.dataset.quick] = input.value);
+      document.querySelectorAll("[data-reflection]").forEach((input) => {
+        state.reflections[input.dataset.reflection] = state.reflections[input.dataset.reflection] || {};
+        state.reflections[input.dataset.reflection].text = input.value;
+      });
+      document.querySelectorAll("[data-followup]").forEach((input) => {
+        state.reflections[input.dataset.followup] = state.reflections[input.dataset.followup] || {};
+        state.reflections[input.dataset.followup].followUp = input.value;
+      });
+      document.querySelectorAll("[data-sort]").forEach((input) => {
+        if (!input.checked) return;
+        state.cardSort[input.dataset.sort] = state.cardSort[input.dataset.sort] || {};
+        state.cardSort[input.dataset.sort][input.dataset.sortField] = input.value;
+      });
+      document.querySelectorAll("[data-sort-note]").forEach((input) => {
+        state.cardSort[input.dataset.sortNote] = state.cardSort[input.dataset.sortNote] || {};
+        state.cardSort[input.dataset.sortNote].note = input.value;
+      });
+    }
+
+    function exportData() {
+      syncStateFromDom();
+      return {
+        app: "K-12 Teacher Pedagogical Friction App",
+        version: "2026-06-teacher-static-v1",
+        exportedAt: new Date().toISOString(),
+        participant: {
+          code: state.participantCode,
+          role: "teacher",
+          studyDate: state.studyDate,
+          gradeBand: state.gradeBand,
+          contentArea: state.contentArea,
+          consentChecked: state.consent
+        },
+        frameworkDimensions: ["noetic", "rhetorical", "existential", "infrastructural", "equity", "policy", "authorship"],
+        quickResponses: quickItems.map((item) => ({ id: item.id, prompt: item.text, tags: item.tags, response: state.quickResponses[item.id] || "" })),
+        reflections: reflections.map((item) => ({
+          id: item.id,
+          prompt: item.text,
+          standardFollowUp: item.followUp,
+          tags: item.tags,
+          response: (state.reflections[item.id] || {}).text || "",
+          followUpResponse: (state.reflections[item.id] || {}).followUp || "",
+          audioCaptured: Boolean(state.audio[item.id])
+        })),
+        cardSort: cardSortItems.map((card) => ({ id: card.id, prompt: card.text, tags: card.tags, ...state.cardSort[card.id] })),
+        audioManifest: Object.entries(state.audio).map(([id, item]) => ({ reflectionId: id, mimeType: item.mimeType, createdAt: item.createdAt, downloadSeparately: true }))
+      };
+    }
+
+    function markdownExport(data) {
+      const lines = [`# K-12 Teacher Pedagogical Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Grade band: ${data.participant.gradeBand || ""}`, `- Content area: ${data.participant.contentArea || ""}`, ""];
+      lines.push("## Quick Responses");
+      data.quickResponses.forEach((item, index) => {
+        lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
+      });
+      lines.push("## Reflections");
+      data.reflections.forEach((item, index) => {
+        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "", `**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "", `Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
+      });
+      lines.push("## Card Sort");
+      data.cardSort.forEach((item, index) => {
+        lines.push(`### Card ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, `Friction: ${item.friction || ""}`, `Legitimacy: ${item.legitimacy || ""}`, `Rationale: ${item.note || ""}`, "");
+      });
+      return lines.join("\n");
+    }
+
+    function renderPreview() {
+      document.querySelector("#exportPreview").textContent = JSON.stringify(exportData(), null, 2);
+    }
+
+    function download(filename, content, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function safeFileName(label) {
+      const code = state.participantCode || "teacher-participant";
+      return `${code}-${label}`.replace(/[^a-z0-9-_]+/gi, "-").replace(/-+/g, "-");
+    }
+
+    function escapeText(text) {
+      return String(text || "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+    }
+
+    function escapeAttr(text) { return escapeText(text).replace(/`/g, "&#96;"); }
+
+    async function startRecording(id) {
+      if (!navigator.mediaDevices || !window.MediaRecorder) {
+        alert("Audio recording is not supported in this browser. You can still type or paste a transcript.");
+        return;
+      }
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        alert("Stop the current recording before starting another.");
+        return;
+      }
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = [];
+      activeRecordingId = id;
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = (event) => { if (event.data.size) audioChunks.push(event.data); };
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || "audio/webm" });
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          state.audio[id] = { dataUrl: reader.result, mimeType: blob.type, createdAt: new Date().toISOString() };
+          syncStateFromDom();
+          renderReflectionItems();
+        };
+        reader.readAsDataURL(blob);
+        stream.getTracks().forEach((track) => track.stop());
+      };
+      mediaRecorder.start();
+      updateRecordingUi(id, true);
+    }
+
+    function stopRecording(id) {
+      if (mediaRecorder && activeRecordingId === id && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        updateRecordingUi(id, false);
+        activeRecordingId = null;
+      }
+    }
+
+    function updateRecordingUi(id, isRecording) {
+      const dot = document.querySelector(`[data-dot="${id}"]`);
+      const start = document.querySelector(`[data-record="${id}"]`);
+      const stop = document.querySelector(`[data-stop="${id}"]`);
+      if (dot) dot.classList.toggle("on", isRecording);
+      if (start) start.disabled = isRecording;
+      if (stop) stop.disabled = !isRecording;
+    }
+
+    document.addEventListener("click", (event) => {
+      const next = event.target.closest("[data-next]");
+      const prev = event.target.closest("[data-prev]");
+      const record = event.target.closest("[data-record]");
+      const stop = event.target.closest("[data-stop]");
+      if (next) { persist(); showStep(currentStep + 1); }
+      if (prev) { persist(); showStep(currentStep - 1); }
+      if (record) startRecording(record.dataset.record);
+      if (stop) stopRecording(stop.dataset.stop);
+    });
+
+    document.querySelector("#saveDraftButton").addEventListener("click", () => {
+      persist();
+      alert("Draft saved in this browser.");
+    });
+
+    document.querySelector("#clearButton").addEventListener("click", () => {
+      if (!confirm("Clear all local teacher responses stored by this page in this browser?")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      state = defaultState();
+      hydrate();
+      showStep(0);
+    });
+
+    document.querySelector("#downloadJsonButton").addEventListener("click", () => {
+      const data = exportData();
+      download(`${safeFileName("teacher-export")}.json`, JSON.stringify(data, null, 2), "application/json");
+    });
+
+    document.querySelector("#downloadMarkdownButton").addEventListener("click", () => {
+      const data = exportData();
+      download(`${safeFileName("teacher-export")}.md`, markdownExport(data), "text/markdown");
+    });
+
+    document.addEventListener("change", (event) => { if (event.target.matches("input, select, textarea")) persist(); });
+    document.addEventListener("input", (event) => { if (event.target.matches("input, textarea")) persist(); });
+
+    hydrate();
+    showStep(0);
+  </script>
+</body>
+</html>

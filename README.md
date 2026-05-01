@@ -50,6 +50,7 @@ Do not use the app for live dissertation data collection until the final protoco
 ## Files
 
 - `index.html` - main local-first interview and card-sort tool
+- `teacher.html` - teacher-only version of the instrument
 - `dashboard.html` - existing analysis dashboard artifact
 - `.nojekyll` - keeps GitHub Pages from applying Jekyll processing
 
