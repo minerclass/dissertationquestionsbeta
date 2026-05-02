@@ -23,6 +23,10 @@ Researcher review URL:
 - Researcher overview: `https://minerclass.github.io/dissertationquestionsbeta/researcher/`
 - Dissertation sites dashboard: `https://minerclass.github.io/dissertationquestionsbeta/dissertation-sites/`
 
+Survey orientation URL:
+
+- K-12 educator survey landing page: `https://minerclass.github.io/dissertationquestionsbeta/survey-landing/`
+
 ## What Changed
 
 The front page has been rebuilt as a readable, dependency-free static project entrance instead of a combined interview instrument. The goal is to orient participants without shaping their responses before they enter a role-specific page.
@@ -65,6 +69,9 @@ Do not use the app for live dissertation data collection until the final protoco
 - `principal.html` - principal and school-leader version of the instrument
 - `researcher/index.html` - researcher-facing overview and review links
 - `dissertation-sites/index.html` - researcher-facing dashboard of public dissertation-related GitHub Pages sites
+- `survey-landing/index.html` - static participant-facing orientation page for the K-12 educator survey
+- `survey-landing/styles.css` - local styling for the survey landing page
+- `survey-landing/README.md` - notes for updating survey links and deployment
 - `dashboard.html` - existing analysis dashboard artifact; intentionally not linked from participant-facing pages
 - `.nojekyll` - keeps GitHub Pages from applying Jekyll processing
 
