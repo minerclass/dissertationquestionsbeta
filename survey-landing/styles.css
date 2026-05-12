@@ -123,7 +123,7 @@ summary:focus-visible {
 .content-card,
 .notice-card,
 .irb-notice,
-.pathway-card,
+.survey-entry-card,
 .framework-card,
 details {
   background: var(--paper);
@@ -313,41 +313,34 @@ h3 {
 }
 
 .accent-band > .section-heading,
-.pathway-grid,
+.survey-entry,
 .role-note {
   width: min(var(--max), calc(100vw - 32px));
   margin-left: auto;
   margin-right: auto;
 }
 
-.pathway-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+.survey-entry {
+  display: block;
 }
 
-.pathway-card {
+.survey-entry-card {
   display: flex;
   flex-direction: column;
+  max-width: 760px;
   min-height: 100%;
-  padding: 24px;
+  padding: clamp(24px, 4vw, 34px);
   border-top: 6px solid var(--teal);
 }
 
-.pathway-card.building {
-  border-top-color: var(--gold);
-}
-
-.pathway-card.district {
-  border-top-color: var(--plum);
-}
-
-.pathway-card p {
+.survey-entry-card p {
   color: var(--muted);
+  font-size: 1.08rem;
 }
 
-.pathway-card .button {
-  margin-top: auto;
+.survey-entry-card .button {
+  width: fit-content;
+  margin-top: .5rem;
 }
 
 .role-note {
@@ -575,7 +568,6 @@ details p {
   }
 
   .participant-grid,
-  .pathway-grid,
   .framework-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -603,13 +595,12 @@ details p {
   .content-card,
   .notice-card,
   .irb-notice,
-  .pathway-card,
+  .survey-entry-card,
   .framework-card {
     box-shadow: none;
   }
 
   .participant-grid,
-  .pathway-grid,
   .framework-grid {
     grid-template-columns: 1fr;
   }
@@ -619,6 +610,7 @@ details p {
   }
 
   .button,
+  .survey-entry-card .button,
   .footer-links a {
     width: 100%;
   }

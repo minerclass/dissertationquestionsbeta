@@ -6,28 +6,21 @@ The page is for participant orientation only. It does not collect survey respons
 
 ## Files
 
-- `index.html` - participant-facing landing page and survey pathway links
+- `index.html` - participant-facing landing page with the official survey link
 - `styles.css` - local responsive styling
 - `README.md` - maintenance notes
 
-## Updating Survey Links
+## Updating the Survey Link
 
 Open `index.html` and find this comment block:
 
 ```html
-<!-- Replace the placeholder survey URLs below after the final survey and IRB consent language are approved. -->
-<!-- CLASSROOM_SURVEY_URL = "#" -->
-<!-- BUILDING_ADMIN_SURVEY_URL = "#" -->
-<!-- DISTRICT_SYSTEM_SURVEY_URL = "#" -->
+<!-- Official survey URL: https://forms.gle/uhV4Q32TXcidmHMg6 -->
 ```
 
-Then replace the `href="#"` value in each pathway button with the final Google Forms or Microsoft Forms URL:
+Then update the `href` value in the `Open the Official Survey` button if the official Google Form changes.
 
-- `Go to Classroom-Facing Survey`
-- `Go to School-Level Leadership Survey`
-- `Go to District/System Survey`
-
-Keep the links as external survey links. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page.
+Keep the link as an external survey link. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page.
 
 ## Updating IRB and Contact Placeholders
 
@@ -57,4 +50,4 @@ To deploy:
 1. Commit and push the `survey-landing/` folder.
 2. Confirm GitHub Pages is enabled for the repository.
 3. Use `Deploy from a branch`, branch `main`, folder `/ root`.
-4. Open the live URL and confirm the page, privacy notice, role pathway buttons, and FAQ display correctly.
+4. Open the live URL and confirm the page, privacy notice, official survey button, and FAQ display correctly.
