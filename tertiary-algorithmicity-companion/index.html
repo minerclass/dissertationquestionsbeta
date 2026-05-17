@@ -1,0 +1,1540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Beyond Secondary Orality — A Companion to the Qualifying Paper</title>
+<meta name="description" content="An immersive companion to Micah J. Miner's qualifying paper on tertiary algorithmicity and pedagogical friction." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ========== Tokens ========== */
+:root {
+  --ink: #0d0e1c;
+  --ink-2: #131527;
+  --ink-3: #1a1d33;
+  --paper: #f5efe2;
+  --paper-2: #ebe3d2;
+  --paper-warm: #f8f2e4;
+  --rule: #d4c9af;
+  --rule-dim: rgba(212, 201, 175, 0.25);
+  --gold: #c4a050;
+  --gold-2: #d9b878;
+  --crimson: #8a2436;
+  --teal: #3a7d7a;
+  --slate: #4a5575;
+  --muted: #6a6f85;
+  --soft: rgba(245, 239, 226, 0.07);
+  --soft-2: rgba(245, 239, 226, 0.14);
+  --shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
+
+  --serif-display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --serif-body: "EB Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --maxw: 1180px;
+  --prose: 680px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif-body);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 18px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--gold); color: var(--ink); }
+
+a { color: var(--gold-2); text-decoration: none; border-bottom: 1px solid rgba(217, 184, 120, 0.35); transition: all 0.2s; }
+a:hover { color: var(--paper); border-color: var(--paper); }
+
+h1, h2, h3, h4 { font-family: var(--serif-display); font-weight: 500; letter-spacing: -0.01em; }
+.eyebrow { font-family: var(--sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; font-weight: 600; color: var(--gold-2); }
+
+/* ========== Reading progress ========== */
+#progress-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px;
+  background: transparent; z-index: 100;
+}
+#progress-bar > div {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--crimson));
+  transition: width 0.1s linear;
+}
+
+/* ========== Sticky nav ========== */
+header.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(13, 14, 28, 0.62);
+  border-bottom: 1px solid var(--rule-dim);
+  transition: transform 0.35s ease, background 0.35s ease;
+}
+header.nav.hidden { transform: translateY(-100%); }
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 14px 28px;
+  display: flex; align-items: center; gap: 24px;
+}
+.brand {
+  font-family: var(--serif-display);
+  font-size: 18px; font-style: italic;
+  color: var(--paper); flex-shrink: 0;
+  border: none;
+}
+.brand:hover { color: var(--gold-2); }
+.brand small { font-family: var(--sans); font-style: normal; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); display: block; margin-top: 2px; }
+.nav-links { display: flex; gap: 4px; flex: 1; justify-content: flex-end; flex-wrap: wrap; }
+.nav-links a {
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 8px 12px; border-radius: 4px;
+  color: var(--paper); border: none;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+.nav-links a:hover { opacity: 1; background: var(--soft); }
+.nav-links a.active { opacity: 1; color: var(--gold-2); }
+
+/* ========== Layout ========== */
+section { position: relative; padding: 120px 28px; }
+.container { max-width: var(--maxw); margin: 0 auto; }
+.prose { max-width: var(--prose); margin: 0 auto; }
+.prose p { margin: 0 0 1.1em; font-size: 19px; line-height: 1.7; color: rgba(245, 239, 226, 0.86); }
+.prose p.lead { font-size: 22px; line-height: 1.55; color: var(--paper); font-family: var(--serif-display); font-style: italic; }
+.section-title { font-family: var(--serif-display); font-size: clamp(38px, 5vw, 64px); line-height: 1.04; margin: 0 0 0.4em; letter-spacing: -0.015em; }
+.section-sub { font-family: var(--serif-display); font-style: italic; color: var(--gold-2); font-size: 22px; margin-bottom: 48px; max-width: 720px; }
+.rule { display: block; width: 64px; height: 1px; background: var(--gold); margin: 32px 0; opacity: 0.65; }
+
+/* ========== Hero ========== */
+.hero {
+  min-height: 100vh;
+  padding: 80px 28px 100px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+  background: radial-gradient(ellipse at 80% 20%, rgba(196,160,80,0.06), transparent 55%),
+              radial-gradient(ellipse at 10% 90%, rgba(138,36,54,0.08), transparent 55%),
+              var(--ink);
+}
+#hero-canvas { position: absolute; inset: 0; z-index: 0; opacity: 0.55; }
+.hero-inner { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; width: 100%; }
+.hero .eyebrow { margin-bottom: 28px; }
+.hero h1 {
+  font-family: var(--serif-display);
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: 0.98;
+  font-weight: 500;
+  margin: 0 0 0.3em;
+  letter-spacing: -0.025em;
+}
+.hero h1 em { font-style: italic; color: var(--gold-2); font-weight: 400; }
+.hero .subtitle {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 30px);
+  color: rgba(245, 239, 226, 0.78);
+  max-width: 780px;
+  margin: 0 0 56px;
+  line-height: 1.4;
+}
+.hero-meta {
+  display: flex; gap: 36px; flex-wrap: wrap;
+  font-family: var(--sans); font-size: 13px; color: var(--muted);
+  border-top: 1px solid var(--rule-dim);
+  padding-top: 28px;
+  max-width: 780px;
+}
+.hero-meta div strong { color: var(--paper); font-weight: 600; display: block; margin-bottom: 2px; font-family: var(--sans); }
+.hero-meta div em { color: var(--gold-2); font-style: italic; font-family: var(--serif-display); }
+.scroll-cue {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  font-family: var(--sans); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--muted); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.scroll-cue::after {
+  content: ""; width: 1px; height: 36px;
+  background: linear-gradient(180deg, var(--gold-2), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.6); opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* ========== Abstract ========== */
+#abstract { background: var(--ink); }
+.abstract-card {
+  max-width: 860px; margin: 0 auto;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 72px 68px;
+  position: relative;
+  font-family: var(--serif-body);
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+}
+.abstract-card::before {
+  content: ""; position: absolute; top: 24px; left: 24px; right: 24px; bottom: 24px;
+  border: 1px solid rgba(13, 14, 28, 0.08); pointer-events: none;
+}
+.abstract-card .eyebrow { color: var(--crimson); margin-bottom: 24px; }
+.abstract-card h2 {
+  font-family: var(--serif-display); font-size: 36px;
+  color: var(--ink); margin: 0 0 24px; font-style: italic; font-weight: 500;
+}
+.abstract-card p { font-size: 18px; line-height: 1.65; margin: 0 0 18px; }
+.abstract-card .keywords {
+  font-family: var(--sans); font-size: 13px; color: var(--slate);
+  margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--rule);
+}
+.abstract-card .keywords strong { color: var(--ink); }
+
+.ai-disclosure {
+  max-width: 860px; margin: 36px auto 0;
+  padding: 24px 32px;
+  background: var(--soft);
+  border-left: 3px solid var(--gold);
+  font-size: 15px; color: rgba(245, 239, 226, 0.85);
+  font-family: var(--sans);
+  border-radius: 0 4px 4px 0;
+}
+.ai-disclosure strong { color: var(--gold-2); display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px; }
+
+/* ========== The Arc ========== */
+#arc { background: linear-gradient(180deg, var(--ink), var(--ink-2)); }
+.arc-wrap { margin-top: 64px; }
+.arc-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 32px 0;
+}
+.arc-line {
+  position: absolute; left: 5%; right: 5%;
+  top: 56px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule), var(--gold), var(--crimson), transparent);
+  z-index: 0;
+}
+.arc-node {
+  position: relative; z-index: 1;
+  background: transparent; border: none; color: var(--paper);
+  text-align: center; cursor: pointer;
+  padding: 0; font: inherit;
+}
+.arc-dot {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--ink-3);
+  border: 2px solid var(--rule);
+  margin: 48px auto 18px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.arc-dot::after {
+  content: ""; position: absolute; inset: -8px; border-radius: 50%;
+  border: 1px solid transparent; transition: all 0.3s ease;
+}
+.arc-node:hover .arc-dot { background: var(--gold); border-color: var(--gold); transform: scale(1.15); }
+.arc-node.active .arc-dot { background: var(--crimson); border-color: var(--crimson); }
+.arc-node.active .arc-dot::after { border-color: rgba(138, 36, 54, 0.4); inset: -12px; }
+.arc-label {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); transition: color 0.25s;
+}
+.arc-name {
+  font-family: var(--serif-display); font-size: clamp(16px, 1.5vw, 19px);
+  margin: 6px 0 4px; color: var(--paper); line-height: 1.2;
+}
+.arc-era {
+  font-family: var(--sans); font-size: 11px; color: var(--gold-2); font-style: italic;
+}
+.arc-node.new .arc-name::after { content: " ✦"; color: var(--crimson); }
+.arc-node:hover .arc-label, .arc-node.active .arc-label { color: var(--gold-2); }
+
+.arc-detail {
+  margin-top: 56px;
+  background: var(--ink-3);
+  border: 1px solid var(--rule-dim);
+  border-radius: 4px;
+  padding: 48px 56px;
+  min-height: 280px;
+  position: relative;
+  transition: opacity 0.25s;
+}
+.arc-detail h3 {
+  margin: 0 0 8px; font-size: 32px; color: var(--paper);
+}
+.arc-detail .arc-tag { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 8px; }
+.arc-detail .arc-quote { font-style: italic; color: rgba(245, 239, 226, 0.78); font-size: 19px; line-height: 1.6; margin: 24px 0; }
+.arc-detail .arc-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 28px; }
+.arc-detail .arc-feature { font-family: var(--sans); font-size: 13px; line-height: 1.55; color: rgba(245, 239, 226, 0.75); padding-left: 14px; border-left: 2px solid var(--gold); }
+.arc-detail .arc-feature strong { display: block; color: var(--paper); margin-bottom: 4px; font-family: var(--serif-display); font-size: 15px; font-style: italic; font-weight: 600; }
+
+/* ========== Rupture (3 assumptions) ========== */
+#rupture { background: var(--ink-2); }
+.assumption-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px; margin-top: 56px;
+}
+.assumption-card {
+  perspective: 1200px;
+  height: 360px;
+  cursor: pointer;
+}
+.assumption-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.assumption-card.flipped .assumption-inner { transform: rotateY(180deg); }
+.assumption-face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  padding: 36px 32px;
+  border-radius: 4px;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--rule-dim);
+}
+.assumption-front { background: var(--ink-3); }
+.assumption-back { background: linear-gradient(160deg, var(--crimson), #6a1c2a); transform: rotateY(180deg); color: var(--paper); }
+.assumption-num {
+  font-family: var(--serif-display); font-size: 56px; line-height: 1; color: var(--gold-2); font-style: italic;
+}
+.assumption-label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 14px; }
+.assumption-front h3 { font-size: 22px; margin: 14px 0 0; line-height: 1.25; color: var(--paper); flex: 1; }
+.assumption-back h3 { font-size: 22px; margin: 14px 0 12px; color: var(--paper); }
+.assumption-back p { font-family: var(--serif-body); font-size: 16px; line-height: 1.55; color: rgba(245, 239, 226, 0.92); margin: 0; flex: 1; }
+.assumption-flip { font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 16px; opacity: 0.7; }
+.assumption-back .assumption-flip { color: rgba(245, 239, 226, 0.7); }
+
+/* ========== Displacements ========== */
+#displacements { background: linear-gradient(180deg, var(--ink-2), var(--ink)); }
+.displ-stack { margin-top: 64px; display: flex; flex-direction: column; gap: 48px; }
+.displ {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 56px;
+  padding: 56px 0;
+  border-top: 1px solid var(--rule-dim);
+  align-items: start;
+}
+.displ:first-child { border-top: none; padding-top: 0; }
+.displ-side { position: sticky; top: 100px; }
+.displ-num { font-family: var(--serif-display); font-style: italic; color: var(--gold-2); font-size: 18px; }
+.displ-side h3 { font-size: clamp(28px, 3vw, 38px); margin: 8px 0 12px; line-height: 1.05; }
+.displ-side .displ-icon {
+  width: 72px; height: 72px;
+  margin-bottom: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.displ-body p { font-size: 18px; line-height: 1.72; color: rgba(245, 239, 226, 0.85); margin: 0 0 18px; max-width: 640px; }
+.displ-body .pull {
+  font-family: var(--serif-display); font-style: italic; font-size: 22px; line-height: 1.45;
+  border-left: 2px solid var(--gold); padding-left: 24px;
+  color: var(--paper);
+  margin: 24px 0;
+}
+.displ-body .ong-broken {
+  margin-top: 24px;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.04em;
+  color: var(--gold-2); padding: 14px 18px;
+  border: 1px solid var(--rule-dim);
+  border-radius: 4px;
+  background: var(--soft);
+}
+.displ-body .ong-broken strong { color: var(--paper); display: block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+
+/* ========== Stakes / unproductive success ========== */
+#stakes { background: var(--ink); }
+.stakes-compare {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px;
+}
+.stakes-col {
+  padding: 40px 36px;
+  border-radius: 4px;
+  border: 1px solid var(--rule-dim);
+  background: var(--ink-3);
+  position: relative;
+}
+.stakes-col.bad { border-color: rgba(138, 36, 54, 0.5); }
+.stakes-col.good { border-color: rgba(58, 125, 122, 0.5); }
+.stakes-col h3 { font-size: 26px; margin: 0 0 6px; line-height: 1.2; }
+.stakes-col .tag { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 14px; display: inline-block; padding: 4px 10px; border-radius: 2px; }
+.stakes-col.bad .tag { background: rgba(138, 36, 54, 0.18); color: #d97b8b; }
+.stakes-col.good .tag { background: rgba(58, 125, 122, 0.18); color: #7cc4c1; }
+.stakes-col p { font-size: 16px; line-height: 1.65; color: rgba(245, 239, 226, 0.82); margin: 0 0 16px; }
+.stakes-col ul { margin: 14px 0 0; padding: 0; list-style: none; }
+.stakes-col li { font-size: 15px; color: rgba(245, 239, 226, 0.78); padding: 8px 0 8px 22px; position: relative; border-top: 1px solid var(--rule-dim); }
+.stakes-col li:first-child { border-top: none; }
+.stakes-col.good li::before { content: "+"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+.stakes-col.bad li::before { content: "−"; position: absolute; left: 0; color: var(--crimson); font-weight: 700; }
+
+/* ========== Friction wheel ========== */
+#friction { background: linear-gradient(180deg, var(--ink), var(--ink-2)); }
+.friction-stage {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px;
+  margin-top: 56px;
+  align-items: center;
+}
+.friction-svg-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 540px;
+  margin: 0 auto;
+}
+.friction-svg { width: 100%; height: 100%; cursor: pointer; }
+.friction-quad {
+  fill: var(--ink-3);
+  stroke: var(--rule-dim);
+  stroke-width: 1;
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+.friction-quad:hover { fill: var(--ink-2); }
+.friction-quad.active { fill: rgba(196, 160, 80, 0.15); stroke: var(--gold); stroke-width: 2; }
+.friction-q-label {
+  font-family: var(--serif-display); font-size: 22px; font-style: italic;
+  fill: var(--paper); text-anchor: middle;
+  pointer-events: none;
+  transition: fill 0.25s;
+}
+.friction-q-sub {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  fill: var(--gold-2); text-anchor: middle; pointer-events: none;
+}
+.friction-q-label.active { fill: var(--gold-2); }
+.friction-q-sub.active { fill: var(--gold); }
+.friction-center {
+  fill: var(--ink); stroke: var(--gold); stroke-width: 1.5;
+}
+.friction-center-text {
+  fill: var(--gold-2); font-family: var(--serif-display); font-style: italic;
+  font-size: 14px; text-anchor: middle; pointer-events: none;
+}
+
+.friction-detail h3 { font-size: 32px; margin: 4px 0 6px; line-height: 1.1; }
+.friction-detail .friction-tag { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2); }
+.friction-detail p { font-size: 17px; line-height: 1.65; color: rgba(245, 239, 226, 0.85); margin: 16px 0; }
+.friction-detail .friction-against {
+  font-family: var(--sans); font-size: 13px; padding: 16px 20px;
+  background: var(--soft); border-radius: 4px;
+  border-left: 3px solid var(--crimson);
+  color: rgba(245, 239, 226, 0.85);
+  line-height: 1.55;
+  margin-top: 20px;
+}
+.friction-detail .friction-against strong { color: #e09aa5; display: block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+
+/* ========== Equity / paradox ========== */
+#equity { background: var(--ink-2); }
+.equity-toggle {
+  display: inline-flex; gap: 0; margin: 48px 0 32px;
+  background: var(--ink-3); padding: 4px; border-radius: 6px;
+  border: 1px solid var(--rule-dim);
+}
+.equity-toggle button {
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  color: var(--muted); background: transparent; border: none;
+  padding: 10px 22px; border-radius: 4px; cursor: pointer;
+  transition: all 0.25s; letter-spacing: 0.02em;
+}
+.equity-toggle button.active { background: var(--gold); color: var(--ink); }
+
+.equity-panel { display: none; }
+.equity-panel.active { display: block; animation: fadeIn 0.35s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.equity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.equity-card {
+  padding: 36px 32px; border-radius: 4px;
+  background: var(--ink-3); border: 1px solid var(--rule-dim);
+}
+.equity-card h4 { font-size: 22px; margin: 0 0 6px; }
+.equity-card .equity-tag { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 14px; display: block; }
+.equity-card p { font-size: 16px; line-height: 1.6; margin: 12px 0 0; color: rgba(245, 239, 226, 0.82); }
+
+.paradox-callout {
+  margin-top: 48px; padding: 48px 56px;
+  background: linear-gradient(140deg, var(--ink-3), rgba(138, 36, 54, 0.15));
+  border: 1px solid rgba(196, 160, 80, 0.3);
+  border-radius: 4px;
+  position: relative;
+}
+.paradox-callout::before {
+  content: "¶"; position: absolute; top: 32px; left: 32px;
+  font-family: var(--serif-display); font-size: 48px; color: var(--gold);
+  opacity: 0.45; font-style: italic;
+}
+.paradox-callout h4 { font-family: var(--serif-display); font-style: italic; font-size: 28px; margin: 0 0 18px 64px; color: var(--paper); }
+.paradox-callout p { margin: 0 0 14px 64px; font-size: 17px; line-height: 1.65; color: rgba(245, 239, 226, 0.86); max-width: 760px; }
+.paradox-callout p:last-child { margin-bottom: 0; }
+
+/* ========== Implications ========== */
+#implications { background: var(--ink); }
+.impl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px; }
+.impl-card {
+  padding: 40px 32px;
+  background: var(--ink-3); border-radius: 4px;
+  border: 1px solid var(--rule-dim);
+  position: relative;
+  transition: all 0.3s ease;
+}
+.impl-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+.impl-card .impl-num { font-family: var(--serif-display); font-style: italic; font-size: 42px; color: var(--gold); line-height: 1; }
+.impl-card h4 { font-size: 24px; margin: 12px 0 16px; }
+.impl-card p { font-size: 15px; line-height: 1.6; color: rgba(245, 239, 226, 0.8); margin: 0; }
+.impl-card .impl-aspects {
+  margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--rule-dim);
+  font-family: var(--sans); font-size: 12px; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.impl-aspects span { padding: 4px 9px; background: var(--soft); border-radius: 2px; }
+
+/* ========== Counterarguments ========== */
+#counterarguments { background: var(--ink-2); }
+.counter-list { margin-top: 56px; }
+.counter-item {
+  border-top: 1px solid var(--rule-dim);
+  padding: 28px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.counter-item:last-child { border-bottom: 1px solid var(--rule-dim); }
+.counter-q { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+.counter-q h4 {
+  font-family: var(--serif-display); font-style: italic; font-size: 22px;
+  margin: 0; color: var(--paper); flex: 1; line-height: 1.3;
+}
+.counter-toggle {
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-2); flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.counter-item.open .counter-toggle { transform: rotate(45deg); }
+.counter-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.45s ease;
+}
+.counter-item.open .counter-a { max-height: 600px; }
+.counter-a p { padding-top: 18px; font-size: 16px; line-height: 1.65; color: rgba(245, 239, 226, 0.82); margin: 0; max-width: 780px; }
+
+/* ========== Dissertation pointer ========== */
+#dissertation { background: linear-gradient(180deg, var(--ink-2), var(--ink-3)); }
+.diss-card {
+  max-width: 880px; margin: 56px auto 0;
+  padding: 64px 56px;
+  background: rgba(245, 239, 226, 0.03);
+  border: 1px solid var(--rule-dim);
+  border-radius: 4px;
+  position: relative;
+}
+.diss-card h3 { font-family: var(--serif-display); font-style: italic; font-size: 32px; margin: 0 0 16px; color: var(--paper); }
+.diss-card p { font-size: 17px; line-height: 1.7; color: rgba(245, 239, 226, 0.85); margin: 0 0 18px; }
+.diss-questions {
+  margin-top: 32px; counter-reset: dq;
+}
+.diss-q {
+  padding: 20px 24px 20px 64px;
+  margin-bottom: 10px;
+  background: var(--ink-3);
+  border-radius: 4px;
+  position: relative;
+  font-family: var(--serif-body);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.55;
+  color: rgba(245, 239, 226, 0.92);
+  counter-increment: dq;
+}
+.diss-q::before {
+  content: counter(dq, upper-roman);
+  position: absolute; left: 24px; top: 20px;
+  font-family: var(--serif-display); font-style: italic; color: var(--gold-2);
+  font-size: 16px; letter-spacing: 0.08em;
+}
+
+/* ========== References ========== */
+#references { background: var(--ink); }
+.refs-controls {
+  margin: 40px 0 24px;
+  display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+}
+.refs-controls input {
+  flex: 1; min-width: 260px;
+  font-family: var(--sans); font-size: 14px;
+  padding: 12px 16px;
+  background: var(--ink-3);
+  border: 1px solid var(--rule-dim);
+  border-radius: 4px;
+  color: var(--paper);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.refs-controls input:focus { border-color: var(--gold); }
+.refs-controls input::placeholder { color: var(--muted); }
+.refs-count { font-family: var(--sans); font-size: 12px; color: var(--muted); }
+
+.refs-list {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: 1fr; gap: 2px;
+  max-height: 720px; overflow-y: auto;
+  border: 1px solid var(--rule-dim);
+  border-radius: 4px;
+  background: var(--ink-2);
+}
+.refs-list::-webkit-scrollbar { width: 8px; }
+.refs-list::-webkit-scrollbar-track { background: var(--ink-2); }
+.refs-list::-webkit-scrollbar-thumb { background: var(--rule-dim); border-radius: 4px; }
+.refs-list li {
+  font-family: var(--serif-body); font-size: 15px; line-height: 1.5;
+  padding: 18px 24px;
+  color: rgba(245, 239, 226, 0.82);
+  border-bottom: 1px solid var(--rule-dim);
+  text-indent: -22px; padding-left: 46px;
+}
+.refs-list li:last-child { border-bottom: none; }
+.refs-list li.hidden { display: none; }
+.refs-list li mark { background: rgba(196, 160, 80, 0.3); color: var(--paper); padding: 1px 2px; }
+.refs-list li a { font-size: 13px; }
+
+/* ========== Footer / about ========== */
+footer {
+  background: var(--ink-3);
+  padding: 80px 28px 56px;
+  border-top: 1px solid var(--rule-dim);
+}
+.footer-grid {
+  max-width: var(--maxw); margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr; gap: 56px;
+}
+.footer-author h3 { font-family: var(--serif-display); font-style: italic; font-size: 28px; margin: 0 0 12px; color: var(--paper); }
+.footer-author .credentials { font-family: var(--sans); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 20px; }
+.footer-author p { font-size: 15px; line-height: 1.65; color: rgba(245, 239, 226, 0.78); margin: 0 0 14px; max-width: 540px; }
+.footer-links h4 { font-family: var(--sans); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2); margin: 0 0 16px; }
+.footer-links ul { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { font-family: var(--sans); font-size: 14px; color: rgba(245, 239, 226, 0.78); border: none; }
+.footer-links a:hover { color: var(--gold-2); }
+.footer-meta {
+  max-width: var(--maxw); margin: 56px auto 0;
+  padding-top: 28px; border-top: 1px solid var(--rule-dim);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  font-family: var(--sans); font-size: 12px; color: var(--muted);
+}
+
+/* ========== Glossary tooltips ========== */
+.gloss {
+  border-bottom: 1px dotted var(--gold-2);
+  cursor: help; position: relative;
+  color: inherit;
+}
+.gloss:hover { color: var(--gold-2); }
+.gloss-tip {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  width: 280px; padding: 14px 16px;
+  background: var(--ink); border: 1px solid var(--gold);
+  border-radius: 4px;
+  font-family: var(--sans); font-size: 13px; line-height: 1.5;
+  color: var(--paper);
+  font-style: normal;
+  opacity: 0; pointer-events: none;
+  transition: all 0.2s; z-index: 30;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+}
+.gloss:hover .gloss-tip { opacity: 1; transform: translateX(-50%) scale(1); }
+.gloss-tip strong { color: var(--gold-2); display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+
+/* ========== Responsive ========== */
+@media (max-width: 900px) {
+  body { font-size: 17px; }
+  section { padding: 80px 24px; }
+  .hero { padding: 100px 24px 80px; }
+  .nav-links { display: none; }
+  .stakes-compare { grid-template-columns: 1fr; }
+  .friction-stage { grid-template-columns: 1fr; }
+  .impl-grid { grid-template-columns: 1fr; }
+  .equity-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .displ { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; }
+  .displ-side { position: static; }
+  .arc-timeline { grid-template-columns: 1fr; gap: 4px; }
+  .arc-line { display: none; }
+  .arc-node { display: flex; align-items: center; gap: 16px; text-align: left; padding: 12px; border-radius: 4px; }
+  .arc-node:hover { background: var(--soft); }
+  .arc-dot { margin: 0; flex-shrink: 0; }
+  .arc-name { margin: 0; font-size: 16px; }
+  .arc-detail { padding: 32px 28px; }
+  .abstract-card { padding: 48px 32px; }
+  .abstract-card::before { top: 18px; left: 18px; right: 18px; bottom: 18px; }
+  .paradox-callout { padding: 32px 28px; }
+  .paradox-callout h4, .paradox-callout p { margin-left: 0; }
+  .paradox-callout::before { position: static; display: block; margin-bottom: 8px; }
+}
+@media (max-width: 540px) {
+  .hero h1 { font-size: 44px; }
+  .section-title { font-size: 32px; }
+  .abstract-card { padding: 36px 24px; }
+  .friction-detail h3 { font-size: 26px; }
+  .diss-card { padding: 36px 28px; }
+  .footer-grid { gap: 40px; }
+}
+
+/* ========== Print ========== */
+@media print {
+  body { background: white; color: black; }
+  header.nav, #progress-bar, .scroll-cue, #hero-canvas { display: none; }
+  section { padding: 32px 0; page-break-inside: avoid; }
+  .hero { min-height: auto; }
+  .arc-detail, .counter-a { max-height: none !important; }
+  .assumption-card { height: auto; }
+  .assumption-inner { transform: none !important; }
+  .assumption-back { position: static; transform: none; margin-top: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"><div></div></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#hero">
+      Tertiary Algorithmicity
+      <small>A Qualifying-Paper Companion</small>
+    </a>
+    <nav class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#arc">The Arc</a>
+      <a href="#rupture">Rupture</a>
+      <a href="#displacements">Displacements</a>
+      <a href="#stakes">Stakes</a>
+      <a href="#friction">Friction</a>
+      <a href="#equity">Equity</a>
+      <a href="#implications">Implications</a>
+      <a href="#counterarguments">Counterarguments</a>
+      <a href="#dissertation">Forward</a>
+      <a href="#references">References</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="eyebrow">Qualifying Paper · National Louis University · ESR 696A</div>
+    <h1>Beyond <em>Secondary</em><br />Orality</h1>
+    <p class="subtitle">Tertiary algorithmicity, the bypass of cognition, and the case for pedagogical friction in an age of generative AI.</p>
+    <div class="hero-meta">
+      <div><strong>Author</strong>Micah J. Miner, CETL, Ed.S.<br /><em>Doctoral Candidate · Curriculum, Advocacy &amp; Policy</em></div>
+      <div><strong>Committee Review</strong>Final companion artifact<br /><em>Spring 2026</em></div>
+      <div><strong>Reading time</strong>~ 18 min interactive<br /><em>Full paper available separately</em></div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll · Begin</div>
+</section>
+
+<!-- ===== ABSTRACT ===== -->
+<section id="abstract">
+  <div class="container">
+    <div class="abstract-card">
+      <div class="eyebrow">Abstract</div>
+      <h2>What changes when the symbolic environment in which we think, learn, and communicate is no longer only mediated but generated?</h2>
+      <p>This conceptual paper argues that generative artificial intelligence requires an extension of Walter Ong's media ecology beyond primary orality, literacy, and secondary orality. Drawing on Ong's account of how communication technologies restructure consciousness itself, the analysis identifies three assumptions in his framework that no longer describe the current media environment: that humans create symbolic content, that distribution follows relatively transparent logics, and that consciousness encounters media as an external environment.</p>
+      <p>In their place, the paper proposes two stages. <em>Algorithmic secondary orality</em> names the transitional phase in which platforms organized — but did not yet author — symbolic content. <em>Tertiary algorithmicity</em> names the present condition, in which algorithmic systems both create and curate symbolic content, making human authorship optional at scale. The condition produces three displacements that matter for learning: <strong>noetic displacement</strong>, <strong>rhetorical saturation</strong>, and <strong>existential abstraction</strong>.</p>
+      <p>Read against decades of learning-science research on productive struggle, retrieval, and the generation effect, tertiary algorithmicity threatens to normalize what Kapur (2016) calls <em>unproductive success</em> — fluent performance without the cognitive labor that produces durable understanding. The paper develops <strong>pedagogical friction</strong> as a response framework, with four dimensions — noetic (the head), rhetorical (the room), existential (the world), and infrastructural (the system) — and distinguishes between friction that builds capacity and friction that excludes.</p>
+      <div class="keywords"><strong>Keywords:</strong> tertiary algorithmicity · pedagogical friction · Walter Ong · media ecology · generative AI · unproductive success · secondary orality · productive failure</div>
+    </div>
+    <div class="ai-disclosure">
+      <strong>AI use disclosure</strong>
+      This paper and companion site were developed with the support of generative AI and AI-assisted research tools (foundation models, research-support platforms, and custom AI-supported applications) in a strategic support role: literature mapping, structural editing, surfacing counterarguments, and refining drafted prose. Because the argument concerns the preservation of human interpretive labor, AI use was kept to support functions. Analytic framing, theoretical synthesis, and conclusion-drawing remain the author's responsibility.
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE ARC ===== -->
+<section id="arc">
+  <div class="container">
+    <div class="eyebrow">Section II + III</div>
+    <h2 class="section-title">The Long Arc of <em>Mediated Consciousness</em></h2>
+    <p class="section-sub">Ong's account traced three stages in how dominant media restructure the noetic world. Two additional stages are now required to describe what algorithmic curation and generative AI have done to the symbolic environment.</p>
+
+    <div class="arc-wrap">
+      <div class="arc-timeline" id="arcTimeline" role="tablist">
+        <div class="arc-line"></div>
+        <button class="arc-node active" data-stage="0" role="tab" aria-selected="true">
+          <div class="arc-dot"></div>
+          <div class="arc-label">Stage I · Ong</div>
+          <div class="arc-name">Primary Orality</div>
+          <div class="arc-era">Pre-literate</div>
+        </button>
+        <button class="arc-node" data-stage="1" role="tab">
+          <div class="arc-dot"></div>
+          <div class="arc-label">Stage II · Ong</div>
+          <div class="arc-name">Literacy</div>
+          <div class="arc-era">Manuscript → Print</div>
+        </button>
+        <button class="arc-node" data-stage="2" role="tab">
+          <div class="arc-dot"></div>
+          <div class="arc-label">Stage III · Ong</div>
+          <div class="arc-name">Secondary Orality</div>
+          <div class="arc-era">Broadcast era</div>
+        </button>
+        <button class="arc-node new" data-stage="3" role="tab">
+          <div class="arc-dot"></div>
+          <div class="arc-label">Stage IV · Miner</div>
+          <div class="arc-name">Algorithmic Secondary Orality</div>
+          <div class="arc-era">2006 – early 2020s</div>
+        </button>
+        <button class="arc-node new" data-stage="4" role="tab">
+          <div class="arc-dot"></div>
+          <div class="arc-label">Stage V · Miner</div>
+          <div class="arc-name">Tertiary Algorithmicity</div>
+          <div class="arc-era">Generative-AI present</div>
+        </button>
+      </div>
+
+      <div class="arc-detail" id="arcDetail" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RUPTURE ===== -->
+<section id="rupture">
+  <div class="container">
+    <div class="eyebrow">Section II · D</div>
+    <h2 class="section-title">Three Assumptions That <em>No Longer Hold</em></h2>
+    <p class="section-sub">The case for extending Ong rests on a hinge. If these assumptions hold, generative AI is only an intensification of secondary orality. If they break, new conceptual categories are required.</p>
+
+    <div class="assumption-grid">
+      <div class="assumption-card" data-flip>
+        <div class="assumption-inner">
+          <div class="assumption-face assumption-front">
+            <div class="assumption-num">I.</div>
+            <div class="assumption-label">Ong's assumption</div>
+            <h3>Humans create symbolic content.</h3>
+            <div class="assumption-flip">Tap to see what ruptured →</div>
+          </div>
+          <div class="assumption-face assumption-back">
+            <div class="assumption-label" style="color:#f0c5cd">The rupture</div>
+            <h3>Neural networks now produce essays, code, images, and arguments without human authorship in any traditional sense.</h3>
+            <p>Outputs are not transcriptions of human thought but statistical predictions of plausible text. The source of symbolic expression no longer must be human consciousness.</p>
+            <div class="assumption-flip">← Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="assumption-card" data-flip>
+        <div class="assumption-inner">
+          <div class="assumption-face assumption-front">
+            <div class="assumption-num">II.</div>
+            <div class="assumption-label">Ong's assumption</div>
+            <h3>Distribution follows relatively transparent logics.</h3>
+            <div class="assumption-flip">Tap to see what ruptured →</div>
+          </div>
+          <div class="assumption-face assumption-back">
+            <div class="assumption-label" style="color:#f0c5cd">The rupture</div>
+            <h3>Algorithmic curation governs what reaches whom — through proprietary, opaque, behaviorally responsive systems.</h3>
+            <p>Two users opening the same app at the same moment encounter different content, sequenced by computational predictions about engagement. The shared symbolic environment fragments.</p>
+            <div class="assumption-flip">← Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="assumption-card" data-flip>
+        <div class="assumption-inner">
+          <div class="assumption-face assumption-front">
+            <div class="assumption-num">III.</div>
+            <div class="assumption-label">Ong's assumption</div>
+            <h3>Consciousness encounters media as an external environment.</h3>
+            <div class="assumption-flip">Tap to see what ruptured →</div>
+          </div>
+          <div class="assumption-face assumption-back">
+            <div class="assumption-label" style="color:#f0c5cd">The rupture</div>
+            <h3>The environment is continuously tailored in response to prior behavior. Consciousness encounters a reflection of itself.</h3>
+            <p>The symbolic world a learner inhabits is increasingly shaped by systems that infer attention, predict preference, and return those patterns as a self-reinforcing loop. The book on the shelf has become a mirror.</p>
+            <div class="assumption-flip">← Tap to flip back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DISPLACEMENTS ===== -->
+<section id="displacements">
+  <div class="container">
+    <div class="eyebrow">Section III · B</div>
+    <h2 class="section-title">Three Displacements of <em>Tertiary Algorithmicity</em></h2>
+    <p class="section-sub">Each names a different way the learner is repositioned under generative AI — as thinker, as interlocutor, and as accountable claimant. A student who submits AI-generated work experiences all three at once.</p>
+
+    <div class="displ-stack">
+      <div class="displ" id="d-noetic">
+        <div class="displ-side">
+          <div class="displ-icon">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" style="color:var(--gold-2)">
+              <circle cx="32" cy="32" r="22" />
+              <path d="M16 32 Q 32 8 48 32" />
+              <path d="M16 32 Q 32 56 48 32" />
+              <circle cx="32" cy="32" r="3" fill="currentColor" />
+              <line x1="48" y1="32" x2="58" y2="32" stroke-dasharray="2 2" />
+              <line x1="32" y1="48" x2="32" y2="58" stroke-dasharray="2 2" />
+            </svg>
+          </div>
+          <div class="displ-num">Displacement I</div>
+          <h3>Noetic<br />Displacement</h3>
+        </div>
+        <div class="displ-body">
+          <p>Noetic displacement names the condition in which the externalization of cognitive labor moves from <em>storage</em> to <em>generation</em>. Operations that previously had to occur within the learner's own noetic activity are increasingly offloaded to an external socio-technical system.</p>
+          <p>Literacy externalized memory to the page. Secondary orality externalized broadcast. Algorithmic secondary orality externalized curation. Tertiary algorithmicity crosses a new threshold: generative systems produce new combinations of language that take the form of knowledge <em>without the experiential grounding that has historically accompanied symbolic production</em>.</p>
+          <div class="pull">"When a student can generate a competent analysis of a poem without having engaged in the interpretive labor that such analysis traditionally required, what has the student learned?"</div>
+          <div class="ong-broken"><strong>Ong's assumption broken</strong>Assumption I — humans create symbolic content — ruptures here. The cognitive work that would have produced the text is increasingly performed in the model-and-interface stack, not in the student's noetic activity.</div>
+        </div>
+      </div>
+
+      <div class="displ" id="d-rhet">
+        <div class="displ-side">
+          <div class="displ-icon">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" style="color:var(--gold-2)">
+              <path d="M8 22 H 56 V 42 H 38 L 32 50 L 26 42 H 8 Z" />
+              <path d="M16 30 H 48" stroke-dasharray="3 2" />
+              <path d="M16 36 H 40" stroke-dasharray="3 2" />
+              <circle cx="50" cy="14" r="3" fill="currentColor" />
+              <circle cx="58" cy="20" r="2" fill="currentColor" opacity="0.6" />
+              <circle cx="56" cy="10" r="2" fill="currentColor" opacity="0.4" />
+            </svg>
+          </div>
+          <div class="displ-num">Displacement II</div>
+          <h3>Rhetorical<br />Saturation</h3>
+        </div>
+        <div class="displ-body">
+          <p>Rhetorical saturation is the condition in which algorithmic systems produce discourse at scale, flooding communicative environments with synthetic text, image, video, and audio that is increasingly indistinguishable from human production.</p>
+          <p>Three features sustain it: <strong>origin uncertainty</strong> (humans struggle to distinguish AI-generated text from human writing at rates close to chance); <strong>simulation of expression</strong> (generative systems mimic distinctive style, voice, and apparent personality); and <strong>simulated dialogue</strong> (conversational interfaces produce the form of exchange without an interlocutor with stakes).</p>
+          <div class="pull">"The dialogic exchanges available to participants increasingly lack the genuine contestation Ong identified as the fertile ground of intellectual development."</div>
+          <div class="ong-broken"><strong>Ong's assumption broken</strong>Assumption II — that distribution follows transparent logics — breaks. The content being curated and the dialogue being conducted may themselves be algorithmically generated.</div>
+        </div>
+      </div>
+
+      <div class="displ" id="d-exist">
+        <div class="displ-side">
+          <div class="displ-icon">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" style="color:var(--gold-2)">
+              <circle cx="32" cy="32" r="22" />
+              <path d="M22 36 Q 32 44 42 36" />
+              <line x1="22" y1="26" x2="26" y2="26" />
+              <line x1="38" y1="26" x2="42" y2="26" />
+              <path d="M14 14 L 22 22" stroke-dasharray="2 3" opacity="0.5" />
+              <path d="M50 50 L 58 58" stroke-dasharray="2 3" opacity="0.3" />
+            </svg>
+          </div>
+          <div class="displ-num">Displacement III</div>
+          <h3>Existential<br />Abstraction</h3>
+        </div>
+        <div class="displ-body">
+          <p>Existential abstraction names the condition in which symbolic production is severed from lived experience, situated perspective, and personal accountability. Text generated by a neural network expresses positions without having stakes, simulates conviction without being committed.</p>
+          <p>Ong traced a progression from orality's inseparability of speaker and speech, through literacy's authorial distance, to secondary orality's partial restoration of dialogic qualities. Tertiary algorithmicity extends this trajectory not to distance but to <em>elimination</em>. No consciousness stands behind the output. No person bears the intellectual risk of having committed to the claims the text advances.</p>
+          <div class="pull">"Education depends on students developing the willingness to take intellectual risks and accept responsibility for their thinking. When that commitment becomes optional, one of the primary mechanisms through which intellectual character forms is undermined."</div>
+          <div class="ong-broken"><strong>Ong's assumption broken</strong>Assumption III — that consciousness encounters media as an external environment — collapses. Students can produce without investing, performing competence without the vulnerability that accompanies authorship.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STAKES ===== -->
+<section id="stakes">
+  <div class="container">
+    <div class="eyebrow">Section IV</div>
+    <h2 class="section-title">Productive Struggle &amp;<br />the Threat of <em>Unproductive Success</em></h2>
+    <p class="section-sub">Constructivist theory and the learning sciences converge: durable learning requires enough cognitive struggle to reconstruct existing schemas. Tertiary algorithmicity inverts this default.</p>
+
+    <div class="stakes-compare">
+      <div class="stakes-col good">
+        <span class="tag">Productive Struggle</span>
+        <h3>What learning has always required</h3>
+        <p>Dewey, Piaget, Vygotsky, Kapur, Bjork, Sweller, Roediger: across distinct traditions, a converging finding — durable learning happens when existing schemas prove inadequate and must be effortfully reconstructed.</p>
+        <ul>
+          <li>Productive <em>failure</em> before instruction (Kapur)</li>
+          <li>Desirable difficulties &amp; spacing (Bjork)</li>
+          <li>Germane cognitive load (Sweller, Ayres, Kalyuga)</li>
+          <li>Generation &amp; retrieval effects (Roediger, McDaniel)</li>
+          <li>Schema reconstruction through effortful engagement</li>
+        </ul>
+      </div>
+      <div class="stakes-col bad">
+        <span class="tag">Unproductive Success</span>
+        <h3>What generative AI defaults toward</h3>
+        <p>A condition in which the learner produces the fluent, plausible, often correct academic performance — without engaging in the interpretive and compositional processes through which understanding is built.</p>
+        <ul>
+          <li>Polished output, hollow schema</li>
+          <li>The right answer, no productive failure</li>
+          <li>Coherent summary, no synthesis</li>
+          <li>Defended argument, no retrieval</li>
+          <li>Surface evidence of learning, no transfer</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:64px">
+      <p class="lead">The educational threat is not that students will cheat. It is that schools will normalize a relationship between performance and understanding in which the two have come apart.</p>
+      <p>Three dimensions of educational threat follow from the analysis: cognitive (the bypass of the labor through which schemas form); rhetorical (the erosion of dialogic conditions that make ideas testable); and existential (the abstraction of authorship from accountability). These threats do not operate uniformly. Schools remain structured human environments, with teachers, relationships, and routines that can preserve the hooks for learning that broader media environments often dissolve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FRICTION ===== -->
+<section id="friction">
+  <div class="container">
+    <div class="eyebrow">Section V</div>
+    <h2 class="section-title">Pedagogical Friction:<br />A <em>Four-Dimensional</em> Response</h2>
+    <p class="section-sub">Friction is the effort through which cognitive development can occur. Where frictionless automation is the default, the design problem becomes the deliberate preservation of the right kinds of difficulty.</p>
+
+    <div class="friction-stage">
+      <div class="friction-svg-wrap">
+        <svg class="friction-svg" viewBox="0 0 400 400" id="frictionSvg">
+          <!-- four quadrants -->
+          <rect class="friction-quad" data-q="head"   x="40"  y="40"  width="160" height="160" data-active="true" />
+          <rect class="friction-quad" data-q="room"   x="200" y="40"  width="160" height="160" />
+          <rect class="friction-quad" data-q="world"  x="40"  y="200" width="160" height="160" />
+          <rect class="friction-quad" data-q="system" x="200" y="200" width="160" height="160" />
+
+          <!-- labels -->
+          <text class="friction-q-label" data-ql="head"   x="120" y="115">Noetic</text>
+          <text class="friction-q-label" data-ql="room"   x="280" y="115">Rhetorical</text>
+          <text class="friction-q-label" data-ql="world"  x="120" y="275">Existential</text>
+          <text class="friction-q-label" data-ql="system" x="280" y="275">Infrastructural</text>
+
+          <text class="friction-q-sub" data-qs="head"   x="120" y="138">The Head</text>
+          <text class="friction-q-sub" data-qs="room"   x="280" y="138">The Room</text>
+          <text class="friction-q-sub" data-qs="world"  x="120" y="298">The World</text>
+          <text class="friction-q-sub" data-qs="system" x="280" y="298">The System</text>
+
+          <!-- center disc -->
+          <circle class="friction-center" cx="200" cy="200" r="42" />
+          <text class="friction-center-text" x="200" y="196">pedagogical</text>
+          <text class="friction-center-text" x="200" y="212">friction</text>
+        </svg>
+      </div>
+      <div class="friction-detail" id="frictionDetail" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EQUITY ===== -->
+<section id="equity">
+  <div class="container">
+    <div class="eyebrow">Section V · C</div>
+    <h2 class="section-title">Productive Friction or <em>Exclusionary</em>?</h2>
+    <p class="section-sub">An argument for preserving friction can easily become an argument for preserving inequity. The framework requires a distinction — and a question educators ask of every instructional decision.</p>
+
+    <div class="equity-toggle" role="tablist">
+      <button data-eq="productive" class="active" role="tab" aria-selected="true">Productive friction</button>
+      <button data-eq="exclusionary" role="tab">Exclusionary friction</button>
+    </div>
+
+    <div class="equity-panel active" data-panel="productive">
+      <div class="equity-grid">
+        <div class="equity-card">
+          <span class="equity-tag">Definition</span>
+          <h4>Difficulty that builds capacity</h4>
+          <p>The cognitive effort that builds schema, develops capacity, and enables transfer. Wrestling with difficult texts, defending arguments against genuine critique, composing original work, revising based on feedback. These difficulties are <em>desirable</em> in Bjork's sense.</p>
+        </div>
+        <div class="equity-card">
+          <span class="equity-tag">Examples</span>
+          <h4>What it looks like in practice</h4>
+          <p>Retrieval before AI assistance. Oral defenses of written work. Process portfolios that document revision. Peer critique of original drafts. Collaborative inquiry on contested questions. Reflection on the path of one's own reasoning.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="equity-panel" data-panel="exclusionary">
+      <div class="equity-grid">
+        <div class="equity-card">
+          <span class="equity-tag">Definition</span>
+          <h4>Difficulty that blocks access</h4>
+          <p>Arbitrary obstruction that prevents participation without building capacity. Language barriers imposed on content assessment. Inaccessible formats. Procedural requirements unrelated to learning. Difficulty that treats one cognitive profile as the unmarked norm.</p>
+        </div>
+        <div class="equity-card">
+          <span class="equity-tag">The disability-studies challenge</span>
+          <h4>"Rigor" as historical gatekeeping</h4>
+          <p>Dolmage (2017) argues that what higher education has called "rigor" has often functioned to preserve access for students whose embodied relationship to reading, writing, and timed performance already matches institutional expectations. Any call to preserve difficulty warrants scrutiny.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="paradox-callout">
+      <h4>The English Learner Paradox</h4>
+      <p>A student uses generative AI translation to convert an essay written in their native language into English. The friction bypassed may be <em>exclusionary</em> rather than productive: the language barrier prevented them from demonstrating content knowledge or participating in academic discourse.</p>
+      <p>At the same time, the translation process may bypass the productive friction of composing in the target language. The same AI assistance can be access for one learner and bypass for another in the very same classroom.</p>
+      <p><em>The pedagogical question is not</em> "does this difficulty build capacity?" — <em>but</em> "for whom does this difficulty build capacity, and for whom does it restrict access?"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPLICATIONS ===== -->
+<section id="implications">
+  <div class="container">
+    <div class="eyebrow">Section V · D</div>
+    <h2 class="section-title">Implications: <em>Curriculum, Advocacy, Policy</em></h2>
+    <p class="section-sub">If tertiary algorithmicity makes cognitive bypass the default, then curriculum must make thinking visible, advocacy must defend productive struggle as an educational value, and policy must create the institutional conditions in which teachers can preserve friction without acting alone.</p>
+
+    <div class="impl-grid">
+      <div class="impl-card">
+        <div class="impl-num">I.</div>
+        <h4>Curriculum</h4>
+        <p>Process-oriented pedagogy assesses the quality of thinking rather than the polish of products. Sequencing matters: tasks that require noetic struggle <em>before</em> AI assistance preserve the generative cognitive work that prepares students for future learning. Oral components, peer critique, and written reflection introduce forms of friction that resist algorithmic substitution.</p>
+        <div class="impl-aspects"><span>Process portfolios</span><span>Oral defense</span><span>Pre-AI generation</span><span>Visible thinking</span></div>
+      </div>
+      <div class="impl-card">
+        <div class="impl-num">II.</div>
+        <h4>Advocacy</h4>
+        <p>Educational leaders are positioned to name friction as a protected value. The dominant discourse frames innovation as efficiency, personalization, and scalability — but efficiency is the visible edge of a deeper economic logic. The advocacy task is to articulate why the cognitive labor of learning is not an inefficiency to be optimized away.</p>
+        <div class="impl-aspects"><span>Public framing</span><span>Press &amp; podium</span><span>Equity dimension</span><span>Naming losses</span></div>
+      </div>
+      <div class="impl-card">
+        <div class="impl-num">III.</div>
+        <h4>Policy</h4>
+        <p>Most district and university AI policies address integrity, privacy, bias, and risk. These are necessary. But they are silent on learning science. Friction-centered policy makes explicit what cognitive processes education aims to develop, why those processes warrant protection, and what institutional conditions support educators in preserving them.</p>
+        <div class="impl-aspects"><span>Beyond integrity</span><span>Cognitive aims</span><span>Assessment norms</span><span>PD priorities</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COUNTERARGUMENTS ===== -->
+<section id="counterarguments">
+  <div class="container">
+    <div class="eyebrow">Section III · C  +  Section V · C</div>
+    <h2 class="section-title">Counterarguments &amp; <em>Reflexivity</em></h2>
+    <p class="section-sub">The argument is contestable. The framework remains valuable not because it answers every objection but because it makes the right ones visible.</p>
+
+    <div class="counter-list" id="counterList">
+      <div class="counter-item">
+        <div class="counter-q"><h4>Isn't this just nostalgia for a pre-digital classroom?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-a"><p>No. Pedagogical friction is not a call to ban tools or restore some imagined simplicity. It is a recognition that learning requires certain kinds of difficulty, that those difficulties are what the learning sciences describe as <em>desirable</em>, and that under conditions of tertiary algorithmicity those difficulties have to be deliberately preserved. The framework is forward-facing; it asks what schools must protect under new defaults, not which technologies must be excluded.</p></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-q"><h4>Isn't the stage model teleological — implying each transition is progress and supersedes prior stages?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-a"><p>Ong himself resisted this reading. Each transition brought losses as well as gains. Literacy enabled analytical detachment but diminished communal and mnemonic capacities. This paper retains that frame: tertiary algorithmicity is not a successor that renders prior forms obsolete. The stages coexist and overlap. The argument is descriptive of dominant conditions, not prescriptive of inevitable progress.</p></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-q"><h4>Doesn't the rhetoric of "rigor" historically function as gatekeeping?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-a"><p>The disability-studies critique (Dolmage, 2017) is real and is taken up directly in Section V·C. The framework does not resolve the tension. What it offers is an interpretive structure that requires educators to ask, for each instructional decision, whether the friction in question <em>builds schema the student would otherwise not construct</em>, or whether it <em>imposes barriers that treat a particular cognitive profile as the unmarked norm</em>. This question has no universal answer.</p></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-q"><h4>What about students for whom AI removes exclusionary barriers — English learners, students with disabilities, multilingual writers?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-a"><p>The paper acknowledges this directly: generative AI can reduce exclusionary friction. The paradox is that the same tool that provides access for one student can remove productive friction for another. The pedagogical question — "for whom does this difficulty build capacity, and for whom does it restrict access?" — is meant to make that paradox a routine part of instructional design, not a special case.</p></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-q"><h4>What about Mayer (2009) and Heyd (2021)? Don't they already extend Ong to tertiary orality?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-a"><p>They make the analytic move toward extension, but they treat digital interactivity as a continuation of orality's logic. Generative AI represents a categorically different condition: not only the conditions of distribution shift, but the source of symbolic production. Tertiary <em>orality</em> still presumes human authorship. Tertiary <em>algorithmicity</em> does not.</p></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-q"><h4>Hasn't McLuhan's extension framework already done this work?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-a"><p>McLuhan provides one set of resources, and the 2024 special issue of <em>Explorations in Media Ecology</em> uses them productively. But McLuhan's framework is most powerful at the level of <em>what media do</em>; Ong's developmental account asks what they restructure inside consciousness. For an argument grounded in the noetic conditions of learning, Ong is the more direct theoretical ancestor.</p></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-q"><h4>Aren't these claims empirical questions the framework can't answer?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-a"><p>Yes. The paper is conceptual. It does not present empirical evidence for how tertiary algorithmicity affects student learning, how educators navigate friction preservation, or how policy shapes the conditions for friction. These are the questions the planned dissertation is designed to take up.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DISSERTATION ===== -->
+<section id="dissertation">
+  <div class="container">
+    <div class="eyebrow">Section VI · D</div>
+    <h2 class="section-title">Toward the <em>Dissertation</em></h2>
+    <p class="section-sub">This qualifying paper builds the conceptual apparatus. The dissertation puts it to empirical use across institutional contexts.</p>
+
+    <div class="diss-card">
+      <h3>The animating questions</h3>
+      <p>The framework — extended Ong stages, four dimensions of pedagogical friction, the productive/exclusionary distinction — generates specific questions that cannot be answered through conceptual analysis alone.</p>
+      <div class="diss-questions">
+        <div class="diss-q">How do educators in diverse institutional contexts navigate the preservation of pedagogical friction under conditions of tertiary algorithmicity?</div>
+        <div class="diss-q">What district and school policies create infrastructural friction sufficient to support, rather than displace, the noetic, rhetorical, and existential dimensions of learning?</div>
+        <div class="diss-q">When educators and administrators encounter the English Learner Paradox in practice, what reasoning patterns distinguish productive from exclusionary friction?</div>
+        <div class="diss-q">How does the framing of generative AI as a <em>learning</em> question (rather than an integrity question) reshape policy deliberation at the district level?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REFERENCES ===== -->
+<section id="references">
+  <div class="container">
+    <div class="eyebrow">Bibliography</div>
+    <h2 class="section-title">References</h2>
+    <p class="section-sub">The paper draws on roughly 90 sources across media ecology, learning sciences, critical algorithm studies, postdigital education, and educational policy. Use search to filter.</p>
+
+    <div class="refs-controls">
+      <input type="search" id="refsSearch" placeholder="Search by author, year, or keyword (e.g., Ong, Kapur, friction, 2024)" />
+      <span class="refs-count" id="refsCount"></span>
+    </div>
+    <ul class="refs-list" id="refsList"></ul>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-author">
+      <h3>Micah J. Miner</h3>
+      <div class="credentials">CETL · Ed.S. · Doctoral Candidate, National Louis University</div>
+      <p>Director of Innovation &amp; Technology, Beach Park District 3. Author of <em>AI Goes to School</em> (Times 10) and the forthcoming <em>AI Gets Schooled</em>. ISTE+ASCD Community Leader, CoSN AI &amp; EdTech Innovation Committee member, and a CTO mentor in the field.</p>
+      <p>This companion site accompanies the qualifying paper <em>Beyond Secondary Orality: Tertiary Algorithmicity and the Case for Pedagogical Friction</em>, submitted in ESR 696A. The paper itself remains the primary document of record.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Companion Map</h4>
+      <ul>
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#arc">The long arc</a></li>
+        <li><a href="#rupture">Three assumptions</a></li>
+        <li><a href="#displacements">Displacements</a></li>
+        <li><a href="#stakes">Productive struggle</a></li>
+        <li><a href="#friction">Friction</a></li>
+        <li><a href="#equity">Equity</a></li>
+        <li><a href="#implications">Implications</a></li>
+        <li><a href="#counterarguments">Counterarguments</a></li>
+        <li><a href="#dissertation">Dissertation</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-meta">
+    <div>© 2026 Micah J. Miner. Companion artifact for committee review.</div>
+    <div>National Louis University · Curriculum, Advocacy, and Policy</div>
+  </div>
+</footer>
+
+<script>
+/* ==================== Data ==================== */
+const STAGES = [
+  { name: "Primary Orality", era: "Pre-literate cultures", tag: "Ong's Stage I",
+    quote: "Words exist only as events, evanescent, sustained by living memory and the speaker's voice.",
+    features: [
+      ["Memory","Internalized; mnemonic patterns, formulae, and rhythm carry knowledge."],
+      ["Authorship","Inseparable from speaker. Speech, body, and stakes are one event."],
+      ["Distribution","Face-to-face. Knowledge moves with persons and performance."],
+      ["Consciousness","Communal, participatory, situational, agonistic."]
+    ]},
+  { name: "Literacy", era: "Manuscript → Print",
+    tag: "Ong's Stage II",
+    quote: "Writing restructures consciousness. Memory moves from inside the mind to the surface of the page.",
+    features: [
+      ["Memory","Externalized to script and print; preservation across time and space."],
+      ["Authorship","Distance introduced between author and reader; the text persists without the speaker."],
+      ["Distribution","Manuscript copying; later, mass printing through identifiable publishers and editors."],
+      ["Consciousness","Analytic, abstract, capable of sustained linear argument."]
+    ]},
+  { name: "Secondary Orality", era: "Radio, film, television",
+    tag: "Ong's Stage III",
+    quote: "An orality of a new kind — group-mindedness larger than any prior community, sustained by literate substructure.",
+    features: [
+      ["Memory","Broadcast preservation; audio and video archives extend cultural memory."],
+      ["Authorship","Producer-scripted; a 'participatory mystique' returns within a literate base."],
+      ["Distribution","One-to-many broadcast on a shared schedule. Millions watch the same program at once."],
+      ["Consciousness","Communal but mediated; oral qualities return through writing's substructure."]
+    ]},
+  { name: "Algorithmic Secondary Orality", era: "2006 — early 2020s",
+    tag: "Stage IV · Proposed extension",
+    quote: "The feed replaced the schedule. Humans still created content; algorithms decided what reached which consciousness.",
+    features: [
+      ["Memory","Curated retrieval. Algorithms surface, suppress, and re-sequence the archive."],
+      ["Authorship","Still human at the point of creation. Platforms structure visibility, not origin."],
+      ["Distribution","Engagement-optimized, behaviorally responsive, opaque. Two users encounter different content."],
+      ["Consciousness","The shared symbolic environment fragments. Loops form between behavior and feed."]
+    ]},
+  { name: "Tertiary Algorithmicity", era: "Generative-AI present",
+    tag: "Stage V · Proposed extension",
+    quote: "Algorithmic systems both create and curate symbolic content. Human authorship becomes optional at scale.",
+    features: [
+      ["Memory","Generative substitution. Plausible text, image, code, and analysis without prior human composition."],
+      ["Authorship","Optional. Statistical prediction can produce the form of expression without an experiential ground."],
+      ["Distribution","Saturated. Origin uncertain; dialogue and contestation become structurally unreliable."],
+      ["Consciousness","Repositioned. The learner risks displacement as thinker, interlocutor, and accountable claimant."]
+    ]}
+];
+
+const FRICTION = {
+  head:    { title: "Noetic Friction", sub: "The Head",
+             body: "The internal cognitive resistance required to transform external information into internalized understanding. The struggle to comprehend a difficult text, synthesize competing sources, construct an argument from evidence, and revise one's own thinking when it proves inadequate. Encompasses germane cognitive load (Sweller et al., 2011), the generation effect (Bjork), retrieval practice (Roediger), and productive failure (Kapur).",
+             against: { label: "Threat under tertiary algorithmicity", text: "Noetic displacement — generation outsourced before schema is constructed. Output appears; understanding does not." }},
+  room:    { title: "Rhetorical Friction", sub: "The Room",
+             body: "The social and dialogic struggle of articulating and defending ideas against unpredictable human interlocutors. Classroom discussion, peer review, oral defense, collaborative inquiry. The unpredictability of human conversation is what makes it productive — disagreement, misunderstanding, surprise, and the requirement to revise in real time.",
+             against: { label: "Threat under tertiary algorithmicity", text: "Rhetorical saturation — fluent AI dialogue without genuine contestation; peers outsource reading; collective conditions for discussion erode." }},
+  world:   { title: "Existential Friction", sub: "The World",
+             body: "The vulnerability of being personally accountable for claims made in physical space — the embodied experience of intellectual engagement before others who can see, hear, and respond. The stakes of authorship: standing behind one's ideas with one's name and body.",
+             against: { label: "Threat under tertiary algorithmicity", text: "Existential abstraction — text generated without an author who bears intellectual risk. Production without investment, competence without vulnerability." }},
+  system:  { title: "Infrastructural Friction", sub: "The System",
+             body: "The structural and policy conditions that make the other three dimensions possible or impossible to sustain. District and university AI policies, assessment norms, curricular requirements, PD priorities, and the values communicated through institutional practice. The condition of possibility for the framework.",
+             against: { label: "The current gap", text: "Most institutional AI policy addresses integrity, privacy, and risk — but is silent on learning science. Friction-centered policy names cognitive aims as protected values." }}
+};
+
+const REFERENCES_DATA = window.__REFERENCES__ = [];
+/* Refs are injected below */
+</script>
+
+<script id="refs-data" type="application/json">["Ángel-Botero, A., & Alvarado-Duque, C. F. (2016). Oralidade terciária: Olhar ecológico na rádio digital. Palabra Clave, 19(2). https://doi.org/10.5294/PACLA.2016.19.2.6", "Annamma, S. A., Connor, D., & Ferri, B. (2013). Dis/ability critical race studies (DisCrit): Theorizing at the intersections of race and dis/ability. Race Ethnicity and Education, 16(1), 1–31. https://doi.org/10.1080/13613324.2012.730511", "Bailenson, J. N. (2021). Nonverbal overload: A theoretical argument for the causes of Zoom fatigue. Technology, Mind, and Behavior, 2(1). https://doi.org/10.1037/tmb0000030", "Bakshy, E., Messing, S., & Adamic, L. A. (2015). Exposure to ideologically diverse news and opinion on Facebook. Science, 348(6239), 1130–1132. https://doi.org/10.1126/science.aaa1160", "Bang, M., Faber, L., Gurneau, J., Marin, A., & Soto, C. (2016). Community-based design research: Learning across generations and strategic transformations of institutional relations toward axiological innovations. Mind, Culture, and Activity, 23(1), 28–41. https://doi.org/10.1080/10749039.2015.1087572", "Baudrillard, J. (1994). Simulacra and simulation (S. F. Glaser, Trans.). University of Michigan Press. (Original work published 1981)", "Bender, E. M., Gebru, T., McMillan-Major, A., & Shmitchell, S. (2021). On the dangers of stochastic parrots: Can language models be too big? In Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency (pp. 610–623). https://doi.org/10.1145/3442188.3445922", "Bender, E. M., & Koller, A. (2020). Climbing towards NLU: On meaning, form, and understanding in the age of data. In Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics (pp. 5185–5198). https://doi.org/10.18653/v1/2020.acl-main.463", "Bjork, E. L., & Bjork, R. A. (2011). Making things hard on yourself, but in a good way: Creating desirable difficulties to enhance learning. In M. A. Gernsbacher, R. W. Pew, L. M. Hough, & J. R. Pomerantz (Eds.), Psychology and the real world: Essays illustrating fundamental contributions to society (pp. 56–64). Worth Publishers.", "Bolter, J. D., & Grusin, R. (1999). Remediation: Understanding new media. The MIT Press.", "boyd, d., & Ellison, N. B. (2007). Social network sites: Definition, history, and scholarship. Journal of Computer-Mediated Communication, 13(1), 210–230. https://doi.org/10.1111/j.1083-6101.2007.00393.x", "Bozkurt, A. (2024). GenAI et al.: Cocreation, authorship, ownership, academic ethics and integrity in a time of generative AI. Open Praxis, 16(1), 1–10. https://doi.org/10.55982/openpraxis.16.1.654", "Bozkurt, A. (2025). Algorithmically manufactured minds: Generative and agentic AI in a time of post-truth, reconfiguration of student agency and death of critical pedagogy. Open Praxis, 17(2), 206–210. https://doi.org/10.55982/openpraxis.17.2.792", "Brady, W. J., Wills, J. A., Jost, J. T., Tucker, J. A., & Van Bavel, J. J. (2017). Emotion shapes the diffusion of moralized content in social networks. Proceedings of the National Academy of Sciences, 114(28), 7313–7318. https://doi.org/10.1073/pnas.1618923114", "Bucher, T. (2012). Want to be on the top? Algorithmic power and the threat of invisibility on Facebook. New Media & Society, 14(7), 1164–1180. https://doi.org/10.1177/1461444812440159", "Bucher, T. (2018). If…then: Algorithmic power and politics. Oxford University Press.", "Carr, N. G. (2011). The shallows: What the Internet is doing to our brains. W. W. Norton.", "Chein, J. M., Martinez, S. A., & Barone, A. R. (2024). Human intelligence can safeguard against artificial intelligence: Individual differences in the discernment of human from AI texts. Scientific Reports, 14(1), 25989. https://doi.org/10.1038/s41598-024-76218-y", "Clark, E., August, T., Serber, S., Haber, N., Celikyilmaz, A., & Smith, N. A. (2021). All that’s ‘human’ is not gold: Evaluating human evaluation of generated text. In Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (pp. 7282–7296). https://doi.org/10.18653/v1/2021.acl-long.565", "Cordón-García, J.-A., & Muñoz-Rico, M. (2024). De la oralidad primaria a la tercera oralidad: Transformaciones culturales y cognitivas en la era digital. Anuario ThinkEPI, 18. https://doi.org/10.3145/thinkepi.2024.e18a38", "Dewey, J. (1933). How we think: A restatement of the relation of reflective thinking to the educative process. D. C. Heath.", "Dolmage, J. T. (2017). Academic ableism: Disability and higher education. University of Michigan Press.", "Doss, C. J., Bozick, R., Schwartz, H. L., Chu, L., Rainey, L. R., Woo, A., Reich, J., & Dukes, J. (2025). AI use in schools is quickly increasing but guidance lags behind: Findings from the RAND Survey Panels (RR-A4180-1). RAND Corporation. https://www.rand.org/pubs/research_reports/RRA4180-1.html", "Dreyfus, H. L. (1972). What computers can’t do: The limits of artificial intelligence. Harper & Row.", "Dreyfus, H. L. (1992). What computers still can’t do: A critique of artificial reason. MIT Press.", "Dron, J. (2023). The human nature of generative AIs and the technological nature of humanity: Implications for education. Digital, 3(4), 319–335. https://doi.org/10.3390/digital3040020", "Feenberg, A. (2002). Transforming technology: A critical theory revisited. Oxford University Press.", "Floridi, L., & Chiriatti, M. (2020). GPT-3: Its nature, scope, limits, and consequences. Minds and Machines, 30(4), 681–694. https://doi.org/10.1007/s11023-020-09548-1", "Foley, J. M. (2012). Oral tradition and the Internet: Pathways of the mind. University of Illinois Press.", "Frankfurt, H. G. (2005). On bullshit. Princeton University Press.", "Gencarelli, T. (2000). The intellectual roots of media ecology in the work and thought of Neil Postman. New Jersey Journal of Communication, 8(1). https://doi.org/10.1080/15456870009367381", "González-Bailón, S., Lazer, D., Barberá, P., Zhang, M., Allcott, H., Brown, T., Crespo-Tenorio, A., Freelon, D., Gentzkow, M., Guess, A. M., Iyengar, S., Kim, Y. M., Malhotra, N., Moehler, D., Nyhan, B., Pan, J., Rivera, C., Settle, J. E., Thorson, E. A., … Tucker, J. A. (2023). Asymmetric ideological segregation in exposure to political news on Facebook. Science, 381(6656), 392–398. https://doi.org/10.1126/science.ade7138", "Haraway, D. J. (1991). Simians, cyborgs, and women: The reinvention of nature. New York, NY: Routledge.", "Hayles, N. K. (2012). How we think: Digital media and contemporary technogenesis. University of Chicago Press.", "Hayles, N. K. (2017). Cognitive assemblages: Technical bodies and virtual minds. Critical Inquiry, 43(1), 54–69.", "Heyd, T. (2021). Tertiary orality? New approaches to spoken CMC. Anglistik: International Journal of English Studies, 32(2), 131–147. https://doi.org/10.33675/ANGL/2021/2/10", "Hill Collins, P. (2000). Black feminist thought: Knowledge, consciousness, and the politics of empowerment (2nd ed.). Routledge.", "Hutchby, I. (2001). Technologies, texts and affordances. Sociology, 35(2), 441–456. https://doi.org/10.1177/S0038038501000219", "Jakesch, M., French, M., Ma, X., Hancock, J. T., & Naaman, M. (2019). AI-mediated communication: How the perception that profile text was written by AI affects trustworthiness. In Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems (pp. 1–13). https://doi.org/10.1145/3290605.3300469", "Jakesch, M., Hancock, J. T., & Naaman, M. (2023). Human heuristics for AI-generated language are flawed. Proceedings of the National Academy of Sciences, 120(11), e2208839120. https://doi.org/10.1073/pnas.2208839120", "Jones, C. R., Rathi, I., Taylor, S., & Bergen, B. K. (2024). People cannot distinguish GPT-4 from a human in a Turing test. In Proceedings of the 2024 ACM Conference on Fairness, Accountability, and Transparency. https://doi.org/10.1145/3715275.3732108", "Kaluža, J. (2022). Habitual generation of filter bubbles: Why is algorithmic personalisation problematic for the democratic public sphere? Javnost – The Public, 29(1). https://doi.org/10.1080/13183222.2021.2003052", "Kapur, M. (2008). Productive failure. Cognition and Instruction, 26(3), 379–424. https://doi.org/10.1080/07370000802212669", "Kapur, M. (2015). Learning from productive failure. Learning: Research and Practice, 1(1), 51–65. https://doi.org/10.1080/23735082.2015.1002195", "Kapur, M. (2016). Examining productive failure, productive success, unproductive failure, and unproductive success in learning. Educational Psychologist, 51(2), 289–299. https://doi.org/10.1080/00461520.2016.1155457", "Karpicke, J. D., & Blunt, J. R. (2011). Retrieval practice produces more learning than elaborative studying with concept mapping. Science, 331(6018), 772–775. https://doi.org/10.1126/science.1199327", "Kasarci, I., Akın Demircan, Z., Çeliker Ercan, G., & İnci, T. (2025). Managing artificial intelligence ethics in higher education: A systematic framework for issues and policy recommendations. International Journal of Current Educational Studies. https://doi.org/10.46328/ijces.223", "Kittler, F. (1990). Discourse networks 1800/1900 (M. Metteer & C. Cullens, Trans.). Stanford University Press. (Original work published 1985)", "Kittler, F. A. (1999). Gramophone, film, typewriter (G. Winthrop-Young & M. Wutz, Trans.). Stanford University Press. (Original work published 1986)", "Levy, R. (2021). Social media, news consumption, and polarization: Evidence from a field experiment. American Economic Review, 111(3), 831–870. https://doi.org/10.1257/aer.20191777", "Malomo, O., Adekoya, A., Donald, A. M., Eyob, E., Omojokun, E., Mummalaneni, V., & Garuba, M. (2025). AI as asset and liability: A dual-use dilemma in higher education and the SPARKE Framework for institutional AI governance. Online Journal of Applied Knowledge Management, 13(2), 57–76. https://doi.org/10.36965/ojakm.2025.13(2)57-76", "Mayer, R. (2009). L’oralité tertiaire: Positionnement, statut, modalités. Pratiques Audiovisuelles. https://doi.org/10.4000/PA.186", "McLuhan, M. (1964). Understanding media: The extensions of man. McGraw-Hill.", "Metzger, S. A., & Krutka, D. G. (2023). Interrogating the smartphone: Teaching through technoskeptical questions. Social Education, 87(5), 313–318.", "Mieczkowski, H., Hancock, J. T., Naaman, M., Jung, M., & Hohenstein, J. (2021). AI-mediated communication: Language use and interpersonal effects in a referential communication task. Proceedings of the ACM on Human-Computer Interaction, 5(CSCW1), 1–14. https://doi.org/10.1145/3449091", "Mollick, E. (2024). Co-intelligence: Living and working with AI. Portfolio.", "Nikolaidis, A., & Lara-Steidel, H. (2024). White ignorance and attention in the age of digital technologies. Philosophy and Education, 80(2), 131. https://doi.org/10.47925/80.2.131", "Nguyen, C. T. (2020). Echo chambers and epistemic bubbles. Episteme, 17(2), 141–161. https://doi.org/10.1017/epi.2018.32", "Ong, W. J. (1967). The presence of the word: Some prolegomena for cultural and religious history. Yale University Press.", "Ong, W. J. (1977). Interfaces of the word: Studies in the evolution of consciousness and culture. Cornell University Press.", "Ong, W. J. (2002). Orality and literacy: The technologizing of the word (2nd ed.). Routledge. (Original work published 1982). https://doi.org/10.4324/9780203426258", "Ong, W. J. (2017). Language as hermeneutic: A primer on the word and digitization (T. D. Zlatic & S. van den Berg, Eds.). Cornell University Press.", "Pariser, E. (2011). The filter bubble: What the internet is hiding from you. Penguin Press.", "Petricini, T. (2024). Special issue introduction: AI and media ecology. Explorations in Media Ecology, 23(2), 93–103.", "Piaget, J. (1952). The origins of intelligence in children (M. Cook, Trans.). International Universities Press.", "Postman, N. (1985). Amusing ourselves to death: Public discourse in the age of show business. Viking.", "Postman, N. (1992). Technopoly: The surrender of culture to technology. Knopf.", "Rice, M. (2024). The micropolitical landscape of publicly discoverable policies for generative AI in large US school districts. Technology, Pedagogy and Education. https://doi.org/10.1080/1475939X.2024.2421494", "Rickert, T. (2024). Ambient engineering: Hyper-nudging, hyper-relevance, and rhetorics of nearness and farness in a post-AI algorithmic world. Rhetoric Society Quarterly. https://doi.org/10.1080/02773945.2024.2407263", "Riva, G. (2025). The architecture of cognitive amplification: Enhanced cognitive scaffolding as a resolution to the comfort-growth paradox in human-AI cognitive integration (arXiv:2507.19483). arXiv. https://arxiv.org/abs/2507.19483", "Robson, S. (2019). Theories of cognitive development. In Developing thinking and understanding in young children. Routledge. https://doi.org/10.4324/9780429469442-2", "Ryu, S. (2023). Exploring tertiary orality in virtual reality. In HCI International 2023 (pp. 287–296). Springer. https://doi.org/10.1007/978-3-031-36004-6_39", "Short, J., Williams, E., & Christie, B. (1976). The social psychology of telecommunications. Wiley.", "Sligo, F. (2020). Literacy and orality at work. Peter Lang. https://doi.org/10.3726/B17476", "Smith, M. R., & Marx, L. (Eds.). (1994). Does technology drive history? The dilemma of technological determinism. The MIT Press.", "Soffer, O. (2020). From textual orality to oral textuality: The case of voice queries. Convergence, 26(4), 927–941. https://doi.org/10.1177/1354856519825773", "Stiegler, B. (2010). Technics and time, 3: Cinematic time and the question of the new sophist (S. Barker, Trans.). Stanford University Press.", "Stiegler, B. (2012). Relational ecology and the digital pharmakon. Culture Machine, 13. https://culturemachine.net", "Stiegler, B. (2016). Automatic society: Volume 1. The future of work (A. Brown, Trans.). Polity.", "Sweller, J., Ayres, P., & Kalyuga, S. (2011). Cognitive load theory. Springer. https://doi.org/10.1007/978-1-4419-8126-4", "Tomprou, M., Kim, Y. J., Chikersal, P., Woolley, A. W., & Dabbish, L. A. (2021). Speaking out of turn: How video conferencing reduces vocal synchrony and collective intelligence. PLOS ONE, 16(3), e0247655. https://doi.org/10.1371/journal.pone.0247655", "Tufekci, Z. (2017). Twitter and tear gas: The power and fragility of networked protest. Yale University Press.", "Turkle, S. (2011). Alone together: Why we expect more from technology and less from each other. Basic Books.", "Turner, D., & Allen, W. S. (2013). Documents, dialogue and the emergence of tertiary orality. Information Research, 18(3).", "van Dijck, J. (2013). The culture of connectivity: A critical history of social media. Oxford University Press.", "van Manen, M. (1990). Researching lived experience: Human science for an action sensitive pedagogy. State University of New York Press.", "Varoufakis, Y. (2024). Technofeudalism: What killed capitalism. Melville House.", "Vosoughi, S., Roy, D., & Aral, S. (2018). The spread of true and false news online. Science, 359(6380), 1146–1151. https://doi.org/10.1126/science.aap9559", "Vygotsky, L. S. (1978). Mind in society: The development of higher psychological processes. Harvard University Press.", "Wolf, M. (2018). Reader, come home: The reading brain in a digital world. HarperCollins.", "Wu, A. X., & Taneja, H. (2021). Platform enclosure of human behavior and its measurement: Using behavioral trace data against platform episteme. New Media & Society, 23(9), 2650–2667. https://doi.org/10.1177/1461444820933547", "Wu, T. (2016). The attention merchants: The epic scramble to get inside our heads. Knopf.", "Zuboff, S. (2019). The age of surveillance capitalism: The fight for a human future at the new frontier of power. PublicAffairs."]</script>
+
+<script>
+/* ==================== Hero canvas: drifting field ==================== */
+(function heroCanvas() {
+  const c = document.getElementById('hero-canvas');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let w, h, particles = [];
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = c.width  = c.offsetWidth  * dpr;
+    h = c.height = c.offsetHeight * dpr;
+    c.style.width = c.offsetWidth + 'px';
+    c.style.height = c.offsetHeight + 'px';
+    ctx.scale(1,1);
+    initParticles();
+  }
+  function initParticles() {
+    particles = [];
+    const n = Math.min(140, Math.floor(w * h / 22000));
+    for (let i = 0; i < n; i++) {
+      particles.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.18,
+        vy: (Math.random() - 0.5) * 0.18,
+        r: Math.random() * 1.4 + 0.4,
+        a: Math.random() * 0.5 + 0.2
+      });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    // soft gradient
+    const g = ctx.createRadialGradient(w*0.8, h*0.2, 0, w*0.8, h*0.2, Math.max(w,h)*0.6);
+    g.addColorStop(0, 'rgba(196,160,80,0.04)');
+    g.addColorStop(1, 'rgba(13,14,28,0)');
+    ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+
+    // particles + connecting filaments
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10;
+      if (p.y > h + 10) p.y = -10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(217,184,120,' + p.a + ')';
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x, dy = p.y - q.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 14000) {
+          const op = (1 - d2 / 14000) * 0.12;
+          ctx.strokeStyle = 'rgba(196,160,80,' + op + ')';
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+/* ==================== Progress bar ==================== */
+(function progress() {
+  const bar = document.querySelector('#progress-bar > div');
+  function update() {
+    const sc = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? (sc / max) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ==================== Nav: hide on scroll down, active section ==================== */
+(function navBehavior() {
+  const nav = document.getElementById('nav');
+  let last = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 120 && y > last) nav.classList.add('hidden');
+    else nav.classList.remove('hidden');
+    last = y;
+  }, { passive: true });
+
+  // active link
+  const links = document.querySelectorAll('.nav-links a');
+  const map = {};
+  links.forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    map[id] = a;
+  });
+  const sections = Object.keys(map).map(id => document.getElementById(id)).filter(Boolean);
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = map[en.target.id];
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+  sections.forEach(s => obs.observe(s));
+})();
+
+/* ==================== Arc timeline ==================== */
+(function arc() {
+  const nodes = document.querySelectorAll('.arc-node');
+  const detail = document.getElementById('arcDetail');
+  function render(i) {
+    const s = STAGES[i];
+    detail.style.opacity = 0;
+    setTimeout(() => {
+      detail.innerHTML =
+        '<div class="arc-tag">' + s.tag + ' · ' + s.era + '</div>' +
+        '<h3>' + s.name + '</h3>' +
+        '<div class="arc-quote">"' + s.quote + '"</div>' +
+        '<div class="arc-features">' + s.features.map(f =>
+          '<div class="arc-feature"><strong>' + f[0] + '</strong>' + f[1] + '</div>'
+        ).join('') + '</div>';
+      detail.style.opacity = 1;
+    }, 120);
+  }
+  nodes.forEach((n, i) => {
+    n.addEventListener('click', () => {
+      nodes.forEach(x => x.classList.remove('active'));
+      n.classList.add('active');
+      render(i);
+    });
+  });
+  render(0);
+})();
+
+/* ==================== Flip cards ==================== */
+(function flips() {
+  document.querySelectorAll('[data-flip]').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('flipped'); }
+    });
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+  });
+})();
+
+/* ==================== Friction wheel ==================== */
+(function friction() {
+  const quads = document.querySelectorAll('.friction-quad');
+  const labels = document.querySelectorAll('.friction-q-label');
+  const subs = document.querySelectorAll('.friction-q-sub');
+  const detail = document.getElementById('frictionDetail');
+  function setActive(key) {
+    quads.forEach(x => x.classList.toggle('active', x.dataset.q === key));
+    labels.forEach(x => x.classList.toggle('active', x.dataset.ql === key));
+    subs.forEach(x => x.classList.toggle('active', x.dataset.qs === key));
+  }
+  function render(key) {
+    const f = FRICTION[key];
+    detail.innerHTML =
+      '<div class="friction-tag">' + f.sub + '</div>' +
+      '<h3>' + f.title + '</h3>' +
+      '<p>' + f.body + '</p>' +
+      '<div class="friction-against"><strong>' + f.against.label + '</strong>' + f.against.text + '</div>';
+  }
+  quads.forEach(q => {
+    const k = q.dataset.q;
+    q.addEventListener('click',      () => { setActive(k); render(k); });
+    q.addEventListener('mouseenter', () => { setActive(k); render(k); });
+  });
+  setActive('head');
+  render('head');
+})();
+
+/* ==================== Equity toggle ==================== */
+(function equity() {
+  const btns = document.querySelectorAll('.equity-toggle button');
+  const panels = document.querySelectorAll('.equity-panel');
+  btns.forEach(b => {
+    b.addEventListener('click', () => {
+      btns.forEach(x => x.classList.remove('active'));
+      panels.forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      document.querySelector('[data-panel="' + b.dataset.eq + '"]').classList.add('active');
+    });
+  });
+})();
+
+/* ==================== Counter accordion ==================== */
+(function counters() {
+  document.querySelectorAll('.counter-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+})();
+
+/* ==================== References ==================== */
+(function refs() {
+  const raw = document.getElementById('refs-data').textContent;
+  let refs = [];
+  try { refs = JSON.parse(raw); } catch (e) { refs = []; }
+  const list = document.getElementById('refsList');
+  const count = document.getElementById('refsCount');
+  const search = document.getElementById('refsSearch');
+  function render(filter) {
+    const q = (filter || '').trim().toLowerCase();
+    list.innerHTML = '';
+    let n = 0;
+    refs.forEach(r => {
+      const matches = !q || r.toLowerCase().includes(q);
+      if (!matches) return;
+      n++;
+      const li = document.createElement('li');
+      // light highlight
+      if (q) {
+        const idx = r.toLowerCase().indexOf(q);
+        if (idx >= 0) {
+          li.innerHTML = escapeHtml(r.slice(0, idx)) + '<mark>' + escapeHtml(r.slice(idx, idx + q.length)) + '</mark>' + escapeHtml(r.slice(idx + q.length));
+        } else { li.textContent = r; }
+      } else {
+        li.textContent = r;
+      }
+      list.appendChild(li);
+    });
+    count.textContent = n + ' of ' + refs.length + ' references';
+  }
+  function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  search.addEventListener('input', () => render(search.value));
+  render('');
+})();
+</script>
+</body>
+</html>
+.length + ' references';
+  }
+  function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  search.addEventListener('input', () => render(search.value));
+  render('');
+})();
+</script>
+</body>
+</html>
