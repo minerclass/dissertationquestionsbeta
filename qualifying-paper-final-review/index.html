@@ -139,6 +139,16 @@
     .review-card { border: 1px solid var(--line); border-top-color: rgba(216,138,85,.7); border-radius: var(--radius); padding: 1rem; background: rgba(255,255,255,.035); min-height: 16rem; }
     .review-card h3 { margin: 0 0 .8rem; color: var(--paper); }
     .review-card p, .review-card li { color: var(--muted); font-size: .93rem; }
+    .lens-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 1rem; align-items: stretch; }
+    .lens-picker, .lens-panel { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.035); padding: 1rem; }
+    .lens-picker h3, .lens-panel h3 { margin: 0 0 .8rem; color: var(--teal); font: 700 .78rem Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+    .lens-buttons { display: grid; gap: .55rem; }
+    .lens-button { width: 100%; border: 1px solid var(--line); border-radius: 6px; background: rgba(0,0,0,.16); color: var(--muted); padding: .8rem; text-align: left; font: .9rem Arial, sans-serif; cursor: pointer; }
+    .lens-button strong { display: block; color: var(--text); margin-bottom: .25rem; }
+    .lens-button.active { border-color: rgba(115,215,202,.62); background: rgba(115,215,202,.11); }
+    .lens-panel p { color: var(--muted); margin: 0 0 1rem; }
+    .lens-jumps { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .lens-jumps a { border: 1px solid rgba(115,215,202,.35); border-radius: 999px; color: var(--teal); padding: .38rem .65rem; text-decoration: none; font: .78rem Arial, sans-serif; }
     .reader-shell { display: grid; grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
     .reader-tools { position: sticky; top: 5.4rem; border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; background: rgba(6,20,26,.82); max-height: calc(100vh - 7rem); overflow: auto; }
     .searchbox { width: 100%; padding: .85rem .9rem; border: 1px solid var(--line); border-radius: 6px; background: rgba(0,0,0,.22); color: var(--text); font: .88rem Arial, sans-serif; }
@@ -172,7 +182,7 @@
       .hero .subtitle { font-size: 1.55rem; }
       .section-heading h2 { font-size: 2.6rem; }
       .hero { grid-template-columns: 1fr; min-height: auto; } .argument-map { min-height: 25rem; }
-      .overview-bar, .reader-shell, .references-panel { grid-template-columns: 1fr; }
+      .overview-bar, .reader-shell, .references-panel, .lens-grid { grid-template-columns: 1fr; }
       .reader-tools { position: relative; top: auto; max-height: none; }
       .spine { grid-template-columns: repeat(2, 1fr); } .review-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -202,10 +212,11 @@
     <a class="brand" href="#top" aria-label="Back to top"><strong>Beyond Secondary Orality</strong><span>Final qualifying paper review</span></a>
     <nav class="main-nav" aria-label="Primary navigation">
       <a href="#overview">Overview</a>
+      <a href="#review-guide">Review Guide</a>
       <a href="#argument-spine">Argument Spine</a>
       <a href="#committee-review">Committee Review</a>
       <a href="#manuscript">Manuscript</a>
-      <a href="#references">References</a>
+      <a href="#references-explorer">References</a>
     </nav>
     <div class="progress-cluster"><button class="icon-button" id="printButton" type="button">Print Review</button><div class="progress-ring" aria-label="Reading progress"><span id="progressText">0%</span></div><span>Reading<br>progress</span></div>
   </header>
@@ -235,6 +246,21 @@
   </div>
 
   <main>
+    <section class="band" id="review-guide">
+      <div class="section-heading"><h2>Review Guide</h2><p>Choose a review lens to make the page more concise. Each lens narrows the manuscript reader to the sections most relevant to that question and gives reviewers a faster route through the argument.</p></div>
+      <div class="lens-grid">
+        <div class="lens-picker">
+          <h3>Review lens</h3>
+          <div class="lens-buttons" id="lensButtons"></div>
+        </div>
+        <article class="lens-panel" aria-live="polite">
+          <h3 id="lensTitle">Full review</h3>
+          <p id="lensSummary">Show the full manuscript, review panels, and references without narrowing.</p>
+          <div class="lens-jumps" id="lensJumps"></div>
+        </article>
+      </div>
+    </section>
+
     <section class="band" id="argument-spine">
       <div class="section-heading"><h2>Argument Spine</h2><p>The site foregrounds the conceptual movement reviewers need to follow: media ecology, algorithmic authorship, educational consequence, and dissertation-facing response.</p></div>
       <div class="spine">
@@ -346,7 +372,7 @@
       </div>
     </section>
 
-    <section class="band" id="references">
+    <section class="band" id="references-explorer">
       <div class="section-heading"><h2>References Explorer</h2><p>The reference list is preserved from the manuscript and can be filtered by author, concept, year, DOI, or keyword.</p></div>
       <div class="references-panel">
         <aside class="reference-facets"><input class="searchbox" id="referenceSearch" type="search" placeholder="Search references..." autocomplete="off"><h3>Key terms</h3><div class="keyword-cloud"><span>tertiary algorithmicity</span><span>pedagogical friction</span><span>Walter Ong</span><span>media ecology</span><span>generative AI</span><span>unproductive success</span><span>secondary orality</span><span>productive failure</span></div></aside>
@@ -464,6 +490,60 @@
     const currentSection = document.getElementById('currentSection');
     const paperSections = [...document.querySelectorAll('[data-paper-section]')];
     const sectionLinks = [...document.querySelectorAll('[data-section-link]')];
+    const lensButtons = document.getElementById('lensButtons');
+    const lensTitle = document.getElementById('lensTitle');
+    const lensSummary = document.getElementById('lensSummary');
+    const lensJumps = document.getElementById('lensJumps');
+    const paperSearch = document.getElementById('paperSearch');
+    const referenceSearch = document.getElementById('referenceSearch');
+    let activeLensKey = 'full';
+    const reviewLenses = [
+      {
+        key: 'full',
+        label: 'Full review',
+        hint: 'Everything visible',
+        title: 'Full review',
+        summary: 'Show the full manuscript, review panels, and references without narrowing.',
+        sections: [],
+        terms: ''
+      },
+      {
+        key: 'argument',
+        label: 'Argument spine',
+        hint: 'Claim movement',
+        title: 'Argument spine',
+        summary: 'Focus on the thesis, research questions, theoretical framework, proposed extension, and conclusion.',
+        sections: ['abstract', 'research-questions', 'section-ii-theoretical-framework-ong-s-media-ecology-and-its-ass', 'section-iii-proposed-extensions-algorithmic-secondary-orality-an', 'section-vi-conclusion'],
+        terms: 'Ong'
+      },
+      {
+        key: 'evidence',
+        label: 'Evidence base',
+        hint: 'Sources and traditions',
+        title: 'Evidence base',
+        summary: 'Focus on how media ecology, learning science, and AI scholarship support the paper rather than reading every policy implication first.',
+        sections: ['section-ii-theoretical-framework-ong-s-media-ecology-and-its-ass', 'section-iv-educational-stakes-unproductive-success-and-the-bypas', 'references'],
+        terms: 'Ong'
+      },
+      {
+        key: 'equity',
+        label: 'Equity boundary',
+        hint: 'Productive vs exclusionary',
+        title: 'Equity boundary',
+        summary: 'Focus on the distinction between productive friction and exclusionary barriers, including the risk that rigor language can reproduce inequity.',
+        sections: ['section-v-pedagogical-friction-as-response-framework', 'section-vi-conclusion', 'references'],
+        terms: 'Dolmage'
+      },
+      {
+        key: 'dissertation',
+        label: 'Dissertation bridge',
+        hint: 'What comes next',
+        title: 'Dissertation bridge',
+        summary: 'Focus on the parts of the paper that become a mixed methods dissertation study: questions, framework, limitations, and next empirical moves.',
+        sections: ['research-questions', 'section-iii-proposed-extensions-algorithmic-secondary-orality-an', 'section-v-pedagogical-friction-as-response-framework', 'section-vi-conclusion'],
+        terms: 'van Manen'
+      }
+    ];
     const updateProgress = () => {
       const max = document.body.scrollHeight - innerHeight;
       const pct = max > 0 ? Math.min(100, Math.max(0, Math.round((scrollY / max) * 100))) : 0;
@@ -488,8 +568,46 @@
         item.hidden = q && !haystack.includes(q);
       });
     };
-    document.getElementById('paperSearch').addEventListener('input', (event) => filterItems(event.target, '[data-paper-section]'));
-    document.getElementById('referenceSearch').addEventListener('input', (event) => filterItems(event.target, '[data-reference]'));
+    function activeLens() {
+      return reviewLenses.find(item => item.key === activeLensKey) || reviewLenses[0];
+    }
+    function applyPaperVisibility() {
+      const lens = activeLens();
+      const allowed = new Set(lens.sections);
+      const q = paperSearch.value.trim().toLowerCase();
+      paperSections.forEach(section => {
+        const lensMatch = allowed.size === 0 || allowed.has(section.id);
+        const haystack = (section.dataset.search || section.textContent).toLowerCase();
+        const searchMatch = !q || haystack.includes(q);
+        section.hidden = !(lensMatch && searchMatch);
+      });
+    }
+    function showLens(key) {
+      activeLensKey = key;
+      const lens = activeLens();
+      lensTitle.textContent = lens.title;
+      lensSummary.textContent = lens.summary;
+      lensButtons.querySelectorAll('[data-lens]').forEach(button => button.classList.toggle('active', button.dataset.lens === lens.key));
+      paperSearch.value = '';
+      referenceSearch.value = lens.terms;
+      applyPaperVisibility();
+      filterItems(referenceSearch, '[data-reference]');
+      lensJumps.innerHTML = (lens.sections.length ? lens.sections : paperSections.map(section => section.id)).map(id => {
+        const section = paperSections.find(item => item.id === id);
+        return section ? `<a href="#${section.id}">${section.dataset.title}</a>` : '';
+      }).join('');
+      updateProgress();
+    }
+    lensButtons.innerHTML = reviewLenses.map(lens => `<button class="lens-button ${lens.key === 'full' ? 'active' : ''}" type="button" data-lens="${lens.key}"><strong>${lens.label}</strong>${lens.hint}</button>`).join('');
+    lensButtons.addEventListener('click', event => {
+      const button = event.target.closest('[data-lens]');
+      if (!button) return;
+      showLens(button.dataset.lens);
+      document.getElementById('manuscript').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    paperSearch.addEventListener('input', applyPaperVisibility);
+    referenceSearch.addEventListener('input', (event) => filterItems(event.target, '[data-reference]'));
+    showLens('full');
     document.getElementById('printButton').addEventListener('click', () => print());
     document.getElementById('printButtonBottom').addEventListener('click', () => print());
   </script>
