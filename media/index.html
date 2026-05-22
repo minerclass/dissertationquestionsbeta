@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Media | Micah Miner</title>
+  <meta name="description" content="Public research media connected to Micah Miner's dissertation work on media ecology, generative AI, and pedagogical friction.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111719;
+      --panel: #1b2427;
+      --panel-2: #202b2f;
+      --text: #f4f1ea;
+      --muted: #bdc6c2;
+      --line: rgba(244, 241, 234, 0.14);
+      --accent: #4ade80;
+      --link: #8fd7ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top left, rgba(74, 222, 128, 0.08), transparent 34rem), var(--bg);
+      color: var(--text);
+      font-family: Barlow, Inter, Segoe UI, system-ui, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--link);
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 56px 0 28px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: clamp(2.35rem, 6vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 18px 0 0;
+    }
+
+    nav a {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px 11px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+
+    main {
+      padding: 34px 0 56px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--panel) 92%, black);
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #050707;
+    }
+
+    .video-copy {
+      padding: 22px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .note {
+      margin-top: 28px;
+      border-left: 3px solid var(--accent);
+      padding: 18px 20px;
+      background: var(--panel-2);
+      color: var(--muted);
+    }
+
+    .note strong {
+      color: var(--text);
+    }
+
+    footer {
+      padding: 22px 0 34px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      header {
+        padding-top: 38px;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <p class="eyebrow">public dissertation media</p>
+      <h1>Research media on AI, writing, and consciousness.</h1>
+      <p class="lead">These short AI-created videos are public-facing companions to the dissertation research arc. They are used as interpretive media, not as participant data or evidence.</p>
+      <nav aria-label="Related research links">
+        <a href="../">study portal.</a>
+        <a href="../dissertation-sites/">resource hub.</a>
+        <a href="../tertiary-algorithmicity-companion/">tertiary algorithmicity.</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="video-grid" aria-label="Research videos">
+      <article class="video-card">
+        <video controls preload="metadata">
+          <source src="dissertation-stages-of-consciousness.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+        <div class="video-copy">
+          <h2>Stages of consciousness.</h2>
+          <p>A visual companion for thinking about how technologies mediate attention, symbolic production, and the movement from interior cognition to exteriorized forms of expression.</p>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <video controls preload="metadata">
+          <source src="ai-created-research-overview.mp4" type="video/mp4">
+          Your browser does not support the video element.
+        </video>
+        <div class="video-copy">
+          <h2>AI-created research overview.</h2>
+          <p>A short generated media object that can be used to introduce the research problem: what changes when systems can produce language, images, and academic performance on behalf of learners?</p>
+        </div>
+      </article>
+    </section>
+
+    <aside class="note">
+      <p><strong>Research note.</strong> These videos are public explanatory artifacts. They should not be treated as study data, participant artifacts, or IRB-protected material.</p>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="shell">
+      Micah Miner · Dissertation and public scholarship media.
+    </div>
+  </footer>
+</body>
+</html>
