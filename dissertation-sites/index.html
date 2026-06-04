@@ -479,12 +479,22 @@
       gap: 1.2rem;
       align-items: stretch;
     }
+    .study-frame {
+      display: grid;
+      gap: 1rem;
+      margin: 0 0 2rem;
+    }
+    .frame-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
     .field-note, .pathway {
       border: 1px solid var(--rule);
       background: var(--paper);
       padding: 1.35rem;
     }
-    .field-note h3, .pathway h3 {
+    .field-note h3, .pathway h3, .frame-card h3 {
       margin-bottom: .8rem;
       color: var(--bronze);
       font-family: "JetBrains Mono", monospace;
@@ -492,11 +502,43 @@
       letter-spacing: .18em;
       text-transform: uppercase;
     }
-    .field-note p {
+    .field-note p, .frame-card p {
       color: var(--ink-dim);
       font-family: "Source Serif 4", serif;
       font-size: 1.08rem;
       line-height: 1.7;
+    }
+    .frame-card {
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      padding: 1.35rem;
+    }
+    .frame-card.wide {
+      grid-column: 1 / -1;
+    }
+    .frame-card ul {
+      padding-left: 1.1rem;
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      line-height: 1.7;
+    }
+    .rq-list {
+      display: grid;
+      gap: .8rem;
+    }
+    .rq-list div {
+      border-left: 3px solid var(--emerald-bright);
+      padding-left: .85rem;
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .rq-list strong {
+      color: var(--ink);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .7rem;
+      letter-spacing: .08em;
     }
     .pathway ol {
       list-style: none;
@@ -525,12 +567,13 @@
       header.masthead { min-height: 68vh; }
       .sec-header, .map-panel, .console, .pathfinder { grid-template-columns: 1fr; }
       .filter-row { justify-content: flex-start; }
-      .grid, .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid, .stats, .frame-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 640px) {
       header.masthead, section.sec { padding-left: 1.1rem; padding-right: 1.1rem; }
       nav.secs { padding-left: 1.1rem; padding-right: 1.1rem; }
-      .grid, .stats { grid-template-columns: 1fr; }
+      .grid, .stats, .frame-grid { grid-template-columns: 1fr; }
+      .frame-card.wide { grid-column: auto; }
       h1.title { font-size: clamp(2.75rem, 18vw, 4.4rem); }
     }
   </style>
@@ -542,6 +585,7 @@
       <h1 class="title">Dissertation <em>Sites</em> Dashboard</h1>
       <p class="subtitle">A living map of the public web artifacts surrounding <em>Beyond Secondary Orality</em>, the mixed methods proposal, the instrument suite, and the route-guided dissertation work still taking shape.</p>
       <div class="mast-actions">
+        <a class="btn primary" href="#current-study">Current Study Frame</a>
         <a class="btn primary" href="#catalog">Enter the Catalog</a>
         <a class="btn ghost" href="#pathfinder">Choose a Reading Path</a>
         <a class="btn ghost" href="../researcher/">Researcher Overview</a>
@@ -550,6 +594,7 @@
   </header>
 
   <nav class="secs" aria-label="Dashboard navigation">
+    <a class="nav-link" href="#current-study">Current Study</a>
     <a class="nav-link" href="#catalog">Catalog</a>
     <a class="nav-link" href="#pathfinder">Pathfinder</a>
     <a class="nav-link" href="#map">Research Map</a>
@@ -557,6 +602,66 @@
   </nav>
 
   <main>
+    <section class="sec" id="current-study">
+      <div class="inner">
+        <div class="sec-header">
+          <div class="sec-tag">Current Study <span>Chapter One Frame</span></div>
+          <h2 class="sec-title">The public hub now begins from the <em>proposal problem.</em></h2>
+        </div>
+
+        <p class="lede">The dissertation investigates how K-12 educators and school-system leaders understand, navigate, and respond to the friction-reducing affordances of generative AI in academic work. The central issue is not simply whether students use AI, but what happens when polished outputs can be produced without the interpretive, rhetorical, and authorial labor those outputs have traditionally signaled.</p>
+
+        <div class="study-frame">
+          <div class="frame-grid">
+            <div class="frame-card wide">
+              <h3>Problem of Practice</h3>
+              <p>K-12 schools are adopting generative AI while still lacking a precise empirical and conceptual language for distinguishing forms of ease that support access from forms of ease that bypass learning. The study begins from a pattern visible in practice: student work can become cleaner and more fluent while student understanding becomes less secure.</p>
+            </div>
+            <div class="frame-card">
+              <h3>Purpose</h3>
+              <p>The study examines how educators, administrators, and system-level leaders make sense of pedagogical friction, and what policy, assessment, professional learning, leadership, and governance conditions enable or constrain friction-preserving pedagogy.</p>
+            </div>
+            <div class="frame-card">
+              <h3>Case and Unit</h3>
+              <p>The case is K-12 educator and institutional sensemaking about pedagogical friction under conditions of generative AI. The primary unit of analysis is not AI use itself, but judgments about whether friction should be preserved, reduced, or redesigned.</p>
+            </div>
+            <div class="frame-card">
+              <h3>Framework</h3>
+              <p>The Pedagogical Friction Framework responds to tertiary algorithmicity by naming noetic, rhetorical, existential, and infrastructural forms of resistance that may be necessary for durable learning.</p>
+            </div>
+            <div class="frame-card">
+              <h3>Primary Perspectives</h3>
+              <ul>
+                <li>Classroom-facing educators</li>
+                <li>Building-level administrators</li>
+                <li>District or system-level leaders</li>
+              </ul>
+            </div>
+            <div class="frame-card">
+              <h3>Supporting Strands</h3>
+              <ul>
+                <li>Retrospective university student accounts</li>
+                <li>Exploratory quantitative and secondary-data patterns</li>
+                <li>Bounded AI-generated artifact comparison</li>
+              </ul>
+            </div>
+            <div class="frame-card">
+              <h3>Equity Guardrail</h3>
+              <p>The framework distinguishes productive friction, which supports learning, from exclusionary friction, which blocks access or participation without educational benefit.</p>
+            </div>
+            <div class="frame-card wide">
+              <h3>Primary Research Questions</h3>
+              <div class="rq-list">
+                <div><strong>RQ1</strong> How do K-12 classroom-facing educators understand and navigate the friction-reducing affordances of generative AI in academic work?</div>
+                <div><strong>RQ2</strong> What institutional conditions, including policy, assessment design, professional development, leadership disposition, and governance structures, enable or constrain friction-preserving pedagogy?</div>
+                <div><strong>RQ3</strong> How can the Pedagogical Friction Framework inform AI policy and practice in K-12 contexts?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="sec" id="catalog">
       <div class="inner">
         <div class="sec-header">
@@ -564,7 +669,7 @@
           <h2 class="sec-title">The dissertation web ecosystem, <em>indexed.</em></h2>
         </div>
 
-        <p class="lede">This dashboard gathers the live public pages that support the qualifying paper and dissertation arc: the theoretical companions for tertiary algorithmicity and pedagogical friction, the planning tools, the literature review, the mixed methods proposal, and the participant-facing instrument suite. The major companion sites now include guided routes so readers can enter through committee review, theory lineage, classroom practice, or dissertation planning.</p>
+        <p class="lede">This dashboard gathers the live public pages that support the qualifying paper and dissertation arc: the theoretical companions for tertiary algorithmicity and pedagogical friction, the planning tools, the literature review, the mixed methods proposal, and the participant-facing instrument suite. The catalog should be read through the current Chapter One frame above: a K-12 study of educator and institutional sensemaking about when generative AI supports learning and when it bypasses the work learning requires.</p>
 
         <section class="pathfinder" id="pathfinder" aria-label="Choose a dissertation site reading path">
           <div class="path-options">
@@ -623,7 +728,7 @@
             <ol>
               <li>Start with the final qualifying paper companion to anchor the full argument.</li>
               <li>Move through the literature review and companion sites to see the scholarly lineage.</li>
-              <li>Open the mixed methods plan to connect the framework to the empirical study.</li>
+              <li>Open the current study frame and mixed methods plan to connect the framework to the empirical study.</li>
               <li>Use the instrument suite only for reviewed, IRB-aligned participant workflows.</li>
             </ol>
           </div>
@@ -647,8 +752,8 @@
         key: "committee",
         label: "Committee review",
         title: "Committee review path",
-        description: "A concise route for advisors and committee readers who need the central argument, source architecture, and dissertation bridge first.",
-        next: "Start with the final review companion, then move to the route-guided resource hub and literature review.",
+        description: "A concise route for advisors and committee readers who need the Chapter One study frame, central argument, source architecture, and dissertation bridge first.",
+        next: "Start with the current study frame, then move to the final review companion, route-guided resource hub, and literature review.",
         titles: ["Final Qualifying Paper Review Companion", "Tertiary Algorithmicity Resource Hub", "Qualifying Dissertation Literature Review", "Mixed Methods Research Plan"]
       },
       {
@@ -663,7 +768,7 @@
         key: "study",
         label: "Study design",
         title: "Dissertation study path",
-        description: "A route for understanding how the conceptual framework becomes an empirical mixed methods project with public-facing participant materials.",
+        description: "A route for understanding how the Pedagogical Friction Framework becomes an empirical case study of K-12 educator and institutional sensemaking.",
         next: "Move from the mixed methods plan to the instrument and survey orientation pages.",
         titles: ["Mixed Methods Research Plan", "Quantitative Measures Studio", "Pedagogical Friction Interview Tools", "K-12 Educator Survey Landing Page", "NLU Doctoral Colloquium Deck"]
       }
