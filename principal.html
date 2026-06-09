@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Principal and School Leader AI Friction App</title>
-  <meta name="description" content="Principal and school-leader local-first interview tool for generative AI policy, instructional leadership, and infrastructural friction.">
+  <title>School and District Leader AI Friction App</title>
+  <meta name="description" content="School- and district-leader local-first interview tool for generative AI policy, instructional leadership, governance, and infrastructural friction.">
   <style>
     :root {
       --ink: #172033;
@@ -83,12 +83,12 @@
 <body>
   <div class="shell">
     <aside>
-      <div class="role-badge">School Leader Instrument</div>
-      <h1>Principal and School Leader AI Friction App</h1>
-      <p>A focused school-leader version for AI policy implementation, instructional leadership, and infrastructural friction.</p>
+      <div class="role-badge">Institutional Leader Instrument</div>
+      <h1>School and District Leader AI Friction App</h1>
+      <p>A shared institutional-leader protocol for AI policy implementation, instructional leadership, governance, and infrastructural friction.</p>
       <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
-      <p class="hint">Use this when the participant is a principal, assistant principal, dean, department chair, or other building-level school leader.</p>
+      <p class="hint">Use this when the participant is a principal, assistant principal, dean, department chair, or district or system-level leader.</p>
       <div class="button-row">
         <a class="btn" href="index.html">Full study app</a>
         <a class="btn" href="university/">University app</a>
@@ -99,8 +99,8 @@
     <main>
       <div class="topbar">
         <div>
-          <strong>Principal and School Leader Instrument</strong>
-          <div class="meta">Generative AI, productive struggle, policy implementation, and school conditions</div>
+          <strong>School and District Leader Instrument</strong>
+          <div class="meta">Generative AI, productive struggle, policy implementation, governance, and institutional conditions</div>
         </div>
         <div class="button-row">
           <button class="btn" id="saveDraftButton" type="button">Save draft</button>
@@ -111,7 +111,7 @@
       <section class="panel" data-step="0">
         <div class="panel-header">
           <h2>Consent and Context</h2>
-          <p>This page collects adult school-leader responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
+          <p>This page collects adult school- and district-leader responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
         </div>
         <div class="panel-body">
           <div class="callout"><strong>Research caution:</strong> avoid naming staff, students, families, schools, or districts in open responses unless the approved protocol explicitly allows it.</div>
@@ -133,11 +133,15 @@
                 <option>Dean or Student Support Leader</option>
                 <option>Department Chair or Instructional Leader</option>
                 <option>Other Building-Level Leader</option>
+                <option>Superintendent or Assistant Superintendent</option>
+                <option>District Technology or Innovation Leader</option>
+                <option>District Curriculum or Instruction Leader</option>
+                <option>Other District or System-Level Leader</option>
               </select>
             </div>
             <div class="field">
-              <label for="schoolContext">School context note</label>
-              <input id="schoolContext" placeholder="Example: elementary, middle school, high poverty, suburban">
+              <label for="schoolContext">Institutional context note</label>
+              <input id="schoolContext" placeholder="Example: elementary school, district office, high poverty, suburban">
             </div>
           </div>
           <label class="choice">
@@ -154,7 +158,7 @@
       <section class="panel hidden" data-step="1">
         <div class="panel-header">
           <h2>Brief Definitions</h2>
-          <p>Use these short definitions for consistency before the school leader begins the instrument.</p>
+          <p>Use these short definitions for consistency before the institutional leader begins the instrument.</p>
         </div>
         <div class="panel-body">
           <div class="grid">
@@ -200,8 +204,8 @@
 
       <section class="panel hidden" data-step="4">
         <div class="panel-header">
-          <h2>School Leader Card Sort</h2>
-          <p>Classify each leadership decision or school condition by productive friction and legitimacy of AI use.</p>
+          <h2>Institutional Leader Card Sort</h2>
+          <p>Classify each leadership decision or institutional condition by productive friction and legitimacy of AI use.</p>
         </div>
         <div class="panel-body">
           <div id="cardSortItems"></div>
@@ -215,7 +219,7 @@
       <section class="panel hidden" data-step="5">
         <div class="panel-header">
           <h2>Review and Export</h2>
-          <p>Download the structured school-leader response file. Audio files, if recorded, should be downloaded separately from each reflection prompt.</p>
+          <p>Download the structured institutional-leader response file. Audio files, if recorded, should be downloaded separately from each reflection prompt.</p>
         </div>
         <div class="panel-body">
           <div class="button-row">
@@ -249,7 +253,7 @@
     ];
 
     const reflections = [
-      r("structural_change", "Describe one school-level change needed to support responsible AI use without reducing student thinking.", "How would you balance that change with testing pressure, pacing expectations, staffing realities, and family concerns?", ["infrastructural", "policy", "noetic"]),
+      r("structural_change", "Describe one school- or district-level change needed to support responsible AI use without reducing student thinking.", "How would you balance that change with testing pressure, pacing expectations, staffing realities, and family concerns?", ["infrastructural", "policy", "noetic"]),
       r("teacher_support", "Describe how you are, or would be, guiding teachers beyond using AI for efficiency toward attention to student thinking, ownership, and productive struggle.", "What kind of evidence would show that teacher practice is changing in a meaningful way?", ["noetic", "existential", "infrastructural"]),
       r("privacy_pedagogy_tension", "Describe a specific tension between privacy/compliance expectations and classroom experimentation with AI.", "How did, or would, you decide what is safe, equitable, and pedagogically worthwhile?", ["policy", "infrastructural", "equity"]),
       r("community_trust", "Describe one concern you have heard, or expect to hear, from families or community members about AI in school.", "How would you explain productive struggle and responsible AI use without sounding dismissive of their concern?", ["rhetorical", "policy", "equity"])
@@ -278,6 +282,15 @@
     function r(id, text, followUp, tags) { return { id, text, followUp, tags }; }
     function cs(text, tags) { return { id: slug(text), text, tags }; }
     function slug(text) { return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 54); }
+    function roleGroup(role) {
+      const districtRoles = [
+        "Superintendent or Assistant Superintendent",
+        "District Technology or Innovation Leader",
+        "District Curriculum or Instruction Leader",
+        "Other District or System-Level Leader"
+      ];
+      return districtRoles.includes(role) ? "district-system-level" : role ? "building-level" : "";
+    }
 
     function defaultState() {
       return {
@@ -420,12 +433,13 @@
     function exportData() {
       syncStateFromDom();
       return {
-        app: "Principal and School Leader AI Friction App",
-        version: "2026-06-principal-static-v1",
+        app: "School and District Leader AI Friction App",
+        version: "2026-06-institutional-leader-static-v2",
         exportedAt: new Date().toISOString(),
         participant: {
           code: state.participantCode,
-          role: "principal-school-leader",
+          role: "institutional-leader",
+          roleGroup: roleGroup(state.leaderRole),
           studyDate: state.studyDate,
           leaderRole: state.leaderRole,
           schoolContext: state.schoolContext,
@@ -448,7 +462,7 @@
     }
 
     function markdownExport(data) {
-      const lines = [`# Principal and School Leader AI Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- School context: ${data.participant.schoolContext || ""}`, ""];
+      const lines = [`# School and District Leader AI Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- Role group: ${data.participant.roleGroup || ""}`, `- Institutional context: ${data.participant.schoolContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
         lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
@@ -481,7 +495,7 @@
     }
 
     function safeFileName(label) {
-      const code = state.participantCode || "school-leader-participant";
+      const code = state.participantCode || "institutional-leader-participant";
       return `${code}-${label}`.replace(/[^a-z0-9-_]+/gi, "-").replace(/-+/g, "-");
     }
 
@@ -552,7 +566,7 @@
       alert("Draft saved in this browser.");
     });
     document.querySelector("#clearButton").addEventListener("click", () => {
-      if (!confirm("Clear all local school-leader responses stored by this page in this browser?")) return;
+      if (!confirm("Clear all local institutional-leader responses stored by this page in this browser?")) return;
       localStorage.removeItem(STORAGE_KEY);
       state = defaultState();
       hydrate();
@@ -560,11 +574,11 @@
     });
     document.querySelector("#downloadJsonButton").addEventListener("click", () => {
       const data = exportData();
-      download(`${safeFileName("school-leader-export")}.json`, JSON.stringify(data, null, 2), "application/json");
+      download(`${safeFileName("institutional-leader-export")}.json`, JSON.stringify(data, null, 2), "application/json");
     });
     document.querySelector("#downloadMarkdownButton").addEventListener("click", () => {
       const data = exportData();
-      download(`${safeFileName("school-leader-export")}.md`, markdownExport(data), "text/markdown");
+      download(`${safeFileName("institutional-leader-export")}.md`, markdownExport(data), "text/markdown");
     });
     document.addEventListener("change", (event) => { if (event.target.matches("input, select, textarea")) persist(); });
     document.addEventListener("input", (event) => { if (event.target.matches("input, textarea")) persist(); });

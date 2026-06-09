@@ -16,7 +16,7 @@ Role-specific participant URLs:
 
 - University student: `https://minerclass.github.io/dissertationquestionsbeta/university/`
 - K-12 teacher: `https://minerclass.github.io/dissertationquestionsbeta/teacher.html`
-- Principal and school leader: `https://minerclass.github.io/dissertationquestionsbeta/principal.html`
+- School and district leader: `https://minerclass.github.io/dissertationquestionsbeta/principal.html`
 
 Researcher review URL:
 
@@ -66,7 +66,7 @@ Do not use the app for live dissertation data collection until the final protoco
 - `index.html` - neutral project entrance and role-selection page
 - `university/index.html` - university student version of the instrument
 - `teacher.html` - teacher-only version of the instrument
-- `principal.html` - principal and school-leader version of the instrument
+- `principal.html` - shared school- and district-leader version of the institutional protocol
 - `researcher/index.html` - researcher-facing overview and review links
 - `dissertation-sites/index.html` - researcher-facing dashboard of public dissertation-related GitHub Pages sites
 - `survey-landing/index.html` - static participant-facing orientation page for the K-12 educator survey
@@ -90,6 +90,8 @@ Do not use the app for live dissertation data collection until the final protoco
 ## Methodological Design Notes
 
 The app intentionally avoids fully dynamic AI-generated follow-up questions. Standardized follow-up probes preserve consistency across participants and are easier to defend in a mixed methods dissertation design.
+
+Building-level administrators and district or system-level leaders complete the same institutional protocol. The leadership role and exported role-group fields preserve their separation for within-case analysis.
 
 The prompt data model is aligned to the Pedagogical Friction Framework from the start so exported responses are easier to code across:
 
