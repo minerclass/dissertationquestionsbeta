@@ -22,6 +22,7 @@ Researcher review URL:
 
 - Researcher overview: `https://minerclass.github.io/dissertationquestionsbeta/researcher/`
 - Dissertation sites dashboard: `https://minerclass.github.io/dissertationquestionsbeta/dissertation-sites/`
+- Conference presentations hub: `https://minerclass.github.io/conference-presentations/`
 
 Survey orientation URL:
 
