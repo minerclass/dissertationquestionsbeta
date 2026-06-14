@@ -148,6 +148,7 @@
             <input id="consentCheck" type="checkbox">
             <span>I confirm this adult participant has reviewed the study consent language and may skip any question.</span>
           </label>
+          <div class="callout"><strong>Optional audio recording:</strong> Recording is used only with your permission and only to support accurate transcription. Audio stays in this browser until you download it; it is transferred only through the IRB-approved secure process, is accessible only to the researcher, is retained according to the approved retention schedule, and is deleted from this device after verified transfer. You may decline recording and still take part.</div>
           <div class="actions">
             <span class="hint">All response data remains local until export.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
@@ -156,25 +157,6 @@
       </section>
 
       <section class="panel hidden" data-step="1">
-        <div class="panel-header">
-          <h2>Brief Definitions</h2>
-          <p>Use these short definitions for consistency before the institutional leader begins the instrument.</p>
-        </div>
-        <div class="panel-body">
-          <div class="grid">
-            <div class="callout"><strong>Productive friction:</strong> cognitive effort, revision, ambiguity, or struggle that supports durable learning.</div>
-            <div class="callout"><strong>Exclusionary friction:</strong> barriers that block access, dignity, language, disability support, or fair participation.</div>
-            <div class="callout"><strong>Infrastructural friction:</strong> policies, schedules, tools, budgets, compliance rules, and accountability pressures that shape classroom practice.</div>
-            <div class="callout"><strong>Responsible AI integration:</strong> AI use that preserves student thinking, intellectual ownership, privacy, and equitable access.</div>
-          </div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Begin quick response</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel hidden" data-step="2">
         <div class="panel-header">
           <h2>Quick Response Items</h2>
           <p>These items capture leadership stance, policy maturity, instructional conditions, communication, and infrastructure gaps.</p>
@@ -188,7 +170,7 @@
         </div>
       </section>
 
-      <section class="panel hidden" data-step="3">
+      <section class="panel hidden" data-step="2">
         <div class="panel-header">
           <h2>Typed or Recorded Reflection</h2>
           <p>Leaders can type, record audio locally, or do both. If recording is used, type or paste a reviewed transcript or summary before export.</p>
@@ -197,26 +179,12 @@
           <div id="reflectionItems"></div>
           <div class="actions">
             <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Continue to leadership card sort</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel hidden" data-step="4">
-        <div class="panel-header">
-          <h2>Institutional Leader Card Sort</h2>
-          <p>Classify each leadership decision or institutional condition by productive friction and legitimacy of AI use.</p>
-        </div>
-        <div class="panel-body">
-          <div id="cardSortItems"></div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
             <button class="btn primary" type="button" data-next>Review export</button>
           </div>
         </div>
       </section>
 
-      <section class="panel hidden" data-step="5">
+      <section class="panel hidden" data-step="3">
         <div class="panel-header">
           <h2>Review and Export</h2>
           <p>Download the structured institutional-leader response file. Audio files, if recorded, should be downloaded separately from each reflection prompt.</p>
@@ -239,37 +207,24 @@
 
   <script>
     const STORAGE_KEY = "principal-school-leader-friction-draft-v1";
-    const steps = ["Consent", "Definitions", "Quick response", "Reflection", "Card sort", "Export"];
+    const steps = ["Consent", "Quick response", "Reflection", "Export"];
     const quickItems = [
-      q("policy_driver", "What is the primary driver behind your school or district's current generative AI policy?", "choice", ["Academic integrity", "Data privacy and security", "Pedagogical innovation", "Workforce preparation", "Unsure or no policy"], ["policy"]),
-      q("infrastructure_rating", "How would you rate your school's current capability to support equitable, secure AI access?", "choice", ["Excellent", "Good", "Adequate", "Needs improvement", "Poor"], ["infrastructural", "equity"]),
-      q("pd_hurdle", "Briefly state the biggest hurdle to moving AI professional development beyond basic tool proficiency.", "short", [], ["infrastructural"]),
-      q("constraint_conflict", "How often do testing, pacing guides, schedules, or administrative constraints conflict with friction-preserving pedagogy?", "choice", ["Always", "Often", "Sometimes", "Rarely", "Never"], ["infrastructural"]),
-      q("platform_priority", "When evaluating AI platforms, what priority is given to learning science and cognitive development over administrative efficiency?", "choice", ["Highest priority", "High priority", "Equal priority", "Low priority", "Not considered"], ["policy", "noetic"]),
-      q("family_communication", "How effectively does your school communicate the difference between productive cognitive struggle and unnecessary academic hurdles to families?", "choice", ["Very effectively", "Effectively", "Neutral", "Ineffectively", "Very ineffectively"], ["rhetorical", "policy"]),
-      q("success_metric", "What metric or observation do you use to evaluate whether AI integration is successful?", "short", [], ["policy", "infrastructural"]),
-      q("resource_gap", "Where is the most significant pedagogical infrastructure gap regarding AI?", "choice", ["Device or network access", "Teacher training", "Policy development", "Curriculum redesign", "Data privacy compliance", "Family/community understanding"], ["infrastructural", "equity"]),
-      q("ethical_readiness", "How prepared is your leadership team to address ethical and existential implications of AI use by students?", "choice", ["Very prepared", "Prepared", "Somewhat prepared", "Unprepared", "Very unprepared"], ["existential", "policy"])
+      q("policy_driver", "What is the primary driver of your current AI policy?", "short", [], ["policy", "infrastructural"]),
+      q("infrastructure_rating", "How would you rate your school or district capability to support equitable and secure AI access?", "choice", ["1 - Very limited", "2", "3", "4", "5 - Very strong"], ["infrastructural", "equity"]),
+      q("pd_hurdle", "What is the central hurdle to moving professional development beyond tool proficiency?", "short", [], ["infrastructural"]),
+      q("constraint_conflict", "How often do testing and pacing constraints conflict with friction-preserving pedagogy?", "choice", ["Never", "Rarely", "Sometimes", "Often", "Always"], ["infrastructural", "noetic"]),
+      q("platform_priority", "When evaluating platforms, how much priority do you give learning science relative to administrative efficiency?", "choice", ["1 - Mostly efficiency", "2", "3", "4", "5 - Mostly learning science"], ["infrastructural"]),
+      q("family_communication", "How well does your school communicate the difference between productive struggle and unnecessary hurdles to families?", "choice", ["1 - Not at all", "2", "3", "4", "5 - Very well"], ["rhetorical", "equity"]),
+      q("success_metric", "What metric do you use to judge whether AI integration is succeeding?", "short", [], ["infrastructural"]),
+      q("resource_gap", "What is your most significant infrastructure gap?", "short", [], ["infrastructural"]),
+      q("ethical_readiness", "How ready is leadership to address the ethical and existential implications of generative AI?", "choice", ["1 - Not at all ready", "2", "3", "4", "5 - Very ready"], ["existential", "infrastructural"])
     ];
 
     const reflections = [
-      r("structural_change", "Describe one school- or district-level change needed to support responsible AI use without reducing student thinking.", "How would you balance that change with testing pressure, pacing expectations, staffing realities, and family concerns?", ["infrastructural", "policy", "noetic"]),
-      r("teacher_support", "Describe how you are, or would be, guiding teachers beyond using AI for efficiency toward attention to student thinking, ownership, and productive struggle.", "What kind of evidence would show that teacher practice is changing in a meaningful way?", ["noetic", "existential", "infrastructural"]),
-      r("privacy_pedagogy_tension", "Describe a specific tension between privacy/compliance expectations and classroom experimentation with AI.", "How did, or would, you decide what is safe, equitable, and pedagogically worthwhile?", ["policy", "infrastructural", "equity"]),
-      r("community_trust", "Describe one concern you have heard, or expect to hear, from families or community members about AI in school.", "How would you explain productive struggle and responsible AI use without sounding dismissive of their concern?", ["rhetorical", "policy", "equity"])
-    ];
-
-    const cardSortItems = [
-      cs("The school allows AI tools only after teachers complete privacy and pedagogy training.", ["policy", "infrastructural"]),
-      cs("A principal encourages AI lesson planning but requires teachers to identify where students still do the thinking.", ["noetic", "policy"]),
-      cs("The school blocks all AI tools because the district has not issued guidance.", ["policy", "infrastructural"]),
-      cs("Teachers may use approved AI tools for accessibility supports, but not for replacing student drafting or reasoning.", ["equity", "noetic"]),
-      cs("Walkthrough feedback asks teachers how AI use affected student explanation, revision, or ownership.", ["rhetorical", "existential"]),
-      cs("Professional development focuses on prompt tricks and productivity rather than learning science.", ["infrastructural", "noetic"]),
-      cs("Families receive a plain-language AI guide explaining privacy, authorship, productive struggle, and acceptable use.", ["rhetorical", "policy"]),
-      cs("A school creates AI-free assessment moments so students can demonstrate independent reasoning.", ["noetic", "authorship"]),
-      cs("A school adopts an AI platform mainly because it saves staff time on administrative tasks.", ["policy", "infrastructural"]),
-      cs("A leadership team reviews AI adoption data by student access, disability support, language access, and course level.", ["equity", "infrastructural"])
+      r("structural_change", "What is one school-level or system-level change you believe is needed?", "What is preventing it now?", ["infrastructural"]),
+      r("teacher_support", "How do you guide teachers beyond efficiency toward student thinking and ownership?", "What does that look like in day-to-day practice?", ["noetic", "existential"]),
+      r("privacy_pedagogy_tension", "Describe a tension between privacy or compliance expectations and classroom experimentation.", "How do you resolve it when they conflict?", ["infrastructural", "policy"]),
+      r("community_trust", "What concern have you heard, or do you anticipate, from families?", "How are you responding to it?", ["rhetorical", "equity"])
     ];
 
     let currentStep = 0;
@@ -280,8 +235,6 @@
 
     function q(id, text, type, options, tags) { return { id, text, type, options, tags }; }
     function r(id, text, followUp, tags) { return { id, text, followUp, tags }; }
-    function cs(text, tags) { return { id: slug(text), text, tags }; }
-    function slug(text) { return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 54); }
     function roleGroup(role) {
       const districtRoles = [
         "Superintendent or Assistant Superintendent",
@@ -301,7 +254,6 @@
         consent: false,
         quickResponses: {},
         reflections: {},
-        cardSort: {},
         audio: {},
         updatedAt: null
       };
@@ -314,6 +266,10 @@
 
     function persist() {
       syncStateFromDom();
+      if (!state.consent) {
+        localStorage.removeItem(STORAGE_KEY);
+        return;
+      }
       state.updatedAt = new Date().toISOString();
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...state, audio: {} }));
     }
@@ -333,29 +289,29 @@
       }).join("");
     }
 
-    function showStep(index) {
+    function showStep(index, shouldScroll = true) {
       currentStep = Math.max(0, Math.min(index, steps.length - 1));
       document.querySelectorAll("[data-step]").forEach((panel) => {
         panel.classList.toggle("hidden", Number(panel.dataset.step) !== currentStep);
       });
-      if (currentStep === 2) renderQuickItems();
-      if (currentStep === 3) renderReflectionItems();
-      if (currentStep === 4) renderCardSort();
-      if (currentStep === 5) renderPreview();
+      if (currentStep === 1) renderQuickItems();
+      if (currentStep === 2) renderReflectionItems();
+      if (currentStep === 3) renderPreview();
       renderProgress();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (shouldScroll) {
+        const target = window.matchMedia("(max-width: 860px)").matches ? document.querySelector("main") : document.documentElement;
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
-
-    function tagHtml(tags) { return tags.map((tag) => `<span class="tag">${tag}</span>`).join(""); }
 
     function renderQuickItems() {
       syncStateFromDom();
       document.querySelector("#quickItems").innerHTML = quickItems.map((item, index) => {
         const value = state.quickResponses[item.id] || "";
         const input = item.type === "choice"
-          ? `<select data-quick="${item.id}"><option value="">Choose one</option>${item.options.map((option) => `<option ${value === option ? "selected" : ""}>${option}</option>`).join("")}</select>`
-          : `<input data-quick="${item.id}" value="${escapeAttr(value)}" placeholder="Short answer">`;
-        return `<div class="question-card"><div class="question-meta"><span class="tag gray">Q${index + 1}</span>${tagHtml(item.tags)}</div><h3>${item.text}</h3>${input}</div>`;
+          ? `<select data-quick="${item.id}" aria-label="${escapeAttr(item.text)}"><option value="">Choose one</option>${item.options.map((option) => `<option ${value === option ? "selected" : ""}>${option}</option>`).join("")}</select>`
+          : `<input data-quick="${item.id}" aria-label="${escapeAttr(item.text)}" value="${escapeAttr(value)}" placeholder="Short answer">`;
+        return `<div class="question-card"><div class="question-meta"><span class="tag gray">Q${index + 1}</span></div><h3>${item.text}</h3>${input}</div>`;
       }).join("");
     }
 
@@ -366,9 +322,9 @@
         const audio = state.audio[item.id];
         return `
           <div class="question-card">
-            <div class="question-meta"><span class="tag gold">Reflection ${index + 1}</span>${tagHtml(item.tags)}</div>
+            <div class="question-meta"><span class="tag gold">Reflection ${index + 1}</span></div>
             <h3>${item.text}</h3>
-            <textarea data-reflection="${item.id}" placeholder="Type response, paste reviewed transcript, or summarize recorded answer.">${escapeText(response.text || "")}</textarea>
+            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Type response, paste reviewed transcript, or summarize recorded answer.">${escapeText(response.text || "")}</textarea>
             <div class="recorder">
               <span class="recording-dot" data-dot="${item.id}"></span>
               <button class="btn" type="button" data-record="${item.id}">Start recording</button>
@@ -378,23 +334,8 @@
             </div>
             <div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
-              <textarea data-followup="${item.id}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
+              <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
             </div>
-          </div>`;
-      }).join("");
-    }
-
-    function renderCardSort() {
-      syncStateFromDom();
-      document.querySelector("#cardSortItems").innerHTML = cardSortItems.map((card, index) => {
-        const response = state.cardSort[card.id] || {};
-        return `
-          <div class="sort-card">
-            <div class="question-meta"><span class="tag gray">Card ${index + 1}</span>${tagHtml(card.tags)}</div>
-            <h3>${card.text}</h3>
-            <div class="pill-options">${["High friction", "Medium friction", "Low friction"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
-            <div class="pill-options">${["Yes", "Maybe", "No"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>AI use: ${value}</label>`).join("")}</div>
-            <textarea data-sort-note="${card.id}" placeholder="Optional rationale.">${escapeText(response.note || "")}</textarea>
           </div>`;
       }).join("");
     }
@@ -418,15 +359,6 @@
       document.querySelectorAll("[data-followup]").forEach((input) => {
         state.reflections[input.dataset.followup] = state.reflections[input.dataset.followup] || {};
         state.reflections[input.dataset.followup].followUp = input.value;
-      });
-      document.querySelectorAll("[data-sort]").forEach((input) => {
-        if (!input.checked) return;
-        state.cardSort[input.dataset.sort] = state.cardSort[input.dataset.sort] || {};
-        state.cardSort[input.dataset.sort][input.dataset.sortField] = input.value;
-      });
-      document.querySelectorAll("[data-sort-note]").forEach((input) => {
-        state.cardSort[input.dataset.sortNote] = state.cardSort[input.dataset.sortNote] || {};
-        state.cardSort[input.dataset.sortNote].note = input.value;
       });
     }
 
@@ -456,7 +388,6 @@
           followUpResponse: (state.reflections[item.id] || {}).followUp || "",
           audioCaptured: Boolean(state.audio[item.id])
         })),
-        cardSort: cardSortItems.map((card) => ({ id: card.id, prompt: card.text, tags: card.tags, ...state.cardSort[card.id] })),
         audioManifest: Object.entries(state.audio).map(([id, item]) => ({ reflectionId: id, mimeType: item.mimeType, createdAt: item.createdAt, downloadSeparately: true }))
       };
     }
@@ -470,10 +401,6 @@
       lines.push("## Reflections");
       data.reflections.forEach((item, index) => {
         lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "", `**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "", `Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
-      });
-      lines.push("## Card Sort");
-      data.cardSort.forEach((item, index) => {
-        lines.push(`### Card ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, `Friction: ${item.friction || ""}`, `Legitimacy: ${item.legitimacy || ""}`, `Rationale: ${item.note || ""}`, "");
       });
       return lines.join("\n");
     }
@@ -513,7 +440,13 @@
         alert("Stop the current recording before starting another.");
         return;
       }
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      let stream;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      } catch {
+        alert("Microphone access was not available. You can still type or paste a transcript.");
+        return;
+      }
       audioChunks = [];
       activeRecordingId = id;
       mediaRecorder = new MediaRecorder(stream);
@@ -555,7 +488,15 @@
       const prev = event.target.closest("[data-prev]");
       const record = event.target.closest("[data-record]");
       const stop = event.target.closest("[data-stop]");
-      if (next) { persist(); showStep(currentStep + 1); }
+      if (next) {
+        syncStateFromDom();
+        if (currentStep === 0 && !state.consent) {
+          alert("Review the approved consent language and check the consent confirmation before continuing.");
+          return;
+        }
+        persist();
+        showStep(currentStep + 1);
+      }
       if (prev) { persist(); showStep(currentStep - 1); }
       if (record) startRecording(record.dataset.record);
       if (stop) stopRecording(stop.dataset.stop);
@@ -567,6 +508,13 @@
     });
     document.querySelector("#clearButton").addEventListener("click", () => {
       if (!confirm("Clear all local institutional-leader responses stored by this page in this browser?")) return;
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.ondataavailable = null;
+        mediaRecorder.onstop = null;
+        mediaRecorder.stream.getTracks().forEach((track) => track.stop());
+        mediaRecorder.stop();
+        activeRecordingId = null;
+      }
       localStorage.removeItem(STORAGE_KEY);
       state = defaultState();
       hydrate();
@@ -584,7 +532,7 @@
     document.addEventListener("input", (event) => { if (event.target.matches("input, textarea")) persist(); });
 
     hydrate();
-    showStep(0);
+    showStep(0, false);
   </script>
 </body>
 </html>
