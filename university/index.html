@@ -114,6 +114,7 @@
           <p>This page collects adult university student responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
         </div>
         <div class="panel-body">
+          <div class="callout"><strong>Standard opening script:</strong> Thank you for taking the time to speak with me. This conversation is part of a study on how learners make sense of generative AI in relation to teaching and learning. There are no right or wrong answers; I am interested in your honest experience, including where you disagree with how others frame these issues. Your participation is voluntary, you may skip any question, and you may stop at any time. Do you have any questions before we begin? If audio recording will be used, do I have your permission to record?</div>
           <div class="callout"><strong>Eligibility:</strong> this protocol is for a current university student who is 18 or older and was in grade 10, 11, or 12 during the 2022-2023 school year.</div>
           <div class="callout"><strong>Research caution:</strong> students may skip any question. Avoid collecting school names, course names, instructor names, or other direct identifiers unless approved.</div>
           <div class="grid">
@@ -147,7 +148,7 @@
             <input id="eligibilityCheck" type="checkbox">
             <span>I confirm that I am a current university student, am 18 or older, and was in grade 10, 11, or 12 during 2022-2023.</span>
           </label>
-          <div class="callout"><strong>Optional audio recording:</strong> Recording is used only with your permission and only to support accurate transcription. Audio stays in this browser until you download it; it is transferred only through the IRB-approved secure process, is accessible only to the researcher, is retained according to the approved retention schedule, and is deleted from this device after verified transfer. You may decline recording and still take part.</div>
+          <div class="callout"><strong>Optional audio recording:</strong> With the participant's permission, audio may be recorded to support accurate transcription. Audio remains in this browser until it is downloaded or local data is cleared. The researcher must transfer, retain, restrict access to, and delete recordings according to the approved consent form and data-management plan. The participant may decline recording and still take part.</div>
           <div class="actions">
             <span class="hint">All response data remains local until export.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
@@ -238,7 +239,8 @@
       r("writing_comparison", "Recall how you started and worked through a difficult paper before generative AI was widely available. Walk me through it.", "", ["noetic"]),
       r("altered_learning_process", "Describe a specific time AI changed your learning process.", "What did you gain, and what, if anything, did you lose?", ["noetic", "existential"]),
       r("peer_learning_change", "Describe how AI availability changed the way you talk with classmates about your work.", "", ["rhetorical"]),
-      r("transition_confound", "Which of the learning changes you have described seem connected to AI, and which seem connected to moving from high school to university?", "This helps separate the effect of AI from the effect of that transition.", ["confound-separation"])
+      r("transition_confound", "Which of the learning changes you have described seem connected to AI, and which seem connected to moving from high school to university?", "This helps separate the effect of AI from the effect of that transition.", ["confound-separation"]),
+      r("closing_response", "What should I have asked that I did not?", "", ["closing"])
     ];
 
     const cardSortItems = [
@@ -356,10 +358,10 @@
               ${audio ? `<a class="btn" href="${audio.dataUrl}" download="${safeFileName(item.id)}.webm">Download audio</a>` : ""}
               <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Optional browser-local recording"}</span>
             </div>
-            <div class="follow-up">
+            ${item.followUp ? `<div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
               <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
-            </div>
+            </div>` : ""}
           </div>`;
       }).join("");
     }
@@ -454,7 +456,9 @@
       });
       lines.push("## Reflections");
       data.reflections.forEach((item, index) => {
-        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "", `**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "", `Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
+        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
+        if (item.standardFollowUp) lines.push(`**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "");
+        lines.push(`Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
       });
       lines.push("## Card Sort");
       data.cardSort.forEach((item, index) => {

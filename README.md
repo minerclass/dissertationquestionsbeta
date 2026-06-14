@@ -35,12 +35,13 @@ The front page has been rebuilt as a readable, dependency-free static project en
 The role-specific apps now include:
 
 - Consent and local-data notice screens
-- Short shared definitions for productive friction, exclusionary friction, authorship, and AI assistance
+- Standard opening scripts and role-specific closing questions aligned to the IRB packet
 - Role-specific selected-response and short-answer items
 - Typed or browser-local recorded reflection prompts
 - Standardized follow-up probes rather than AI-generated individualized probing
-- Framework tags behind each prompt, including noetic, rhetorical, existential, infrastructural, equity, policy, and authorship
-- Card-sort activity with productive friction and AI-use legitimacy placements
+- Researcher-only framework tags retained in structured exports but hidden from participant-facing screens
+- Shared teacher and university-student card-sort activity aligned to the IRB packet
+- No card sort in the school- and district-leader protocol
 - Review screen
 - JSON and Markdown export
 - Local draft saving through browser localStorage
@@ -83,7 +84,7 @@ Do not use the app for live dissertation data collection until the final protoco
 3. Participant completes quick response items.
 4. Participant types or records reflection responses.
 5. Participant answers standardized follow-up probes.
-6. Participant completes card sort.
+6. Teacher and university-student participants complete the shared card sort.
 7. Participant reviews export preview.
 8. Participant downloads JSON or Markdown.
 9. Export is transferred through the approved research workflow.

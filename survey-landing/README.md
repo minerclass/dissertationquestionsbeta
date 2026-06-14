@@ -2,34 +2,21 @@
 
 This folder contains a static, IRB-conscious landing page for the dissertation survey **Pedagogical Friction in the Age of Generative AI**.
 
-The page is for participant orientation only. It does not collect survey responses, store data, use cookies, load analytics, or connect to a backend. Official responses should be collected in the linked Google Form or Microsoft Form after consent language has been finalized and approved.
+The page is for participant orientation only. It does not collect survey responses, store data, use cookies, load analytics, or connect to a backend. Official responses should be collected in the approved survey platform after consent language has been finalized and approved.
 
 ## Files
 
-- `index.html` - participant-facing landing page with the official survey link
+- `index.html` - participant-facing landing page with a disabled pre-approval survey notice
 - `styles.css` - local responsive styling
 - `README.md` - maintenance notes
 
-## Updating the Survey Link
+## Activating the Survey Link
 
-Open `index.html` and find this comment block:
+Keep the survey URL out of the public HTML until recruitment is approved. After IRB approval, replace the disabled survey notice with the approved external survey link. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page.
 
-```html
-<!-- Official survey URL: https://forms.gle/uhV4Q32TXcidmHMg6 -->
-```
+## Updating IRB and Contact Information
 
-Then update the `href` value in the `Open the Official Survey` button if the official Google Form changes.
-
-Keep the link as an external survey link. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page.
-
-## Updating IRB and Contact Placeholders
-
-Before sharing the page publicly for participant recruitment, replace:
-
-- `ADD_CONTACT_EMAIL`
-- `ADD_IRB_LANGUAGE_AFTER_APPROVAL`
-
-Formal consent language should remain in the official survey form before participants begin.
+Before sharing the page for participant recruitment, add the approved researcher contact information and IRB approval statement. Formal consent language should remain in the official survey form before participants begin.
 
 ## Local Preview
 

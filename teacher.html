@@ -133,6 +133,7 @@
           <p>This page collects adult teacher responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
         </div>
         <div class="panel-body">
+          <div class="callout"><strong>Standard opening script:</strong> Thank you for taking the time to speak with me. This conversation is part of a study on how educators and school-system leaders make sense of generative AI in relation to teaching and learning. There are no right or wrong answers; I am interested in your honest experience, including where you disagree with how others frame these issues. Your participation is voluntary, you may skip any question, and you may stop at any time. Do you have any questions before we begin? If audio recording will be used, do I have your permission to record?</div>
           <div class="callout"><strong>Research caution:</strong> teachers may skip any question. Avoid collecting names, school names, or identifiable student information in open responses.</div>
           <div class="grid">
             <div class="field">
@@ -166,7 +167,7 @@
             <input id="consentCheck" type="checkbox">
             <span>I confirm this adult participant has reviewed the study consent language and may skip any question.</span>
           </label>
-          <div class="callout"><strong>Optional audio recording:</strong> Recording is used only with your permission and only to support accurate transcription. Audio stays in this browser until you download it; it is transferred only through the IRB-approved secure process, is accessible only to the researcher, is retained according to the approved retention schedule, and is deleted from this device after verified transfer. You may decline recording and still take part.</div>
+          <div class="callout"><strong>Optional audio recording:</strong> With the participant's permission, audio may be recorded to support accurate transcription. Audio remains in this browser until it is downloaded or local data is cleared. The researcher must transfer, retain, restrict access to, and delete recordings according to the approved consent form and data-management plan. The participant may decline recording and still take part.</div>
           <div class="actions">
             <span class="hint">All response data remains local until export.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
@@ -255,7 +256,8 @@
     const reflections = [
       r("lesson_ai_decision", "Describe a lesson where you deliberately allowed, limited, or banned AI. What were you trying to protect?", "Did that AI use remove an unnecessary barrier, reduce productive struggle, or do both?", ["noetic", "equity"]),
       r("assessment_ownership", "How are you adapting assessment so students retain intellectual ownership of their work?", "What signals to you that a student genuinely owns the work?", ["existential", "authorship"]),
-      r("policy_practice_gap", "Describe one way policy, parent expectations, pacing pressure, or tool access shapes what you feel able to do.", "If that constraint changed tomorrow, what would you do differently?", ["infrastructural", "policy"])
+      r("policy_practice_gap", "Describe one way policy, parent expectations, pacing pressure, or tool access shapes what you feel able to do.", "If that constraint changed tomorrow, what would you do differently?", ["infrastructural", "policy"]),
+      r("closing_response", "Is there anything you would like to record in your own words about what is at stake? And, importantly, what should I have asked that I did not?", "", ["closing"])
     ];
 
     const cardSortItems = [
@@ -373,10 +375,10 @@
               ${audio ? `<a class="btn" href="${audio.dataUrl}" download="${safeFileName(item.id)}.webm">Download audio</a>` : ""}
               <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Optional browser-local recording"}</span>
             </div>
-            <div class="follow-up">
+            ${item.followUp ? `<div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
               <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
-            </div>
+            </div>` : ""}
           </div>`;
       }).join("");
     }
@@ -471,7 +473,9 @@
       });
       lines.push("## Reflections");
       data.reflections.forEach((item, index) => {
-        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "", `**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "", `Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
+        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
+        if (item.standardFollowUp) lines.push(`**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "");
+        lines.push(`Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
       });
       lines.push("## Card Sort");
       data.cardSort.forEach((item, index) => {
