@@ -101,11 +101,16 @@
       background: color-mix(in srgb, var(--panel) 92%, black);
     }
 
-    video {
+    video,
+    iframe {
       display: block;
       width: 100%;
       aspect-ratio: 16 / 9;
       background: #050707;
+    }
+
+    iframe {
+      border: 0;
     }
 
     .video-copy {
@@ -189,6 +194,20 @@
         <div class="video-copy">
           <h2>AI-created research overview.</h2>
           <p>A short generated media object that can be used to introduce the research problem: what changes when systems can produce language, images, and academic performance on behalf of learners?</p>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <iframe
+          src="https://drive.google.com/file/d/1FKrx_Bhzh66M4XOrmCV9G_NQOf9stVsO/preview"
+          title="Designing Pedagogical Friction in the Age of Generative AI video overview"
+          allow="autoplay; fullscreen"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+        <div class="video-copy">
+          <h2>Designing pedagogical friction in the age of generative AI.</h2>
+          <p>A concise public video overview of the dissertation problem space and its central design question. <a href="https://drive.google.com/file/d/1FKrx_Bhzh66M4XOrmCV9G_NQOf9stVsO/view?usp=sharing">Open the video in Google Drive.</a></p>
         </div>
       </article>
     </section>
