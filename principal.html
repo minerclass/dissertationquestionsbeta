@@ -22,7 +22,12 @@
     * { box-sizing: border-box; }
     body { margin: 0; color: var(--ink); background: var(--wash); line-height: 1.55; }
     button, input, select, textarea { font: inherit; }
-    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(43,129,123,.35); outline-offset: 2px; }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+    a:focus-visible, [tabindex]:focus-visible { outline: 3px solid rgba(43,129,123,.6); outline-offset: 2px; }
+    .skip-link { position: absolute; left: 8px; top: -52px; z-index: 60; background: var(--navy); color: #fff; padding: 10px 14px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: top .15s ease; }
+    .skip-link:focus { top: 8px; }
+    .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    h2[tabindex="-1"], main[tabindex="-1"] { outline: none; }
     .shell { min-height: 100vh; display: grid; grid-template-columns: 310px minmax(0, 1fr); }
     aside { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 22px; color: #fff; background: var(--navy); }
     aside h1 { margin: 0 0 8px; font-size: 1.35rem; line-height: 1.2; }
@@ -81,6 +86,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="shell">
     <aside>
       <div class="role-badge">Institutional Leader Instrument</div>
@@ -96,7 +102,7 @@
       </div>
     </aside>
 
-    <main>
+    <main id="main" tabindex="-1">
       <div class="topbar">
         <div>
           <strong>School and District Leader Instrument</strong>
@@ -287,7 +293,8 @@
     function renderProgress() {
       document.querySelector("#progressList").innerHTML = steps.map((label, index) => {
         const klass = index === currentStep ? "active" : index < currentStep ? "done" : "";
-        return `<div class="step-chip ${klass}">${index + 1}. ${label}</div>`;
+        const current = index === currentStep ? ' aria-current="step"' : "";
+        return `<div class="step-chip ${klass}"${current}>${index + 1}. ${label}</div>`;
       }).join("");
     }
 
@@ -300,6 +307,9 @@
       if (currentStep === 2) renderReflectionItems();
       if (currentStep === 3) renderPreview();
       renderProgress();
+      const activePanel = document.querySelector(`[data-step="${currentStep}"]`);
+      const heading = activePanel && activePanel.querySelector("h2");
+      if (heading && shouldScroll) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
       if (shouldScroll) {
         const target = window.matchMedia("(max-width: 860px)").matches ? document.querySelector("main") : document.documentElement;
         target.scrollIntoView({ behavior: "smooth", block: "start" });

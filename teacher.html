@@ -23,10 +23,15 @@
     * { box-sizing: border-box; }
     body { margin: 0; color: var(--ink); background: var(--wash); line-height: 1.55; }
     button, input, select, textarea { font: inherit; }
-    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-      outline: 3px solid rgba(43, 129, 123, .35);
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+    a:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid rgba(43, 129, 123, .55);
       outline-offset: 2px;
     }
+    .skip-link { position: absolute; left: 8px; top: -52px; z-index: 60; background: var(--navy); color: #fff; padding: 10px 14px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: top .15s ease; }
+    .skip-link:focus { top: 8px; }
+    .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    h2[tabindex="-1"], main[tabindex="-1"] { outline: none; }
 
     .shell { min-height: 100vh; display: grid; grid-template-columns: 310px minmax(0, 1fr); }
     aside { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 22px; color: #fff; background: var(--navy); }
@@ -100,6 +105,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="shell">
     <aside>
       <div class="role-badge">Teacher Instrument</div>
@@ -115,7 +121,7 @@
       </div>
     </aside>
 
-    <main>
+    <main id="main" tabindex="-1">
       <div class="topbar">
         <div>
           <strong>Teacher Instrument</strong>
@@ -327,7 +333,8 @@
     function renderProgress() {
       document.querySelector("#progressList").innerHTML = steps.map((label, index) => {
         const klass = index === currentStep ? "active" : index < currentStep ? "done" : "";
-        return `<div class="step-chip ${klass}">${index + 1}. ${label}</div>`;
+        const current = index === currentStep ? ' aria-current="step"' : "";
+        return `<div class="step-chip ${klass}"${current}>${index + 1}. ${label}</div>`;
       }).join("");
     }
 
@@ -341,6 +348,9 @@
       if (currentStep === 3) renderCardSort();
       if (currentStep === 4) renderPreview();
       renderProgress();
+      const activePanel = document.querySelector(`[data-step="${currentStep}"]`);
+      const heading = activePanel && activePanel.querySelector("h2");
+      if (heading && shouldScroll) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
       if (shouldScroll) {
         const target = window.matchMedia("(max-width: 860px)").matches ? document.querySelector("main") : document.documentElement;
         target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -391,8 +401,8 @@
           <div class="sort-card">
             <div class="question-meta"><span class="tag gray">Card ${index + 1}</span></div>
             <h3>${card.text}</h3>
-            <div class="pill-options">${["Low productive cognitive friction", "Medium productive cognitive friction", "High productive cognitive friction"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
-            <div class="pill-options">${["Not legitimate", "Contested", "Legitimate"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <div class="pill-options" role="radiogroup" aria-label="Productive cognitive friction preserved, card ${index + 1}">${["Low productive cognitive friction", "Medium productive cognitive friction", "High productive cognitive friction"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <div class="pill-options" role="radiogroup" aria-label="Legitimate use of AI in education, card ${index + 1}">${["Not legitimate", "Contested", "Legitimate"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>${value}</label>`).join("")}</div>
             <textarea data-sort-note="${card.id}" aria-label="${escapeAttr(`Rationale for card ${index + 1}: ${card.text}`)}" placeholder="Optional rationale.">${escapeText(response.note || "")}</textarea>
           </div>`;
       }).join("");
