@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>School and District Leader AI Friction App</title>
+  <title>Building-Level Administrator and District/System-Level Leader AI Friction App</title>
   <meta name="description" content="School- and district-leader local-first interview tool for generative AI policy, instructional leadership, governance, and infrastructural friction.">
   <style>
     :root {
@@ -90,7 +90,7 @@
   <div class="shell">
     <aside>
       <div class="role-badge">Institutional Leader Instrument</div>
-      <h1>School and District Leader AI Friction App</h1>
+      <h1>Building-Level Administrator and District/System-Level Leader AI Friction App</h1>
       <p>A shared institutional-leader protocol for AI policy implementation, instructional leadership, governance, and infrastructural friction.</p>
       <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
@@ -117,9 +117,8 @@
       <section class="panel" data-step="0">
         <div class="panel-header">
           <h2>Consent and Context</h2>
-          <p>This page collects adult school- and district-leader responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
-        </div>
-        <div class="panel-body">
+          <strong>Building-Level Administrator and District/System-Level Leader Instrument</strong>
+          <p>This page collects adult building- and system-level leader responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
           <div class="callout"><strong>Standard opening script:</strong> Thank you for taking the time to speak with me. This conversation is part of a study on how educators and school-system leaders make sense of generative AI in relation to teaching and learning. There are no right or wrong answers; I am interested in your honest experience, including where you disagree with how others frame these issues. Your participation is voluntary, you may skip any question, and you may stop at any time. Do you have any questions before we begin? If audio recording will be used, do I have your permission to record?</div>
           <div class="callout"><strong>Research caution:</strong> avoid naming staff, students, families, schools, or districts in open responses unless the approved protocol explicitly allows it.</div>
           <div class="grid">
@@ -377,7 +376,7 @@
     function exportData() {
       syncStateFromDom();
       return {
-        app: "School and District Leader AI Friction App",
+        app: "Building-Level Administrator and District/System-Level Leader AI Friction App",
         version: "2026-06-institutional-leader-static-v2",
         exportedAt: new Date().toISOString(),
         participant: {
@@ -405,7 +404,7 @@
     }
 
     function markdownExport(data) {
-      const lines = [`# School and District Leader AI Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- Role group: ${data.participant.roleGroup || ""}`, `- Institutional context: ${data.participant.schoolContext || ""}`, ""];
+      const lines = [`# Building-Level Administrator and District/System-Level Leader AI Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- Role group: ${data.participant.roleGroup || ""}`, `- Institutional context: ${data.participant.schoolContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
         lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");

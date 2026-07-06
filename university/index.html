@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>University Student GenAI Learning App</title>
+  <title>Adult University-Student Retrospective GenAI Learning App</title>
   <meta name="description" content="University-student local-first interview tool for generative AI, authorship, learning process, and cognitive friction.">
   <style>
     :root {
@@ -89,12 +89,12 @@
   <a class="skip-link" href="#main">Skip to main content</a>
   <div class="shell">
     <aside>
-      <div class="role-badge">University Student Instrument</div>
-      <h1>University Student GenAI Learning App</h1>
+      <div class="role-badge">Adult University-Student Retrospective Instrument</div>
+      <h1>Adult University-Student Retrospective GenAI Learning App</h1>
       <p>A focused student-facing version for the pre-GenAI to post-GenAI learning transition.</p>
       <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
-      <p class="hint">Use this when the participant is a university student reflecting on high school and current academic work.</p>
+      <p class="hint">Use this when the participant is an adult university-student retrospective participant reflecting on high school and current academic work.</p>
       <div class="button-row">
         <a class="btn" href="../index.html">Full study app</a>
         <a class="btn" href="../teacher.html">Teacher app</a>
@@ -105,7 +105,7 @@
     <main id="main" tabindex="-1">
       <div class="topbar">
         <div>
-          <strong>University Student Instrument</strong>
+          <strong>Adult University-Student Retrospective Instrument</strong>
           <div class="meta">GenAI, cognitive struggle, authorship, peer learning, and academic ownership</div>
         </div>
         <div class="button-row">
@@ -427,7 +427,7 @@
     function exportData() {
       syncStateFromDom();
       return {
-        app: "University Student GenAI Learning App",
+        app: "Adult University-Student Retrospective GenAI Learning App",
         version: "2026-06-university-static-v1",
         exportedAt: new Date().toISOString(),
         participant: {
@@ -459,7 +459,7 @@
     }
 
     function markdownExport(data) {
-      const lines = [`# University Student GenAI Learning Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Transition year: ${data.participant.transitionYear || ""}`, `- University context: ${data.participant.universityContext || ""}`, ""];
+      const lines = [`# Adult University-Student Retrospective GenAI Learning Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Transition year: ${data.participant.transitionYear || ""}`, `- University context: ${data.participant.universityContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
         lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");

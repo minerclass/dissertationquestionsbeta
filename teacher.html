@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>K-12 Teacher Pedagogical Friction App</title>
+  <title>K-12 Classroom-Facing Educator Pedagogical Friction App</title>
   <meta name="description" content="Teacher-facing local-first interview and reflection tool for generative AI, productive struggle, and pedagogical friction.">
   <style>
     :root {
@@ -109,11 +109,11 @@
   <div class="shell">
     <aside>
       <div class="role-badge">Teacher Instrument</div>
-      <h1>K-12 Teacher Pedagogical Friction App</h1>
+      <h1>K-12 Classroom-Facing Educator Pedagogical Friction App</h1>
       <p>A focused teacher-facing version of the local-first mixed methods interview tool.</p>
       <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
-      <p class="hint">Use this when you want only the K-12 teacher instrument, without the broader role-selection workflow.</p>
+      <p class="hint">Use this when you want only the K-12 educator instrument, without the broader role-selection workflow.</p>
       <div class="button-row">
         <a class="btn" href="index.html">Full study app</a>
         <a class="btn" href="university/">University app</a>
@@ -444,7 +444,7 @@
     function exportData() {
       syncStateFromDom();
       return {
-        app: "K-12 Teacher Pedagogical Friction App",
+        app: "K-12 Classroom-Facing Educator Pedagogical Friction App",
         version: "2026-06-teacher-static-v1",
         exportedAt: new Date().toISOString(),
         participant: {
@@ -476,7 +476,7 @@
     }
 
     function markdownExport(data) {
-      const lines = [`# K-12 Teacher Pedagogical Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Grade band: ${data.participant.gradeBand || ""}`, `- Content area: ${data.participant.contentArea || ""}`, `- School context: ${data.participant.schoolContext || ""}`, ""];
+      const lines = [`# K-12 Classroom-Facing Educator Pedagogical Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Grade band: ${data.participant.gradeBand || ""}`, `- Content area: ${data.participant.contentArea || ""}`, `- School context: ${data.participant.schoolContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
         lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");

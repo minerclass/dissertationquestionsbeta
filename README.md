@@ -15,7 +15,7 @@ Expected GitHub Pages URL:
 Role-specific participant URLs:
 
 - University student: `https://minerclass.github.io/dissertationquestionsbeta/university/`
-- K-12 teacher: `https://minerclass.github.io/dissertationquestionsbeta/teacher.html`
+- K-12 classroom-facing educator: `https://minerclass.github.io/dissertationquestionsbeta/teacher.html`
 - School and district leader: `https://minerclass.github.io/dissertationquestionsbeta/principal.html`
 
 Researcher review URL:
