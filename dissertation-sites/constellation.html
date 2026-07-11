@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>North-Star Constellation Map | Micah Miner</title>
+  <meta name="description" content="Visual architecture of the Pedagogical Friction dissertation ecosystem.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060a08;
+      --bg-2: #0a110d;
+      --ink: #e8e0c8;
+      --ink-dim: #a19f8b;
+      --ink-faded: #62604f;
+      --emerald: #4a8068;
+      --emerald-bright: #6ba588;
+      --bronze: #b08550;
+      --bronze-bright: #d4a974;
+      --plum: #8a5a70;
+      --plum-bright: #b37a95;
+      --slate: #5d737e;
+      --paper: #11161a;
+      --paper-2: #161c21;
+      --rule: rgba(161,159,139,.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter Tight", sans-serif;
+      line-height: 1.5;
+    }
+    .prose, .card, .metadata, .url, .export-preview, table td { overflow-wrap: anywhere; }
+    pre { overflow-x: auto; white-space: pre; }
+    code { overflow-wrap: normal; }
+    header.masthead {
+      position: relative;
+      padding: 4.5rem 2rem 3rem;
+      background: radial-gradient(circle at 15% 0%, var(--bg-2) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+    }
+    .mast-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--bronze);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1.title {
+      font-family: "Crimson Pro", serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: .92;
+      margin-bottom: 1rem;
+    }
+    h1.title em {
+      color: var(--bronze);
+      font-style: italic;
+    }
+    .subtitle {
+      max-width: 68ch;
+      margin: 0 auto 2rem;
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(1.06rem, 1.5vw, 1.38rem);
+      font-style: italic;
+      line-height: 1.6;
+    }
+    .mast-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink-dim);
+      min-height: 42px;
+      padding: .58rem .92rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: border-color .2s, color .2s, background .2s, transform .2s;
+    }
+    .btn:hover {
+      color: var(--ink);
+      border-color: var(--bronze);
+      transform: translateY(-1px);
+    }
+    .btn.ghost { color: var(--bronze); border-color: rgba(176,133,80,.55); }
+
+    /* The Constellation Map */
+    .map-container {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .constellation {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 2rem;
+      align-items: stretch;
+      position: relative;
+    }
+
+    /* Connecting lines for large screens */
+    .constellation::before, .constellation::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      height: 2px;
+      background: var(--rule);
+      z-index: 0;
+    }
+    .constellation::before { left: 25%; right: 75%; }
+    .constellation::after { left: 75%; right: 25%; }
+
+    .node-group {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Group styling */
+    .node-group.foundation { padding-top: 3rem; }
+    .node-group.empirical { transform: scale(1.05); z-index: 2; }
+    .node-group.outcomes { padding-top: 3rem; }
+
+    /* The Box / Card */
+    .node {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      border-top-width: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .node.theory { border-top-color: var(--plum); }
+    .node.center { border-top-color: var(--emerald-bright); border-width: 2px; border-top-width: 4px; background: #0c1511; }
+    .node.action { border-top-color: var(--bronze); }
+    .node.instrument { border-top-color: var(--slate); background: var(--paper-2); padding: 1.5rem; }
+
+    .node-label {
+      color: var(--ink-dim);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .68rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+      display: block;
+    }
+    .node h3 {
+      font-family: "Crimson Pro", serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .node p {
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .node.center h3 { font-size: 2.2rem; color: var(--emerald-bright); }
+    
+    .node-links {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      border-top: 1px dashed var(--rule);
+      padding-top: 1rem;
+    }
+    .node-links a {
+      color: var(--bronze);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .7rem;
+      text-decoration: none;
+      letter-spacing: .05em;
+      transition: color .2s;
+    }
+    .node-links a:hover { color: var(--bronze-bright); text-decoration: underline; }
+
+    @media (max-width: 1100px) {
+      .constellation {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .constellation::before, .constellation::after { display: none; }
+      .node-group.foundation, .node-group.outcomes { padding-top: 0; }
+      .node-group.empirical { transform: none; }
+      .node.center { border-left-color: var(--emerald-bright); border-width: 1px; border-left-width: 4px; border-top-width: 1px; }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="mast-inner">
+      <div class="eyebrow">Ecosystem Architecture</div>
+      <h1 class="title">North-Star <em>Constellation</em> Map</h1>
+      <p class="subtitle">A visual map showing how the theoretical foundations and forward-looking tools anchor the central empirical case study of pedagogical friction.</p>
+      <div class="mast-actions">
+        <a class="btn ghost" href="index.html">← Back to Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <details class="constellation-outline" style="max-width: 800px; margin: 0 auto 3rem auto; padding: 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--paper);">
+      <summary style="cursor: pointer; font-weight: 600; color: var(--ink); padding: 0.5rem; font-family: 'Inter Tight', sans-serif;">View this map as a linear outline</summary>
+      <div style="padding-top: 1rem;">
+        <p>This map shows how the theoretical foundations and outcomes artifacts connect to the central empirical case study.</p>
+        
+        <h3 style="margin-top: 1.5rem; color: var(--bronze);">1. Theoretical Foundation</h3>
+        <ul style="padding-left: 1.5rem;">
+          <li style="margin-bottom: 0.5rem;"><strong>Qualifying Paper &amp; Companions:</strong> The completed intellectual history establishing tertiary algorithmicity and the media ecology of learning friction. Links to <a href="https://minerclass.github.io/dissertationquestionsbeta/qualifying-paper-final-review/">Final Qualifying Paper Companion</a>, <a href="https://minerclass.github.io/genAI-ML-the-technologizing-word-site/">Technologizing of the Word</a>, and <a href="https://minerclass.github.io/orality_game/">Keeper of the Word simulation</a>.</li>
+          <li><strong>Pedagogical Friction Framework:</strong> The definitions of noetic, rhetorical, existential, and infrastructural friction, bounded by the equity guardrail. Links to <a href="glossary.html">Canonical Glossary</a> and <a href="https://minerclass.github.io/pedagogical-friction/">Friction Framework Primer</a>.</li>
+        </ul>
+        
+        <h3 style="margin-top: 1.5rem; color: var(--emerald-bright);">2. The Core Bounded Case</h3>
+        <ul style="padding-left: 1.5rem;">
+          <li style="margin-bottom: 0.5rem;"><strong>Chapters 1-3 Proposal:</strong> A qualitative-dominant convergent mixed methods case study investigating educator and institutional sensemaking. Links to <a href="https://minerclass.github.io/diss-proposal-defense/">Proposal Defense Studio</a>, <a href="https://minerclass.github.io/dissertationquestionsbeta/">Methodology Alignment Studio</a>, and <a href="https://minerclass.github.io/dissertationquestionsbeta/mixed-methods/">Mixed Methods Plan</a>.</li>
+          <li><strong>Research Instruments:</strong> Role-specific interview and reflection tools designed with privacy-first boundaries. Links to <a href="https://minerclass.github.io/dissertationquestionsbeta/teacher.html">K-12 Educator Tool</a>, <a href="https://minerclass.github.io/dissertationquestionsbeta/principal.html">Leader Tool</a>, and <a href="https://minerclass.github.io/dissertationquestionsbeta/university/index.html">Student Tool</a>.</li>
+        </ul>
+
+        <h3 style="margin-top: 1.5rem; color: var(--plum);">3. Prospective Interpretation</h3>
+        <ul style="padding-left: 1.5rem;">
+          <li><strong>Outcomes &amp; Action:</strong> Simulations and planning artifacts built to stress-test how findings might be responsibly interpreted before analysis begins. Links to <a href="https://minerclass.github.io/dissertationquestionsbeta/research-outcomes/">Potential Outcomes Artifacts</a> and <a href="https://minerclass.github.io/dissertationquestionsbeta/research-outcomes/action.html">Outcomes &amp; Action Studio</a>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="map-container" aria-hidden="true">
+      <div class="constellation">
+        
+        <!-- Left Column: Theoretical Foundation -->
+        <div class="node-group foundation">
+          <div class="node theory">
+            <span class="node-label">Theoretical Foundation</span>
+            <h3>Qualifying Paper &amp; Companions</h3>
+            <p>The completed intellectual history establishing tertiary algorithmicity and the media ecology of learning friction.</p>
+            <div class="node-links">
+              <a href="https://minerclass.github.io/dissertationquestionsbeta/qualifying-paper-final-review/">→ Final Qualifying Paper Companion</a>
+              <a href="https://minerclass.github.io/genAI-ML-the-technologizing-word-site/">→ Technologizing of the Word</a>
+              <a href="https://minerclass.github.io/orality_game/">→ Keeper of the Word (Simulation)</a>
+            </div>
+          </div>
+          
+          <div class="node theory" style="border-top-color: var(--slate);">
+            <span class="node-label">Core Construct</span>
+            <h3>Pedagogical Friction Framework</h3>
+            <p>The definitions of noetic, rhetorical, existential, and infrastructural friction, bounded by the equity guardrail.</p>
+            <div class="node-links">
+              <a href="glossary.html">→ Canonical Glossary</a>
+              <a href="https://minerclass.github.io/pedagogical-friction/">→ Friction Framework Primer</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center Column: The Core Study -->
+        <div class="node-group empirical">
+          <div class="node center">
+            <span class="node-label" style="color: var(--emerald-bright);">The Core Bounded Case</span>
+            <h3>Chapters 1–3 Proposal</h3>
+            <p>A qualitative-dominant convergent mixed methods case study investigating educator and institutional sensemaking about generative AI, productive struggle, and exclusionary barriers.</p>
+            <div class="node-links">
+              <a href="https://minerclass.github.io/diss-proposal-defense/">→ Proposal Defense Studio</a>
+              <a href="https://minerclass.github.io/dissertation-proposal-studio/methods.html">→ Methodology Alignment Studio</a>
+              <a href="https://minerclass.github.io/dissertation-proposal-studio/">→ Mixed Methods Plan</a>
+            </div>
+          </div>
+          
+          <div class="node instrument">
+            <span class="node-label">Participant Workflows</span>
+            <h3>Research Instruments</h3>
+            <p>Role-specific interview and reflection tools designed with privacy-first, browser-local boundaries to collect qualitative and supplemental quantitative data.</p>
+            <div class="node-links">
+              <a href="../teacher.html">→ K-12 Educator Tool</a>
+              <a href="../principal.html">→ Leader Tool</a>
+              <a href="../university/">→ Student Tool</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Outcomes & Action -->
+        <div class="node-group outcomes">
+          <div class="node action">
+            <span class="node-label">Prospective Interpretation</span>
+            <h3>Outcomes &amp; Action</h3>
+            <p>Simulations and planning artifacts built to stress-test how findings might be responsibly interpreted, returned to communities, and translated into equitable policy—before analysis begins.</p>
+            <div class="node-links">
+              <a href="https://minerclass.github.io/potential-outcomes-artifacts1/">→ Potential Outcomes Artifacts</a>
+              <a href="https://minerclass.github.io/potential-outcomes-artifacts2/">→ Outcomes &amp; Action Studio</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

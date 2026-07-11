@@ -588,9 +588,12 @@
       <h1 class="title">Dissertation <em>Proposal</em> Dashboard</h1>
       <p class="subtitle">A public orientation hub for the Chapters 1–3 proposal, <em>Pedagogical Friction in the Age of Generative AI and Tertiary Algorithmicity: A Qualitative-Dominant Convergent Mixed Methods Case Study</em>. The completed qualifying paper provides the theoretical foundation; the proposal defines the empirical study that now follows.</p>
       <div class="mast-actions">
+        <a class="btn ghost" href="../index.html" style="border-color: var(--emerald-bright); color: var(--emerald-bright);">← Ecosystem Hub</a>
         <a class="btn primary" href="#current-study">Current Study Frame</a>
         <a class="btn primary" href="#catalog">Enter the Catalog</a>
+        <a class="btn ghost" href="constellation.html">North-Star Constellation</a>
         <a class="btn ghost" href="#pathfinder">Choose a Reading Path</a>
+        <a class="btn ghost" href="glossary.html">Canonical Glossary</a>
         <a class="btn ghost" href="https://minerclass.github.io/conference-presentations/">Conference Presentations</a>
         <a class="btn ghost" href="https://minerclass.github.io/games-hub/">Learning Games Hub</a>
         <a class="btn ghost" href="../researcher/">Researcher Overview</a>
@@ -789,7 +792,7 @@
   </main>
 
   <script>
-    const categories = ["All", "Dissertation Planning", "Qualifying Paper", "Research Instruments", "Portfolio"];
+    const curatedCategories = ["All", "Dissertation Planning", "Qualifying Paper", "Research Instruments", "Interactive Public Scholarship", "Portfolio"];
     const readingPaths = [
       {
         key: "all",
@@ -1034,6 +1037,17 @@
         tags: ["technoskepticism", "Postman", "Civics of Technology", "pedagogical friction"]
       }
     ];
+
+    // Derive actual categories from data
+    const actualCategories = new Set(sites.map(site => site.category));
+    const categories = curatedCategories.filter(c => c === "All" || actualCategories.has(c) || c === "Portfolio");
+    
+    // Integrity test
+    actualCategories.forEach(cat => {
+      if (!curatedCategories.includes(cat)) {
+        console.error(`Catalog Integrity Error: Unknown category "${cat}" found in sites data.`);
+      }
+    });
 
     let activeCategory = "All";
     let activePath = "all";

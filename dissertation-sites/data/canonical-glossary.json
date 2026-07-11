@@ -1,0 +1,107 @@
+{
+  "schemaVersion": "1.0",
+  "proposalVersion": "2026-07",
+  "status": "proposal-stage conceptual framework",
+  "terms": {
+    "pedagogicalFriction": {
+      "label": "Pedagogical friction",
+      "type": "The Framework",
+      "plain": "The resistance or difficulty built into learning that causes students to think and grow.",
+      "scholarly": "The resistance, difficulty, or necessary struggle intentionally built into a learning sequence to foster cognition, meaning-making, and critical judgment.",
+      "operational": "Identified when educators discuss assignments requiring sustained attention, cognitive struggle, or original synthesis that cannot be instantly bypassed.",
+      "boundary": "In the age of generative AI, the framework asks not whether a tool can bypass a task, but whether bypassing that task removes the very friction that causes learning.",
+      "notEquivalentTo": ["difficulty for difficulty's sake", "punitive struggle"],
+      "relatedTerms": ["productiveFriction", "exclusionaryFriction"]
+    },
+    "productiveFriction": {
+      "label": "Productive friction",
+      "type": "Learning-Supportive",
+      "plain": "Struggle that actually helps you learn, like practicing a difficult skill.",
+      "scholarly": "Struggle that builds capability, judgment, and understanding. This is the educationally productive resistance that must be preserved.",
+      "operational": "Present in descriptions of assignments that result in enduring understanding, skill acquisition, or meaningful intellectual frustration.",
+      "boundary": "Must be preserved even when technology offers to automate the work.",
+      "notEquivalentTo": ["compliance tasks", "inflexible deadlines"],
+      "relatedTerms": ["pedagogicalFriction"]
+    },
+    "exclusionaryFriction": {
+      "label": "Exclusionary friction",
+      "type": "Barrier",
+      "plain": "Unnecessary barriers that block students without helping them learn.",
+      "scholarly": "Unnecessary barriers that punish students, restrict access, or create compliance burdens without offering any educational benefit.",
+      "operational": "Evident when educators identify systemic hurdles, inaccessible formats, or rigid policies that prevent a student from accessing the core learning task.",
+      "boundary": "This friction should be removed or mitigated, potentially using generative AI.",
+      "notEquivalentTo": ["productiveFriction"],
+      "relatedTerms": ["equityGuardrail"]
+    },
+    "unproductiveSuccess": {
+      "label": "Unproductive success",
+      "type": "Risk Pattern",
+      "plain": "Getting a good grade or finishing an assignment without actually learning anything.",
+      "scholarly": "When a learner successfully completes an output without having engaged in the cognitive or existential struggle required to learn the underlying skills.",
+      "operational": "Visible when students bypass the process of an assignment (e.g., generating an essay with an LLM) while still meeting the rubric's superficial criteria.",
+      "boundary": "A possible problem pattern, not a synonym for all AI use.",
+      "notEquivalentTo": ["AI use", "efficient learning"],
+      "relatedTerms": ["productiveFriction"]
+    },
+    "noeticFriction": {
+      "label": "Noetic friction",
+      "type": "Cognitive Layer",
+      "plain": "The mental effort required to understand new ideas.",
+      "scholarly": "Relating to cognition, meaning-making, and thought. The mental resistance of forming concepts, wrestling with ambiguity, and internalizing knowledge.",
+      "operational": "Seen when students struggle to synthesize sources or grasp abstract concepts.",
+      "boundary": "Contrasts with noetic displacement, where AI assumes the conceptualization.",
+      "notEquivalentTo": ["rote memorization"],
+      "relatedTerms": ["rhetoricalFriction", "existentialFriction"]
+    },
+    "rhetoricalFriction": {
+      "label": "Rhetorical friction",
+      "type": "Expressive Layer",
+      "plain": "The effort it takes to write clearly and organize your thoughts for an audience.",
+      "scholarly": "Relating to writing, audience, and expressive structure. The struggle of organizing thought into language, anticipating audience needs, and revising for clarity.",
+      "operational": "Found in descriptions of the drafting process, outlining, and peer review.",
+      "boundary": "Contrasts with rhetorical saturation, where generated text masks a lack of underlying thought.",
+      "notEquivalentTo": ["typing speed"],
+      "relatedTerms": ["noeticFriction", "existentialFriction"]
+    },
+    "existentialFriction": {
+      "label": "Existential friction",
+      "type": "Human Layer",
+      "plain": "The personal stakes and vulnerability involved in creating original work.",
+      "scholarly": "Relating to student identity, agency, and authentic voice. The personal stakes involved in taking a stance, experiencing vulnerability, and claiming authorship over one's work.",
+      "operational": "Described when students hesitate to share their opinions, fear failure, or express pride in original creation.",
+      "boundary": "Contrasts with existential abstraction, where the student's voice is entirely outsourced.",
+      "notEquivalentTo": ["academic anxiety"],
+      "relatedTerms": ["noeticFriction", "rhetoricalFriction"]
+    },
+    "infrastructuralFriction": {
+      "label": "Infrastructural friction",
+      "type": "Systems Layer",
+      "plain": "The rules, policies, and environment of the school that make learning easier or harder.",
+      "scholarly": "Relating to systems, policy, access, professional learning, and enabling conditions. How the school ecosystem supports or constrains the preservation of productive pedagogical friction.",
+      "operational": "Visible in discussions about grading policies, time constraints, lack of PD, or restrictive IT rules.",
+      "boundary": "Concerns organizational conditions that enable or constrain the learner-facing dimensions.",
+      "notEquivalentTo": ["noeticFriction"],
+      "relatedTerms": ["pedagogicalFriction", "equityGuardrail"]
+    },
+    "equityGuardrail": {
+      "label": "The Equity Guardrail",
+      "type": "Essential Boundary",
+      "plain": "Ensuring we don't confuse unnecessary barriers (which should be removed) with important challenges (which help students learn).",
+      "scholarly": "The framework strictly distinguishes productive friction from exclusionary friction. Friction must never be used to justify systemic inequities, inaccessible design, or punitive compliance.",
+      "operational": "Evaluated by asking: Does this AI tool bypass necessary learning struggle, or does it remove a barrier that was preventing the student from accessing the learning struggle?",
+      "boundary": "Serves to prevent the framework from being used to deny necessary accommodations.",
+      "notEquivalentTo": ["lowering standards"],
+      "relatedTerms": ["productiveFriction", "exclusionaryFriction"]
+    },
+    "tertiaryAlgorithmicity": {
+      "label": "Tertiary algorithmicity",
+      "type": "Media Condition",
+      "plain": "The new era we live in where AI helps us create and interact with language.",
+      "scholarly": "A proposed media condition following secondary orality, characterized by the algorithmic generation and mediation of symbolic forms, altering the friction of knowledge production.",
+      "operational": "Referenced when discussing the broader societal and technological shift surrounding LLMs and generative tools.",
+      "boundary": "The proposed media condition, not a completed dissertation finding.",
+      "notEquivalentTo": ["generative AI (the tool)"],
+      "relatedTerms": ["pedagogicalFriction"]
+    }
+  }
+}

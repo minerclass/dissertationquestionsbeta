@@ -5,96 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>K-12 Classroom-Facing Educator Pedagogical Friction App</title>
   <meta name="description" content="Teacher-facing local-first interview and reflection tool for generative AI, productive struggle, and pedagogical friction.">
+  <link rel="stylesheet" href="shared/styles.css">
   <style>
     :root {
-      --ink: #172033;
-      --muted: #5d6878;
-      --line: #d9e1ea;
-      --paper: #ffffff;
-      --wash: #f5f7fa;
       --navy: #1f5f46;
       --teal: #287a5a;
       --gold: #6c9a45;
-      --red: #a53e35;
-      --shadow: 0 14px 36px rgba(23, 32, 51, .12);
-      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
-
-    * { box-sizing: border-box; }
-    body { margin: 0; color: var(--ink); background: var(--wash); line-height: 1.55; }
-    button, input, select, textarea { font: inherit; }
     button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
-    a:focus-visible, [tabindex]:focus-visible {
-      outline: 3px solid rgba(43, 129, 123, .55);
-      outline-offset: 2px;
-    }
-    .skip-link { position: absolute; left: 8px; top: -52px; z-index: 60; background: var(--navy); color: #fff; padding: 10px 14px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: top .15s ease; }
-    .skip-link:focus { top: 8px; }
-    .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-    h2[tabindex="-1"], main[tabindex="-1"] { outline: none; }
-
-    .shell { min-height: 100vh; display: grid; grid-template-columns: 310px minmax(0, 1fr); }
-    aside { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 22px; color: #fff; background: var(--navy); }
-    aside h1 { margin: 0 0 8px; font-size: 1.35rem; line-height: 1.2; }
-    aside p { color: rgba(255,255,255,.78); font-size: .94rem; margin: 0 0 18px; }
-    main { padding: 30px; }
-
-    .privacy-note {
-      border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.08);
-      border-radius: 8px;
-      padding: 13px;
-      margin: 18px 0;
-      font-size: .86rem;
-    }
-    .role-badge { display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 6px 10px; margin-bottom: 14px; color: #fff; background: rgba(255,255,255,.12); font-size: .8rem; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
-
-    .progress-list { display: grid; gap: 9px; margin: 22px 0; }
-    .step-chip { border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 8px 11px; font-size: .84rem; color: rgba(255,255,255,.76); }
-    .step-chip.active { color: #102033; background: #fff; border-color: #fff; font-weight: 700; }
-    .step-chip.done { border-color: rgba(255,255,255,.42); color: #fff; }
-
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 auto 18px; max-width: 1080px; }
-    .meta { color: var(--muted); font-size: .92rem; }
-    .panel { max-width: 1080px; margin: 0 auto 18px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
-    .panel-header { padding: 22px 24px 8px; border-bottom: 1px solid var(--line); }
-    .panel-header h2 { margin: 0 0 7px; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.15; }
-    .panel-header p { margin: 0 0 14px; color: var(--muted); max-width: 850px; }
-    .panel-body { padding: 22px 24px 26px; }
-
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-    .field { display: grid; gap: 6px; margin-bottom: 15px; }
-    label, legend { font-weight: 700; color: #24334a; }
-    input, select, textarea { width: 100%; border: 1px solid #c8d3df; border-radius: 8px; padding: 10px 12px; color: var(--ink); background: #fff; }
-    textarea { min-height: 132px; resize: vertical; }
-    .hint { color: var(--muted); font-size: .86rem; }
-
-    .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid var(--line); margin-top: 18px; }
-    .button-row { display: flex; gap: 9px; flex-wrap: wrap; }
-    .btn { border: 1px solid #bec9d5; border-radius: 8px; padding: 10px 14px; background: #fff; color: var(--ink); cursor: pointer; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-height: 42px; }
-    .btn.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
-    .btn.warn { background: var(--red); color: #fff; border-color: var(--red); }
-    .btn:disabled { opacity: .52; cursor: not-allowed; }
-
-    .choice { border: 1px solid #cfd9e5; border-radius: 8px; padding: 12px; display: flex; gap: 9px; align-items: flex-start; background: #fff; cursor: pointer; }
-    .choice input { width: auto; margin-top: 5px; }
-    .question-card, .sort-card { border: 1px solid var(--line); border-radius: 8px; padding: 18px; margin-bottom: 14px; background: #fff; }
-    .question-card h3, .sort-card h3 { margin: 0 0 8px; font-size: 1.08rem; }
-    .question-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-    .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 9px; font-size: .78rem; font-weight: 700; background: #edf5f4; color: #175f5b; }
-    .tag.gold { background: #fff4dd; color: #7a5018; }
-    .tag.gray { background: #eef2f6; color: #4c5b6c; }
-    .callout { border: 1px solid #d9c08d; background: #fff8e8; border-radius: 8px; padding: 14px; margin: 14px 0; }
-    .follow-up { margin-top: 12px; padding: 12px; border-left: 4px solid var(--gold); background: #fff9ed; border-radius: 6px; }
-    .recorder { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin: 8px 0; }
-    .recording-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
-    .recording-dot.on { background: var(--red); box-shadow: 0 0 0 6px rgba(165, 62, 53, .14); }
-    .pill-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 9px; }
-    .pill-options label { border: 1px solid #cdd7e2; border-radius: 999px; padding: 7px 10px; font-size: .86rem; font-weight: 600; cursor: pointer; }
-    .pill-options input { width: auto; margin-right: 5px; }
-    .summary-box { border: 1px solid var(--line); background: #f8fafc; border-radius: 8px; padding: 14px; white-space: pre-wrap; max-height: 420px; overflow: auto; font-family: "Cascadia Mono", "Consolas", monospace; font-size: .84rem; }
-    .hidden { display: none !important; }
-
+    a:focus-visible, [tabindex]:focus-visible { outline-color: rgba(43, 129, 123, .55); }
+    .tag { background: #edf5f4; color: #175f5b; }
+    .callout { border-color: #d9c08d; background: #fff8e8; }
+  </style>
     @media (max-width: 860px) {
       .shell { display: block; }
       aside { position: static; height: auto; }
@@ -212,7 +134,7 @@
       <section class="panel hidden" data-step="3">
         <div class="panel-header">
           <h2>Teacher Card Sort</h2>
-          <p>Place each scenario along two dimensions and explain your reasoning: how much productive cognitive friction it preserves, and whether the AI use is legitimate in education.</p>
+          <p>Place each scenario along two dimensions and explain your reasoning: how much productive noetic friction it preserves, and whether the AI use is legitimate in education.</p>
         </div>
         <div class="panel-body">
           <div id="cardSortItems"></div>
@@ -244,7 +166,9 @@
     </main>
   </div>
 
-  <script>
+  <script type="module">
+    import { q, r, cs, slug } from 'shared/app.js';
+
     const STORAGE_KEY = "teacher-pedagogical-friction-draft-v1";
     const steps = ["Consent", "Quick response", "Reflection", "Card sort", "Export"];
     const quickItems = [
@@ -284,11 +208,6 @@
     let activeRecordingId = null;
     let audioChunks = [];
     let state = loadState();
-
-    function q(id, text, type, options, tags) { return { id, text, type, options, tags }; }
-    function r(id, text, followUp, tags) { return { id, text, followUp, tags }; }
-    function cs(text, tags) { return { id: slug(text), text, tags }; }
-    function slug(text) { return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 54); }
 
     function defaultState() {
       return {
@@ -401,7 +320,7 @@
           <div class="sort-card">
             <div class="question-meta"><span class="tag gray">Card ${index + 1}</span></div>
             <h3>${card.text}</h3>
-            <div class="pill-options" role="radiogroup" aria-label="Productive cognitive friction preserved, card ${index + 1}">${["Low productive cognitive friction", "Medium productive cognitive friction", "High productive cognitive friction"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <div class="pill-options" role="radiogroup" aria-label="Productive noetic friction preserved, card ${index + 1}">${["Low productive noetic friction", "Medium productive noetic friction", "High productive noetic friction"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
             <div class="pill-options" role="radiogroup" aria-label="Legitimate use of AI in education, card ${index + 1}">${["Not legitimate", "Contested", "Legitimate"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>${value}</label>`).join("")}</div>
             <textarea data-sort-note="${card.id}" aria-label="${escapeAttr(`Rationale for card ${index + 1}: ${card.text}`)}" placeholder="Optional rationale.">${escapeText(response.note || "")}</textarea>
           </div>`;

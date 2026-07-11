@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canonical Framework Glossary | Micah Miner</title>
+  <meta name="description" content="Canonical definitions for the Pedagogical Friction Framework in the Age of Generative AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060a08;
+      --bg-2: #0a110d;
+      --ink: #e8e0c8;
+      --ink-dim: #a19f8b;
+      --ink-faded: #62604f;
+      --emerald: #4a8068;
+      --emerald-bright: #6ba588;
+      --bronze: #b08550;
+      --bronze-bright: #d4a974;
+      --plum: #8a5a70;
+      --plum-bright: #b37a95;
+      --slate: #5d737e;
+      --paper: #11161a;
+      --paper-2: #161c21;
+      --rule: rgba(161,159,139,.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter Tight", sans-serif;
+      line-height: 1.5;
+    }
+    .prose, .card, .term-card, .metadata, .url, .export-preview, table td { overflow-wrap: anywhere; }
+    pre { overflow-x: auto; white-space: pre; }
+    code { overflow-wrap: normal; }
+    header.masthead {
+      position: relative;
+      padding: 6.5rem 2rem 4.5rem;
+      background: radial-gradient(circle at 15% 0%, var(--bg-2) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--rule);
+    }
+    .mast-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      color: var(--bronze);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      margin-right: .9rem;
+      vertical-align: middle;
+      background: var(--bronze);
+    }
+    h1.title {
+      font-family: "Crimson Pro", serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: .92;
+      letter-spacing: 0;
+      max-width: 15ch;
+    }
+    h1.title em {
+      color: var(--bronze);
+      font-style: italic;
+      font-weight: 400;
+    }
+    .subtitle {
+      max-width: 68ch;
+      margin-top: 1.8rem;
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(1.06rem, 1.5vw, 1.38rem);
+      font-style: italic;
+      line-height: 1.6;
+    }
+    .mast-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink-dim);
+      min-height: 42px;
+      padding: .58rem .92rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: border-color .2s, color .2s, background .2s, transform .2s;
+    }
+    .btn:hover {
+      color: var(--ink);
+      border-color: var(--bronze);
+      transform: translateY(-1px);
+    }
+    .btn.primary {
+      background: var(--bronze);
+      border-color: var(--bronze);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .btn.ghost { color: var(--bronze); border-color: rgba(176,133,80,.55); }
+
+    main { position: relative; z-index: 1; }
+    section.sec { padding: 5.5rem 2rem; border-bottom: 1px solid var(--rule); }
+    .inner { width: min(1180px, 100%); margin: 0 auto; }
+    
+    .sec-header {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 2.5rem;
+      align-items: baseline;
+      margin-bottom: 2.4rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sec-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: .72rem;
+      color: var(--bronze);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    h2.sec-title {
+      font-family: "Crimson Pro", serif;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+      line-height: .98;
+    }
+    h2.sec-title em {
+      color: var(--bronze);
+      font-style: italic;
+    }
+
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .term-card {
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      padding: 2rem;
+      border-top: 3px solid var(--emerald);
+    }
+    .term-card.core { border-top-color: var(--bronze); }
+    .term-card.guardrail { border-top-color: var(--plum); grid-column: 1 / -1; }
+    
+    .term-card h3 {
+      font-family: "Crimson Pro", serif;
+      font-size: 2.2rem;
+      font-weight: 450;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .term-card .type {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--bronze);
+      font-family: "JetBrains Mono", monospace;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .5rem;
+      border: 1px solid rgba(176,133,80,.4);
+    }
+    .term-card p {
+      color: var(--ink-dim);
+      font-family: "Source Serif 4", serif;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .term-card p:last-child { margin-bottom: 0; }
+    .term-card strong { color: var(--ink); font-weight: 600; }
+
+    @media (max-width: 980px) {
+      .sec-header { grid-template-columns: 1fr; }
+      .term-grid { grid-template-columns: 1fr; }
+      .term-card.guardrail { grid-column: auto; }
+    }
+    @media (max-width: 640px) {
+      header.masthead, section.sec { padding-left: 1.1rem; padding-right: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="mast-inner">
+      <div class="eyebrow">Reference Library</div>
+      <h1 class="title">Canonical Framework <em>Glossary</em></h1>
+      <p class="subtitle">A durable, single-source reference for the defining terminology of the Pedagogical Friction Framework. Use these definitions when reviewing the dissertation ecosystem, proposals, and conceptual companions.</p>
+      <div class="mast-actions">
+        <a class="btn ghost" href="index.html">← Back to Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="glossary-main">
+    <div class="inner" style="text-align: center; padding: 4rem;">
+      <p style="color: var(--ink-dim); font-family: 'JetBrains Mono', monospace;">Loading canonical definitions...</p>
+    </div>
+  </main>
+
+  <script>
+    async function loadGlossary() {
+      try {
+        const response = await fetch('data/canonical-glossary.json');
+        if (!response.ok) throw new Error('Failed to load glossary data');
+        const data = await response.json();
+        renderGlossary(data.terms);
+      } catch (err) {
+        let errMsg = err.message;
+        let suggestion = "";
+        if (window.location.protocol === 'file:') {
+          suggestion = "<br><br><strong>Note:</strong> You are viewing this file via the <code>file://</code> protocol, which blocks fetching JSON data due to CORS security policies. Please use a local HTTP server (e.g., <code>npx serve</code>, <code>python -m http.server</code>) to view the glossary locally.";
+        }
+        
+        document.getElementById('glossary-main').innerHTML = `
+          <div class="inner" style="text-align: center; padding: 4rem;">
+            <div style="background: rgba(179, 122, 149, 0.1); border-left: 4px solid #b37a95; padding: 2rem; max-width: 600px; margin: 0 auto; text-align: left;">
+              <h2 style="color: #b37a95; margin-top: 0; font-family: 'Inter Tight', sans-serif;">Failed to load canonical definitions</h2>
+              <p style="color: var(--ink); font-family: 'JetBrains Mono', monospace; margin-bottom: 0;">Error: ${errMsg}${suggestion}</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderGlossary(terms) {
+      const groups = [
+        {
+          id: 'core', tag: 'Core Construct', title: 'What is <em>Pedagogical Friction?</em>',
+          keys: ['pedagogicalFriction', 'productiveFriction', 'exclusionaryFriction', 'unproductiveSuccess']
+        },
+        {
+          id: 'dimensions', tag: 'The Four Dimensions', title: 'Sites of <em>Friction</em>',
+          keys: ['noeticFriction', 'rhetoricalFriction', 'existentialFriction', 'infrastructuralFriction']
+        },
+        {
+          id: 'guardrail', tag: 'Design Constraint', title: 'The Equity <em>Guardrail</em>',
+          keys: ['equityGuardrail']
+        },
+        {
+          id: 'condition', tag: 'Media Condition', title: 'Tertiary <em>Algorithmicity</em>',
+          keys: ['tertiaryAlgorithmicity']
+        }
+      ];
+
+      let html = '';
+      
+      groups.forEach(group => {
+        const groupTerms = group.keys.map(k => terms[k]).filter(Boolean);
+        if (groupTerms.length === 0) return;
+
+        html += `
+        <section class="sec" id="${group.id}">
+          <div class="inner">
+            <div class="sec-header">
+              <div class="sec-tag">${group.tag}</div>
+              <h2 class="sec-title">${group.title}</h2>
+            </div>
+            <div class="term-grid">
+        `;
+
+        groupTerms.forEach(term => {
+          const isGuardrail = group.id === 'guardrail' ? 'guardrail' : '';
+          const isCore = group.id === 'core' ? 'core' : '';
+          
+          html += `
+              <div class="term-card ${isCore} ${isGuardrail}">
+                <span class="type">${term.type}</span>
+                <h3>${term.label}</h3>
+                <p><strong>Plain Definition:</strong> ${term.plain}</p>
+                <p><strong>Scholarly Definition:</strong> ${term.scholarly}</p>
+                <p><strong>Operational Orientation:</strong> ${term.operational}</p>
+                ${term.boundary ? `<p><strong>Boundary Note:</strong> ${term.boundary}</p>` : ''}
+              </div>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        </section>
+        `;
+      });
+
+      document.getElementById('glossary-main').innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadGlossary);
+  </script>
+</body>
+</html>
