@@ -52,6 +52,7 @@ label, legend { font-weight: 700; color: #24334a; }
 input, select, textarea { width: 100%; border: 1px solid #c8d3df; border-radius: 8px; padding: 10px 12px; color: var(--ink); background: #fff; }
 textarea { min-height: 132px; resize: vertical; }
 .hint { color: var(--muted); font-size: .86rem; }
+aside .hint { color: rgba(255,255,255,.78); }
 .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid var(--line); margin-top: 18px; }
 .button-row { display: flex; gap: 9px; flex-wrap: wrap; }
 .btn { border: 1px solid #bec9d5; border-radius: 8px; padding: 10px 14px; background: #fff; color: var(--ink); cursor: pointer; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; min-height: 42px; }

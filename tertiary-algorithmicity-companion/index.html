@@ -24,7 +24,7 @@
   --crimson: #8a2436;
   --teal: #3a7d7a;
   --slate: #4a5575;
-  --muted: #6a6f85;
+  --muted: #9ea3b6;
   --soft: rgba(245, 239, 226, 0.07);
   --soft-2: rgba(245, 239, 226, 0.14);
   --shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
@@ -459,7 +459,7 @@ section { position: relative; padding: 120px 28px; }
   padding: 36px 32px; border-radius: 4px;
   background: var(--ink-3); border: 1px solid var(--rule-dim);
 }
-.equity-card h4 { font-size: 22px; margin: 0 0 6px; }
+.equity-card h3 { font-size: 22px; margin: 0 0 6px; }
 .equity-card .equity-tag { font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-2); margin-bottom: 14px; display: block; }
 .equity-card p { font-size: 16px; line-height: 1.6; margin: 12px 0 0; color: rgba(245, 239, 226, 0.82); }
 
@@ -491,7 +491,7 @@ section { position: relative; padding: 120px 28px; }
 }
 .impl-card:hover { border-color: var(--gold); transform: translateY(-3px); }
 .impl-card .impl-num { font-family: var(--serif-display); font-style: italic; font-size: 42px; color: var(--gold); line-height: 1; }
-.impl-card h4 { font-size: 24px; margin: 12px 0 16px; }
+.impl-card h3 { font-size: 24px; margin: 12px 0 16px; }
 .impl-card p { font-size: 15px; line-height: 1.6; color: rgba(245, 239, 226, 0.8); margin: 0; }
 .impl-card .impl-aspects {
   margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--rule-dim);
@@ -511,7 +511,7 @@ section { position: relative; padding: 120px 28px; }
 }
 .counter-item:last-child { border-bottom: 1px solid var(--rule-dim); }
 .counter-q { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
-.counter-q h4 {
+.counter-q h3 {
   font-family: var(--serif-display); font-style: italic; font-size: 22px;
   margin: 0; color: var(--paper); flex: 1; line-height: 1.3;
 }
@@ -704,11 +704,11 @@ footer {
 </style>
 </head>
 <body id="top">
-  <div class="status-banner" style="background:#2a1b1b; color:#d4c9af; text-align:center; padding:8px; font-size:0.85rem; border-bottom:1px solid #8a2436;">
+  <div class="status-banner" role="region" aria-label="Site status" style="background:#2a1b1b; color:#d4c9af; text-align:center; padding:8px; font-size:0.85rem; border-bottom:1px solid #8a2436;">
     <strong>Historical Artifact:</strong> This companion site reflects the completed qualifying-paper theory. See the main dissertation hub for the current empirical proposal.
   </div>
 
-<div id="progress-bar"><div></div></div>
+<div id="progress-bar" aria-hidden="true"><div></div></div>
 
 <header class="nav" id="nav">
   <div class="nav-inner">
@@ -731,6 +731,8 @@ footer {
     </nav>
   </div>
 </header>
+
+<main>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="hero">
@@ -1051,12 +1053,12 @@ footer {
       <div class="equity-grid">
         <div class="equity-card">
           <span class="equity-tag">Definition</span>
-          <h4>Difficulty that builds capacity</h4>
+          <h3>Difficulty that builds capacity</h3>
           <p>The cognitive effort that builds schema, develops capacity, and enables transfer. Wrestling with difficult texts, defending arguments against genuine critique, composing original work, revising based on feedback. These difficulties are <em>desirable</em> in Bjork's sense.</p>
         </div>
         <div class="equity-card">
           <span class="equity-tag">Examples</span>
-          <h4>What it looks like in practice</h4>
+          <h3>What it looks like in practice</h3>
           <p>Retrieval before AI assistance. Oral defenses of written work. Process portfolios that document revision. Peer critique of original drafts. Collaborative inquiry on contested questions. Reflection on the path of one's own reasoning.</p>
         </div>
       </div>
@@ -1066,12 +1068,12 @@ footer {
       <div class="equity-grid">
         <div class="equity-card">
           <span class="equity-tag">Definition</span>
-          <h4>Difficulty that blocks access</h4>
+          <h3>Difficulty that blocks access</h3>
           <p>Arbitrary obstruction that prevents participation without building capacity. Language barriers imposed on content assessment. Inaccessible formats. Procedural requirements unrelated to learning. Difficulty that treats one cognitive profile as the unmarked norm.</p>
         </div>
         <div class="equity-card">
           <span class="equity-tag">The disability-studies challenge</span>
-          <h4>"Rigor" as historical gatekeeping</h4>
+          <h3>"Rigor" as historical gatekeeping</h3>
           <p>Dolmage (2017) argues that what higher education has called "rigor" has often functioned to preserve access for students whose embodied relationship to reading, writing, and timed performance already matches institutional expectations. Any call to preserve difficulty warrants scrutiny.</p>
         </div>
       </div>
@@ -1097,19 +1099,19 @@ footer {
     <div class="impl-grid">
       <div class="impl-card">
         <div class="impl-num">I.</div>
-        <h4>Curriculum</h4>
+        <h3>Curriculum</h3>
         <p>Process-oriented pedagogy assesses the quality of thinking rather than the polish of products. Sequencing matters: tasks that require noetic struggle <em>before</em> AI assistance preserve the generative cognitive work that prepares students for future learning. Oral components, peer critique, and written reflection introduce forms of friction that resist algorithmic substitution.</p>
         <div class="impl-aspects"><span>Process portfolios</span><span>Oral defense</span><span>Pre-AI generation</span><span>Visible thinking</span></div>
       </div>
       <div class="impl-card">
         <div class="impl-num">II.</div>
-        <h4>Advocacy</h4>
+        <h3>Advocacy</h3>
         <p>Educational leaders are positioned to name friction as a protected value. The dominant discourse frames innovation as efficiency, personalization, and scalability — but efficiency is the visible edge of a deeper economic logic. The advocacy task is to articulate why the cognitive labor of learning is not an inefficiency to be optimized away.</p>
         <div class="impl-aspects"><span>Public framing</span><span>Press &amp; podium</span><span>Equity dimension</span><span>Naming losses</span></div>
       </div>
       <div class="impl-card">
         <div class="impl-num">III.</div>
-        <h4>Policy</h4>
+        <h3>Policy</h3>
         <p>Most district and university AI policies address integrity, privacy, bias, and risk. These are necessary. But they are silent on learning science. Friction-centered policy makes explicit what cognitive processes education aims to develop, why those processes warrant protection, and what institutional conditions support educators in preserving them.</p>
         <div class="impl-aspects"><span>Beyond integrity</span><span>Cognitive aims</span><span>Assessment norms</span><span>PD priorities</span></div>
       </div>
@@ -1126,31 +1128,31 @@ footer {
 
     <div class="counter-list" id="counterList">
       <div class="counter-item">
-        <div class="counter-q"><h4>Isn't this just nostalgia for a pre-digital classroom?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-q"><h3>Isn't this just nostalgia for a pre-digital classroom?</h3><div class="counter-toggle">+</div></div>
         <div class="counter-a"><p>No. Pedagogical friction is not a call to ban tools or restore some imagined simplicity. It is a recognition that learning requires certain kinds of difficulty, that those difficulties are what the learning sciences describe as <em>desirable</em>, and that under conditions of tertiary algorithmicity those difficulties have to be deliberately preserved. The framework is forward-facing; it asks what schools must protect under new defaults, not which technologies must be excluded.</p></div>
       </div>
       <div class="counter-item">
-        <div class="counter-q"><h4>Isn't the stage model teleological — implying each transition is progress and supersedes prior stages?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-q"><h3>Isn't the stage model teleological — implying each transition is progress and supersedes prior stages?</h3><div class="counter-toggle">+</div></div>
         <div class="counter-a"><p>Ong himself resisted this reading. Each transition brought losses as well as gains. Literacy enabled analytical detachment but diminished communal and mnemonic capacities. This paper retains that frame: tertiary algorithmicity is not a successor that renders prior forms obsolete. The stages coexist and overlap. The argument is descriptive of dominant conditions, not prescriptive of inevitable progress.</p></div>
       </div>
       <div class="counter-item">
-        <div class="counter-q"><h4>Doesn't the rhetoric of "rigor" historically function as gatekeeping?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-q"><h3>Doesn't the rhetoric of "rigor" historically function as gatekeeping?</h3><div class="counter-toggle">+</div></div>
         <div class="counter-a"><p>The disability-studies critique (Dolmage, 2017) is real and is taken up directly in Section V·C. The framework does not resolve the tension. What it offers is an interpretive structure that requires educators to ask, for each instructional decision, whether the friction in question <em>builds schema the student would otherwise not construct</em>, or whether it <em>imposes barriers that treat a particular cognitive profile as the unmarked norm</em>. This question has no universal answer.</p></div>
       </div>
       <div class="counter-item">
-        <div class="counter-q"><h4>What about students for whom AI removes exclusionary barriers — English learners, students with disabilities, multilingual writers?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-q"><h3>What about students for whom AI removes exclusionary barriers — English learners, students with disabilities, multilingual writers?</h3><div class="counter-toggle">+</div></div>
         <div class="counter-a"><p>The paper acknowledges this directly: generative AI can reduce exclusionary friction. The paradox is that the same tool that provides access for one student can remove productive friction for another. The pedagogical question — "for whom does this difficulty build capacity, and for whom does it restrict access?" — is meant to make that paradox a routine part of instructional design, not a special case.</p></div>
       </div>
       <div class="counter-item">
-        <div class="counter-q"><h4>What about Mayer (2009) and Heyd (2021)? Don't they already extend Ong to tertiary orality?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-q"><h3>What about Mayer (2009) and Heyd (2021)? Don't they already extend Ong to tertiary orality?</h3><div class="counter-toggle">+</div></div>
         <div class="counter-a"><p>They make the analytic move toward extension, but they treat digital interactivity as a continuation of orality's logic. Generative AI represents a categorically different condition: not only the conditions of distribution shift, but the source of symbolic production. Tertiary <em>orality</em> still presumes human authorship. Tertiary <em>algorithmicity</em> does not.</p></div>
       </div>
       <div class="counter-item">
-        <div class="counter-q"><h4>Hasn't McLuhan's extension framework already done this work?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-q"><h3>Hasn't McLuhan's extension framework already done this work?</h3><div class="counter-toggle">+</div></div>
         <div class="counter-a"><p>McLuhan provides one set of resources, and the 2024 special issue of <em>Explorations in Media Ecology</em> uses them productively. But McLuhan's framework is most powerful at the level of <em>what media do</em>; Ong's developmental account asks what they restructure inside consciousness. For an argument grounded in the noetic conditions of learning, Ong is the more direct theoretical ancestor.</p></div>
       </div>
       <div class="counter-item">
-        <div class="counter-q"><h4>Aren't these claims empirical questions the framework can't answer?</h4><div class="counter-toggle">+</div></div>
+        <div class="counter-q"><h3>Aren't these claims empirical questions the framework can't answer?</h3><div class="counter-toggle">+</div></div>
         <div class="counter-a"><p>Yes. The paper is conceptual. It does not present empirical evidence for how tertiary algorithmicity affects student learning, how educators navigate friction preservation, or how policy shapes the conditions for friction. These are the questions the planned dissertation is designed to take up.</p></div>
       </div>
     </div>
@@ -1188,9 +1190,11 @@ footer {
       <input type="search" id="refsSearch" placeholder="Search by author, year, or keyword (e.g., Ong, Kapur, friction, 2024)" />
       <span class="refs-count" id="refsCount"></span>
     </div>
-    <ul class="refs-list" id="refsList"></ul>
+    <ul class="refs-list" id="refsList" tabindex="0" aria-label="References list"></ul>
   </div>
 </section>
+
+</main>
 
 <!-- ===== FOOTER ===== -->
 <footer>
@@ -1526,15 +1530,6 @@ const REFERENCES_DATA = window.__REFERENCES__ = [];
       list.appendChild(li);
     });
     count.textContent = n + ' of ' + refs.length + ' references';
-  }
-  function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-  search.addEventListener('input', () => render(search.value));
-  render('');
-})();
-</script>
-</body>
-</html>
-.length + ' references';
   }
   function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
   search.addEventListener('input', () => render(search.value));

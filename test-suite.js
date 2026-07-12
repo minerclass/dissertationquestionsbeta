@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { JSDOM } = require('jsdom'); // May need npm install jsdom
 
 async function runTests() {
   let errors = 0;
