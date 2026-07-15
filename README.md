@@ -93,7 +93,7 @@ Do not use the app for live dissertation data collection until the final protoco
 
 The app intentionally avoids fully dynamic AI-generated follow-up questions. Standardized follow-up probes preserve consistency across participants and are easier to defend in a mixed methods dissertation design.
 
-Building-level administrators and district or system-level leaders complete the same institutional protocol. The leadership role and exported role-group fields preserve their separation for within-case analysis.
+Building-level administrators and district or system-level leaders complete the same institutional protocol. The leadership role and exported role-group fields preserve their separation for analysis across role groups.
 
 The prompt data model is aligned to the Pedagogical Friction Framework from the start so exported responses are easier to code across:
 
