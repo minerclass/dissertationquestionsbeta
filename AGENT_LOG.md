@@ -118,6 +118,26 @@ they are not repeated:
   *unproductive success*. It is press coverage, not an authored publication, and
   must not be listed as one.
 
+### Addendum, same day: third-party embeds excluded
+
+With the repaired gate running for real, `media/index.html` failed on
+`aria-prohibited-attr` with two occurrences at
+`article:nth-child(3) > iframe .ndfHFb-c4YZDc-zTETae` and the sibling below it.
+
+That class belongs to Google Drive's video player. The violation is inside the
+embed, not in this repository. The local markup is correct: both iframes carry
+`title`, `allow`, `loading="lazy"`, and `allowfullscreen`.
+
+The workflow now passes `--exclude` for known embed hosts (`drive.google.com`,
+`docs.google.com`, `youtube.com`, `youtube-nocookie.com`) rather than ignoring
+the page or disabling the rule globally. Note the trade-off: excluding the
+iframe element also skips `frame-title` on it, so **check `title` by hand when
+adding an embed**. The page's own markup is still fully checked.
+
+This is also why an earlier browser-based sweep reported this page clean.
+Nested cross-origin frames were not reachable from that harness, so axe never
+saw the embed internals. The CI result is the more complete one.
+
 ### Cross-repository context
 
 This change set spans five repositories: `pedagogical-friction`,
