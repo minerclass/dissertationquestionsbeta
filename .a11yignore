@@ -13,3 +13,12 @@
 # Advisory-only findings on this page (not gated, listed for completeness):
 #   landmark-one-main, page-has-heading-one, region.
 dashboard.html
+
+# Two Google Drive video embeds. The page's own markup was checked and is
+# clean; both iframes carry title, allow, loading, and allowfullscreen. The
+# only finding is aria-prohibited-attr (x2) inside Google's player markup
+# (.ndfHFb-c4YZDc-zTETae), which is rendered by the vendor and cannot be
+# corrected here. axe --exclude does not suppress frame-nested findings; see
+# the note in .github/workflows/ci.yml.
+# Re-check this page by hand if its own markup changes.
+media/index.html

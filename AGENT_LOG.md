@@ -128,11 +128,18 @@ That class belongs to Google Drive's video player. The violation is inside the
 embed, not in this repository. The local markup is correct: both iframes carry
 `title`, `allow`, `loading="lazy"`, and `allowfullscreen`.
 
-The workflow now passes `--exclude` for known embed hosts (`drive.google.com`,
-`docs.google.com`, `youtube.com`, `youtube-nocookie.com`) rather than ignoring
-the page or disabling the rule globally. Note the trade-off: excluding the
-iframe element also skips `frame-title` on it, so **check `title` by hand when
-adding an embed**. The page's own markup is still fully checked.
+`axe --exclude "iframe[src*='drive.google.com']"` was tried first and **does not
+work**; the findings still appeared. axe descends into embedded frames and
+reports frame-crossing targets, which `--exclude` did not suppress. That attempt
+was reverted rather than left in place as config that looks effective but is
+not. A note recording the failed approach is in `.github/workflows/ci.yml` so it
+is not retried.
+
+`media/index.html` is therefore listed in `.a11yignore`. The consequence is that
+this page's own markup is no longer machine-checked, so **re-check it by hand if
+it changes**. As of this entry it is clean.
+
+This is also why an earlier browser-based sweep reported this page clean.
 
 This is also why an earlier browser-based sweep reported this page clean.
 Nested cross-origin frames were not reachable from that harness, so axe never
