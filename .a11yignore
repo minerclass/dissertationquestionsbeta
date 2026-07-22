@@ -1,0 +1,15 @@
+# Paths skipped by the Accessibility Checker job in .github/workflows/ci.yml.
+# One path per line, relative to the repo root. Keep this list as short as
+# possible and record every entry in AGENT_LOG.md with its open issue.
+#
+# Do not add a page here just to turn the build green. This file is only for
+# generated bundles whose markup cannot be corrected in this repository.
+
+# Vite single-file build. The DOM is produced at runtime by the inlined module,
+# so the markup cannot be edited here; fixes belong in the upstream source
+# project. Known open WCAG AA issue as of 2026-07-22:
+#   color-contrast: "0 participants loaded" renders #939eb4 on #273d68 = 3.98:1
+#   at 10px, below the 4.5:1 minimum. Suggested source fix: #a4b0c8 (4.93:1).
+# Advisory-only findings on this page (not gated, listed for completeness):
+#   landmark-one-main, page-has-heading-one, region.
+dashboard.html
