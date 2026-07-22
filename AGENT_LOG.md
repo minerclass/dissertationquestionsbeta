@@ -76,15 +76,50 @@ Structure:
 Post-change: every page except `dashboard.html` reports zero axe violations
 under the full default rule set.
 
-### Open item: dashboard.html
+### Resolved, same day: dashboard.html contrast fixed
+
+Superseded by this section: the "Open item" below described `dashboard.html` as
+unfixable here and listed it in `.a11yignore`. That was based on it being a
+build artifact. It is not, in the sense that matters: **there is no source
+project for it anywhere.** No `package.json`, `src/`, or Vite config exists in
+this repository, in any of the 50 public `minerclass` repositories, or in either
+local working tree (`Documents\New project`, `Desktop\Research`). The only other
+copy on disk is another build of the same file.
+
+The built file is therefore the artifact of record. Nothing regenerates it, so
+editing it directly is durable rather than fragile, and it was fixed in place.
+
+The failure was not a flat colour. The status line is white text at
+`opacity: .5` over `#273d68`, which blends to `#939eb4` = **3.98:1** at 10px.
+A `<style>` block added at the end of `<head>` raises it:
+
+```css
+.text-\[10px\].opacity-50 { opacity: .65; }
+```
+
+At `.65` the blend is `#b3bbca` = **5.57:1**, still visibly muted. The
+two-class selector outranks Tailwind's single-class `.opacity-50`, so no
+`!important` is needed, and it sits after the bundled stylesheet so source order
+agrees. Verified in the browser before editing: computed opacity became `.65`
+and a WCAG A/AA axe run on the live page returned zero violations.
+
+`dashboard.html` has been removed from `.a11yignore` and is checked by CI again.
+If a source project ever appears, move the rule into it and delete the block.
+
+The advisory findings on this page (`landmark-one-main`, `page-has-heading-one`,
+`region` x3) remain. They are not WCAG failures and are not gated, but they are
+real structural gaps worth fixing if the dashboard is ever rebuilt.
+
+### Superseded: original open item for dashboard.html
 
 `dashboard.html` is a roughly 406KB Vite single-file build with the module
 inlined. The DOM is produced at run time, so the markup cannot be corrected in
 this repository. **There is no source project for it in this repo**; fixes
 belong upstream, wherever it is built.
 
-It is listed in `.a11yignore` so it does not block the gate. That is a
-deliberate, documented exception, not a fix. Known findings as of 2026-07-22:
+It was listed in `.a11yignore` so it did not block the gate. **Both claims above
+were corrected the same day; see the resolved section immediately preceding.**
+Findings as originally recorded:
 
 | Rule | Severity | Detail |
 |---|---|---|
@@ -93,7 +128,8 @@ deliberate, documented exception, not a fix. Known findings as of 2026-07-22:
 | `page-has-heading-one` | Advisory | No `<h1>`; first heading is `<h2>`. |
 | `region` (x3) | Advisory | Header, tab strip, and tab panel sit outside any landmark. |
 
-Remove the `.a11yignore` entry once the upstream source is corrected and rebuilt.
+(The `.a11yignore` entry was removed the same day once the contrast was fixed
+in place.)
 
 ### Verification method
 
