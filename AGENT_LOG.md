@@ -19,6 +19,19 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-07-24 - Current-proposal and cross-site alignment
+
+Agent: OpenAI Codex, working from the revised Chapters 1-3 proposal and a
+cross-site consistency review.
+
+- Added adult university students to the future-study description while keeping
+  their retrospective accounts in the supplementary evidence tier.
+- Preserved the distinct nonparticipant comparison and its required bounded,
+  prespecified agentic-artifact task.
+- Clarified infrastructural friction as an active source of constraint and
+  enablement rather than a neutral backdrop.
+- Corrected the methodology and mixed-methods destinations in both the linear and visual constellation views.
+- Added no participant data, findings, or collection features.
 ## 2026-07-22 - Weekly Pages review, accessibility and CI repair
 
 Agent: Claude Opus 4.8 (Claude Code), working from a weekly review of the
