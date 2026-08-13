@@ -12,6 +12,8 @@ The study remains proposal-stage and pre-IRB. A technically live page does not i
 
 The August 13 alignment pass used these protected Drive documents:
 
+- `Miner Dissertation Proposal Chapters 1-3 - Revision Working Copy - July 24 -'26`
+- `02 - Miner IRB Narrative - PROTECTED WORKING COPY`
 - `05A - Classroom Educator Interview and Card Sort - IRB ATTACHMENT`
 - `05B - Administrator and District-System Leader Interview - IRB ATTACHMENT`
 - `05C - Adult University Student Interview and Card Sort - IRB ATTACHMENT`
@@ -21,9 +23,11 @@ The August 13 alignment pass used these protected Drive documents:
 
 ## Scope controls
 
-- Classroom-facing educators: interview plus the ten-card scenario sort; no browser-local audio.
-- Building administrators and district/system leaders: shared interview protocol; no card sort and no browser-local audio.
-- Adult university students: interview plus the same ten-card scenario sort; browser-local audio is limited to the optional closing response and requires confirmed written audio permission.
+- With written permission, live interview sessions may be recorded with audio and video through the separate approved recording process; participants may decline recording and still take part.
+- Classroom-facing educators: interview plus the ten-card scenario sort; no browser-local recording.
+- Building administrators and district/system leaders: shared interview protocol; no card sort and no browser-local recording.
+- Adult university students: interview plus the same ten-card scenario sort; browser-local audio is limited to the optional closing response and requires confirmed written recording permission.
+- The public pages do not capture video.
 - Analytic dimension tags remain internal researcher metadata and are not shown or included in participant-facing export previews.
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
@@ -33,6 +37,6 @@ Do not enable collection controls until all of the following are complete:
 
 1. Written IRB approval is documented.
 2. The approved 05A, 05B, and 05C attachments are compared with the deployed wording.
-3. The approved consent and data-management language is compared with the deployed collection, audio, transfer, retention, and deletion behavior.
+3. The approved consent and data-management language is compared with the deployed collection, audio/video recording, transfer, retention, and deletion behavior.
 4. The activation commit is tested locally and then verified on the live GitHub Pages routes.
 5. The status and version match are recorded here.
