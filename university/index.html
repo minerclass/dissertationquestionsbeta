@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Adult University-Student Retrospective GenAI Learning App</title>
-  <meta name="description" content="University-student local-first interview tool for generative AI, authorship, learning process, and noetic friction.">
+  <title>Adult University Student Interview and Card Sort</title>
+  <meta name="description" content="Read-only pre-IRB review copy of the adult university student interview and card-sort instrument.">
   <link rel="stylesheet" href="../shared/styles.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
   <div class="shell">
     <aside>
       <div class="role-badge">Adult University-Student Retrospective Instrument</div>
-      <h1>Adult University-Student Retrospective GenAI Learning App</h1>
-      <p>A focused student-facing version for the pre-GenAI to post-GenAI learning transition.</p>
-      <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
+      <h1>Adult University Student Interview and Card Sort</h1>
+      <p>A researcher-guided, in-session tool matching the participant-facing IRB instrument attachment.</p>
+      <div class="privacy-note"><strong>Privacy default:</strong> when approved and enabled, entries stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
       <p class="hint">Use this when the participant is an adult university-student retrospective participant reflecting on high school and current academic work.</p>
       <div class="button-row">
@@ -25,10 +25,14 @@
     </aside>
 
     <main id="main" tabindex="-1">
+      <div class="review-banner" role="status">
+        <strong>Under review — not collecting responses</strong>
+        Wording is available for committee and IRB review. Data entry, browser recording, local saving, and export remain disabled until written IRB approval and a version-match check.
+      </div>
       <div class="topbar">
         <div>
           <strong>Adult University-Student Retrospective Instrument</strong>
-          <div class="meta">GenAI, cognitive struggle, authorship, peer learning, and academic ownership</div>
+          <div class="meta">Estimated session length: 30–60 minutes in total</div>
         </div>
         <div class="button-row">
           <button class="btn" id="saveDraftButton" type="button">Save draft</button>
@@ -39,11 +43,11 @@
       <section class="panel" data-step="0">
         <div class="panel-header">
           <h2>Consent and Context</h2>
-          <p>This page collects adult university student responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
+          <p>This read-only page displays the draft participant-facing instrument for review. It does not collect or export responses.</p>
         </div>
         <div class="panel-body">
-          <div class="callout"><strong>Standard opening script:</strong> Thank you for taking the time to speak with me. This conversation is part of a study on how learners make sense of generative AI in relation to teaching and learning. There are no right or wrong answers; I am interested in your honest experience, including where you disagree with how others frame these issues. Your participation is voluntary, you may skip any question, and you may stop at any time. Do you have any questions before we begin? If audio recording will be used, do I have your permission to record?</div>
-          <div class="callout"><strong>Eligibility:</strong> this protocol is for a current university student who is 18 or older and was in grade 10, 11, or 12 during the 2022-2023 school year.</div>
+          <div class="callout"><strong>Standard opening script:</strong> Thank you for taking the time to speak with me. This conversation is part of a study on how participants make sense of generative AI in relation to teaching and learning. There are no right or wrong answers; I am interested in your honest experience, including where you disagree with how others frame these issues. Your participation is voluntary, you may skip any question, and you may stop at any time. With your permission I will record audio only to transcribe accurately; you may decline recording. Do you have any questions before we begin? Do I have your permission to record?</div>
+          <div class="callout"><strong>Eligibility:</strong> age 18 or older, currently enrolled at a college or university, and enrolled in grade 10, 11, or 12 during the 2022–2023 school year.</div>
           <div class="callout"><strong>Research caution:</strong> students may skip any question. Avoid collecting school names, course names, instructor names, or other direct identifiers unless approved.</div>
           <div class="grid">
             <div class="field">
@@ -70,13 +74,17 @@
           </div>
           <label class="choice">
             <input id="consentCheck" type="checkbox">
-            <span>I confirm this adult participant has reviewed the study consent language and may skip any question.</span>
+            <span>I confirm this adult participant completed the approved written consent process.</span>
           </label>
           <label class="choice">
             <input id="eligibilityCheck" type="checkbox">
             <span>I confirm that I am a current university student, am 18 or older, and was in grade 10, 11, or 12 during 2022-2023.</span>
           </label>
-          <div class="callout"><strong>Optional audio recording:</strong> With the participant's permission, audio may be recorded to support accurate transcription. Audio remains in this browser until it is downloaded or local data is cleared. The researcher must transfer, retain, restrict access to, and delete recordings according to the approved consent form and data-management plan. The participant may decline recording and still take part.</div>
+          <label class="choice">
+            <input id="audioConsentCheck" type="checkbox">
+            <span>I confirm the participant gave written permission for audio recording. Leave unchecked if recording was declined.</span>
+          </label>
+          <div class="callout"><strong>Optional browser-local audio:</strong> only the closing response may be recorded in this browser, and only when written audio permission is confirmed. The participant may decline recording and still take part.</div>
           <div class="actions">
             <span class="hint">All response data remains local until export.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
@@ -100,8 +108,8 @@
 
       <section class="panel hidden" data-step="2">
         <div class="panel-header">
-          <h2>Typed or Recorded Reflection</h2>
-          <p>Students can type, record audio locally, or do both. If recording is used, type or paste a reviewed transcript or summary before export.</p>
+          <h2>Reflection Prompts</h2>
+          <p>The researcher may enter notes or a reviewed transcript. The optional browser-local recorder appears only with the closing question.</p>
         </div>
         <div class="panel-body">
           <div id="reflectionItems"></div>
@@ -115,7 +123,7 @@
       <section class="panel hidden" data-step="3">
         <div class="panel-header">
           <h2>Student Card Sort</h2>
-          <p>Place each scenario along two dimensions and explain your reasoning: how much productive noetic friction it preserves, and whether the AI use is legitimate in education.</p>
+          <p>Place each scenario along two dimensions and explain the placement: how much of the learner's own thinking, effort, and judgment it preserves, and whether it is a legitimate use of AI in education.</p>
         </div>
         <div class="panel-body">
           <div id="cardSortItems"></div>
@@ -150,7 +158,8 @@
   <script type="module">
     import { q, r, cs, slug } from '../shared/app.js';
 
-    const STORAGE_KEY = "university-student-friction-draft-v1";
+    const COLLECTION_ENABLED = false;
+    const STORAGE_KEY = "university-student-approved-v2";
     const steps = ["Consent", "Quick response", "Reflection", "Card sort", "Export"];
     const quickItems = [
       q("use_frequency", "How often do you use AI for coursework?", "choice", ["Never", "Rarely", "Sometimes", "Often", "Always"], ["noetic"]),
@@ -177,7 +186,7 @@
       cs("Students use AI to brainstorm possible claims, then draft the essay without AI.", ["noetic", "rhetorical"]),
       cs("A student submits an AI-assisted essay and then defends the thesis in a one-on-one conference.", ["rhetorical", "existential"]),
       cs("A multilingual learner uses AI translation to understand the assignment directions before starting.", ["equity", "infrastructural"]),
-      cs("AI summarizes a source before students read the original text.", ["noetic", "rhetorical"]),
+      cs("AI summarizes a source for the class before students read the original text.", ["noetic", "rhetorical"]),
       cs("A school blocks all AI tools because district guidance is unclear.", ["policy", "infrastructural"]),
       cs("A teacher uses AI to generate first-draft feedback on every student essay.", ["rhetorical"]),
       cs("A student asks AI to explain a concept they do not understand, then completes the problem set alone.", ["noetic"]),
@@ -200,20 +209,24 @@
         universityContext: "",
         consent: false,
         eligibilityConfirmed: false,
+        audioConsentConfirmed: false,
         quickResponses: {},
         reflections: {},
         cardSort: {},
+        cardSortFollowUp: "",
         audio: {},
         updatedAt: null
       };
     }
 
     function loadState() {
+      if (!COLLECTION_ENABLED) return defaultState();
       try { return { ...defaultState(), ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") }; }
       catch { return defaultState(); }
     }
 
     function persist() {
+      if (!COLLECTION_ENABLED) return;
       syncStateFromDom();
       if (!state.consent || !state.eligibilityConfirmed) {
         localStorage.removeItem(STORAGE_KEY);
@@ -230,6 +243,14 @@
       document.querySelector("#universityContext").value = state.universityContext || "";
       document.querySelector("#consentCheck").checked = Boolean(state.consent);
       document.querySelector("#eligibilityCheck").checked = Boolean(state.eligibilityConfirmed);
+      document.querySelector("#audioConsentCheck").checked = Boolean(state.audioConsentConfirmed);
+    }
+
+    function applyCollectionState() {
+      if (COLLECTION_ENABLED) return;
+      document.querySelectorAll("input, select, textarea, #saveDraftButton, #clearButton, #downloadJsonButton, #downloadMarkdownButton, [data-record], [data-stop]").forEach((control) => {
+        control.disabled = true;
+      });
     }
 
     function renderProgress() {
@@ -250,6 +271,7 @@
       if (currentStep === 3) renderCardSort();
       if (currentStep === 4) renderPreview();
       renderProgress();
+      applyCollectionState();
       const activePanel = document.querySelector(`[data-step="${currentStep}"]`);
       const heading = activePanel && activePanel.querySelector("h2");
       if (heading && shouldScroll) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
@@ -275,18 +297,22 @@
       document.querySelector("#reflectionItems").innerHTML = reflections.map((item, index) => {
         const response = state.reflections[item.id] || {};
         const audio = state.audio[item.id];
-        return `
-          <div class="question-card">
-            <div class="question-meta"><span class="tag gold">Reflection ${index + 1}</span></div>
-            <h3>${item.text}</h3>
-            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Type response, paste reviewed transcript, or summarize recorded answer.">${escapeText(response.text || "")}</textarea>
+        const isClosing = item.id === "closing_response";
+        const label = isClosing ? "Closing" : `Reflection ${index + 1}`;
+        const recorder = isClosing ? `
             <div class="recorder">
               <span class="recording-dot" data-dot="${item.id}"></span>
-              <button class="btn" type="button" data-record="${item.id}">Start recording</button>
+              <button class="btn" type="button" data-record="${item.id}">Start optional closing recording</button>
               <button class="btn" type="button" data-stop="${item.id}" disabled>Stop</button>
               ${audio ? `<a class="btn" href="${audio.dataUrl}" download="${safeFileName(item.id)}.webm">Download audio</a>` : ""}
-              <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Optional browser-local recording"}</span>
-            </div>
+              <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Available only with written audio permission"}</span>
+            </div>` : "";
+        return `
+          <div class="question-card">
+            <div class="question-meta"><span class="tag gold">${label}</span></div>
+            <h3>${item.text}</h3>
+            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Researcher notes or reviewed transcript.">${escapeText(response.text || "")}</textarea>
+            ${recorder}
             ${item.followUp ? `<div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
               <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
@@ -303,11 +329,17 @@
           <div class="sort-card">
             <div class="question-meta"><span class="tag gray">Card ${index + 1}</span></div>
             <h3>${card.text}</h3>
-            <div class="pill-options" role="radiogroup" aria-label="Productive noetic friction preserved, card ${index + 1}">${["Low productive noetic friction", "Medium productive noetic friction", "High productive noetic friction"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <div class="pill-options" role="radiogroup" aria-label="Learner thinking, effort, and judgment preserved, card ${index + 1}">${["Low", "Medium", "High"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
             <div class="pill-options" role="radiogroup" aria-label="Legitimate use of AI in education, card ${index + 1}">${["Not legitimate", "Contested", "Legitimate"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>${value}</label>`).join("")}</div>
-            <textarea data-sort-note="${card.id}" aria-label="${escapeAttr(`Rationale for card ${index + 1}: ${card.text}`)}" placeholder="Optional rationale.">${escapeText(response.note || "")}</textarea>
+            <textarea data-sort-note="${card.id}" aria-label="${escapeAttr(`Reasoning for card ${index + 1}: ${card.text}`)}" placeholder="Explain the placement.">${escapeText(response.note || "")}</textarea>
           </div>`;
-      }).join("");
+      }).join("") + `
+        <div class="question-card">
+          <div class="question-meta"><span class="tag gold">Card-sort follow-up</span></div>
+          <h3>Which two cards were hardest to place, and why?</h3>
+          <textarea id="cardSortFollowUp" aria-label="Which two cards were hardest to place, and why?" placeholder="Researcher notes or reviewed transcript.">${escapeText(state.cardSortFollowUp || "")}</textarea>
+        </div>`;
+      applyCollectionState();
     }
 
     function syncStateFromDom() {
@@ -323,6 +355,8 @@
       if (consent) state.consent = consent.checked;
       const eligibility = document.querySelector("#eligibilityCheck");
       if (eligibility) state.eligibilityConfirmed = eligibility.checked;
+      const audioConsent = document.querySelector("#audioConsentCheck");
+      if (audioConsent) state.audioConsentConfirmed = audioConsent.checked;
       document.querySelectorAll("[data-quick]").forEach((input) => state.quickResponses[input.dataset.quick] = input.value);
       document.querySelectorAll("[data-reflection]").forEach((input) => {
         state.reflections[input.dataset.reflection] = state.reflections[input.dataset.reflection] || {};
@@ -341,13 +375,15 @@
         state.cardSort[input.dataset.sortNote] = state.cardSort[input.dataset.sortNote] || {};
         state.cardSort[input.dataset.sortNote].note = input.value;
       });
+      const cardSortFollowUp = document.querySelector("#cardSortFollowUp");
+      if (cardSortFollowUp) state.cardSortFollowUp = cardSortFollowUp.value;
     }
 
     function exportData() {
       syncStateFromDom();
       return {
-        app: "Adult University-Student Retrospective GenAI Learning App",
-        version: "2026-06-university-static-v1",
+        app: "Adult University Student Interview and Card Sort",
+        version: "2026-08-irb-aligned-review-v2",
         exportedAt: new Date().toISOString(),
         participant: {
           code: state.participantCode,
@@ -356,23 +392,23 @@
           transitionYear: state.transitionYear,
           universityContext: state.universityContext,
           consentChecked: state.consent,
-          eligibilityConfirmed: state.eligibilityConfirmed
+          eligibilityConfirmed: state.eligibilityConfirmed,
+          audioConsentConfirmed: state.audioConsentConfirmed
         },
-        frameworkDimensions: ["noetic", "rhetorical", "existential", "infrastructural", "equity", "policy", "authorship"],
-        quickResponses: quickItems.map((item) => ({ id: item.id, prompt: item.text, tags: item.tags, response: state.quickResponses[item.id] || "" })),
+        quickResponses: quickItems.map((item) => ({ id: item.id, prompt: item.text, response: state.quickResponses[item.id] || "" })),
         reflections: reflections.map((item) => ({
           id: item.id,
           prompt: item.text,
           standardFollowUp: item.followUp,
-          tags: item.tags,
           response: (state.reflections[item.id] || {}).text || "",
           followUpResponse: (state.reflections[item.id] || {}).followUp || "",
           audioCaptured: Boolean(state.audio[item.id])
         })),
         cardSort: cardSortItems.map((card) => {
           const response = state.cardSort[card.id] || {};
-          return { id: card.id, prompt: card.text, tags: card.tags, friction: response.friction || "", legitimacy: response.legitimacy || "", note: response.note || "" };
+          return { id: card.id, prompt: card.text, thinkingEffortJudgmentPreserved: response.friction || "", legitimacy: response.legitimacy || "", reasoning: response.note || "" };
         }),
+        cardSortFollowUp: state.cardSortFollowUp || "",
         audioManifest: Object.entries(state.audio).map(([id, item]) => ({ reflectionId: id, mimeType: item.mimeType, createdAt: item.createdAt, downloadSeparately: true }))
       };
     }
@@ -381,23 +417,26 @@
       const lines = [`# Adult University-Student Retrospective GenAI Learning Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Transition year: ${data.participant.transitionYear || ""}`, `- University context: ${data.participant.universityContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
-        lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
+        lines.push(`### ${index + 1}. ${item.prompt}`, "", item.response || "_No response_", "");
       });
       lines.push("## Reflections");
       data.reflections.forEach((item, index) => {
-        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
+        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, "", item.response || "_No response_", "");
         if (item.standardFollowUp) lines.push(`**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "");
         lines.push(`Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
       });
       lines.push("## Card Sort");
       data.cardSort.forEach((item, index) => {
-        lines.push(`### Card ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, `Friction: ${item.friction || ""}`, `Legitimacy: ${item.legitimacy || ""}`, `Rationale: ${item.note || ""}`, "");
+        lines.push(`### Card ${index + 1}: ${item.prompt}`, `Learner thinking, effort, and judgment preserved: ${item.thinkingEffortJudgmentPreserved || ""}`, `Legitimacy: ${item.legitimacy || ""}`, `Reasoning: ${item.reasoning || ""}`, "");
       });
+      lines.push("### Card-sort follow-up", "Which two cards were hardest to place, and why?", "", data.cardSortFollowUp || "_No response_", "");
       return lines.join("\n");
     }
 
     function renderPreview() {
-      document.querySelector("#exportPreview").textContent = JSON.stringify(exportData(), null, 2);
+      document.querySelector("#exportPreview").textContent = COLLECTION_ENABLED
+        ? JSON.stringify(exportData(), null, 2)
+        : "Export is disabled while this instrument is under review and not collecting responses.";
     }
 
     function download(filename, content, type) {
@@ -423,6 +462,16 @@
     function escapeAttr(text) { return escapeText(text).replace(/`/g, "&#96;"); }
 
     async function startRecording(id) {
+      if (!COLLECTION_ENABLED) return;
+      syncStateFromDom();
+      if (id !== "closing_response") {
+        alert("Browser-local audio is limited to the optional closing response.");
+        return;
+      }
+      if (!state.audioConsentConfirmed) {
+        alert("Confirm the participant's written audio permission before recording.");
+        return;
+      }
       if (!navigator.mediaDevices || !window.MediaRecorder) {
         alert("Audio recording is not supported in this browser. You can still type or paste a transcript.");
         return;
@@ -480,6 +529,10 @@
       const record = event.target.closest("[data-record]");
       const stop = event.target.closest("[data-stop]");
       if (next) {
+        if (!COLLECTION_ENABLED) {
+          showStep(currentStep + 1);
+          return;
+        }
         syncStateFromDom();
         if (currentStep === 0 && (!state.consent || !state.eligibilityConfirmed)) {
           alert("Confirm both eligibility and review of the approved consent language before continuing.");
@@ -488,7 +541,10 @@
         persist();
         showStep(currentStep + 1);
       }
-      if (prev) { persist(); showStep(currentStep - 1); }
+      if (prev) {
+        if (COLLECTION_ENABLED) persist();
+        showStep(currentStep - 1);
+      }
       if (record) startRecording(record.dataset.record);
       if (stop) stopRecording(stop.dataset.stop);
     });

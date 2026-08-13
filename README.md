@@ -1,10 +1,10 @@
 # Pedagogical Friction Interview Tool
 
-Static GitHub Pages tool for collecting structured and reflective responses for:
+Static GitHub Pages site for reviewing role-specific interview and card-sort instruments for:
 
 **Pedagogical Friction in the Age of Generative AI: A Mixed Methods Proposal**
 
-The root site is designed as a neutral project entrance and role-selection page. Role-specific pages provide the intake, selected-response, reflective interview, card-sort, and export workflows. The structure supports the proposed dissertation study while keeping participant data local to the browser until the participant or researcher downloads an export.
+The root site is a neutral project entrance and role-selection page. While the study remains proposal-stage and pre-IRB, role-specific pages are navigable read-only review copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
 
 ## Live Site
 
@@ -32,34 +32,33 @@ Survey orientation URL:
 
 The front page has been rebuilt as a readable, dependency-free static project entrance instead of a combined interview instrument. The goal is to orient participants without shaping their responses before they enter a role-specific page.
 
-The role-specific apps now include:
+The role-specific pages now include:
 
-- Consent and local-data notice screens
-- Standard opening scripts and role-specific closing questions aligned to the IRB packet
+- A persistent `UNDER REVIEW — NOT COLLECTING RESPONSES` banner
+- Consent, eligibility, and local-data notices aligned to the protected IRB packet
+- Standard opening scripts and role-specific prompts aligned to attachments 05A, 05B, and 05C
 - Role-specific selected-response and short-answer items
-- Typed or browser-local recorded reflection prompts
+- Disabled response fields retained for wording and layout review
 - Standardized follow-up probes rather than AI-generated individualized probing
-- Researcher-only framework tags retained in structured exports but hidden from participant-facing screens
+- Analytic framework tags omitted from participant-facing screens and export previews
 - Shared teacher and university-student card-sort activity aligned to the IRB packet
 - No card sort in the school- and district-leader protocol
-- Review screen
-- JSON and Markdown export
-- Local draft saving through browser localStorage
+- No browser-local audio on the teacher or leader page
+- University-student browser audio limited to the optional closing response and gated by written audio permission
+- Review-only navigation through every instrument section
 
 ## Privacy and IRB Notes
 
 This static version does not use a server, database, account system, or third-party transcription service.
 
-Important limits:
+Current limits:
 
-- Responses stay in the participant's browser until exported.
-- Audio recording uses the browser's local `MediaRecorder` API when supported.
-- Audio is not automatically transcribed.
-- Audio is kept as a current-session browser download, not saved into the long-term local draft.
-- Participants or researchers should type, paste, or revise transcript notes before export.
-- JSON and Markdown exports include an audio manifest, but audio files should be downloaded separately when recordings are used.
-- Exported files must be transferred using an IRB-approved process.
-- The consent form should explain recording, export, retention, deletion, and secure transfer procedures.
+- The pages do not receive or transmit participant responses.
+- Collection controls are disabled until written IRB approval and a version-match check.
+- Teacher and leader pages do not expose the browser microphone API.
+- The student page contains one browser-local recorder for the optional closing response, but it is disabled in the current review state.
+- No server, database, account system, analytics service, or third-party transcription service is used by the role-specific pages.
+- The activation checklist and scope boundaries are recorded in `IRB_STATUS.md`.
 
 Do not use the app for live dissertation data collection until the final protocol, consent language, data handling process, and IRB approval are in place.
 
@@ -77,17 +76,13 @@ Do not use the app for live dissertation data collection until the final protoco
 - `dashboard.html` - existing analysis dashboard artifact; intentionally not linked from participant-facing pages
 - `.nojekyll` - keeps GitHub Pages from applying Jekyll processing
 
-## Suggested Research Flow
+## Current Review Flow
 
-1. Participant reviews consent language.
-2. Researcher or participant selects role.
-3. Participant completes quick response items.
-4. Participant types or records reflection responses.
-5. Participant answers standardized follow-up probes.
-6. Teacher and university-student participants complete the shared card sort.
-7. Participant reviews export preview.
-8. Participant downloads JSON or Markdown.
-9. Export is transferred through the approved research workflow.
+1. A committee or IRB reviewer selects a role-specific page.
+2. The reviewer navigates through the complete instrument wording.
+3. Disabled controls demonstrate the proposed response formats without storing data.
+4. The approved IRB attachments, consent forms, and data-management plan are compared with the deployed version.
+5. Collection is enabled only in a later, documented activation commit after written approval.
 
 ## Methodological Design Notes
 
@@ -95,7 +90,7 @@ The app intentionally avoids fully dynamic AI-generated follow-up questions. Sta
 
 Building-level administrators and district or system-level leaders complete the same institutional protocol. The leadership role and exported role-group fields preserve their separation for analysis across role groups.
 
-The prompt data model is aligned to the Pedagogical Friction Framework from the start so exported responses are easier to code across:
+The prompt data model retains internal analytic mappings to the Pedagogical Friction Framework, but those labels are not shown to participants or included in participant-facing export previews:
 
 - noetic friction
 - rhetorical friction
@@ -110,6 +105,5 @@ The prompt data model is aligned to the Pedagogical Friction Framework from the 
 This is a static site. To publish on GitHub Pages:
 
 1. Push changes to `main`.
-2. In repository settings, enable GitHub Pages.
-3. Use `Deploy from a branch`.
-4. Select `main` and `/ root`.
+2. The `Deploy to GitHub Pages` workflow publishes the static tree through GitHub Actions.
+3. Verify the exact live routes and IRB-status markers after the deployment completes.

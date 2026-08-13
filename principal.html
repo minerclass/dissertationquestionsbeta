@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Building-Level Administrator and District/System-Level Leader AI Friction App</title>
-  <meta name="description" content="School- and district-leader local-first interview tool for generative AI policy, instructional leadership, governance, and infrastructural friction.">
+  <title>Building Administrator and District/System Leader Interview</title>
+  <meta name="description" content="Read-only pre-IRB review copy of the building administrator and district/system leader interview instrument.">
   <link rel="stylesheet" href="shared/styles.css">
   <style>
     :root {
@@ -23,9 +23,9 @@
   <div class="shell">
     <aside>
       <div class="role-badge">Institutional Leader Instrument</div>
-      <h1>Building-Level Administrator and District/System-Level Leader AI Friction App</h1>
-      <p>A shared institutional-leader protocol for AI policy implementation, instructional leadership, governance, and infrastructural friction.</p>
-      <div class="privacy-note"><strong>Privacy default:</strong> responses stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
+      <h1>Building Administrator and District/System Leader Interview</h1>
+      <p>A researcher-guided, in-session tool matching the participant-facing IRB instrument attachment.</p>
+      <div class="privacy-note"><strong>Privacy default:</strong> when approved and enabled, entries stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
       <p class="hint">Use this when the participant is a principal, assistant principal, dean, department chair, or district or system-level leader.</p>
       <div class="button-row">
@@ -36,10 +36,14 @@
     </aside>
 
     <main id="main" tabindex="-1">
+      <div class="review-banner" role="status">
+        <strong>Under review — not collecting responses</strong>
+        Wording is available for committee and IRB review. Data entry, browser recording, local saving, and export remain disabled until written IRB approval and a version-match check.
+      </div>
       <div class="topbar">
         <div>
           <strong>School and District Leader Instrument</strong>
-          <div class="meta">Generative AI, productive struggle, policy implementation, governance, and institutional conditions</div>
+          <div class="meta">Estimated session length: 45–75 minutes</div>
         </div>
         <div class="button-row">
           <button class="btn" id="saveDraftButton" type="button">Save draft</button>
@@ -51,8 +55,8 @@
         <div class="panel-header">
           <h2>Consent and Context</h2>
           <strong>Building-Level Administrator and District/System-Level Leader Instrument</strong>
-          <p>This page collects adult building- and system-level leader responses for a draft dissertation instrument. Use only after final protocol review and IRB approval.</p>
-          <div class="callout"><strong>Standard opening script:</strong> Thank you for taking the time to speak with me. This conversation is part of a study on how educators and school-system leaders make sense of generative AI in relation to teaching and learning. There are no right or wrong answers; I am interested in your honest experience, including where you disagree with how others frame these issues. Your participation is voluntary, you may skip any question, and you may stop at any time. Do you have any questions before we begin? If audio recording will be used, do I have your permission to record?</div>
+          <p>This read-only page displays the draft participant-facing instrument for review. It does not collect or export responses.</p>
+          <div class="callout"><strong>Standard opening script:</strong> Thank you for taking the time to speak with me. This conversation is part of a study on how educators and school-system leaders make sense of generative AI in relation to teaching and learning. There are no right or wrong answers; I am interested in your honest experience, including where you disagree with how others frame these issues. Your participation is voluntary, you may skip any question, and you may stop at any time. With your permission I will record audio only to transcribe accurately; you may decline recording. Do you have any questions before we begin? Do I have your permission to record?</div>
           <div class="callout"><strong>Research caution:</strong> avoid naming staff, students, families, schools, or districts in open responses unless the approved protocol explicitly allows it.</div>
           <div class="grid">
             <div class="field">
@@ -64,18 +68,11 @@
               <input id="studyDate" type="date">
             </div>
             <div class="field">
-              <label for="leaderRole">Leadership role</label>
+              <label for="leaderRole">Role group</label>
               <select id="leaderRole">
                 <option value="">Choose one</option>
-                <option>Principal</option>
-                <option>Assistant Principal</option>
-                <option>Dean or Student Support Leader</option>
-                <option>Department Chair or Instructional Leader</option>
-                <option>Other Building-Level Leader</option>
-                <option>Superintendent or Assistant Superintendent</option>
-                <option>District Technology or Innovation Leader</option>
-                <option>District Curriculum or Instruction Leader</option>
-                <option>Other District or System-Level Leader</option>
+                <option>Building-level administrator</option>
+                <option>District or system-level leader</option>
               </select>
             </div>
             <div class="field">
@@ -85,9 +82,9 @@
           </div>
           <label class="choice">
             <input id="consentCheck" type="checkbox">
-            <span>I confirm this adult participant has reviewed the study consent language and may skip any question.</span>
+            <span>I confirm this adult participant completed the approved written consent process.</span>
           </label>
-          <div class="callout"><strong>Optional audio recording:</strong> With the participant's permission, audio may be recorded to support accurate transcription. Audio remains in this browser until it is downloaded or local data is cleared. The researcher must transfer, retain, restrict access to, and delete recordings according to the approved consent form and data-management plan. The participant may decline recording and still take part.</div>
+          <div class="callout"><strong>Audio scope:</strong> this page does not record browser audio. If the participant gives written permission for interview recording, use the separate IRB-approved recording process. The participant may decline recording and still take part.</div>
           <div class="actions">
             <span class="hint">All response data remains local until export.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
@@ -111,8 +108,8 @@
 
       <section class="panel hidden" data-step="2">
         <div class="panel-header">
-          <h2>Typed or Recorded Reflection</h2>
-          <p>Leaders can type, record audio locally, or do both. If recording is used, type or paste a reviewed transcript or summary before export.</p>
+          <h2>Reflection Prompts</h2>
+          <p>The researcher may enter notes or a reviewed transcript after approval. Browser-local audio is not available for this protocol.</p>
         </div>
         <div class="panel-body">
           <div id="reflectionItems"></div>
@@ -147,7 +144,8 @@
   <script type="module">
     import { q, r } from './shared/app.js';
 
-    const STORAGE_KEY = "principal-school-leader-friction-draft-v1";
+    const COLLECTION_ENABLED = false;
+    const STORAGE_KEY = "principal-school-leader-approved-v2";
     const steps = ["Consent", "Quick response", "Reflection", "Export"];
     const quickItems = [
       q("policy_driver", "What is the primary driver of your current AI policy?", "short", [], ["policy", "infrastructural"]),
@@ -165,24 +163,16 @@
       r("structural_change", "What is one school-level or system-level change you believe is needed?", "What is preventing it now?", ["infrastructural"]),
       r("teacher_support", "How do you guide teachers beyond efficiency toward student thinking and ownership?", "What does that look like in day-to-day practice?", ["noetic", "existential"]),
       r("privacy_pedagogy_tension", "Describe a tension between privacy or compliance expectations and classroom experimentation.", "How do you resolve it when they conflict?", ["infrastructural", "policy"]),
-      r("community_trust", "What concern have you heard, or do you anticipate, from families?", "How are you responding to it?", ["rhetorical", "equity"]),
-      r("closing_response", "Is there anything you would like to record in your own words? And what should I have asked that I did not?", "", ["closing"])
+      r("community_trust", "What concern have you heard, or do you anticipate, from families?", "How are you responding to it?", ["rhetorical", "equity"])
     ];
 
     let currentStep = 0;
-    let mediaRecorder = null;
-    let activeRecordingId = null;
-    let audioChunks = [];
     let state = loadState();
 
     function roleGroup(role) {
-      const districtRoles = [
-        "Superintendent or Assistant Superintendent",
-        "District Technology or Innovation Leader",
-        "District Curriculum or Instruction Leader",
-        "Other District or System-Level Leader"
-      ];
-      return districtRoles.includes(role) ? "district-system-level" : role ? "building-level" : "";
+      if (role === "District or system-level leader") return "district-system-level";
+      if (role === "Building-level administrator") return "building-level";
+      return "";
     }
 
     function defaultState() {
@@ -194,24 +184,25 @@
         consent: false,
         quickResponses: {},
         reflections: {},
-        audio: {},
         updatedAt: null
       };
     }
 
     function loadState() {
+      if (!COLLECTION_ENABLED) return defaultState();
       try { return { ...defaultState(), ...JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") }; }
       catch { return defaultState(); }
     }
 
     function persist() {
+      if (!COLLECTION_ENABLED) return;
       syncStateFromDom();
       if (!state.consent) {
         localStorage.removeItem(STORAGE_KEY);
         return;
       }
       state.updatedAt = new Date().toISOString();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...state, audio: {} }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
     function hydrate() {
@@ -220,6 +211,13 @@
       document.querySelector("#leaderRole").value = state.leaderRole || "";
       document.querySelector("#schoolContext").value = state.schoolContext || "";
       document.querySelector("#consentCheck").checked = Boolean(state.consent);
+    }
+
+    function applyCollectionState() {
+      if (COLLECTION_ENABLED) return;
+      document.querySelectorAll("input, select, textarea, #saveDraftButton, #clearButton, #downloadJsonButton, #downloadMarkdownButton").forEach((control) => {
+        control.disabled = true;
+      });
     }
 
     function renderProgress() {
@@ -239,6 +237,7 @@
       if (currentStep === 2) renderReflectionItems();
       if (currentStep === 3) renderPreview();
       renderProgress();
+      applyCollectionState();
       const activePanel = document.querySelector(`[data-step="${currentStep}"]`);
       const heading = activePanel && activePanel.querySelector("h2");
       if (heading && shouldScroll) { heading.setAttribute("tabindex", "-1"); heading.focus({ preventScroll: true }); }
@@ -263,19 +262,11 @@
       syncStateFromDom();
       document.querySelector("#reflectionItems").innerHTML = reflections.map((item, index) => {
         const response = state.reflections[item.id] || {};
-        const audio = state.audio[item.id];
         return `
           <div class="question-card">
             <div class="question-meta"><span class="tag gold">Reflection ${index + 1}</span></div>
             <h3>${item.text}</h3>
-            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Type response, paste reviewed transcript, or summarize recorded answer.">${escapeText(response.text || "")}</textarea>
-            <div class="recorder">
-              <span class="recording-dot" data-dot="${item.id}"></span>
-              <button class="btn" type="button" data-record="${item.id}">Start recording</button>
-              <button class="btn" type="button" data-stop="${item.id}" disabled>Stop</button>
-              ${audio ? `<a class="btn" href="${audio.dataUrl}" download="${safeFileName(item.id)}.webm">Download audio</a>` : ""}
-              <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Optional browser-local recording"}</span>
-            </div>
+            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Researcher notes or reviewed transcript.">${escapeText(response.text || "")}</textarea>
             ${item.followUp ? `<div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
               <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
@@ -309,8 +300,8 @@
     function exportData() {
       syncStateFromDom();
       return {
-        app: "Building-Level Administrator and District/System-Level Leader AI Friction App",
-        version: "2026-06-institutional-leader-static-v2",
+        app: "Building Administrator and District/System Leader Interview",
+        version: "2026-08-irb-aligned-review-v2",
         exportedAt: new Date().toISOString(),
         participant: {
           code: state.participantCode,
@@ -321,18 +312,14 @@
           schoolContext: state.schoolContext,
           consentChecked: state.consent
         },
-        frameworkDimensions: ["noetic", "rhetorical", "existential", "infrastructural", "equity", "policy", "authorship"],
-        quickResponses: quickItems.map((item) => ({ id: item.id, prompt: item.text, tags: item.tags, response: state.quickResponses[item.id] || "" })),
+        quickResponses: quickItems.map((item) => ({ id: item.id, prompt: item.text, response: state.quickResponses[item.id] || "" })),
         reflections: reflections.map((item) => ({
           id: item.id,
           prompt: item.text,
           standardFollowUp: item.followUp,
-          tags: item.tags,
           response: (state.reflections[item.id] || {}).text || "",
-          followUpResponse: (state.reflections[item.id] || {}).followUp || "",
-          audioCaptured: Boolean(state.audio[item.id])
-        })),
-        audioManifest: Object.entries(state.audio).map(([id, item]) => ({ reflectionId: id, mimeType: item.mimeType, createdAt: item.createdAt, downloadSeparately: true }))
+          followUpResponse: (state.reflections[item.id] || {}).followUp || ""
+        }))
       };
     }
 
@@ -340,19 +327,20 @@
       const lines = [`# Building-Level Administrator and District/System-Level Leader AI Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- Role group: ${data.participant.roleGroup || ""}`, `- Institutional context: ${data.participant.schoolContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
-        lines.push(`### ${index + 1}. ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
+        lines.push(`### ${index + 1}. ${item.prompt}`, "", item.response || "_No response_", "");
       });
       lines.push("## Reflections");
       data.reflections.forEach((item, index) => {
-        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, `Tags: ${item.tags.join(", ")}`, "", item.response || "_No response_", "");
+        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, "", item.response || "_No response_", "");
         if (item.standardFollowUp) lines.push(`**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "");
-        lines.push(`Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
       });
       return lines.join("\n");
     }
 
     function renderPreview() {
-      document.querySelector("#exportPreview").textContent = JSON.stringify(exportData(), null, 2);
+      document.querySelector("#exportPreview").textContent = COLLECTION_ENABLED
+        ? JSON.stringify(exportData(), null, 2)
+        : "Export is disabled while this instrument is under review and not collecting responses.";
     }
 
     function download(filename, content, type) {
@@ -377,64 +365,14 @@
     }
     function escapeAttr(text) { return escapeText(text).replace(/`/g, "&#96;"); }
 
-    async function startRecording(id) {
-      if (!navigator.mediaDevices || !window.MediaRecorder) {
-        alert("Audio recording is not supported in this browser. You can still type or paste a transcript.");
-        return;
-      }
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        alert("Stop the current recording before starting another.");
-        return;
-      }
-      let stream;
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      } catch {
-        alert("Microphone access was not available. You can still type or paste a transcript.");
-        return;
-      }
-      audioChunks = [];
-      activeRecordingId = id;
-      mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.ondataavailable = (event) => { if (event.data.size) audioChunks.push(event.data); };
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || "audio/webm" });
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          state.audio[id] = { dataUrl: reader.result, mimeType: blob.type, createdAt: new Date().toISOString() };
-          syncStateFromDom();
-          renderReflectionItems();
-        };
-        reader.readAsDataURL(blob);
-        stream.getTracks().forEach((track) => track.stop());
-      };
-      mediaRecorder.start();
-      updateRecordingUi(id, true);
-    }
-
-    function stopRecording(id) {
-      if (mediaRecorder && activeRecordingId === id && mediaRecorder.state === "recording") {
-        mediaRecorder.stop();
-        updateRecordingUi(id, false);
-        activeRecordingId = null;
-      }
-    }
-
-    function updateRecordingUi(id, isRecording) {
-      const dot = document.querySelector(`[data-dot="${id}"]`);
-      const start = document.querySelector(`[data-record="${id}"]`);
-      const stop = document.querySelector(`[data-stop="${id}"]`);
-      if (dot) dot.classList.toggle("on", isRecording);
-      if (start) start.disabled = isRecording;
-      if (stop) stop.disabled = !isRecording;
-    }
-
     document.addEventListener("click", (event) => {
       const next = event.target.closest("[data-next]");
       const prev = event.target.closest("[data-prev]");
-      const record = event.target.closest("[data-record]");
-      const stop = event.target.closest("[data-stop]");
       if (next) {
+        if (!COLLECTION_ENABLED) {
+          showStep(currentStep + 1);
+          return;
+        }
         syncStateFromDom();
         if (currentStep === 0 && !state.consent) {
           alert("Review the approved consent language and check the consent confirmation before continuing.");
@@ -443,9 +381,10 @@
         persist();
         showStep(currentStep + 1);
       }
-      if (prev) { persist(); showStep(currentStep - 1); }
-      if (record) startRecording(record.dataset.record);
-      if (stop) stopRecording(stop.dataset.stop);
+      if (prev) {
+        if (COLLECTION_ENABLED) persist();
+        showStep(currentStep - 1);
+      }
     });
 
     document.querySelector("#saveDraftButton").addEventListener("click", () => {
@@ -454,13 +393,6 @@
     });
     document.querySelector("#clearButton").addEventListener("click", () => {
       if (!confirm("Clear all local institutional-leader responses stored by this page in this browser?")) return;
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        mediaRecorder.ondataavailable = null;
-        mediaRecorder.onstop = null;
-        mediaRecorder.stream.getTracks().forEach((track) => track.stop());
-        mediaRecorder.stop();
-        activeRecordingId = null;
-      }
       localStorage.removeItem(STORAGE_KEY);
       state = defaultState();
       hydrate();
