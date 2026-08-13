@@ -17,14 +17,6 @@
     .tag { background: #edf5f4; color: #175f5b; }
     .callout { border-color: #d9c08d; background: #fff8e8; }
   </style>
-    @media (max-width: 860px) {
-      .shell { display: block; }
-      aside { position: static; height: auto; }
-      main { padding: 18px; }
-      .grid { grid-template-columns: 1fr; }
-      .topbar { align-items: flex-start; flex-direction: column; }
-    }
-  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -153,7 +145,7 @@
   </div>
 
   <script type="module">
-    import { q, r } from 'shared/app.js';
+    import { q, r } from './shared/app.js';
 
     const STORAGE_KEY = "principal-school-leader-friction-draft-v1";
     const steps = ["Consent", "Quick response", "Reflection", "Export"];
