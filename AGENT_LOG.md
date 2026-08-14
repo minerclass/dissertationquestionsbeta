@@ -200,3 +200,18 @@ This change set spans five repositories: `pedagogical-friction`,
 `diss-proposal-defense`, `dissertationquestionsbeta`, `conference-presentations`,
 and `interactive-resume-2026`. Each carries its own `AGENT_LOG.md` entry for the
 same date. Check the siblings before assuming a change was isolated.
+
+## 2026-08-13 - Proposal defense milestone and instrument-revision gate
+
+Agent: OpenAI Codex, recording the researcher's reported milestone and planned sequence.
+
+- Updated the root instrument hub and the public dissertation dashboard to record
+  that the Chapters 1-3 proposal defense was passed on August 13, 2026.
+- Named the next sequence as interview-question revision, committee review, a
+  planned three-educator conversational-flow rehearsal, and an IRB-materials update.
+- Preserved the instrument safeguards: role pages remain read-only review copies,
+  and the public site is not open for formal recruitment or main-study data collection.
+- Reduced the phone-width dashboard title scale so the new Progress Dashboard
+  heading remains fully visible instead of being clipped by the masthead.
+- Made no changes to interview-question wording and made no claims of IRB approval,
+  participant data, analysis, findings, or ABD status.

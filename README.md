@@ -4,7 +4,9 @@ Static GitHub Pages site for reviewing role-specific interview and card-sort ins
 
 **Pedagogical Friction in the Age of Generative AI: A Mixed Methods Proposal**
 
-The root site is a neutral project entrance and role-selection page. While the study remains proposal-stage and pre-IRB, role-specific pages are navigable read-only review copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
+The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. The study is now in post-defense interview-protocol revision and remains pre-IRB approval. Role-specific pages are navigable read-only review copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
+
+The planned sequence is interview-question revision, committee review, a three-educator rehearsal to assess conversational flow, and an update to the IRB materials. The rehearsal is not represented here as main-study recruitment, participant data collection, or findings.
 
 ## Live Site
 
@@ -62,7 +64,7 @@ Current limits:
 - No server, database, account system, analytics service, or third-party transcription service is used by the role-specific pages.
 - The activation checklist and scope boundaries are recorded in `IRB_STATUS.md`.
 
-Do not use the app for live dissertation data collection until the final protocol, consent language, data handling process, and IRB approval are in place.
+Do not use the app for formal recruitment or live dissertation data collection until the final protocol, consent language, data handling process, and IRB approval are in place.
 
 ## Files
 
