@@ -324,7 +324,7 @@
     }
 
     function markdownExport(data) {
-      const lines = [`# Building-Level Administrator and District/System-Level Leader AI Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- Role group: ${data.participant.roleGroup || ""}`, `- Institutional context: ${data.participant.schoolContext || ""}`, ""];
+      const lines = [`# Building-Level Administrator and District/System-Level Leader Interview Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- Role group: ${data.participant.roleGroup || ""}`, `- Institutional context: ${data.participant.schoolContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
         lines.push(`### ${index + 1}. ${item.prompt}`, "", item.response || "_No response_", "");

@@ -397,7 +397,7 @@
     }
 
     function markdownExport(data) {
-      const lines = [`# K-12 Classroom-Facing Educator Pedagogical Friction Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Grade band: ${data.participant.gradeBand || ""}`, `- Content area: ${data.participant.contentArea || ""}`, `- School context: ${data.participant.schoolContext || ""}`, ""];
+      const lines = [`# K-12 Classroom-Facing Educator Interview Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Grade band: ${data.participant.gradeBand || ""}`, `- Content area: ${data.participant.contentArea || ""}`, `- School context: ${data.participant.schoolContext || ""}`, ""];
       lines.push("## Quick Responses");
       data.quickResponses.forEach((item, index) => {
         lines.push(`### ${index + 1}. ${item.prompt}`, "", item.response || "_No response_", "");
