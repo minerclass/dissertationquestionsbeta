@@ -1,6 +1,6 @@
 # Public Instrument Status
 
-Last verified: 2026-08-13
+Last verified: 2026-08-23
 
 ## Current state
 
@@ -30,6 +30,38 @@ The August 13 alignment pass used these protected Drive documents:
 - The public pages do not capture video.
 - Analytic dimension tags remain internal researcher metadata and are not shown or included in participant-facing export previews.
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
+
+## Change log
+
+### 2026-08-23 - Export labels and survey contact block
+
+Two corrections were applied to participant-facing text. **No interview item wording
+changed**, and the instrument question sets remain those of the current 05A, 05B, and 05C
+IRB attachments.
+
+- **Markdown export headers.** The classroom-facing educator and leader exports carried the
+  study's analytic framework vocabulary in their titles, in a file a participant generates
+  and can read. Renamed to neutral interview labels. The adult university student export
+  was already neutral and is unchanged. Analytic dimension tags remain internal researcher
+  metadata and are still excluded from every export payload, which was verified against the
+  export builder rather than assumed.
+- **Survey landing contact block.** The page carried placeholder text where researcher,
+  chair, and Institutional Research Board contact information belongs. The block is now
+  populated verbatim from `03 - Miner IRB Consent Forms - PROTECTED WORKING COPY`. The
+  survey launch control remains disabled and the page still states that the survey opens
+  after IRB approval.
+
+These close findings 1 and 3 of `10 - Public Instrument Site Pre-IRB Audit - CURRENT`.
+Findings 1 and 2 of that audit were otherwise resolved by the 2026-08-13 alignment pass.
+
+**Cross-repository note.** Finding 4 of the same audit concerned the proposal companion at
+`minerclass/pedagogical-friction`, which loaded Font Awesome from `cdnjs.cloudflare.com` and
+disclosed visitor network metadata to a third party. That asset was vendored locally on
+2026-08-23. No third-party asset host remains on either site. All four audit findings are
+now closed.
+
+The study remains proposal-stage and pre-IRB. Nothing in this entry authorizes recruitment
+or data collection.
 
 ## Activation gate
 
