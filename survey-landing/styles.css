@@ -323,7 +323,7 @@ h3 {
 
 .accent-band > .section-heading,
 .survey-entry,
-.role-note {
+.accent-band > .role-note {
   width: min(var(--max), calc(100vw - 32px));
   margin-left: auto;
   margin-right: auto;
