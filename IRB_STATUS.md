@@ -1,6 +1,6 @@
 # Public Instrument Status
 
-Last verified: 2026-08-23
+Last verified: 2026-08-28
 
 ## Current state
 
@@ -32,6 +32,25 @@ The August 13 alignment pass used these protected Drive documents:
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
 ## Change log
+
+### 2026-08-28 - Survey platform reference updated to Microsoft Forms
+
+The survey instrument was migrated from a Google Form to a Microsoft Form hosted on the
+researcher's National Louis University institutional account. Three participant-facing references
+on the survey landing page named the old platform and were corrected.
+
+- `survey-landing/index.html`, three occurrences: "Google Form" and "Google Forms" replaced with
+  "Microsoft Form" and "Microsoft Forms".
+
+**No collection behavior changed.** The survey link remains inactive, the launch control remains
+disabled, and this site still collects no responses. Google Drive references elsewhere in the
+repository relate to embedded video and are unaffected.
+
+**Not yet reconciled.** The IRB narrative, consent forms, recruitment materials, the `05D`
+attachment, and proposal Appendix G still describe a Google Form. Those are protected documents and
+are covered separately in `Miner_Platform_Update_Changelist_2026-08-28.md`. The anonymity language in
+those documents was written for Google Forms settings and requires re-verification against the
+Microsoft Forms configuration before submission.
 
 ### 2026-08-23 - Export labels and survey contact block
 
