@@ -17,6 +17,12 @@
       --paper: var(--mjm-surface, #ffffff);
       --wash: var(--mjm-bg, #f5f7fa);
       --mjm-accent: var(--mjm-teal, #2b817b);
+      /* Text-safe teal. The vivid --teal above stays on the primary button, where
+         it is a background behind white text. As link and label TEXT it measured
+         4.46 against the warmed card surface, just under the 4.5 AA threshold, so
+         text uses the paper-ground ink from the token layer instead: 5.45 on the
+         card surface and 4.96 on the page ground. */
+      --teal-text: var(--mjm-teal-ink, #2a7268);
       --navy: #203a5f;
       --teal: #2b817b;
       --gold: #b78028;
@@ -42,7 +48,7 @@
     }
 
     a {
-      color: var(--teal);
+      color: var(--teal-text);
     }
 
     a:focus-visible {
@@ -119,7 +125,7 @@
 
     .eyebrow {
       margin: 0 0 12px;
-      color: var(--teal);
+      color: var(--teal-text);
       font-size: .82rem;
       font-weight: 800;
       letter-spacing: .08em;

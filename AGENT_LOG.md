@@ -19,6 +19,43 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-08-31 - Fix the contrast regression the token adoption introduced
+
+**CI caught this; local review did not.** The Accessibility Checker failed on commit
+`2116968`. The two runs either side of it passed, so the token adoption caused it.
+
+**Cause.** Adopting the shared tokens mapped `--paper` from pure `#ffffff` to
+`--mjm-surface` (`#fffaf0`). That warms the card surface very slightly. The page's
+`--teal` (`#2b817b`) was used as link and label text and had been passing on pure white
+at **4.637** - a margin of only 0.137 over the 4.5 AA threshold. On the warmed surface it
+measured **4.46** and fell under.
+
+**Fix.** Added `--teal-text`, pointing at the token layer's paper-ground ink
+`--mjm-teal-ink` (`#2a7268`), and used it for the two text usages: `a` and `.eyebrow`.
+That measures **5.45** on the card surface and **4.96** on the page ground, so it clears
+with real margin on both rather than by a hair.
+
+**Deliberately not a wholesale swap.** `--teal` is also the `background` of `.btn.primary`
+behind white text. Repointing the variable itself would have changed the button. The vivid
+teal stays exactly where it was; only text moved to the ink.
+
+**Verified.** Re-probed every text-bearing element against its composited backdrop:
+61 elements checked, **zero** failures, down from one. `dissertation-sites/index.html`
+was checked the same way and had zero failures both before and after, so it was never
+implicated.
+
+**Two things worth carrying forward.**
+
+1. **A colour-only change can break contrast.** Warming a surface by three points of blue
+   was enough. Any future token adoption should re-measure contrast on the adopting page,
+   not just confirm the tokens resolve.
+2. **Watch thin margins.** The tightest remaining pair on this page is `.btn.primary`,
+   white on vivid teal at **4.64** against a 4.5 threshold. It passes and is unchanged
+   here, but it has almost no headroom; darkening or warming that button would fail.
+
+
+---
+
 ## 2026-08-31 - Adopt the shared ecosystem design tokens
 
 Links https://minerclass.github.io/tokens.css before the page styles and points this
