@@ -8,17 +8,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://minerclass.github.io/tokens.css">
 <style>
 /* ========== Tokens ========== */
 :root {
-  --ink: #0d0e1c;
+  /* Both --ink and --paper are dual-role on this page: --ink and its variants
+     paint the dark grounds but also serve as text on the light panels, and
+     --paper is mostly text but backs one panel. The shared tokens preserve
+     both roles, since --mjm-bg stays dark and --mjm-ink stays light.
+     Fallbacks are the pre-adoption values; the gold accents stay local. */
+  --ink: var(--mjm-bg, #0d0e1c);
   --ink-2: #131527;
   --ink-3: #1a1d33;
-  --paper: #f5efe2;
+  --paper: var(--mjm-ink, #f5efe2);
   --paper-2: #ebe3d2;
   --paper-warm: #f8f2e4;
   --rule: #d4c9af;
   --rule-dim: rgba(212, 201, 175, 0.25);
+  --mjm-accent: var(--mjm-gold, #c4a050);
   --gold: #c4a050;
   --gold-2: #d9b878;
   --crimson: #8a2436;
