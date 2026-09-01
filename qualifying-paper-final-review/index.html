@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Beyond Secondary Orality | Final Qualifying Paper Review</title>
   <meta name="description" content="A committee-facing companion site for Micah Miner's final qualifying paper on tertiary algorithmicity and pedagogical friction.">
+  <link rel="stylesheet" href="https://minerclass.github.io/tokens.css">
   <style>
     :root {
       --ink: #06141a;
@@ -12,8 +13,12 @@
       --ink-3: #112d34;
       --paper: #fbf3e5;
       --paper-2: #f3e4cf;
-      --text: #f7efe3;
-      --muted: #b7c7c4;
+      /* Inverted names here: --ink/--ink-2/--ink-3 are dark GROUNDS and
+         --paper/--paper-2 are light panels, both left local. Only the text
+         colours join the shared tokens, with pre-adoption fallbacks. */
+      --text: var(--mjm-ink, #f7efe3);
+      --muted: var(--mjm-muted, #b7c7c4);
+      --mjm-accent: var(--mjm-teal, #73d7ca);
       --quiet: #7f9996;
       --teal: #73d7ca;
       --teal-2: #234f54;

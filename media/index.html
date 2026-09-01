@@ -5,15 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Research Media | Micah Miner</title>
   <meta name="description" content="Public research media connected to Micah Miner's dissertation work on media ecology, generative AI, and pedagogical friction.">
+  <link rel="stylesheet" href="https://minerclass.github.io/tokens.css">
   <style>
     :root {
       color-scheme: dark;
-      --bg: #111719;
-      --panel: #1b2427;
-      --panel-2: #202b2f;
-      --text: #f4f1ea;
-      --muted: #bdc6c2;
-      --line: rgba(244, 241, 234, 0.14);
+      /* Ground, ink and rules from the shared ecosystem tokens with
+         pre-adoption fallbacks. The green accent and link blue stay local. */
+      --bg: var(--mjm-bg, #111719);
+      --panel: var(--mjm-surface, #1b2427);
+      --panel-2: var(--mjm-surface-2, #202b2f);
+      --text: var(--mjm-ink, #f4f1ea);
+      --muted: var(--mjm-muted, #bdc6c2);
+      --line: var(--mjm-line, rgba(244, 241, 234, 0.14));
+      --mjm-accent: var(--mjm-green, #4ade80);
       --accent: #4ade80;
       --link: #8fd7ff;
     }

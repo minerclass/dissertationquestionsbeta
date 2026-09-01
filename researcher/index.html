@@ -1,17 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-mjm-ground="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Researcher Overview - Pedagogical Friction Study Tools</title>
   <meta name="description" content="Researcher-facing overview page for the Pedagogical Friction study instruments and review dashboard.">
+  <link rel="stylesheet" href="https://minerclass.github.io/tokens.css">
   <style>
     :root {
-      --ink: #172033;
-      --muted: #5d6878;
-      --line: #d9e1ea;
-      --paper: #ffffff;
-      --wash: #f5f7fa;
+      /* Ground, ink and rules from the shared ecosystem tokens with
+         pre-adoption fallbacks. Navy/teal/gold/red accents stay local. */
+      --ink: var(--mjm-ink, #172033);
+      --muted: var(--mjm-muted, #5d6878);
+      --line: var(--mjm-line, #d9e1ea);
+      --paper: var(--mjm-surface, #ffffff);
+      --wash: var(--mjm-bg, #f5f7fa);
+      --mjm-accent: var(--mjm-teal, #2b817b);
       --navy: #203a5f;
       --teal: #2b817b;
       --gold: #b78028;
