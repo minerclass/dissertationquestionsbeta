@@ -11,11 +11,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://minerclass.github.io/tokens.css">
   <style>
     :root {
-      --bg: #060a08;
-      --bg-2: #0a110d;
-      --ink: #e8e0c8;
+      /* Ground, ink, and rules come from the shared ecosystem tokens at
+         https://minerclass.github.io/tokens.css. Each fallback is this page's
+         pre-adoption value, so a failed load changes nothing. Accents stay local. */
+      --bg: var(--mjm-bg, #060a08);
+      --bg-2: var(--mjm-surface, #0a110d);
+      --ink: var(--mjm-ink, #e8e0c8);
+      --mjm-accent: var(--mjm-teal, #6ba588);
       --ink-dim: #a19f8b;
       --ink-faded: #8f8b72;
       --emerald: #4a8068;

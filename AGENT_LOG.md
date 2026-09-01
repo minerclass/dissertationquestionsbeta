@@ -19,6 +19,23 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-08-31 - Adopt the shared ecosystem design tokens
+
+Links https://minerclass.github.io/tokens.css before the page styles and points this
+page's ground, ink, and rules at the shared tokens while keeping its own accents. The
+page's ground is unchanged: the root page stays light and the resource hub stays dark.
+
+**Every reference carries a fallback** equal to the pre-adoption value, because a bare
+`var(--mjm-bg)` is invalid at computed-value time if the token file fails to load, which
+would break the page rather than leave it unchanged.
+
+Two pages adopted, one per ground: the root study page takes the paper ground via `data-mjm-ground="light"`, and `dissertation-sites/` keeps the dark ground. This repo is the ecosystem's clearest demonstration that the token layer carries both.
+
+**Verified in a real browser.** Token sheet loads; body renders light at the root and dark at dissertation-sites/ with a contrast ratio
+of 14.54 and 16.02 respectively; tag balance clean; zero console errors.
+
+---
+
 ## 2026-08-31 - Flag the superseded dissertation design in the archived qualifying paper
 
 Found during a read-only audit of the Tier 2-4 repositories.
