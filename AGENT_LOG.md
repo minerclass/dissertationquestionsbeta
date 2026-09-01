@@ -19,6 +19,45 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-08-31 - Flag the superseded dissertation design in the archived qualifying paper
+
+Found during a read-only audit of the Tier 2-4 repositories.
+
+**Problem.** `qualifying-paper-final-review/index.html` states in two places that the
+dissertation "will use a mixed-methods case study design". The defended Chapters 1-3
+proposal is a qualitative-dominant convergent mixed methods study and contains no
+case-study apparatus at all, so a reader arriving at this page could take a superseded
+design statement as current. This was the only occurrence of case-study vocabulary
+found anywhere across the 28 repositories audited.
+
+**Deliberately not a rewrite.** This page is an archive of the qualifying paper as
+submitted. The design genuinely did evolve between the qualifying paper and the
+defended proposal, so silently editing the sentences would have falsified the record of
+what was written at the time. The supersession is flagged instead.
+
+**Changed.** `qualifying-paper-final-review/index.html` only.
+
+- Added a dated `.archive-note` in the hero stating that the page is the paper as
+  submitted, that the design has since been superseded, that the proposal governs where
+  the two differ, and linking to the public dissertation-overview.
+- Added a small inline `.superseded` marker immediately after each of the two affected
+  sentences, so a reader deep-linking into the manuscript sees the flag in context and
+  not only at the top of a 21,000-word page.
+- Both markers carry the stamp "manuscript text unchanged".
+
+**Verified.** Both original sentences are still present verbatim and unmodified,
+confirmed by exact string count after patching. Two markers and one note render; tags
+parse balanced; zero console errors. The note styles against the dark hero and the
+markers against the light `.paper-section` surface, which is why they carry separate
+treatments. Print styles strip both back to plain black text.
+
+**Open, not addressed here.** The page is 21,593 words across 10 sections with **zero**
+figures, diagrams, or images, and paragraphs run to roughly 103 characters per line at
+1440px, well beyond a comfortable reading measure. Both are readability issues that can
+be fixed additively without touching the manuscript text.
+
+---
+
 ## 2026-07-24 - Current-proposal and cross-site alignment
 
 Agent: OpenAI Codex, working from the revised Chapters 1-3 proposal and a
