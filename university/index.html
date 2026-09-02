@@ -28,7 +28,7 @@
     <main id="main" tabindex="-1">
       <div class="review-banner" role="status">
         <strong>Under review — not collecting responses</strong>
-        Wording is available for committee and IRB review. Data entry, browser recording, local saving, and export remain disabled until written IRB approval and a version-match check.
+        Wording is available for committee and IRB review. Data entry, local saving, and export remain disabled until written IRB approval and a version-match check.
       </div>
       <div class="topbar">
         <div>
@@ -85,7 +85,7 @@
             <input id="audioConsentCheck" type="checkbox">
             <span>I confirm the participant gave written permission for the interview to be recorded with audio and video. Leave unchecked if recording was declined.</span>
           </label>
-          <div class="callout"><strong>Optional browser-local audio:</strong> the live interview may be recorded with audio and video through the separate IRB-approved process. This page does not capture video. Only the closing response may be recorded in this browser as audio, and only when written recording permission is confirmed. The participant may decline recording and still take part.</div>
+          <div class="callout"><strong>Session recording:</strong> the live interview may be recorded with audio and video through the separate IRB-approved process. This page does not record audio or video and does not capture any participant response. The participant may decline recording and still take part.</div>
           <div class="actions">
             <span class="hint">All response data remains local until export.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
@@ -96,7 +96,7 @@
       <section class="panel hidden" data-step="1">
         <div class="panel-header">
           <h2>Interview Questions</h2>
-          <p>The researcher may enter notes or a reviewed transcript. The optional browser-local recorder appears only with the closing question.</p>
+          <p>The researcher may enter notes or a reviewed transcript.</p>
         </div>
         <div class="panel-body">
           <div id="reflectionItems"></div>
@@ -125,7 +125,7 @@
       <section class="panel hidden" data-step="3">
         <div class="panel-header">
           <h2>Review and Export</h2>
-          <p>Download the structured student response file. Any optional closing audio file is downloaded separately; live-session audio-and-video recording is handled through the approved recording process.</p>
+          <p>Download the structured student response file. Live-session audio-and-video recording is handled through the approved recording process.</p>
         </div>
         <div class="panel-body">
           <div class="button-row">
@@ -177,9 +177,6 @@
     ];
 
     let currentStep = 0;
-    let mediaRecorder = null;
-    let activeRecordingId = null;
-    let audioChunks = [];
     let state = loadState();
 
     function defaultState() {
@@ -194,7 +191,6 @@
         reflections: {},
         cardSort: {},
         cardSortFollowUp: "",
-        audio: {},
         updatedAt: null
       };
     }
@@ -213,7 +209,7 @@
         return;
       }
       state.updatedAt = new Date().toISOString();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...state, audio: {} }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
     function hydrate() {
@@ -228,7 +224,7 @@
 
     function applyCollectionState() {
       if (COLLECTION_ENABLED) return;
-      document.querySelectorAll("input, select, textarea, #saveDraftButton, #clearButton, #downloadJsonButton, #downloadMarkdownButton, [data-record], [data-stop]").forEach((control) => {
+      document.querySelectorAll("input, select, textarea, #saveDraftButton, #clearButton, #downloadJsonButton, #downloadMarkdownButton").forEach((control) => {
         control.disabled = true;
       });
     }
@@ -264,23 +260,12 @@
       syncStateFromDom();
       document.querySelector("#reflectionItems").innerHTML = reflections.map((item, index) => {
         const response = state.reflections[item.id] || {};
-        const audio = state.audio[item.id];
-        const isClosing = item.id === "closing_response";
         const label = item.id;
-        const recorder = isClosing ? `
-            <div class="recorder">
-              <span class="recording-dot" data-dot="${item.id}"></span>
-              <button class="btn" type="button" data-record="${item.id}">Start optional closing recording</button>
-              <button class="btn" type="button" data-stop="${item.id}" disabled>Stop</button>
-              ${audio ? `<a class="btn" href="${audio.dataUrl}" download="${safeFileName(item.id)}.webm">Download audio</a>` : ""}
-              <span class="hint">${audio ? `Audio captured: ${audio.createdAt}` : "Available only with written recording permission"}</span>
-            </div>` : "";
         return `
           <div class="question-card">
             <div class="question-meta"><span class="tag gold">${label}</span></div>
             <h3>${item.text}</h3>
             <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Researcher notes or reviewed transcript.">${escapeText(response.text || "")}</textarea>
-            ${recorder}
             ${item.followUp ? `<div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
               <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
@@ -369,15 +354,13 @@
           prompt: item.text,
           standardFollowUp: item.followUp,
           response: (state.reflections[item.id] || {}).text || "",
-          followUpResponse: (state.reflections[item.id] || {}).followUp || "",
-          audioCaptured: Boolean(state.audio[item.id])
+          followUpResponse: (state.reflections[item.id] || {}).followUp || ""
         })),
         cardSort: cardSortItems.map((card) => {
           const response = state.cardSort[card.id] || {};
           return { id: card.id, prompt: card.text, thinkingEffortJudgmentPreserved: response.preservation || "", mostLikelyResponse: response.mostLikelyResponse || "", reasoning: response.note || "" };
         }),
-        cardSortFollowUp: state.cardSortFollowUp || "",
-        audioManifest: Object.entries(state.audio).map(([id, item]) => ({ reflectionId: id, mimeType: item.mimeType, createdAt: item.createdAt, downloadSeparately: true }))
+        cardSortFollowUp: state.cardSortFollowUp || ""
       };
     }
 
@@ -387,7 +370,6 @@
       data.reflections.forEach((item, index) => {
         lines.push(`### ${item.id}: ${item.prompt}`, "", item.response || "_No response_", "");
         if (item.standardFollowUp) lines.push(`**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "");
-        lines.push(`Audio captured: ${item.audioCaptured ? "Yes" : "No"}`, "");
       });
       lines.push("## Card Sort");
       data.cardSort.forEach((item, index) => {
@@ -425,73 +407,9 @@
     }
     function escapeAttr(text) { return escapeText(text).replace(/`/g, "&#96;"); }
 
-    async function startRecording(id) {
-      if (!COLLECTION_ENABLED) return;
-      syncStateFromDom();
-      if (id !== "closing_response") {
-        alert("Browser-local audio is limited to the optional closing response.");
-        return;
-      }
-      if (!state.audioConsentConfirmed) {
-        alert("Confirm the participant's written recording permission before recording.");
-        return;
-      }
-      if (!navigator.mediaDevices || !window.MediaRecorder) {
-        alert("Audio recording is not supported in this browser. You can still type or paste a transcript.");
-        return;
-      }
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        alert("Stop the current recording before starting another.");
-        return;
-      }
-      let stream;
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      } catch {
-        alert("Microphone access was not available. You can still type or paste a transcript.");
-        return;
-      }
-      audioChunks = [];
-      activeRecordingId = id;
-      mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.ondataavailable = (event) => { if (event.data.size) audioChunks.push(event.data); };
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || "audio/webm" });
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          state.audio[id] = { dataUrl: reader.result, mimeType: blob.type, createdAt: new Date().toISOString() };
-          syncStateFromDom();
-          renderReflectionItems();
-        };
-        reader.readAsDataURL(blob);
-        stream.getTracks().forEach((track) => track.stop());
-      };
-      mediaRecorder.start();
-      updateRecordingUi(id, true);
-    }
-
-    function stopRecording(id) {
-      if (mediaRecorder && activeRecordingId === id && mediaRecorder.state === "recording") {
-        mediaRecorder.stop();
-        updateRecordingUi(id, false);
-        activeRecordingId = null;
-      }
-    }
-
-    function updateRecordingUi(id, isRecording) {
-      const dot = document.querySelector(`[data-dot="${id}"]`);
-      const start = document.querySelector(`[data-record="${id}"]`);
-      const stop = document.querySelector(`[data-stop="${id}"]`);
-      if (dot) dot.classList.toggle("on", isRecording);
-      if (start) start.disabled = isRecording;
-      if (stop) stop.disabled = !isRecording;
-    }
-
     document.addEventListener("click", (event) => {
       const next = event.target.closest("[data-next]");
       const prev = event.target.closest("[data-prev]");
-      const record = event.target.closest("[data-record]");
-      const stop = event.target.closest("[data-stop]");
       if (next) {
         if (!COLLECTION_ENABLED) {
           showStep(currentStep + 1);
@@ -509,8 +427,6 @@
         if (COLLECTION_ENABLED) persist();
         showStep(currentStep - 1);
       }
-      if (record) startRecording(record.dataset.record);
-      if (stop) stopRecording(stop.dataset.stop);
     });
 
     document.querySelector("#saveDraftButton").addEventListener("click", () => {
@@ -519,13 +435,6 @@
     });
     document.querySelector("#clearButton").addEventListener("click", () => {
       if (!confirm("Clear all local student responses stored by this page in this browser?")) return;
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        mediaRecorder.ondataavailable = null;
-        mediaRecorder.onstop = null;
-        mediaRecorder.stream.getTracks().forEach((track) => track.stop());
-        mediaRecorder.stop();
-        activeRecordingId = null;
-      }
       localStorage.removeItem(STORAGE_KEY);
       state = defaultState();
       hydrate();

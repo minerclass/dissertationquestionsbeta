@@ -90,9 +90,6 @@ aside .hint { color: rgba(255,255,255,.78); }
 .tag.gray { background: #eef2f6; color: #4c5b6c; }
 .callout { border: 1px solid #9cc8d8; background: #eef8fb; border-radius: 8px; padding: 14px; margin: 14px 0; }
 .follow-up { margin-top: 12px; padding: 12px; border-left: 4px solid var(--gold); background: #fff9ed; border-radius: 6px; }
-.recorder { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin: 8px 0; }
-.recording-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
-.recording-dot.on { background: var(--red); box-shadow: 0 0 0 6px rgba(165,62,53,.14); }
 .pill-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 9px; }
 .pill-options label { border: 1px solid #cdd7e2; border-radius: 999px; padding: 7px 10px; font-size: .86rem; font-weight: 600; cursor: pointer; }
 .pill-options input { width: auto; margin-right: 5px; }
