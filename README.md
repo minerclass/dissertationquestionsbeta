@@ -45,9 +45,8 @@ The role-specific pages now include:
 - Analytic framework tags omitted from participant-facing screens and export previews
 - Separate optional shared ten-card 05F sort for classroom-facing educators and adult university students, with the exact two placement dimensions and post-sort prompts
 - No card sort in the school- and district-leader protocol
-- No browser-local recording on the teacher or leader page
-- Live interview recording with audio and video handled through a separate approved process
-- University-student browser audio limited to the optional closing response and gated by written recording permission; the page does not capture video
+- No browser-local recording on any instrument page
+- Live interview audio recording handled through a separate approved process
 - Review-only navigation through every instrument section
 
 ## Privacy and IRB Notes
@@ -60,7 +59,7 @@ Current limits:
 - Collection controls are disabled until written IRB approval and a version-match check.
 - Teacher and leader pages do not expose browser microphone or camera capture.
 - The student page contains one browser-local recorder for the optional closing response, but it is disabled in the current review state.
-- None of the public pages captures video; consented live-session audio-and-video recording uses the separate approved process.
+- None of the public pages captures audio or video; consented live-session audio recording uses the separate approved process.
 - No server, database, account system, analytics service, or third-party transcription service is used by the role-specific pages.
 - The activation checklist and scope boundaries are recorded in `IRB_STATUS.md`.
 

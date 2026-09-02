@@ -26,7 +26,7 @@ Chair approval applies to the 05A-05C interview questions. The separate working 
 
 ## Scope controls
 
-- With written permission, live interview sessions may be recorded with audio and video through the separate approved recording process; participants may decline recording and still take part.
+- With written permission, live interview sessions may be audio-recorded through the separate approved recording process; participants may decline recording and still take part.
 - Classroom-facing educators: interview plus the separate optional shared ten-card 05F scenario sort; no browser-local recording.
 - Building administrators and district/system leaders: shared interview protocol; no card sort and no browser-local recording.
 - Adult university students: interview plus the separate optional shared ten-card 05F scenario sort; browser-local audio remains disabled in the current review state.
@@ -97,6 +97,6 @@ Do not enable collection controls until all of the following are complete:
 
 1. Written IRB approval is documented.
 2. The approved 05A, 05B, and 05C attachments are compared with the deployed wording.
-3. The approved consent and data-management language is compared with the deployed collection, audio/video recording, transfer, retention, and deletion behavior.
+3. The approved consent and data-management language is compared with the deployed collection, audio recording, transfer, retention, and deletion behavior.
 4. The activation commit is tested locally and then verified on the live GitHub Pages routes.
 5. The status and version match are recorded here.
