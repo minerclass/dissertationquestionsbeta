@@ -95,21 +95,7 @@
 
       <section class="panel hidden" data-step="1">
         <div class="panel-header">
-          <h2>Quick Response Items</h2>
-          <p>These items capture leadership stance, policy maturity, instructional conditions, communication, and infrastructure gaps.</p>
-        </div>
-        <div class="panel-body">
-          <div id="quickItems"></div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Continue to reflection</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel hidden" data-step="2">
-        <div class="panel-header">
-          <h2>Reflection Prompts</h2>
+          <h2>Interview Questions</h2>
           <p>The researcher may enter notes or a reviewed transcript after approval. Browser-local recording is not available for this protocol.</p>
         </div>
         <div class="panel-body">
@@ -121,7 +107,7 @@
         </div>
       </section>
 
-      <section class="panel hidden" data-step="3">
+      <section class="panel hidden" data-step="2">
         <div class="panel-header">
           <h2>Review and Export</h2>
           <p>Download the structured institutional-leader response file. Live-session audio-and-video recordings are handled separately through the approved recording process.</p>
@@ -146,25 +132,21 @@
     import { q, r } from './shared/app.js';
 
     const COLLECTION_ENABLED = false;
-    const STORAGE_KEY = "principal-school-leader-approved-v2";
-    const steps = ["Consent", "Quick response", "Reflection", "Export"];
-    const quickItems = [
-      q("policy_driver", "What is the primary driver of your current AI policy?", "short", [], ["policy", "infrastructural"]),
-      q("infrastructure_rating", "How would you rate your school or district capability to support equitable and secure AI access?", "choice", ["1 - Very limited", "2", "3", "4", "5 - Very strong"], ["infrastructural", "equity"]),
-      q("pd_hurdle", "What is the central hurdle to moving professional development beyond tool proficiency?", "short", [], ["infrastructural"]),
-      q("constraint_conflict", "How often do testing and pacing constraints conflict with friction-preserving pedagogy?", "choice", ["Never", "Rarely", "Sometimes", "Often", "Always"], ["infrastructural", "noetic"]),
-      q("platform_priority", "When evaluating platforms, how much priority do you give learning science relative to administrative efficiency?", "choice", ["1 - Mostly efficiency", "2", "3", "4", "5 - Mostly learning science"], ["infrastructural"]),
-      q("family_communication", "How well does your school communicate the difference between productive struggle and unnecessary hurdles to families?", "choice", ["1 - Not at all", "2", "3", "4", "5 - Very well"], ["rhetorical", "equity"]),
-      q("success_metric", "What metric do you use to judge whether AI integration is succeeding?", "short", [], ["infrastructural"]),
-      q("resource_gap", "What is your most significant infrastructure gap?", "short", [], ["infrastructural"]),
-      q("ethical_readiness", "How ready is leadership to address the ethical and existential implications of generative AI?", "choice", ["1 - Not at all ready", "2", "3", "4", "5 - Very ready"], ["existential", "infrastructural"])
-    ];
+    const STORAGE_KEY = "principal-school-leader-05B-chair-approved-v3";
+    const steps = ["Consent", "Interview", "Export"];
 
     const reflections = [
-      r("structural_change", "What is one school-level or system-level change you believe is needed?", "What is preventing it now?", ["infrastructural"]),
-      r("teacher_support", "How do you guide teachers beyond efficiency toward student thinking and ownership?", "What does that look like in day-to-day practice?", ["noetic", "existential"]),
-      r("privacy_pedagogy_tension", "Describe a tension between privacy or compliance expectations and classroom experimentation.", "How do you resolve it when they conflict?", ["infrastructural", "policy"]),
-      r("community_trust", "What concern have you heard, or do you anticipate, from families?", "How are you responding to it?", ["rhetorical", "equity"])
+      r("05B-ID", "Are you responding primarily as a building-level administrator or as a district- or system-level leader?", "If responsibilities span both levels: Which perspective would you like to use as your primary vantage today? You may draw on the other perspective when it is relevant.", []),
+      r("05B-C1", "Please tell me about your current role and the settings you support. What AI-related responsibilities, questions, or decisions, if any, have recently reached you?", "How long have you been in this role? What prior roles shape your perspective? How would you describe the organizational context without naming the institution?", []),
+      r("05B-Q1", "How, if at all, is generative AI currently used across the settings you support? What have you observed directly, and what comes to you through other people or data?", "Where is it being used, limited, not used, or still uncertain? Where does the picture differ by school, grade band, subject, role, or learner group? What evidence or reports do you rely on? What remains difficult for you to know?", []),
+      r("05B-Q2", "How has your school or system approached generative AI so far? If there is no formal approach, how are AI-related decisions currently made?", "Which events, concerns, evidence, or people had the most influence? Where, if anywhere, do people still disagree? Whose perspectives carried the most weight? Were any relevant perspectives less visible or absent? What local history would an outsider need to understand? Does the approach vary across settings or roles? If so, how?", []),
+      r("05B-Q3", "Please think of a recent school- or system-level decision involving generative AI, if one comes to mind. Walk me through the information, values, and conditions that shaped the decision.", "Did the decision involve guidance, platform selection, access, professional learning, assessment, privacy, security, governance, or another area? What role did you play, and who else participated? What alternatives were considered, rejected, deferred, or left unchanged? What priorities aligned or pulled in different directions, if any? What has happened since, and what would lead you to revisit the decision? If no recent decision fits: Please describe an AI-related issue that remains open, was deferred, or was deliberately left unchanged. What shaped that outcome?", []),
+      r("05B-Q4", "What, if anything, does your organization do to help educators make decisions about generative AI and student learning? Please describe how that support works. If no formal support exists, what happens instead?", "Is professional learning, guidance, time, an example, or a decision tool involved? How do educators judge when generative AI supports learning, gets in the way, or leaves the answer uncertain? How do leaders know whether the available supports are useful? What, if anything, helps or complicates this work? What happens when people do not agree about what students should do for themselves?", []),
+      r("05B-Q5", "What part, if any, do you play when your organization considers or adopts an AI-enabled platform? Please describe what you know about a recent example from initial review to its current stage. If no example applies, what would shape such a review?", "What is examined about privacy, security, accessibility, cost, integration, and learning design? Does anyone examine how the tool responds when a learner is confused or stuck? What settings can the organization configure, and who knows how they work? What remains controlled by the vendor? Whose perspectives are included in review or implementation? Without sharing confidential details, what remains difficult to evaluate?", []),
+      r("05B-Q6", "Thinking of a specific AI-related decision, how, if at all, did organizational priorities or conditions interact? They may have aligned, pulled in different directions, or done neither.", "Did testing, pacing, efficiency, family expectations, privacy, access, security, or learning goals matter? Can you describe two priorities that aligned or pulled in different directions? If you did not see a tension, what conditions made alignment possible? Have family questions or concerns affected the decision? If so, how did the organization respond or communicate? Who experienced the effects of the decision? What remained uncertain or outside the organization's control? If no specific decision comes to mind: You may answer more generally about conditions that tend to matter in your setting.", []),
+      r("05B-Q7", "Has there been a time, if any, when the same AI tool, policy, or expectation was used or experienced differently across schools, roles, grade levels, subject areas, or learner groups? If so, how did leadership interpret and respond to those differences?", "Required follow-up: What, if anything, should remain a human responsibility in AI-supported teaching and learning? How does that view shape organizational decisions? Optional probes: Where does capacity break down first, if it does? If relevant to your role, how, if at all, is the picture different for multilingual learners or students with individualized education programs? Whose perspectives or experiences are easiest to see? Which are harder to see? If no example comes to mind: What kinds of variation would you want leaders to notice before making a school- or system-wide decision?", []),
+      r("05B-Q8", "How would you judge whether an AI-related approach or decision is working as intended in your setting? What evidence would support that judgment, and what evidence could change your view?", "If there is no current implementation, what would you want to know before proceeding? If there are no shared criteria, how are AI-related efforts currently judged? What would you want to measure that you cannot currently measure? What does vendor or internal data show, and what does it leave out? How has your own thinking changed? What change, if any, is most needed now? If no change is needed, what should be preserved?", []),
+      r("05B-CL", "What should I have asked to understand how leaders decide whether and under what conditions generative AI supports learning, gets in the way, or remains uncertain?", "Is there anything you would like to add, revise, or clarify before we finish?", [])
     ];
 
     let currentStep = 0;
@@ -183,7 +165,6 @@
         leaderRole: "",
         schoolContext: "",
         consent: false,
-        quickResponses: {},
         reflections: {},
         updatedAt: null
       };
@@ -234,9 +215,8 @@
       document.querySelectorAll("[data-step]").forEach((panel) => {
         panel.classList.toggle("hidden", Number(panel.dataset.step) !== currentStep);
       });
-      if (currentStep === 1) renderQuickItems();
-      if (currentStep === 2) renderReflectionItems();
-      if (currentStep === 3) renderPreview();
+      if (currentStep === 1) renderReflectionItems();
+      if (currentStep === 2) renderPreview();
       renderProgress();
       applyCollectionState();
       const activePanel = document.querySelector(`[data-step="${currentStep}"]`);
@@ -248,24 +228,13 @@
       }
     }
 
-    function renderQuickItems() {
-      syncStateFromDom();
-      document.querySelector("#quickItems").innerHTML = quickItems.map((item, index) => {
-        const value = state.quickResponses[item.id] || "";
-        const input = item.type === "choice"
-          ? `<select data-quick="${item.id}" aria-label="${escapeAttr(item.text)}"><option value="">Choose one</option>${item.options.map((option) => `<option ${value === option ? "selected" : ""}>${option}</option>`).join("")}</select>`
-          : `<input data-quick="${item.id}" aria-label="${escapeAttr(item.text)}" value="${escapeAttr(value)}" placeholder="Short answer">`;
-        return `<div class="question-card"><div class="question-meta"><span class="tag gray">Q${index + 1}</span></div><h3>${item.text}</h3>${input}</div>`;
-      }).join("");
-    }
-
     function renderReflectionItems() {
       syncStateFromDom();
       document.querySelector("#reflectionItems").innerHTML = reflections.map((item, index) => {
         const response = state.reflections[item.id] || {};
         return `
           <div class="question-card">
-            <div class="question-meta"><span class="tag gold">Reflection ${index + 1}</span></div>
+            <div class="question-meta"><span class="tag gold">${item.id}</span></div>
             <h3>${item.text}</h3>
             <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Researcher notes or reviewed transcript.">${escapeText(response.text || "")}</textarea>
             ${item.followUp ? `<div class="follow-up">
@@ -287,7 +256,6 @@
       if (schoolContext) state.schoolContext = schoolContext.value.trim();
       const consent = document.querySelector("#consentCheck");
       if (consent) state.consent = consent.checked;
-      document.querySelectorAll("[data-quick]").forEach((input) => state.quickResponses[input.dataset.quick] = input.value);
       document.querySelectorAll("[data-reflection]").forEach((input) => {
         state.reflections[input.dataset.reflection] = state.reflections[input.dataset.reflection] || {};
         state.reflections[input.dataset.reflection].text = input.value;
@@ -313,7 +281,6 @@
           schoolContext: state.schoolContext,
           consentChecked: state.consent
         },
-        quickResponses: quickItems.map((item) => ({ id: item.id, prompt: item.text, response: state.quickResponses[item.id] || "" })),
         reflections: reflections.map((item) => ({
           id: item.id,
           prompt: item.text,
@@ -326,13 +293,9 @@
 
     function markdownExport(data) {
       const lines = [`# Building-Level Administrator and District/System-Level Leader Interview Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Leader role: ${data.participant.leaderRole || ""}`, `- Role group: ${data.participant.roleGroup || ""}`, `- Institutional context: ${data.participant.schoolContext || ""}`, ""];
-      lines.push("## Quick Responses");
-      data.quickResponses.forEach((item, index) => {
-        lines.push(`### ${index + 1}. ${item.prompt}`, "", item.response || "_No response_", "");
-      });
       lines.push("## Reflections");
       data.reflections.forEach((item, index) => {
-        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, "", item.response || "_No response_", "");
+        lines.push(`### ${item.id}: ${item.prompt}`, "", item.response || "_No response_", "");
         if (item.standardFollowUp) lines.push(`**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "");
       });
       return lines.join("\n");

@@ -102,21 +102,7 @@
 
       <section class="panel hidden" data-step="1">
         <div class="panel-header">
-          <h2>Quick Response Items</h2>
-          <p>These items provide structured teacher indicators for frequency, confidence, policy support, equity, and assessment practice.</p>
-        </div>
-        <div class="panel-body">
-          <div id="quickItems"></div>
-          <div class="actions">
-            <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Continue to reflection</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel hidden" data-step="2">
-        <div class="panel-header">
-          <h2>Reflection Prompts</h2>
+          <h2>Interview Questions</h2>
           <p>The researcher may enter notes or a reviewed transcript after approval. Browser-local recording is not available for this protocol.</p>
         </div>
         <div class="panel-body">
@@ -128,7 +114,7 @@
         </div>
       </section>
 
-      <section class="panel hidden" data-step="3">
+      <section class="panel hidden" data-step="2">
         <div class="panel-header">
           <h2>Teacher Card Sort</h2>
           <p>Place each scenario along two dimensions and explain the placement: how much of the learner's own thinking, effort, and judgment it preserves, and whether it is a legitimate use of AI in education.</p>
@@ -142,7 +128,7 @@
         </div>
       </section>
 
-      <section class="panel hidden" data-step="4">
+      <section class="panel hidden" data-step="3">
         <div class="panel-header">
           <h2>Review and Export</h2>
           <p>Download the structured teacher response file. Live-session audio-and-video recordings are handled separately through the approved recording process.</p>
@@ -167,38 +153,34 @@
     import { q, r, cs, slug } from './shared/app.js';
 
     const COLLECTION_ENABLED = false;
-    const STORAGE_KEY = "teacher-pedagogical-friction-approved-v2";
-    const steps = ["Consent", "Quick response", "Reflection", "Card sort", "Export"];
-    const quickItems = [
-      q("planning_frequency", "How often do you integrate generative AI into your planning or instruction?", "choice", ["Never", "Rarely", "Sometimes", "Often", "Always"], ["infrastructural", "noetic"]),
-      q("student_outcome", "When students use AI on academic work, what outcome do you observe most often?", "short", [], ["noetic"]),
-      q("struggle_confidence", "How confident are you in distinguishing authentic cognitive struggle from an unnecessary barrier for a given student?", "choice", ["1 - Not at all confident", "2", "3", "4", "5 - Very confident"], ["noetic", "equity"]),
-      q("understanding_indicator", "What is one indicator you use to judge whether a student genuinely understands AI-assisted work?", "short", [], ["noetic", "existential"]),
-      q("policy_support", "To what degree does your district or school policy support designing assignments that preserve productive struggle?", "choice", ["1 - Not at all", "2", "3", "4", "5 - A great deal"], ["infrastructural", "policy"]),
-      q("ell_iep_effect", "How has generative AI affected multilingual learners, including students identified in your setting as English learners, and students with individualized education programs in your classroom?", "short", [], ["equity"]),
-      q("accountability_challenge", "What is the most challenging aspect of holding students personally accountable for AI-assisted work?", "short", [], ["existential", "authorship"]),
-      q("peer_critique", "How has peer critique or discussion of student work shifted since generative AI became available?", "short", [], ["rhetorical"]),
-      q("access_rating", "How would you rate your overall access to the AI tools and supports you need to teach well?", "choice", ["1 - Very poor", "2", "3", "4", "5 - Excellent"], ["infrastructural"])
-    ];
+    const STORAGE_KEY = "teacher-pedagogical-friction-05A-chair-approved-v3";
+    const steps = ["Consent", "Interview", "Card sort", "Export"];
 
     const reflections = [
-      r("lesson_ai_decision", "Describe a lesson where you deliberately allowed, limited, or banned AI. What were you trying to protect?", "Did that AI use remove an unnecessary barrier, reduce productive struggle, or do both?", ["noetic", "equity"]),
-      r("assessment_ownership", "How are you adapting assessment so students retain intellectual ownership of their work?", "What signals to you that a student genuinely owns the work?", ["existential", "authorship"]),
-      r("policy_practice_gap", "Describe one way policy, parent expectations, pacing pressure, or tool access shapes what you feel able to do.", "If that constraint changed tomorrow, what would you do differently?", ["infrastructural", "policy"]),
-      r("closing_response", "Is there anything you would like to record in your own words about what is at stake? And what should I have asked that I did not?", "", ["closing"])
+      r("05A-C1", "Please tell me about your current educational role, the learners you work with, and the setting in which you make instructional decisions.", "What grade band or subject area do you work in? How long have you been in this role? How would you describe the school context without naming the institution?", []),
+      r("05A-Q1", "How, if at all, does generative AI currently show up in your own planning or instruction? Please walk me through a recent example, or explain what shapes your choice not to use it.", "What were you trying to accomplish? What did you ask the tool to do, if anything? How did you judge, revise, or reject what it produced? What remained your responsibility? How has your use or nonuse changed over time?", []),
+      r("05A-Q2", "How, if at all, does generative AI show up in the student work or learning you encounter? Please describe a recent situation and how you responded.", "When was the use invited, permitted, unexpected, restricted, or not apparent? What did you observe in the student's process, explanation, or final work? What led you to believe generative AI was or was not involved? What remained uncertain or difficult to see? Did the situation affect what you did next?", []),
+      r("05A-Q3", "I would like to hear about three kinds of instructional decisions. We can take them one at a time. Tell me about a learning situation in which you allowed or encouraged students to use generative AI. Tell me about a situation in which you limited how students could use it. Tell me about a situation in which you did not allow it.", "What were students expected to learn or do for themselves? What shaped your decision? How did you communicate the decision to students? What happened, and how did you judge the result? Did the decision work differently for different learners? If an example has not occurred: Can you imagine a situation in which you might make that choice? What would shape your decision? If no example comes to mind, move on.", []),
+      r("05A-Q4", "What, if anything, have you changed about assessment since generative AI became widely available? Please walk me through a recent assessment you changed or deliberately chose not to change.", "What did the assessment look like before and afterward? What helped you judge whether students understood the work? Where, if anywhere, did authorship or ownership become difficult to judge? Did checkpoints, conversations, demonstrations, or other evidence help? What remained uncertain?", []),
+      r("05A-Q5", "Thinking across different learners and situations, when, if ever, has generative AI removed a barrier or helped a learner participate or understand? When, if ever, has it provided assistance before a learner did thinking you wanted the learner to do? These may be different situations, two interpretations of the same situation, or experiences you have not encountered.", "What did you observe, and what did you infer? What evidence shaped your judgment? Did the effect differ by learner, task, subject, or context? What additional information would have helped you decide? How did you respond? Looking back, would you make the same decision again?", []),
+      r("05A-Q6a", "If this is relevant to your role, how, if at all, have generative AI tools affected the options, access, or learning experiences of multilingual learners?", "Without identifying a student, can you describe a situation that shaped your view? What did you observe directly, and what did you infer? Did the tool remove a barrier, introduce a concern, do both, or do neither? Did accommodations, supports, or responsibilities become clearer or less clear? Did experiences vary among learners in ways that mattered? What remained uncertain?", []),
+      r("05A-Q6b", "If this is relevant to your role, how, if at all, have generative AI tools affected the options, access, or learning experiences of students with individualized education programs?", "Without identifying a student, can you describe a situation that shaped your view? What did you observe directly, and what did you infer? Did the tool remove a barrier, introduce a concern, do both, or do neither? Did accommodations, supports, or responsibilities become clearer or less clear? Did experiences vary among learners in ways that mattered? What remained uncertain?", []),
+      r("05A-Q7", "What, if anything, do you believe a student should contribute personally for AI-assisted work to count as learning or as the student's own work? Why?", "Does your answer change by task, learner, subject, or stage of learning? How, if at all, has generative AI changed students' willingness or ability to explain, discuss, revise, or defend their work? Are there circumstances in which the quality of the final product matters more than how it was produced? Are there circumstances in which the process matters more? What would cause you to reconsider your view?", []),
+      r("05A-Q8", "Has there been a time, if any, when something beyond the immediate lesson shaped an AI-related instructional decision (i.e. an AI policy, platform, initiative, etc.)? If so, how did you interpret and respond to that condition?", "Did policy, pacing, family expectations, platform design, access, professional learning, or another condition matter? Who had authority to decide, and who experienced the consequences? Did people disagree, adapt the decision, or respond differently across settings? What support or information was available? What was missing? How has your own thinking changed since you first encountered these tools? What remains uncertain or outside your control?", []),
+      r("05A-CL", "What should I have asked to understand how you decide when generative AI supports learning, when it gets in the way, or when the answer remains uncertain?", "Is there anything you would like to add, revise, or clarify before we finish?", [])
     ];
 
     const cardSortItems = [
-      cs("Students use AI to brainstorm possible claims, then draft the essay without AI.", ["noetic", "rhetorical"]),
-      cs("A student submits an AI-assisted essay and then defends the thesis in a one-on-one conference.", ["rhetorical", "existential"]),
-      cs("A multilingual learner uses AI translation to understand the assignment directions before starting.", ["equity", "infrastructural"]),
-      cs("AI summarizes a source for the class before students read the original text.", ["noetic", "rhetorical"]),
-      cs("A school blocks all AI tools because district guidance is unclear.", ["policy", "infrastructural"]),
-      cs("A teacher uses AI to generate first-draft feedback on every student essay.", ["rhetorical"]),
-      cs("A student asks AI to explain a concept they do not understand, then completes the problem set alone.", ["noetic"]),
-      cs("A student has AI write the introduction, then writes the rest of the paper themselves.", ["authorship", "existential"]),
-      cs("A student with a writing-related disability uses AI to turn their own notes into an outline.", ["equity", "infrastructural"]),
-      cs("A student uses AI to generate counterarguments to stress-test their own thesis before a debate.", ["rhetorical", "noetic"])
+      cs("A student uses AI to generate possible claims, chooses one, drafts the essay without AI, and discloses the brainstorming support.", ["Teacher"]),
+      cs("A student submits an AI-assisted essay, then explains and defends the thesis, evidence, and revisions in a one-on-one conference.", ["Teacher"]),
+      cs("A multilingual learner uses AI translation to understand assignment directions, then completes the disciplinary task without AI.", ["Teacher"]),
+      cs("Before reading a source, a student asks AI for a summary and relies on it to begin the assignment; the original text remains available.", ["Teacher"]),
+      cs("A school blocks generative AI because district guidance is unclear, while allowing individually approved accessibility supports.", ["Teacher"]),
+      cs("A teacher uses AI to draft feedback on every essay, reviews and revises the feedback, and asks students to discuss how they used it.", ["Teacher"]),
+      cs("A student asks AI to explain a difficult concept, then solves a new problem without AI and explains the reasoning.", ["Student"]),
+      cs("A student asks AI to write the introduction, makes only light edits, writes the rest independently, and discloses the AI contribution.", ["Student"]),
+      cs("A student with an IEP uses AI to turn the student's own notes into an outline, then writes and revises the response without AI.", ["Student"]),
+      cs("A student uses AI to generate counterarguments, revises the thesis after evaluating them, and explains which suggestions were accepted or rejected.", ["Student"])
     ];
 
     let currentStep = 0;
@@ -212,7 +194,6 @@
         contentArea: "",
         schoolContext: "",
         consent: false,
-        quickResponses: {},
         reflections: {},
         cardSort: {},
         cardSortFollowUp: "",
@@ -266,10 +247,9 @@
       document.querySelectorAll("[data-step]").forEach((panel) => {
         panel.classList.toggle("hidden", Number(panel.dataset.step) !== currentStep);
       });
-      if (currentStep === 1) renderQuickItems();
-      if (currentStep === 2) renderReflectionItems();
-      if (currentStep === 3) renderCardSort();
-      if (currentStep === 4) renderPreview();
+      if (currentStep === 1) renderReflectionItems();
+      if (currentStep === 2) renderCardSort();
+      if (currentStep === 3) renderPreview();
       renderProgress();
       applyCollectionState();
       const activePanel = document.querySelector(`[data-step="${currentStep}"]`);
@@ -281,22 +261,11 @@
       }
     }
 
-    function renderQuickItems() {
-      syncStateFromDom();
-      document.querySelector("#quickItems").innerHTML = quickItems.map((item, index) => {
-        const value = state.quickResponses[item.id] || "";
-        const input = item.type === "choice"
-          ? `<select data-quick="${item.id}" aria-label="${escapeAttr(item.text)}"><option value="">Choose one</option>${item.options.map((option) => `<option ${value === option ? "selected" : ""}>${option}</option>`).join("")}</select>`
-          : `<input data-quick="${item.id}" aria-label="${escapeAttr(item.text)}" value="${escapeAttr(value)}" placeholder="Short answer">`;
-        return `<div class="question-card"><div class="question-meta"><span class="tag gray">Q${index + 1}</span></div><h3>${item.text}</h3>${input}</div>`;
-      }).join("");
-    }
-
     function renderReflectionItems() {
       syncStateFromDom();
       document.querySelector("#reflectionItems").innerHTML = reflections.map((item, index) => {
         const response = state.reflections[item.id] || {};
-        const label = item.id === "closing_response" ? "Closing" : `Reflection ${index + 1}`;
+        const label = item.id;
         return `
           <div class="question-card">
             <div class="question-meta"><span class="tag gold">${label}</span></div>
@@ -318,14 +287,14 @@
           <div class="sort-card">
             <div class="question-meta"><span class="tag gray">Card ${index + 1}</span></div>
             <h3>${card.text}</h3>
-            <div class="pill-options" role="radiogroup" aria-label="Learner thinking, effort, and judgment preserved, card ${index + 1}">${["Low", "Medium", "High"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
-            <div class="pill-options" role="radiogroup" aria-label="Legitimate use of AI in education, card ${index + 1}">${["Not legitimate", "Contested", "Legitimate"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <div class="pill-options" role="radiogroup" aria-label="Learner thinking, effort, and judgment preserved, card ${index + 1}">${["Low", "Mixed or unclear", "High", "Need more context"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <div class="pill-options" role="radiogroup" aria-label="Response you would be most likely to take, card ${index + 1}">${["Allow or encourage", "Allow with conditions or limits", "Do not allow", "Need more context"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>${value}</label>`).join("")}</div>
             <textarea data-sort-note="${card.id}" aria-label="${escapeAttr(`Reasoning for card ${index + 1}: ${card.text}`)}" placeholder="Explain the placement.">${escapeText(response.note || "")}</textarea>
           </div>`;
       }).join("") + `
         <div class="question-card">
           <div class="question-meta"><span class="tag gold">Card-sort follow-up</span></div>
-          <h3>Which two cards were hardest to place, and why?</h3>
+          <h3>Which two cards were hardest to place? Which scenario most clearly removes a barrier? Which may provide assistance before desired thinking occurs? Which is most affected by policy, expectations, or authority?</h3>
           <textarea id="cardSortFollowUp" aria-label="Which two cards were hardest to place, and why?" placeholder="Researcher notes or reviewed transcript.">${escapeText(state.cardSortFollowUp || "")}</textarea>
         </div>`;
       applyCollectionState();
@@ -344,7 +313,6 @@
       if (schoolContext) state.schoolContext = schoolContext.value.trim();
       const consent = document.querySelector("#consentCheck");
       if (consent) state.consent = consent.checked;
-      document.querySelectorAll("[data-quick]").forEach((input) => state.quickResponses[input.dataset.quick] = input.value);
       document.querySelectorAll("[data-reflection]").forEach((input) => {
         state.reflections[input.dataset.reflection] = state.reflections[input.dataset.reflection] || {};
         state.reflections[input.dataset.reflection].text = input.value;
@@ -381,7 +349,6 @@
           schoolContext: state.schoolContext,
           consentChecked: state.consent
         },
-        quickResponses: quickItems.map((item) => ({ id: item.id, prompt: item.text, response: state.quickResponses[item.id] || "" })),
         reflections: reflections.map((item) => ({
           id: item.id,
           prompt: item.text,
@@ -399,13 +366,9 @@
 
     function markdownExport(data) {
       const lines = [`# K-12 Classroom-Facing Educator Interview Export`, "", `- Exported: ${data.exportedAt}`, `- Participant code: ${data.participant.code || ""}`, `- Grade band: ${data.participant.gradeBand || ""}`, `- Content area: ${data.participant.contentArea || ""}`, `- School context: ${data.participant.schoolContext || ""}`, ""];
-      lines.push("## Quick Responses");
-      data.quickResponses.forEach((item, index) => {
-        lines.push(`### ${index + 1}. ${item.prompt}`, "", item.response || "_No response_", "");
-      });
       lines.push("## Reflections");
       data.reflections.forEach((item, index) => {
-        lines.push(`### Reflection ${index + 1}: ${item.prompt}`, "", item.response || "_No response_", "");
+        lines.push(`### ${item.id}: ${item.prompt}`, "", item.response || "_No response_", "");
         if (item.standardFollowUp) lines.push(`**Standard follow-up:** ${item.standardFollowUp}`, "", item.followUpResponse || "_No follow-up response_", "");
       });
       lines.push("## Card Sort");
