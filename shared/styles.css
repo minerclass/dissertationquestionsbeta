@@ -102,6 +102,7 @@ aside .hint { color: rgba(255,255,255,.78); }
   .shell { display: block; }
   aside { position: static; height: auto; }
   main { padding: 18px; }
+  .review-banner { position: static; margin-top: 0; }
   .grid { grid-template-columns: 1fr; }
   .topbar { align-items: flex-start; flex-direction: column; }
 }

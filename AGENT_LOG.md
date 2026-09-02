@@ -19,6 +19,23 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-09-02 - Complete the public 05F card-sort synchronization
+
+Source: the September 2026 chair-review package, especially `05F - Scenario Card Sort for 05A and 05C - CURRENT CHAIR REVIEW`. This entry supplements commit `33c361f`, which had already replaced the older scenarios and question sets.
+
+- Replaced the remaining participant-facing "legitimate use" description with the two exact 05F placement questions.
+- Added visible Dimension 1 and Dimension 2 labels to every card on the classroom-facing educator and adult university-student routes.
+- Renamed future state and export fields from the superseded `friction` and `legitimacy` labels to `preservation` and `mostLikelyResponse`; bumped the review-version and storage keys so a later approved activation cannot inherit an older response shape.
+- Updated the Markdown export template to preserve both 05F dimensions and the complete post-sort follow-up sequence.
+- Added a regression check requiring the same ten 05F cards on 05A and 05C, no card sort on 05B, the pre-IRB collection lock on all three routes, and no residual legitimacy wording.
+- Updated `IRB_STATUS.md` and `README.md` to identify 05F as a separate working component still awaiting chair and IRB review.
+- Corrected all three role-specific session estimates to the current package and removed a stale researcher-page statement that had incorrectly associated 05F with 05E survey validation.
+- Kept the required review banner visible but made it non-sticky at phone widths so it does not obscure the card dimensions while scrolling.
+
+Verification before publication: `node test-suite.js` completed with zero errors, including the new 05F check; `node shared/app.test.js` passed all 11 tests; and `node validate-links.js` completed with zero errors. Browser review confirmed the complete disabled card flow, visible dimensions, and responsive wrapping at desktop and 390-pixel phone widths. The only console entry was the existing harmless request for a missing `favicon.ico`; no application-script error occurred.
+
+No participant activity was enabled. The public pages remain read-only and pre-IRB.
+
 ## 2026-08-31 - Fix the contrast regression the token adoption introduced
 
 **CI caught this; local review did not.** The Accessibility Checker failed on commit

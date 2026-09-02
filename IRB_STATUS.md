@@ -1,6 +1,6 @@
 # Public Instrument Status
 
-Last verified: 2026-08-28
+Last verified: 2026-09-02
 
 ## Current state
 
@@ -10,28 +10,37 @@ The study remains proposal-stage and pre-IRB. A technically live page does not i
 
 ## Controlling review files
 
-The August 13 alignment pass used these protected Drive documents:
+The September 2 alignment pass used these current chair-review documents:
 
-- `Miner Dissertation Proposal Chapters 1-3 - Revision Working Copy - July 24 -'26`
-- `02 - Miner IRB Narrative - PROTECTED WORKING COPY`
-- `05A - Classroom Educator Interview and Card Sort - IRB ATTACHMENT`
-- `05B - Administrator and District-System Leader Interview - IRB ATTACHMENT`
-- `05C - Adult University Student Interview and Card Sort - IRB ATTACHMENT`
-- `03 - Miner IRB Consent Forms - PROTECTED WORKING COPY`
-- `06 - Data Management and Security Plan - IRB ATTACHMENT`
+- `05A - Classroom-Facing Educator Interview Protocol - QUESTIONS CHAIR-APPROVED`
+- `05B - School and System Leader Interview Protocol - QUESTIONS CHAIR-APPROVED`
+- `05C - Adult University Student Interview Protocol - QUESTIONS CHAIR-APPROVED`
+- `05F - Scenario Card Sort for 05A and 05C - CURRENT CHAIR REVIEW`
+- `02 - IRB Narrative - CURRENT CHAIR REVIEW`
+- `03 - Consent Forms - CURRENT CHAIR REVIEW`
+- `06 - Data Management and Security Plan - CURRENT CHAIR REVIEW`
+- `00 - Chair Review Readiness and Outstanding Confirmations`
 - `10 - Public Instrument Site Pre-IRB Audit - CURRENT`
+
+Chair approval applies to the 05A-05C interview questions. The separate working 05F card sort remains subject to chair and IRB review.
 
 ## Scope controls
 
 - With written permission, live interview sessions may be recorded with audio and video through the separate approved recording process; participants may decline recording and still take part.
-- Classroom-facing educators: interview plus the ten-card scenario sort; no browser-local recording.
+- Classroom-facing educators: interview plus the separate optional shared ten-card 05F scenario sort; no browser-local recording.
 - Building administrators and district/system leaders: shared interview protocol; no card sort and no browser-local recording.
-- Adult university students: interview plus the same ten-card scenario sort; browser-local audio is limited to the optional closing response and requires confirmed written recording permission.
+- Adult university students: interview plus the separate optional shared ten-card 05F scenario sort; browser-local audio remains disabled in the current review state.
 - The public pages do not capture video.
 - Analytic dimension tags remain internal researcher metadata and are not shown or included in participant-facing export previews.
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
 ## Change log
+
+### 2026-09-02 - Public card sort synchronized to working attachment 05F
+
+The classroom-facing educator and adult university-student pages now reproduce the same ten scenarios from working attachment 05F. Both pages display the attachment's two placement dimensions and response options: preservation of the learner's thinking, effort, and judgment; and the response the participant would be most likely to take. The administration and post-sort prompts also match 05F. Superseded `legitimacy` wording and export-field labels were removed, and session-length estimates were synchronized across 05A-05C.
+
+The school/system-leader 05B page still contains no card sort. The root and researcher-review pages now state that 05E survey validation does not include 05F and that the public role pages are reviewer-only. The public pages remain read-only: collection, browser recording, persistence, and export are disabled. On phone-width layouts, the review banner no longer sticks over card content. This synchronization supports chair and IRB review; it does not indicate approval of 05F or authorize participant activity.
 
 ### 2026-08-28 - Survey platform reference updated to Microsoft Forms
 

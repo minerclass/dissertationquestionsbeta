@@ -33,7 +33,7 @@
       <div class="topbar">
         <div>
           <strong>Adult University-Student Retrospective Instrument</strong>
-          <div class="meta">Estimated session length: 30–60 minutes in total</div>
+          <div class="meta">Estimated session length: 50–65 minutes in total (40–55-minute core interview plus an optional approximately 10-minute card sort)</div>
         </div>
         <div class="button-row">
           <button class="btn" id="saveDraftButton" type="button">Save draft</button>
@@ -110,7 +110,8 @@
       <section class="panel hidden" data-step="2">
         <div class="panel-header">
           <h2>Student Card Sort</h2>
-          <p>Place each scenario along two dimensions and explain the placement: how much of the learner's own thinking, effort, and judgment it preserves, and whether it is a legitimate use of AI in education.</p>
+          <p>This separate optional card sort matches working attachment 05F. In live administration, shuffle the cards and ask the participant to place each one on both dimensions while thinking aloud. Participants may revise placements at any time.</p>
+          <p class="hint"><strong>Neutral follow-ups, used selectively:</strong> What did you observe and what did you infer? What additional context would change this placement? What should remain the learner's responsibility? What evidence would help you judge the result?</p>
         </div>
         <div class="panel-body">
           <div id="cardSortItems"></div>
@@ -146,7 +147,7 @@
     import { q, r, cs, slug } from '../shared/app.js';
 
     const COLLECTION_ENABLED = false;
-    const STORAGE_KEY = "university-student-05C-chair-approved-v3";
+    const STORAGE_KEY = "university-student-05C-05F-chair-review-v4";
     const steps = ["Consent", "Interview", "Card sort", "Export"];
 
     const reflections = [
@@ -171,7 +172,7 @@
       cs("A teacher uses AI to draft feedback on every essay, reviews and revises the feedback, and asks students to discuss how they used it.", ["Teacher"]),
       cs("A student asks AI to explain a difficult concept, then solves a new problem without AI and explains the reasoning.", ["Student"]),
       cs("A student asks AI to write the introduction, makes only light edits, writes the rest independently, and discloses the AI contribution.", ["Student"]),
-      cs("A student with an IEP uses AI to turn the student's own notes into an outline, then writes and revises the response without AI.", ["Student"]),
+      cs("A student with an IEP uses AI to turn the student’s own notes into an outline, then writes and revises the response without AI.", ["Student"]),
       cs("A student uses AI to generate counterarguments, revises the thesis after evaluating them, and explains which suggestions were accepted or rejected.", ["Student"])
     ];
 
@@ -296,8 +297,10 @@
           <div class="sort-card">
             <div class="question-meta"><span class="tag gray">Card ${index + 1}</span></div>
             <h3>${card.text}</h3>
-            <div class="pill-options" role="radiogroup" aria-label="Learner thinking, effort, and judgment preserved, card ${index + 1}">${["Low", "Mixed or unclear", "High", "Need more context"].map((value) => `<label><input type="radio" name="${card.id}-friction" data-sort="${card.id}" data-sort-field="friction" value="${value}" ${response.friction === value ? "checked" : ""}>${value}</label>`).join("")}</div>
-            <div class="pill-options" role="radiogroup" aria-label="Response you would be most likely to take, card ${index + 1}">${["Allow or encourage", "Allow with conditions or limits", "Do not allow", "Need more context"].map((value) => `<label><input type="radio" name="${card.id}-legitimacy" data-sort="${card.id}" data-sort-field="legitimacy" value="${value}" ${response.legitimacy === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <p class="hint"><strong>Dimension 1:</strong> How much of the learner’s own thinking, effort, and judgment appears to be preserved?</p>
+            <div class="pill-options" role="radiogroup" aria-label="Dimension 1: How much of the learner’s own thinking, effort, and judgment appears to be preserved? Card ${index + 1}">${["Low", "Mixed or unclear", "High", "Need more context"].map((value) => `<label><input type="radio" name="${card.id}-preservation" data-sort="${card.id}" data-sort-field="preservation" value="${value}" ${response.preservation === value ? "checked" : ""}>${value}</label>`).join("")}</div>
+            <p class="hint"><strong>Dimension 2:</strong> What response would you be most likely to take?</p>
+            <div class="pill-options" role="radiogroup" aria-label="Dimension 2: What response would you be most likely to take? Card ${index + 1}">${["Allow or encourage", "Allow with conditions or limits", "Do not allow", "Need more context"].map((value) => `<label><input type="radio" name="${card.id}-most-likely-response" data-sort="${card.id}" data-sort-field="mostLikelyResponse" value="${value}" ${response.mostLikelyResponse === value ? "checked" : ""}>${value}</label>`).join("")}</div>
             <textarea data-sort-note="${card.id}" aria-label="${escapeAttr(`Reasoning for card ${index + 1}: ${card.text}`)}" placeholder="Explain the placement.">${escapeText(response.note || "")}</textarea>
           </div>`;
       }).join("") + `
@@ -349,7 +352,7 @@
       syncStateFromDom();
       return {
         app: "Adult University Student Interview and Card Sort",
-        version: "2026-08-irb-aligned-review-v2",
+        version: "2026-09-05f-chair-review-v1",
         exportedAt: new Date().toISOString(),
         participant: {
           code: state.participantCode,
@@ -371,7 +374,7 @@
         })),
         cardSort: cardSortItems.map((card) => {
           const response = state.cardSort[card.id] || {};
-          return { id: card.id, prompt: card.text, thinkingEffortJudgmentPreserved: response.friction || "", legitimacy: response.legitimacy || "", reasoning: response.note || "" };
+          return { id: card.id, prompt: card.text, thinkingEffortJudgmentPreserved: response.preservation || "", mostLikelyResponse: response.mostLikelyResponse || "", reasoning: response.note || "" };
         }),
         cardSortFollowUp: state.cardSortFollowUp || "",
         audioManifest: Object.entries(state.audio).map(([id, item]) => ({ reflectionId: id, mimeType: item.mimeType, createdAt: item.createdAt, downloadSeparately: true }))
@@ -388,9 +391,9 @@
       });
       lines.push("## Card Sort");
       data.cardSort.forEach((item, index) => {
-        lines.push(`### Card ${index + 1}: ${item.prompt}`, `Learner thinking, effort, and judgment preserved: ${item.thinkingEffortJudgmentPreserved || ""}`, `Legitimacy: ${item.legitimacy || ""}`, `Reasoning: ${item.reasoning || ""}`, "");
+        lines.push(`### Card ${index + 1}: ${item.prompt}`, `Dimension 1 - Learner thinking, effort, and judgment preserved: ${item.thinkingEffortJudgmentPreserved || ""}`, `Dimension 2 - Most likely response: ${item.mostLikelyResponse || ""}`, `Reasoning: ${item.reasoning || ""}`, "");
       });
-      lines.push("### Card-sort follow-up", "Which two cards were hardest to place, and why?", "", data.cardSortFollowUp || "_No response_", "");
+      lines.push("### Card-sort follow-up", "Which two cards were hardest to place? Which scenario most clearly removes a barrier? Which may provide assistance before desired thinking occurs? Which is most affected by policy, expectations, or authority?", "", data.cardSortFollowUp || "_No response_", "");
       return lines.join("\n");
     }
 

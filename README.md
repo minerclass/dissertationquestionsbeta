@@ -6,7 +6,7 @@ Static GitHub Pages site for reviewing role-specific interview and card-sort ins
 
 The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. The study is now in post-defense interview-protocol revision and remains pre-IRB approval. Role-specific pages are navigable read-only review copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
 
-The planned sequence is interview-question revision, committee review, a three-educator rehearsal to assess conversational flow, and an update to the IRB materials. The rehearsal is not represented here as main-study recruitment, participant data collection, or findings.
+The 05A-05C interview questions have received chair approval at the question level and are synchronized here for review. The separate working 05F card sort is synchronized for chair and IRB review but has not yet been approved. The study remains pre-IRB; these pages do not represent recruitment, participant data collection, or findings.
 
 ## Live Site
 
@@ -39,11 +39,11 @@ The role-specific pages now include:
 - A persistent `UNDER REVIEW — NOT COLLECTING RESPONSES` banner
 - Consent, eligibility, and local-data notices aligned to the protected IRB packet
 - Standard opening scripts and role-specific prompts aligned to attachments 05A, 05B, and 05C
-- Role-specific selected-response and short-answer items
+- Chair-approved 05A-05C interview questions and role-specific probes
 - Disabled response fields retained for wording and layout review
 - Standardized follow-up probes rather than AI-generated individualized probing
 - Analytic framework tags omitted from participant-facing screens and export previews
-- Shared teacher and university-student card-sort activity aligned to the IRB packet
+- Separate optional shared ten-card 05F sort for classroom-facing educators and adult university students, with the exact two placement dimensions and post-sort prompts
 - No card sort in the school- and district-leader protocol
 - No browser-local recording on the teacher or leader page
 - Live interview recording with audio and video handled through a separate approved process
