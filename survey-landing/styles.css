@@ -1,10 +1,13 @@
 :root {
-  --bg: #f5f7fb;
-  --paper: #ffffff;
+  /* Ground, ink and rules from the shared ecosystem tokens with pre-adoption
+     fallbacks. The navy/teal/gold/plum accents and the soft tints stay local. */
+  --bg: var(--mjm-bg, #f5f7fb);
+  --paper: var(--mjm-surface, #ffffff);
   --paper-strong: #eef4f3;
-  --ink: #172033;
-  --muted: #5a6678;
-  --line: #d8e0e8;
+  --ink: var(--mjm-ink, #172033);
+  --muted: var(--mjm-muted, #5a6678);
+  --line: var(--mjm-line, #d8e0e8);
+  --mjm-accent: var(--mjm-teal, #2b817b);
   --navy: #203a5f;
   --teal: #2b817b;
   --teal-dark: #1f625e;

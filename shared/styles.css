@@ -1,9 +1,15 @@
 :root {
-  --ink: #172033;
-  --muted: #5d6878;
-  --line: #d9e1ea;
-  --paper: #ffffff;
-  --wash: #f5f7fa;
+  /* Ground, ink and rules come from the shared ecosystem tokens at
+     https://minerclass.github.io/tokens.css, each fallback set to this
+     sheet's pre-adoption value so a failed load changes nothing. The
+     navy/teal/gold/red accents stay local, and the per-role accent tints in
+     teacher.html and principal.html override them unchanged. */
+  --ink: var(--mjm-ink, #172033);
+  --muted: var(--mjm-muted, #5d6878);
+  --line: var(--mjm-line, #d9e1ea);
+  --paper: var(--mjm-surface, #ffffff);
+  --wash: var(--mjm-bg, #f5f7fa);
+  --mjm-accent: var(--mjm-teal, #1b7895);
   --navy: #164a6a;
   --teal: #1b7895;
   --gold: #b78028;
