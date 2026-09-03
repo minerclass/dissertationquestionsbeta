@@ -1,6 +1,6 @@
 # Public Instrument Status
 
-Last verified: 2026-09-02
+Last local verification: 2026-09-03; deployed revision remains subject to verification after publication.
 
 ## Current state
 
@@ -55,10 +55,11 @@ on the survey landing page named the old platform and were corrected.
 disabled, and this site still collects no responses. Google Drive references elsewhere in the
 repository relate to embedded video and are unaffected.
 
-**Reconciled September 3, 2026.** Current attachments 02, 03, 05D, and 06 now name Microsoft
+**Prepared September 3, 2026.** Revised attachments 02, 03, 04, 05D, and 06 name Microsoft
 Forms. Their anonymity language requires the final institutional Microsoft Forms configuration to
-be verified and documented before activation. Recruitment materials contain no platform-specific
-claim. The participant-facing printable consent is linked from the survey landing page.
+be verified and documented before activation. These revised files are prepared locally; replacement
+of the shared packet is pending. This revision links printable consent from the survey landing page;
+the deployed link and shared packet must be checked after publication and upload.
 
 ### 2026-08-23 - Export labels and survey contact block
 
