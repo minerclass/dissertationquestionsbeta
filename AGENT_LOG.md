@@ -325,3 +325,14 @@ Agent: OpenAI Codex, recording the researcher's reported milestone and planned s
   heading remains fully visible instead of being clipped by the masthead.
 - Made no changes to interview-question wording and made no claims of IRB approval,
   participant data, analysis, findings, or ABD status.
+
+## 2026-09-03 - IRB packet and public-review alignment
+
+Agent: OpenAI Codex, implementing the researcher's requested corrections after an independent source audit.
+
+- Reproduced the three current 05A-05C opening scripts on the role-specific review pages without changing interview questions.
+- Preserved read-only controls and the separately handled live-audio permission record; no browser capture or participant collection was enabled.
+- Added the complete printable survey consent and made the closed-state action explicit.
+- Added the age and existing conflict-of-interest exclusions to the survey eligibility notice.
+- Updated status documentation for the Microsoft Forms packet alignment and final configuration-verification gate.
+- Validated the question/card-sort regression suite, terminology checks, local links, rendered page behavior, and console output before publication.

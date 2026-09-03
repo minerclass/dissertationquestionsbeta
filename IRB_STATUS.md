@@ -29,7 +29,7 @@ Chair approval applies to the 05A-05C interview questions. The separate working 
 - With written permission, live interview sessions may be audio-recorded through the separate approved recording process; participants may decline recording and still take part.
 - Classroom-facing educators: interview plus the separate optional shared ten-card 05F scenario sort; no browser-local recording.
 - Building administrators and district/system leaders: shared interview protocol; no card sort and no browser-local recording.
-- Adult university students: interview plus the separate optional shared ten-card 05F scenario sort; browser-local audio remains disabled in the current review state.
+- Adult university students: interview plus the separate optional shared ten-card 05F scenario sort; no browser-local recording.
 - The public pages do not capture video.
 - Analytic dimension tags remain internal researcher metadata and are not shown or included in participant-facing export previews.
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
@@ -55,11 +55,10 @@ on the survey landing page named the old platform and were corrected.
 disabled, and this site still collects no responses. Google Drive references elsewhere in the
 repository relate to embedded video and are unaffected.
 
-**Not yet reconciled.** The IRB narrative, consent forms, recruitment materials, the `05D`
-attachment, and proposal Appendix G still describe a Google Form. Those are protected documents and
-are covered separately in `Miner_Platform_Update_Changelist_2026-08-28.md`. The anonymity language in
-those documents was written for Google Forms settings and requires re-verification against the
-Microsoft Forms configuration before submission.
+**Reconciled September 3, 2026.** Current attachments 02, 03, 05D, and 06 now name Microsoft
+Forms. Their anonymity language requires the final institutional Microsoft Forms configuration to
+be verified and documented before activation. Recruitment materials contain no platform-specific
+claim. The participant-facing printable consent is linked from the survey landing page.
 
 ### 2026-08-23 - Export labels and survey contact block
 

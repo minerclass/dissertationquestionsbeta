@@ -38,7 +38,7 @@ The role-specific pages now include:
 
 - A persistent `UNDER REVIEW — NOT COLLECTING RESPONSES` banner
 - Consent, eligibility, and local-data notices aligned to the protected IRB packet
-- Standard opening scripts and role-specific prompts aligned to attachments 05A, 05B, and 05C
+- Standard opening scripts and role-specific prompts reproduced from attachments 05A, 05B, and 05C
 - Chair-approved 05A-05C interview questions and role-specific probes
 - Disabled response fields retained for wording and layout review
 - Standardized follow-up probes rather than AI-generated individualized probing
@@ -58,7 +58,7 @@ Current limits:
 - The pages do not receive or transmit participant responses.
 - Collection controls are disabled until written IRB approval and a version-match check.
 - Teacher and leader pages do not expose browser microphone or camera capture.
-- The student page contains one browser-local recorder for the optional closing response, but it is disabled in the current review state.
+- The student page contains no browser-local recording code; written permission for a separately handled live audio recording remains documented in the review flow.
 - None of the public pages captures audio or video; consented live-session audio recording uses the separate approved process.
 - No server, database, account system, analytics service, or third-party transcription service is used by the role-specific pages.
 - The activation checklist and scope boundaries are recorded in `IRB_STATUS.md`.
@@ -76,6 +76,7 @@ Do not use the app for formal recruitment or live dissertation data collection u
 - `survey-landing/index.html` - static participant-facing orientation page for the K-12 educator survey
 - `survey-landing/styles.css` - local styling for the survey landing page
 - `survey-landing/README.md` - notes for updating survey links and deployment
+- `survey-landing/printable-consent.pdf` - printable copy of the participant consent shown at the start of the survey
 - `dashboard.html` - existing analysis dashboard artifact; intentionally not linked from participant-facing pages
 - `.nojekyll` - keeps GitHub Pages from applying Jekyll processing
 
