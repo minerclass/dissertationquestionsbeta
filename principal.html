@@ -26,7 +26,7 @@
       <div class="role-badge">Institutional Leader Instrument</div>
       <h1>Building Administrator and District/System Leader Interview</h1>
       <p>A researcher-guided, in-session tool matching the participant-facing IRB instrument attachment.</p>
-      <div class="privacy-note"><strong>Privacy default:</strong> when approved and enabled, entries stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
+      <div class="privacy-note"><strong>Privacy default:</strong> this page is a read-only display of the instrument. It does not receive, retain, or transmit participant responses. No server, database, account, analytics service, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
       <p class="hint">Use this when the participant is a principal, assistant principal, dean, department chair, or district or system-level leader.</p>
       <div class="button-row">
@@ -92,7 +92,7 @@
           </label>
           <div class="callout"><strong>Recording scope:</strong> this page does not record browser audio or video. If the participant gives written permission for interview recording, use the separate IRB-approved audio recording process. The participant may decline recording and still take part.</div>
           <div class="actions">
-            <span class="hint">All response data remains local until export.</span>
+            <span class="hint">Read-only preview. This page does not receive, retain, or transmit participant responses.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
           </div>
         </div>
@@ -101,21 +101,21 @@
       <section class="panel hidden" data-step="1">
         <div class="panel-header">
           <h2>Interview Questions</h2>
-          <p>The researcher may enter notes or a reviewed transcript after approval. Browser-local recording is not available for this protocol.</p>
+          <p>Reviewer-only display of the approved question set. The fields below are disabled illustrations of the instrument's structure. In an approved session the researcher records responses in interview notes and, with written permission, the separate approved audio recording.</p>
         </div>
         <div class="panel-body">
           <div id="reflectionItems"></div>
           <div class="actions">
             <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Review export</button>
+            <button class="btn primary" type="button" data-next>Review instrument</button>
           </div>
         </div>
       </section>
 
       <section class="panel hidden" data-step="2">
         <div class="panel-header">
-          <h2>Review and Export</h2>
-          <p>Download the structured institutional-leader response file. Live-session audio recordings are handled separately through the approved recording process.</p>
+          <h2>Instrument Summary</h2>
+          <p>The export controls below are disabled illustrations retained for layout review only. The approved protocol does not authorize participant-generated exports. Live-session audio is handled separately through the approved recording process.</p>
         </div>
         <div class="panel-body">
           <div class="button-row">
@@ -126,7 +126,7 @@
           <div class="summary-box" id="exportPreview"></div>
           <div class="actions">
             <button class="btn" type="button" data-prev>Back</button>
-            <span class="hint">Transfer exported files through the IRB-approved process.</span>
+            <span class="hint">No participant response is produced by this page.</span>
           </div>
         </div>
       </section>
@@ -138,7 +138,7 @@
 
     const COLLECTION_ENABLED = false;
     const STORAGE_KEY = "principal-school-leader-05B-chair-approved-v3";
-    const steps = ["Consent", "Interview", "Export"];
+    const steps = ["Consent", "Interview", "Summary"];
 
     const reflections = [
       r("05B-ID", "Are you responding primarily as a building-level administrator or as a district- or system-level leader?", "If responsibilities span both levels: Which perspective would you like to use as your primary vantage today? You may draw on the other perspective when it is relevant.", []),
@@ -241,7 +241,7 @@
           <div class="question-card">
             <div class="question-meta"><span class="tag gold">${item.id}</span></div>
             <h3>${item.text}</h3>
-            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Researcher notes or reviewed transcript.">${escapeText(response.text || "")}</textarea>
+            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Disabled illustration — this page is not used for data entry.">${escapeText(response.text || "")}</textarea>
             ${item.followUp ? `<div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
               <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
@@ -309,7 +309,7 @@
     function renderPreview() {
       document.querySelector("#exportPreview").textContent = COLLECTION_ENABLED
         ? JSON.stringify(exportData(), null, 2)
-        : "Export is disabled while this instrument is under review and not collecting responses.";
+        : "Export is disabled. The approved protocol does not authorize participant response entry or participant-generated export from this page; enabling it would require explicit protocol authorization.";
     }
 
     function download(filename, content, type) {

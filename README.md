@@ -38,9 +38,9 @@ The role-specific pages now include:
 
 - A persistent `UNDER REVIEW — NOT COLLECTING RESPONSES` banner
 - Consent, eligibility, and local-data notices aligned to the protected IRB packet
-- Standard opening scripts and role-specific prompts reproduced from attachments 05A, 05B, and 05C
+- Role-specific opening scripts reproduced verbatim from the Interview Opening of attachments 05A, 05B, and 05C, read after the separate written-consent procedure
 - Chair-approved 05A-05C interview questions and role-specific probes
-- Disabled response fields retained for wording and layout review
+- Disabled response fields and export controls retained only as illustrations for wording and layout review; they are not the approved collection method
 - Standardized follow-up probes rather than AI-generated individualized probing
 - Analytic framework tags omitted from participant-facing screens and export previews
 - Separate optional shared ten-card 05F sort for classroom-facing educators and adult university students, with the exact two placement dimensions and post-sort prompts
@@ -55,7 +55,7 @@ This static version does not use a server, database, account system, or third-pa
 
 Current limits:
 
-- The pages do not receive or transmit participant responses.
+- The pages do not receive, retain, or transmit participant responses, consistent with the Public-Site Boundary in attachment 06.
 - Collection controls are disabled until written IRB approval and a version-match check.
 - Teacher and leader pages do not expose browser microphone or camera capture.
 - The student page contains no browser-local recording code; written permission for a separately handled live audio recording remains documented in the review flow.
@@ -84,9 +84,9 @@ Do not use the app for formal recruitment or live dissertation data collection u
 
 1. A committee or IRB reviewer selects a role-specific page.
 2. The reviewer navigates through the complete instrument wording.
-3. Disabled controls demonstrate the proposed response formats without storing data.
+3. Disabled controls illustrate question formats only. The approved protocol does not authorize participant response entry, browser recording, participant file upload, or participant-generated export from these pages.
 4. The approved IRB attachments, consent forms, and data-management plan are compared with the deployed version.
-5. Collection is enabled only in a later, documented activation commit after written approval.
+5. These pages remain a read-only display. Enabling any collection capability would require explicit protocol authorization, not merely written approval or a change of the status banner.
 
 ## Methodological Design Notes
 

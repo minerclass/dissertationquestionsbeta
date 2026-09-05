@@ -26,7 +26,7 @@
       <div class="role-badge">Teacher Instrument</div>
       <h1>Classroom-Facing Educator Interview and Card Sort</h1>
       <p>A researcher-guided, in-session tool matching the participant-facing IRB instrument attachment.</p>
-      <div class="privacy-note"><strong>Privacy default:</strong> when approved and enabled, entries stay in this browser until exported. No server, database, account, or third-party transcription service is used.</div>
+      <div class="privacy-note"><strong>Privacy default:</strong> this page is a read-only display of the instrument. It does not receive, retain, or transmit participant responses. No server, database, account, analytics service, or third-party transcription service is used.</div>
       <div class="progress-list" id="progressList"></div>
       <p class="hint">Use this when you want only the K-12 educator instrument, without the broader role-selection workflow.</p>
       <div class="button-row">
@@ -99,7 +99,7 @@
           </label>
           <div class="callout"><strong>Recording scope:</strong> this page does not record browser audio or video. If the participant gives written permission for interview recording, use the separate IRB-approved audio recording process. The participant may decline recording and still take part.</div>
           <div class="actions">
-            <span class="hint">All response data remains local until export.</span>
+            <span class="hint">Read-only preview. This page does not receive, retain, or transmit participant responses.</span>
             <button class="btn primary" type="button" data-next>Continue</button>
           </div>
         </div>
@@ -108,7 +108,7 @@
       <section class="panel hidden" data-step="1">
         <div class="panel-header">
           <h2>Interview Questions</h2>
-          <p>The researcher may enter notes or a reviewed transcript after approval. Browser-local recording is not available for this protocol.</p>
+          <p>Reviewer-only display of the approved question set. The fields below are disabled illustrations of the instrument's structure. In an approved session the researcher records responses in interview notes and, with written permission, the separate approved audio recording.</p>
         </div>
         <div class="panel-body">
           <div id="reflectionItems"></div>
@@ -129,15 +129,15 @@
           <div id="cardSortItems"></div>
           <div class="actions">
             <button class="btn" type="button" data-prev>Back</button>
-            <button class="btn primary" type="button" data-next>Review export</button>
+            <button class="btn primary" type="button" data-next>Review instrument</button>
           </div>
         </div>
       </section>
 
       <section class="panel hidden" data-step="3">
         <div class="panel-header">
-          <h2>Review and Export</h2>
-          <p>Download the structured teacher response file. Live-session audio recordings are handled separately through the approved recording process.</p>
+          <h2>Instrument Summary</h2>
+          <p>The export controls below are disabled illustrations retained for layout review only. The approved protocol does not authorize participant-generated exports. Live-session audio is handled separately through the approved recording process.</p>
         </div>
         <div class="panel-body">
           <div class="button-row">
@@ -148,7 +148,7 @@
           <div class="summary-box" id="exportPreview"></div>
           <div class="actions">
             <button class="btn" type="button" data-prev>Back</button>
-            <span class="hint">Transfer exported files through the IRB-approved process.</span>
+            <span class="hint">No participant response is produced by this page.</span>
           </div>
         </div>
       </section>
@@ -160,12 +160,12 @@
 
     const COLLECTION_ENABLED = false;
     const STORAGE_KEY = "teacher-pedagogical-friction-05A-05F-chair-review-v4";
-    const steps = ["Consent", "Interview", "Card sort", "Export"];
+    const steps = ["Consent", "Interview", "Card sort", "Summary"];
 
     const reflections = [
       r("05A-C1", "Please tell me about your current educational role, the learners you work with, and the setting in which you make instructional decisions.", "What grade band or subject area do you work in? How long have you been in this role? How would you describe the school context without naming the institution?", []),
       r("05A-Q1", "How, if at all, does generative AI currently show up in your own planning or instruction? Please walk me through a recent example, or explain what shapes your choice not to use it.", "What were you trying to accomplish? What did you ask the tool to do, if anything? How did you judge, revise, or reject what it produced? What remained your responsibility? How has your use or nonuse changed over time?", []),
-      r("05A-Q2", "How, if at all, does generative AI show up in the student work or learning you encounter? Please describe a recent situation and how you responded.", "When was the use invited, permitted, unexpected, restricted, or not apparent? What did you observe in the student's process, explanation, or final work? What led you to believe generative AI was or was not involved? What remained uncertain or difficult to see? Did the situation affect what you did next?", []),
+      r("05A-Q2", "How, if at all, does generative AI show up in the student work or learning you encounter? Please describe a recent situation and how you responded.", "When was the use invited? When was the use permitted? When was the use unexpected? When was the use restricted? When was the use not apparent? What did you observe in the student's process, explanation, or final work? What led you to believe generative AI was or was not involved? What remained uncertain or difficult to see? Did the situation affect what you did next?", []),
       r("05A-Q3", "I would like to hear about three kinds of instructional decisions. We can take them one at a time. Tell me about a learning situation in which you allowed or encouraged students to use generative AI. Tell me about a situation in which you limited how students could use it. Tell me about a situation in which you did not allow it.", "What were students expected to learn or do for themselves? What shaped your decision? How did you communicate the decision to students? What happened, and how did you judge the result? Did the decision work differently for different learners? If an example has not occurred: Can you imagine a situation in which you might make that choice? What would shape your decision? If no example comes to mind, move on.", []),
       r("05A-Q4", "What, if anything, have you changed about assessment since generative AI became widely available? Please walk me through a recent assessment you changed or deliberately chose not to change.", "What did the assessment look like before and afterward? What helped you judge whether students understood the work? Where, if anywhere, did authorship or ownership become difficult to judge? Did checkpoints, conversations, demonstrations, or other evidence help? What remained uncertain?", []),
       r("05A-Q5", "Thinking across different learners and situations, when, if ever, has generative AI removed a barrier or helped a learner participate or understand? When, if ever, has it provided assistance before a learner did thinking you wanted the learner to do? These may be different situations, two interpretations of the same situation, or experiences you have not encountered.", "What did you observe, and what did you infer? What evidence shaped your judgment? Did the effect differ by learner, task, subject, or context? What additional information would have helped you decide? How did you respond? Looking back, would you make the same decision again?", []),
@@ -276,7 +276,7 @@
           <div class="question-card">
             <div class="question-meta"><span class="tag gold">${label}</span></div>
             <h3>${item.text}</h3>
-            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Researcher notes or reviewed transcript.">${escapeText(response.text || "")}</textarea>
+            <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Disabled illustration — this page is not used for data entry.">${escapeText(response.text || "")}</textarea>
             ${item.followUp ? `<div class="follow-up">
               <strong>Standard follow-up probe:</strong> ${item.followUp}
               <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
@@ -303,7 +303,7 @@
         <div class="question-card">
           <div class="question-meta"><span class="tag gold">Card-sort follow-up</span></div>
           <h3>Which two cards were hardest to place? Which scenario most clearly removes a barrier? Which may provide assistance before desired thinking occurs? Which is most affected by policy, expectations, or authority?</h3>
-          <textarea id="cardSortFollowUp" aria-label="Which two cards were hardest to place, and why?" placeholder="Researcher notes or reviewed transcript.">${escapeText(state.cardSortFollowUp || "")}</textarea>
+          <textarea id="cardSortFollowUp" aria-label="Which two cards were hardest to place, and why?" placeholder="Disabled illustration — this page is not used for data entry.">${escapeText(state.cardSortFollowUp || "")}</textarea>
         </div>`;
       applyCollectionState();
     }
@@ -390,7 +390,7 @@
     function renderPreview() {
       document.querySelector("#exportPreview").textContent = COLLECTION_ENABLED
         ? JSON.stringify(exportData(), null, 2)
-        : "Export is disabled while this instrument is under review and not collecting responses.";
+        : "Export is disabled. The approved protocol does not authorize participant response entry or participant-generated export from this page; enabling it would require explicit protocol authorization.";
     }
 
     function download(filename, content, type) {

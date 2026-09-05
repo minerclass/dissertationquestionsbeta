@@ -1,6 +1,6 @@
 # Public Instrument Status
 
-Last local verification: 2026-09-03; deployed revision remains subject to verification after publication.
+Last local verification: 2026-09-05; deployed revision remains subject to verification after publication.
 
 ## Current state
 
@@ -10,7 +10,8 @@ The study remains proposal-stage and pre-IRB. A technically live page does not i
 
 ## Controlling review files
 
-The September 2 alignment pass used these current chair-review documents:
+The September 5 correction pass used the attachments in the controlling packet
+`irb-chair-review-full-form-aligned-final-2026-09-03`:
 
 - `05A - Classroom-Facing Educator Interview Protocol - QUESTIONS CHAIR-APPROVED`
 - `05B - School and System Leader Interview Protocol - QUESTIONS CHAIR-APPROVED`
@@ -18,6 +19,8 @@ The September 2 alignment pass used these current chair-review documents:
 - `05F - Scenario Card Sort for 05A and 05C - CURRENT CHAIR REVIEW`
 - `02 - IRB Narrative - CURRENT CHAIR REVIEW`
 - `03 - Consent Forms - CURRENT CHAIR REVIEW`
+- `04 - Recruitment Materials - CURRENT CHAIR REVIEW`
+- `05D - K-12 Educator Survey - CURRENT CHAIR REVIEW`
 - `06 - Data Management and Security Plan - CURRENT CHAIR REVIEW`
 - `00 - Chair Review Readiness and Outstanding Confirmations`
 - `10 - Public Instrument Site Pre-IRB Audit - CURRENT`
@@ -36,6 +39,33 @@ Chair approval applies to the 05A-05C interview questions. The separate working 
 
 ## Change log
 
+### 2026-09-05 - Instrument parity corrections against the September chair-review packet
+
+Corrections implemented from `github-instrument-parity-audit-2026-09-05.md`, against the
+controlling packet `irb-chair-review-full-form-aligned-final-2026-09-03`.
+
+- **Opening scripts.** The role-specific Interview Opening text of 05A, 05B, and 05C is reproduced
+  verbatim on the three role pages, read after the separate written-consent procedure. The
+  university opening carries its prohibition on opening, showing, quoting, or sharing coursework,
+  feedback, prompt histories, screenshots, account records, or other artifacts.
+- **Collection and export wording.** Instructions describing response data remaining local until
+  export, entering notes or a reviewed transcript after approval, and downloading a structured
+  response file were replaced with read-only reviewer language. The former "Review and Export"
+  step is now "Instrument Summary", and retained controls are labelled disabled illustrations.
+  Enabling them would require explicit protocol authorization, not merely approval status.
+- **Survey landing eligibility.** The role list now reproduces the six current 05D Question 2
+  choices. The unbounded "student support professionals" and "other K-12 practitioners" invitations
+  were removed. The page states the age requirement, the three eligible role families, all three
+  exclusions, the 10-to-12-minute estimate, and "Please complete this survey only once."
+- **Teacher 05A-Q2 probes.** The five optional probes are restored as separate sentences.
+
+**No collection behavior changed.** `COLLECTION_ENABLED` remains false on all three role pages,
+entry, saving, recording, and export remain disabled, and the survey launch control remains closed.
+No question, required follow-up, role branch, or card scenario was added or removed.
+
+**Not approval.** Chair approval applies to the 05A-05C question sets. 05F remains a working
+component subject to chair and IRB review. The study remains pre-IRB.
+
 ### 2026-09-02 - Public card sort synchronized to working attachment 05F
 
 The classroom-facing educator and adult university-student pages now reproduce the same ten scenarios from working attachment 05F. Both pages display the attachment's two placement dimensions and response options: preservation of the learner's thinking, effort, and judgment; and the response the participant would be most likely to take. The administration and post-sort prompts also match 05F. Superseded `legitimacy` wording and export-field labels were removed, and session-length estimates were synchronized across 05A-05C.
@@ -43,6 +73,9 @@ The classroom-facing educator and adult university-student pages now reproduce t
 The school/system-leader 05B page still contains no card sort. The root and researcher-review pages now state that 05E survey validation does not include 05F and that the public role pages are reviewer-only. The public pages remain read-only: collection, browser recording, persistence, and export are disabled. On phone-width layouts, the review banner no longer sticks over card content. This synchronization supports chair and IRB review; it does not indicate approval of 05F or authorize participant activity.
 
 ### 2026-08-28 - Survey platform reference updated to Microsoft Forms
+
+**Historical entry.** Statements below about the IRB documents describing Google Forms are
+superseded: attachments 02, 03, 04, 05D, and 06 in the September packet name Microsoft Forms.
 
 The survey instrument was migrated from a Google Form to a Microsoft Form hosted on the
 researcher's National Louis University institutional account. Three participant-facing references
