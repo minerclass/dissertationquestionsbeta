@@ -1,6 +1,6 @@
 # Public Instrument Status
 
-Last local verification: 2026-09-05; deployed revision remains subject to verification after publication.
+Last local verification: 2026-09-07; deployed revision remains subject to verification after publication.
 
 ## Current state
 
@@ -124,12 +124,22 @@ now closed.
 The study remains proposal-stage and pre-IRB. Nothing in this entry authorizes recruitment
 or data collection.
 
-## Activation gate
+## Public-page scope and future changes
 
-Do not enable collection controls until all of the following are complete:
+These pages remain read-only under Attachment 06. Written IRB approval of the current study does not authorize browser response collection, recording, uploads, saving, or participant-generated exports.
 
-1. Written IRB approval is documented.
-2. The approved 05A, 05B, and 05C attachments are compared with the deployed wording.
-3. The approved consent and data-management language is compared with the deployed collection, audio recording, transfer, retention, and deletion behavior.
-4. The activation commit is tested locally and then verified on the live GitHub Pages routes.
-5. The status and version match are recorded here.
+Any proposal to add those capabilities requires explicit protocol authorization, chair review, and an IRB-approved amendment when applicable, before implementation. Approved changes must then be compared against the consent and data-management materials, tested locally, and verified on the deployed routes. Do not activate the retained illustrative controls by changing only the approval banner or collection flag.
+
+The separate Microsoft Forms survey can open only after written IRB approval and documented verification of consent, settings, branching, and response export. Website verification does not close the survey's controlled export-test requirement.
+
+### 2026-09-07 - Follow-up verification and read-only safeguards
+
+The September 5 correction commit was present in the fresh remote checkout. This follow-up removes residual approval-only activation statements in the three page banners and README. Static response controls are disabled before script initialization; response synchronization and save, clear, and export handlers also return immediately while collection is disabled. Follow-up labels distinguish optional probes from the two required follow-ups.
+
+The September 3 prepared-packet and earlier export descriptions above are historical records, not the current collection process. This website task does not independently verify shared Drive packet contents or Microsoft Forms behavior.
+
+The linked printable survey consent is now extracted from pages 7-8 of current Attachment 03. It removes the obsolete interview-interest pathway and includes the current required-routing and metadata wording. The survey landing page's padded sections now fit their container on phone screens.
+
+Local verification: the three openings, 32 main prompt entries and their follow-ups, both ten-card sets, and six survey role choices match the controlling attachments. All review steps were navigated, including keyboard navigation; response and export controls remained disabled. The four local routes were inspected at desktop and phone widths. The printable consent's two pages were compared with Attachment 03 and visually inspected. No participant response was submitted.
+
+Publication and deployed verification of this follow-up remain pending. No IRB approval is claimed.

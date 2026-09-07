@@ -319,7 +319,7 @@ h3 {
   content: "";
   display: block;
   margin: 0 auto 34px;
-  width: min(var(--max), calc(100vw - 32px));
+  width: min(var(--max), 100%);
   height: 1px;
   background: var(--line);
 }
@@ -327,7 +327,7 @@ h3 {
 .accent-band > .section-heading,
 .survey-entry,
 .accent-band > .role-note {
-  width: min(var(--max), calc(100vw - 32px));
+  width: min(var(--max), 100%);
   margin-left: auto;
   margin-right: auto;
 }
@@ -434,7 +434,7 @@ h3 {
 
 .privacy-section .section-heading,
 .privacy-section .notice-card {
-  width: min(var(--max), calc(100vw - 32px));
+  width: min(var(--max), 100%);
   margin-left: auto;
   margin-right: auto;
 }

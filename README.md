@@ -56,7 +56,7 @@ This static version does not use a server, database, account system, or third-pa
 Current limits:
 
 - The pages do not receive, retain, or transmit participant responses, consistent with the Public-Site Boundary in attachment 06.
-- Collection controls are disabled until written IRB approval and a version-match check.
+- Collection controls remain disabled under the current protocol. Enabling them requires explicit protocol authorization and applicable chair/IRB review before implementation.
 - Teacher and leader pages do not expose browser microphone or camera capture.
 - The student page contains no browser-local recording code; written permission for a separately handled live audio recording remains documented in the review flow.
 - None of the public pages captures audio or video; consented live-session audio recording uses the separate approved process.
@@ -92,7 +92,7 @@ Do not use the app for formal recruitment or live dissertation data collection u
 
 The app intentionally avoids fully dynamic AI-generated follow-up questions. Standardized follow-up probes preserve consistency across participants and are easier to defend in a mixed methods dissertation design.
 
-Building-level administrators and district or system-level leaders complete the same institutional protocol. The leadership role and exported role-group fields preserve their separation for analysis across role groups.
+Building-level administrators and district or system-level leaders complete the same institutional protocol. The role-identification prompt preserves the distinction between building and district/system perspectives. These pages produce no response exports.
 
 The prompt data model retains internal analytic mappings to the Pedagogical Friction Framework, but those labels are not shown to participants or included in participant-facing export previews:
 
@@ -111,3 +111,7 @@ This is a static site. To publish on GitHub Pages:
 1. Push changes to `main`.
 2. The `Deploy to GitHub Pages` workflow publishes the static tree through GitHub Actions.
 3. Verify the exact live routes and IRB-status markers after the deployment completes.
+
+## September 7 verification follow-up
+
+The current review source is aligned to the September chair-review packet `irb-chair-review-full-form-aligned-final-2026-09-03`. The September 5 commit restored the openings, eligibility, and probes. The September 7 follow-up removes residual approval-only activation wording and reinforces read-only controls from initial page load. Collection remains disabled. Local and deployed verification are separate; see `IRB_STATUS.md`.

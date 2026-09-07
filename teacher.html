@@ -39,7 +39,7 @@
     <main id="main" tabindex="-1">
       <div class="review-banner" role="status">
         <strong>Under review — not collecting responses</strong>
-        Wording is available for committee and IRB review. Data entry, browser recording, local saving, and export remain disabled until written IRB approval and a version-match check.
+        Wording is available for committee and IRB review. This page remains a read-only display. The current protocol does not authorize browser response entry, recording, saving, or export; enabling those capabilities would require explicit protocol authorization.
       </div>
       <div class="topbar">
         <div>
@@ -47,8 +47,8 @@
           <div class="meta">Estimated session length: 60–75 minutes in total (50–65-minute core interview plus an optional approximately 10-minute card sort)</div>
         </div>
         <div class="button-row">
-          <button class="btn" id="saveDraftButton" type="button">Save draft</button>
-          <button class="btn warn" id="clearButton" type="button">Clear local data</button>
+          <button class="btn" id="saveDraftButton" disabled type="button">Save draft</button>
+          <button class="btn warn" id="clearButton" disabled type="button">Clear local data</button>
         </div>
       </div>
 
@@ -68,15 +68,15 @@
           <div class="grid">
             <div class="field">
               <label for="participantCode">Participant code or pseudonym</label>
-              <input id="participantCode" autocomplete="off" placeholder="Example: T-03">
+              <input disabled id="participantCode" autocomplete="off" placeholder="Example: T-03">
             </div>
             <div class="field">
               <label for="studyDate">Date</label>
-              <input id="studyDate" type="date">
+              <input disabled id="studyDate" type="date">
             </div>
             <div class="field">
               <label for="gradeBand">Grade band</label>
-              <select id="gradeBand">
+              <select disabled id="gradeBand">
                 <option value="">Choose one</option>
                 <option>Elementary</option>
                 <option>Middle school</option>
@@ -86,15 +86,15 @@
             </div>
             <div class="field">
               <label for="contentArea">Content area</label>
-              <input id="contentArea" placeholder="Example: ELA, science, math, social studies">
+              <input disabled id="contentArea" placeholder="Example: ELA, science, math, social studies">
             </div>
             <div class="field">
               <label for="schoolContext">School context</label>
-              <input id="schoolContext" placeholder="Example: size, community, and student population">
+              <input disabled id="schoolContext" placeholder="Example: size, community, and student population">
             </div>
           </div>
           <label class="choice">
-            <input id="consentCheck" type="checkbox">
+            <input disabled id="consentCheck" type="checkbox">
             <span>I confirm this adult participant completed the approved written consent process.</span>
           </label>
           <div class="callout"><strong>Recording scope:</strong> this page does not record browser audio or video. If the participant gives written permission for interview recording, use the separate IRB-approved audio recording process. The participant may decline recording and still take part.</div>
@@ -141,8 +141,8 @@
         </div>
         <div class="panel-body">
           <div class="button-row">
-            <button class="btn primary" id="downloadJsonButton" type="button">Download JSON</button>
-            <button class="btn" id="downloadMarkdownButton" type="button">Download Markdown</button>
+            <button class="btn primary" id="downloadJsonButton" disabled type="button">Download JSON</button>
+            <button class="btn" id="downloadMarkdownButton" disabled type="button">Download Markdown</button>
           </div>
           <h3>Export preview</h3>
           <div class="summary-box" id="exportPreview"></div>
@@ -278,8 +278,8 @@
             <h3>${item.text}</h3>
             <textarea data-reflection="${item.id}" aria-label="${escapeAttr(item.text)}" placeholder="Disabled illustration — this page is not used for data entry.">${escapeText(response.text || "")}</textarea>
             ${item.followUp ? `<div class="follow-up">
-              <strong>Standard follow-up probe:</strong> ${item.followUp}
-              <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Optional follow-up notes or participant response.">${escapeText(response.followUp || "")}</textarea>
+              <strong>${item.followUp.startsWith("Required follow-up:") ? "Required follow-up and optional probes:" : "Optional follow-up probes:"}</strong> ${item.followUp}
+              <textarea data-followup="${item.id}" aria-label="${escapeAttr(`Follow-up: ${item.followUp}`)}" placeholder="Disabled illustration: responses are recorded separately.">${escapeText(response.followUp || "")}</textarea>
             </div>` : ""}
           </div>`;
       }).join("");
@@ -309,6 +309,7 @@
     }
 
     function syncStateFromDom() {
+      if (!COLLECTION_ENABLED) return;
       const participantCode = document.querySelector("#participantCode");
       if (participantCode) state.participantCode = participantCode.value.trim();
       const studyDate = document.querySelector("#studyDate");
@@ -394,6 +395,7 @@
     }
 
     function download(filename, content, type) {
+      if (!COLLECTION_ENABLED) return;
       const blob = new Blob([content], { type });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -439,11 +441,13 @@
     });
 
     document.querySelector("#saveDraftButton").addEventListener("click", () => {
+      if (!COLLECTION_ENABLED) return;
       persist();
       alert("Draft saved in this browser.");
     });
 
     document.querySelector("#clearButton").addEventListener("click", () => {
+      if (!COLLECTION_ENABLED) return;
       if (!confirm("Clear all local teacher responses stored by this page in this browser?")) return;
       localStorage.removeItem(STORAGE_KEY);
       state = defaultState();
@@ -452,11 +456,13 @@
     });
 
     document.querySelector("#downloadJsonButton").addEventListener("click", () => {
+      if (!COLLECTION_ENABLED) return;
       const data = exportData();
       download(`${safeFileName("teacher-export")}.json`, JSON.stringify(data, null, 2), "application/json");
     });
 
     document.querySelector("#downloadMarkdownButton").addEventListener("click", () => {
+      if (!COLLECTION_ENABLED) return;
       const data = exportData();
       download(`${safeFileName("teacher-export")}.md`, markdownExport(data), "text/markdown");
     });
