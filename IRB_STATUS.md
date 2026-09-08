@@ -39,6 +39,30 @@ Chair approval applies to the 05A-05C interview questions. The separate working 
 
 ## Change log
 
+### 2026-09-07 - Recruitment page added in closed state
+
+A `recruitment/` page reproduces Attachment 04 Sections A, C, and D verbatim, serving as the link
+destination for channels whose character limits cannot carry the full invitation text. Attachment 04
+Section A ends with "reply to this message," which works on a listserv but not on a public posting
+where there is no message to reply to.
+
+- The page collects nothing: no form, no input, no database, no cookies, no analytics, no tracking.
+- All three eligibility exclusions appear in every audience section rather than once at the bottom,
+  and each section states that participation is voluntary and uncompensated.
+- The researcher, dissertation chair, and both National Louis University Institutional Research
+  Board chairs are listed, matching the contacts on the survey landing page and in the consent
+  documents.
+- Recruitment controls are disabled, the hero panel reads "Not yet open", and every audience section
+  states that recruitment is not yet open.
+- The page adopts the shared token layer the way its siblings do, with
+  `data-mjm-ground="light"` on the root element and `tokens.css` linked before the page stylesheet.
+  `recruitment/styles.css` is a copy of the survey-landing stylesheet so the page renders standalone
+  when printed to PDF as a protocol attachment.
+
+**Not approval.** The study remains pre-IRB and no recruitment has been authorized. The page exists
+in a closed state so the Institutional Research Board can inspect the actual participant-facing
+wording during review. Activating it requires documented written approval.
+
 ### 2026-09-05 - Instrument parity corrections against the September chair-review packet
 
 Corrections implemented from `github-instrument-parity-audit-2026-09-05.md`, against the
