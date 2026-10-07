@@ -1,12 +1,12 @@
 # Public Instrument Status
 
-Last local verification: 2026-09-07; deployed revision remains subject to verification after publication.
+Last local verification: 2026-10-07; deployed revision remains subject to verification after publication.
 
 ## Current state
 
-The three public role-specific instrument pages are read-only review copies. They display protocol wording for committee and IRB inspection, but participant data entry, browser recording, local saving, and file export are disabled.
+NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. The approval letter does not list instrument versions. The public role-specific pages remain read-only review copies. Participant data entry, browser recording, local saving, and file export stay disabled.
 
-The study remains proposal-stage and pre-IRB. A technically live page does not indicate approval to recruit participants or collect data.
+Formal recruitment and data collection have not begun. A technically live page does not authorize recruitment or data collection. Instruments still need to be matched to the approved packet before use.
 
 ## Controlling review files
 
@@ -38,6 +38,10 @@ Chair approval applies to the 05A-05C interview questions. The separate working 
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
 ## Change log
+
+### 2026-10-07 - Public status updated after exempt approval
+
+NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. Public status text now records that approval. Recruitment, survey, interview, and card-sort controls remain closed. The approval letter does not name the approved instrument versions, so those versions still have to be matched to the packet before use.
 
 ### 2026-09-07 - Recruitment page added in closed state
 

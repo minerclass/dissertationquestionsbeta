@@ -4,9 +4,9 @@ Static GitHub Pages site for reviewing role-specific interview and card-sort ins
 
 **Pedagogical Friction in the Age of Generative AI: A Mixed Methods Proposal**
 
-The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. The study is now in post-defense interview-protocol revision and remains pre-IRB approval. Role-specific pages are navigable read-only review copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
+The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. Role-specific pages are navigable read-only review copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
 
-The 05A-05C interview questions have received chair approval at the question level and are synchronized here for review. The separate working 05F card sort is synchronized for chair and IRB review but has not yet been approved. The study remains pre-IRB; these pages do not represent recruitment, participant data collection, or findings.
+The 05A-05C interview questions have received chair approval at the question level and are synchronized here for review. The separate working 05F card sort still needs to be matched to the approved packet before use. These pages do not represent recruitment, participant data collection, or findings.
 
 ## Live Site
 
@@ -63,7 +63,7 @@ Current limits:
 - No server, database, account system, analytics service, or third-party transcription service is used by the role-specific pages.
 - The activation checklist and scope boundaries are recorded in `IRB_STATUS.md`.
 
-Do not use the app for formal recruitment or live dissertation data collection until the final protocol, consent language, data handling process, and IRB approval are in place.
+Do not use the app for formal recruitment or live dissertation data collection until the approved instrument versions, consent language, data handling process, and any required permissions are confirmed.
 
 ## Files
 
