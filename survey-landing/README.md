@@ -16,7 +16,7 @@ Exempt approval is recorded (ER01884). Keep the survey URL out of the public HTM
 
 ## Updating IRB and Contact Information
 
-The page now states exempt approval and the researcher contacts. Formal consent language remains in the official survey form. Replace `printable-consent.pdf` with the approved survey consent before the survey opens.
+The page now states exempt approval and the researcher contacts. Formal consent language remains in the official survey form. `printable-consent.pdf` reproduces the approved survey consent from the submitted attachment 03 (replaced 2026-10-07).
 
 ## Local Preview
 

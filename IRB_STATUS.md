@@ -25,7 +25,7 @@ The controlling materials are the attachments submitted to NLU IRB on September 
 - 06 Data Management and Security Plan
 - 07 Conflict of Interest Disclosure
 
-The September chair-review working folder is not the approved packet where it differs from those submitted files. The printable survey consent on this site still has to be replaced with the approved 03 survey consent before the survey opens.
+The September chair-review working folder is not the approved packet where it differs from those submitted files. The printable survey consent on this site was replaced on 2026-10-07 with the approved 03 survey consent.
 
 ## Scope controls
 
@@ -38,6 +38,10 @@ The September chair-review working folder is not the approved packet where it di
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
 ## Change log
+
+### 2026-10-07 - Printable survey consent replaced
+
+`survey-landing/printable-consent.pdf` now reproduces the anonymous-survey consent from the submitted attachment 03, including the submitted chair-name spelling and the 09-2026 to 02-2027 study period. It replaces the September 7 extract, which followed the unsubmitted revision. The approved Microsoft Form links to this file from its first screen. The survey button on the landing page stays disabled.
 
 ### 2026-10-07 - Interview invitations opened; survey left closed
 

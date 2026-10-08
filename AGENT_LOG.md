@@ -19,6 +19,17 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-10-07 - Replace the printable survey consent with the approved text
+
+Source: Micah's instruction on this date (surface-intel/claude-code session) to push the replacement PDF.
+
+- Replaced `survey-landing/printable-consent.pdf` with the anonymous-survey consent from the submitted attachment 03 (NLU IRB, 2026-09-14 submission, approved 2026-10-07). Text is verbatim, with the submitted spelling "Terry Jo Smith" and the study period 09-2026 to 02-2027.
+- The approved Microsoft Form ("K–12 Educator and Leader Survey") links to this file from its first screen, as attachment 05D requires.
+- Updated the status lines in `IRB_STATUS.md` and `survey-landing/README.md`.
+- Did not add a survey URL to the landing page. The survey opens only after the 05E validation sessions.
+
+Verification: the PDF was rendered from HTML with headless Edge and read back page by page against the attachment 03 text (3 pages).
+
 ## 2026-10-07 - Open interview invitations and correct the survey landing page
 
 Source: Micah's instruction on this date to update the public GitHub sites after exempt approval and to start recruitment for interviews and the survey. Wording follows the submitted recruitment and survey attachments, not the earlier 27-question form.
