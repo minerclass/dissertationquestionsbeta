@@ -19,6 +19,29 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-10-08 - Cut the recruitment page down to the approved notices
+
+Source: Micah's decision on this date (surface-intel/claude-code session) to keep the `recruitment/` URL but cut the page down to the exact approved notices and contact details.
+
+- `recruitment/index.html` now holds only attachment 04 Sections A, C, and D, as submitted on 2026-09-14 and approved on 2026-10-07, plus the "Whom to contact" block from attachment 03.
+  - A's subject line and C's headline appear without their "Subject:" labels.
+  - The section headings are 04's own section titles. The page title is the study title.
+- Removed text that was not in the approved documents:
+  - the "Interviews are open. The survey is not." panel;
+  - "How This Study Recruits";
+  - the anonymous-survey card;
+  - the recruitment-status and privacy sections;
+  - the footer status line;
+  - the in-page navigation labels.
+- "K-12" with a hyphen was corrected to the submitted "K–12". The earlier page used hyphens.
+- Notice B is not on the page. The survey is not open.
+- This URL is not a recruitment channel. Approved notices carry no links except B's survey link, so no post points here.
+- `recruitment/styles.css` gained four small classes for the simpler layout.
+
+Verification:
+- A script parsed the page's visible text section by section and compared it word for word with `RECRUITMENT_POSTS_ER01884.md` (attachment 04, checked against the submitted file) and with the 03 contact block. All four sections match.
+- Deployed rendering is checked after publication.
+
 ## 2026-10-07 - Replace the printable survey consent with the approved text
 
 Source: Micah's instruction on this date (surface-intel/claude-code session) to push the replacement PDF.

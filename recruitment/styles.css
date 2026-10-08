@@ -263,6 +263,35 @@ h3 {
   padding: clamp(52px, 8vw, 86px) 0 0;
 }
 
+.page-intro {
+  width: min(var(--max), calc(100% - 32px));
+  margin: 36px auto 0;
+}
+
+.page-intro h1 {
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.page-intro .subtitle {
+  margin-bottom: 0;
+}
+
+.notice-title {
+  margin-bottom: 22px;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+}
+
+.notice-subject {
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.contact-entry {
+  padding-left: 1rem;
+  border-left: 3px solid var(--line);
+}
+
 .section-heading {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);

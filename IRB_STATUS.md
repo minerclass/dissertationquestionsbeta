@@ -6,7 +6,7 @@ Last local verification: 2026-10-07; deployed revision remains subject to verifi
 
 NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. The public role-specific pages remain read-only. Participant data entry, browser recording, local saving, and file export stay disabled.
 
-Interview and survey-review invitations are open on `recruitment/`, using the submitted recruitment text. The anonymous survey is not open. The current 27-question Microsoft Form is not the approved instrument and must not be linked. A technically live page does not collect responses.
+`recruitment/` shows only the submitted attachment 04 notices A, C, and D, plus the attachment 03 contact block. It has no other text. The page is not a recruitment channel, and no post links to it. The anonymous survey is not open. The current 27-question Microsoft Form is not the approved instrument and must not be linked. A technically live page does not collect responses.
 
 ## Approved packet
 
@@ -38,6 +38,14 @@ The September chair-review working folder is not the approved packet where it di
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
 ## Change log
+
+### 2026-10-08 - Recruitment page cut down to the approved notices
+
+At Micah's direction, `recruitment/index.html` keeps its URL but now holds only:
+- the submitted attachment 04 Sections A, C, and D, under 04's own section titles;
+- the "Whom to contact" block of attachment 03.
+
+Removed: the status panel, "How This Study Recruits," the survey card, and the status, privacy, and footer text, none of which was in the approved documents. "K-12" was corrected to the submitted "K–12." Notice B is not on the page while the survey is closed. A script compared the page's visible text word for word with the approved text, and all four sections match.
 
 ### 2026-10-07 - Printable survey consent replaced
 
