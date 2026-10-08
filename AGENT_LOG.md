@@ -19,6 +19,23 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-10-08 - Describe the role pages as approved, read-only in-session support
+
+Source: Micah's instruction on this date (surface-intel/claude-code session) to make the site consistent with approval.
+
+- Changed wording on `teacher.html`, `principal.html`, and `university/index.html`:
+  - "Under review" became "Approved instrument — read-only."
+  - "committee and IRB review" became the ER01884 approval and in-session use.
+  - "draft participant-facing instrument for review" became "approved participant-facing instrument."
+  - "Reviewer-only display" and "Read-only preview" became "Read-only display."
+- On `index.html`, the "must not be used for interviews, card sorting…" sentence and the review-only descriptions now say the pages may be displayed during approved sessions and do not collect data.
+- Attachment 06 limits public pages to "orientation and in-session support," which this wording follows.
+- No instrument wording changed. `COLLECTION_ENABLED` stays false.
+
+Verification:
+- Before the edit, the 05A, 05B, and 05C protocols were checked against the attachments submitted on 2026-09-14 (NLU Outlook): every question stem, the required follow-ups, the opening scripts, the version lines, and the durations. 05F was read in full.
+- Each protocol line was then matched to its role page: 05A 68/68, 05B 63/63, 05C 62/62, and 05F 12/12 on both card-sort pages.
+
 ## 2026-10-08 - Correct the recruitment-page description in IRB_STATUS.md
 
 Source: an independent Codex review of the recruitment release (agent-inbox #14) and Micah's instruction on this date to push the correction.

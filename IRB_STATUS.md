@@ -4,7 +4,7 @@ Last local verification: 2026-10-07; deployed revision remains subject to verifi
 
 ## Current state
 
-NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. The public role-specific pages remain read-only. Participant data entry, browser recording, local saving, and file export stay disabled.
+NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. The public role-specific pages display the approved 05A, 05B, 05C, and 05F wording. The researcher may show them during approved sessions as in-session support, as Attachment 06 allows. They remain read-only: participant data entry, browser recording, local saving, and file export stay disabled.
 
 On `recruitment/`, notices A, C, and D and the contact block match the submitted attachments 04 and 03 word for word. The page also has its title, an attribution line, section labels, and ordinary navigation. The page is not a recruitment channel, and no post links to it. The anonymous survey is not open. The current 27-question Microsoft Form is not the approved instrument and must not be linked. A technically live page does not collect responses.
 
@@ -38,6 +38,20 @@ The September chair-review working folder is not the approved packet where it di
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
 ## Change log
+
+### 2026-10-08 - Role pages describe the approved instruments
+
+At Micah's direction, the status wording now matches approval and Attachment 06 ("orientation and in-session support only").
+- The three role pages and the home page no longer describe the instruments as drafts under committee and IRB review.
+- The home page no longer says the pages "must not be used for interviews, card sorting."
+- They now say the wording is approved (ER01884) and the pages may be displayed during approved sessions. Validation and survey administration stay outside these pages.
+
+No question, probe, opening script, or card wording changed. Collection stays disabled (`COLLECTION_ENABLED = false`).
+
+Before this change, the instrument wording was checked against the submitted attachments in NLU Outlook:
+- 05A, 05B, and 05C: version, duration, opening, every question stem, and every required follow-up.
+- 05F: read in full.
+- Every protocol line matches the role pages.
 
 ### 2026-10-08 - Recruitment page cut down to the approved notices
 
