@@ -19,6 +19,14 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-10-08 - Correct the recruitment-page description in IRB_STATUS.md
+
+Source: an independent Codex review of the recruitment release (agent-inbox #14) and Micah's instruction on this date to push the correction.
+
+- `IRB_STATUS.md` said `recruitment/` had "no other text." That was inaccurate. The page also has its title, an attribution line, section labels, and ordinary navigation.
+- The line now says that notices A, C, and D and the contact block match attachments 04 and 03 word for word, and lists that remaining text.
+- No page content changed. The previous entry describes the page correctly.
+
 ## 2026-10-08 - Cut the recruitment page down to the approved notices
 
 Source: Micah's decision on this date (surface-intel/claude-code session) to keep the `recruitment/` URL but cut the page down to the exact approved notices and contact details.
