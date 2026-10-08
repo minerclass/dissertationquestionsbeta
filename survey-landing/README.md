@@ -6,17 +6,17 @@ The page is for participant orientation only. It does not collect survey respons
 
 ## Files
 
-- `index.html` - participant-facing landing page with a disabled pre-approval survey notice
+- `index.html` - participant-facing landing page. The survey button stays disabled until the approved form is live.
 - `styles.css` - local responsive styling
 - `README.md` - maintenance notes
 
 ## Activating the Survey Link
 
-Keep the survey URL out of the public HTML until recruitment is approved. After IRB approval, replace the disabled survey notice with the approved external survey link. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page.
+Exempt approval is recorded (ER01884). Keep the survey URL out of the public HTML until the approved Microsoft Form is live and its anonymity settings are documented. Then replace the disabled survey notice with that link. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page. Do not link the earlier 27-question form.
 
 ## Updating IRB and Contact Information
 
-Before sharing the page for participant recruitment, add the approved researcher contact information and IRB approval statement. Formal consent language should remain in the official survey form before participants begin.
+The page now states exempt approval and the researcher contacts. Formal consent language remains in the official survey form. Replace `printable-consent.pdf` with the approved survey consent before the survey opens.
 
 ## Local Preview
 

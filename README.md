@@ -4,9 +4,9 @@ Static GitHub Pages site for reviewing role-specific interview and card-sort ins
 
 **Pedagogical Friction in the Age of Generative AI: A Mixed Methods Proposal**
 
-The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. Role-specific pages are navigable read-only review copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
+The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. Interview and survey-review invitations are on `recruitment/`. The anonymous survey is not open. Role-specific pages are navigable read-only copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
 
-The 05A-05C interview questions have received chair approval at the question level and are synchronized here for review. The separate working 05F card sort still needs to be matched to the approved packet before use. These pages do not represent recruitment, participant data collection, or findings.
+These instrument pages do not collect responses and do not report findings.
 
 ## Live Site
 
@@ -29,6 +29,7 @@ Researcher review URL:
 Survey orientation URL:
 
 - K-12 educator survey landing page: `https://minerclass.github.io/dissertationquestionsbeta/survey-landing/`
+- Interview and survey-review invitations: `https://minerclass.github.io/dissertationquestionsbeta/recruitment/`
 
 ## What Changed
 
@@ -63,7 +64,7 @@ Current limits:
 - No server, database, account system, analytics service, or third-party transcription service is used by the role-specific pages.
 - The activation checklist and scope boundaries are recorded in `IRB_STATUS.md`.
 
-Do not use the app for formal recruitment or live dissertation data collection until the approved instrument versions, consent language, data handling process, and any required permissions are confirmed.
+Do not use the role pages for live interviews, card sorting, or survey administration. The recruitment page carries the approved invitations. The anonymous survey stays closed until the approved form is live. Association channels still need their own permission before a post goes there.
 
 ## Files
 
@@ -114,4 +115,4 @@ This is a static site. To publish on GitHub Pages:
 
 ## September 7 verification follow-up
 
-The current review source is aligned to the September chair-review packet `irb-chair-review-full-form-aligned-final-2026-09-03`. The September 5 commit restored the openings, eligibility, and probes. The September 7 follow-up removes residual approval-only activation wording and reinforces read-only controls from initial page load. Collection remains disabled. Local and deployed verification are separate; see `IRB_STATUS.md`.
+The approved packet is the set of attachments submitted on September 14, 2026. See `IRB_STATUS.md`. Role-page collection remains disabled.

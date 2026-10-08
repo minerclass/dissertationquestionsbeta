@@ -19,6 +19,21 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-10-07 - Open interview invitations and correct the survey landing page
+
+Source: Micah's instruction on this date to update the public GitHub sites after exempt approval and to start recruitment for interviews and the survey. Wording follows the submitted recruitment and survey attachments, not the earlier 27-question form.
+
+- Opened `recruitment/` for educator and leader interviews, university-student interviews, and survey-review sessions.
+- Removed the unapproved 27-question survey-review paraphrase and the "not yet open" notices on those invitations.
+- Corrected the chair-name spelling on the recruitment page and survey landing page to the submitted-packet spelling.
+- Updated `survey-landing/` role options, removed product names, removed the equity topic card, and removed the once-only instruction. Left the survey button disabled. Added no survey URL.
+- Updated status text on the ecosystem hub, dissertation sites dashboard, dissertation overview, and the defense studio's current-status surfaces. Left the defense presentation as the defense record.
+- Did not replace `survey-landing/printable-consent.pdf`.
+- Did not post to association channels. Those still need moderator permission.
+- Did not enable response entry on the role pages.
+
+Verification: local HTML review of the edited pages. Live Pages verification comes after the push and deploy. `node test-suite.js` is still required if the role-page scripts were touched; they were not.
+
 ## 2026-09-02 - Complete the public 05F card-sort synchronization
 
 Source: the September 2026 chair-review package, especially `05F - Scenario Card Sort for 05A and 05C - CURRENT CHAIR REVIEW`. This entry supplements commit `33c361f`, which had already replaced the older scenarios and question sets.

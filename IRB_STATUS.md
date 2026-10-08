@@ -4,28 +4,28 @@ Last local verification: 2026-10-07; deployed revision remains subject to verifi
 
 ## Current state
 
-NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. The approval letter does not list instrument versions. The public role-specific pages remain read-only review copies. Participant data entry, browser recording, local saving, and file export stay disabled.
+NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. The public role-specific pages remain read-only. Participant data entry, browser recording, local saving, and file export stay disabled.
 
-Formal recruitment and data collection have not begun. A technically live page does not authorize recruitment or data collection. Instruments still need to be matched to the approved packet before use.
+Interview and survey-review invitations are open on `recruitment/`, using the submitted recruitment text. The anonymous survey is not open. The current 27-question Microsoft Form is not the approved instrument and must not be linked. A technically live page does not collect responses.
 
-## Controlling review files
+## Approved packet
 
-The September 5 correction pass used the attachments in the controlling packet
-`irb-chair-review-full-form-aligned-final-2026-09-03`:
+The controlling materials are the attachments submitted to NLU IRB on September 14, 2026 and approved October 7, 2026:
 
-- `05A - Classroom-Facing Educator Interview Protocol - QUESTIONS CHAIR-APPROVED`
-- `05B - School and System Leader Interview Protocol - QUESTIONS CHAIR-APPROVED`
-- `05C - Adult University Student Interview Protocol - QUESTIONS CHAIR-APPROVED`
-- `05F - Scenario Card Sort for 05A and 05C - CURRENT CHAIR REVIEW`
-- `02 - IRB Narrative - CURRENT CHAIR REVIEW`
-- `03 - Consent Forms - CURRENT CHAIR REVIEW`
-- `04 - Recruitment Materials - CURRENT CHAIR REVIEW`
-- `05D - K-12 Educator Survey - CURRENT CHAIR REVIEW`
-- `06 - Data Management and Security Plan - CURRENT CHAIR REVIEW`
-- `00 - Chair Review Readiness and Outstanding Confirmations`
-- `10 - Public Instrument Site Pre-IRB Audit - CURRENT`
+- 01 NLU IRB Application
+- 02 IRB Narrative
+- 03 Consent Forms
+- 04 Recruitment Materials and Eligibility Screening Script
+- 05A Classroom-Facing Educator Interview Protocol
+- 05B School and System Leader Interview Protocol
+- 05C Adult University Student Interview Protocol
+- 05D K-12 Educator Survey and Separate Interest Form
+- 05E Instrument Validation Cognitive Interview Protocol
+- 05F Scenario Card Sort for 05A and 05C
+- 06 Data Management and Security Plan
+- 07 Conflict of Interest Disclosure
 
-Chair approval applies to the 05A-05C interview questions. The separate working 05F card sort remains subject to chair and IRB review.
+The September chair-review working folder is not the approved packet where it differs from those submitted files. The printable survey consent on this site still has to be replaced with the approved 03 survey consent before the survey opens.
 
 ## Scope controls
 
@@ -38,6 +38,10 @@ Chair approval applies to the 05A-05C interview questions. The separate working 
 - The public pages do not submit responses to GitHub Pages or another external endpoint.
 
 ## Change log
+
+### 2026-10-07 - Interview invitations opened; survey left closed
+
+Micah directed a public update after exempt approval and asked to start recruitment for interviews and the survey. `recruitment/index.html` now uses the submitted attachment 04 text for educator and leader interviews, university-student interviews, and survey-review sessions. The chair name uses the submitted spelling. The 27-question survey-review paraphrase was removed. `survey-landing/index.html` drops product names, the equity topic card, and the once-only instruction, and lists the six approved role options. The survey button stays disabled. No survey URL was added. The printable consent PDF was not replaced.
 
 ### 2026-10-07 - Public status updated after exempt approval
 
