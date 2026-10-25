@@ -39,6 +39,13 @@ The September chair-review working folder is not the approved packet where it di
 
 ## Change log
 
+### 2026-10-25 - Card-sort board for video sessions
+
+`card-sort/` is a standalone board with the ten approved 05F cards and both placement questions, for the researcher to share on screen in video interviews.
+- It saves nothing and sends nothing. A content security policy blocks every network request, and the page uses no browser storage. Placements disappear when the page is closed.
+- Card and question wording matches the submitted 05F.
+- No other page links to it.
+
 ### 2026-10-08 - Role pages describe the approved instruments
 
 At Micah's direction, the status wording now matches approval and Attachment 06 ("orientation and in-session support only").
