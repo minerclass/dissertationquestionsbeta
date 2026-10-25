@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- In-session support only: nothing may load from or send to the network. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; form-action 'none'; base-uri 'none'">
+  <meta name="robots" content="noindex">
+  <title>Scenario Card Sort</title>
+  <style>
+    :root {
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --ink: #1d2433;
+      --muted: #5b6475;
+      --line: #d9d4c7;
+      --accent: #23395b;
+      --accent-soft: #e6ecf5;
+      --gold: #9a7630;
+      --context: #f3f0e8;
+      --focus: #2f6fd6;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.4 -apple-system, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+    header {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px;
+      padding: 14px 20px; border-bottom: 1px solid var(--line); background: var(--panel);
+    }
+    header h1 { margin: 0; font-size: 22px; font-weight: 650; letter-spacing: .01em; }
+    header p { margin: 0; color: var(--muted); flex: 1 1 320px; }
+    .tools { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tool {
+      border: 1px solid var(--line); background: var(--panel); border-radius: 8px;
+      padding: 7px 12px; cursor: pointer; font-size: 14px;
+    }
+    .tool:hover { border-color: var(--accent); }
+    .tool[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .progress { font-size: 14px; color: var(--muted); white-space: nowrap; }
+
+    main {
+      display: grid; grid-template-columns: minmax(250px, 300px) 1fr; gap: 16px;
+      padding: 16px 20px 8px; align-items: start;
+    }
+
+    /* Deck of unplaced cards */
+    .deck {
+      position: sticky; top: 12px; max-height: calc(100vh - 110px); overflow: auto;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px;
+    }
+    .deck h2, .board h2 { margin: 0 0 10px; font-size: 15px; font-weight: 650; color: var(--accent); }
+    .deck .zone { display: flex; flex-direction: column; gap: 10px; min-height: 120px; border-radius: 8px; }
+    .deck .empty { color: var(--muted); font-size: 14px; padding: 8px 2px; }
+
+    /* Board */
+    .board {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; overflow-x: auto;
+    }
+    .grid {
+      display: grid; min-width: 760px;
+      grid-template-columns: 170px repeat(3, minmax(150px, 1fr)) minmax(150px, 1fr);
+      grid-template-rows: auto auto repeat(3, minmax(120px, auto)) minmax(110px, auto);
+      gap: 6px;
+    }
+    .axis-x {
+      grid-column: 2 / span 4; text-align: center; font-weight: 650; color: var(--accent);
+      padding: 4px 8px 2px; font-size: 15px;
+    }
+    .axis-y {
+      grid-column: 1; grid-row: 1 / span 2; align-self: end;
+      font-weight: 650; color: var(--accent); font-size: 14px; line-height: 1.3; padding: 0 4px 6px;
+    }
+    .col-head, .row-head {
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      font-size: 14px; font-weight: 600; padding: 8px 6px; border-radius: 8px; background: var(--accent-soft);
+    }
+    .row-head { justify-content: flex-start; text-align: left; }
+    .col-head.context, .row-head.context { background: var(--context); color: var(--muted); font-style: italic; }
+    .cell {
+      border: 1px solid var(--line); border-radius: 8px; padding: 6px;
+      display: flex; flex-direction: column; gap: 6px; cursor: pointer; background: #fff;
+    }
+    .cell.context { background: var(--context); border-style: dashed; }
+    .zone.target-ok { box-shadow: inset 0 0 0 2px var(--focus); }
+    body.has-selection .cell:hover, body.has-selection .deck .zone:hover { box-shadow: inset 0 0 0 2px var(--focus); }
+
+    /* Cards */
+    .card {
+      position: relative; text-align: left; width: 100%;
+      border: 1px solid #c9c2b2; border-left: 5px solid var(--gold); border-radius: 8px;
+      background: #fffdf8; padding: 8px 10px; cursor: grab; touch-action: none;
+      box-shadow: 0 1px 2px rgba(29,36,51,.08);
+    }
+    .card .meta { display: flex; gap: 8px; align-items: baseline; margin-bottom: 3px; }
+    .card .num { font-weight: 700; color: var(--accent); font-size: 14px; }
+    .card .tag { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+    .card .text { font-size: 14px; line-height: 1.35; }
+    /* On the board, cards shrink to three lines so a crowded cell stays readable; selecting one shows all of it. */
+    .cell .card .text {
+      font-size: 13px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .cell .card[aria-pressed="true"] .text { display: block; }
+    /* "Numbers only" fits the whole board on one screen for the image of the final board. */
+    body.numbers-only .cell .card .text { display: none; }
+    body.numbers-only .cell .card .meta { margin-bottom: 0; }
+    body.deck-empty main { grid-template-columns: 170px 1fr; }
+    .card[aria-pressed="true"] { border-color: var(--focus); box-shadow: 0 0 0 3px rgba(47,111,214,.35); }
+    .card.dragging { opacity: .35; }
+    .ghost {
+      position: fixed; pointer-events: none; z-index: 50; width: 260px; transform: rotate(-1.5deg);
+      box-shadow: 0 10px 24px rgba(29,36,51,.25); cursor: grabbing;
+    }
+
+    /* Side panels */
+    .panel {
+      margin: 8px 20px 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px;
+    }
+    .panel[hidden] { display: none; }
+    .panel h2 { margin: 0 0 8px; font-size: 15px; color: var(--accent); }
+    .panel ol { margin: 0; padding-left: 22px; }
+    .panel li { margin: 3px 0; }
+    .placements td, .placements th { text-align: left; padding: 4px 12px 4px 0; vertical-align: top; font-size: 14px; }
+    .placements th { color: var(--muted); font-weight: 600; }
+    .unplaced { color: var(--muted); font-style: italic; }
+
+    footer { padding: 10px 20px 18px; color: var(--muted); font-size: 13px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+      .deck { position: static; max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Scenario Card Sort</h1>
+    <p>Place each card on both questions. You can move any card at any time.</p>
+    <span class="progress" id="progress" aria-live="polite"></span>
+    <div class="tools">
+      <button class="tool" id="toggleQuestions" type="button" aria-pressed="false" aria-controls="questionsPanel">After sorting</button>
+      <button class="tool" id="togglePlacements" type="button" aria-pressed="false" aria-controls="placementsPanel">Placement list</button>
+      <button class="tool" id="numbersOnly" type="button" aria-pressed="false">Numbers only</button>
+      <button class="tool" id="reset" type="button">Shuffle and start over</button>
+    </div>
+  </header>
+
+  <section class="panel" id="questionsPanel" hidden>
+    <h2>After sorting</h2>
+    <ol>
+      <li>Which two cards were hardest to place?</li>
+      <li>Which scenario most clearly removes a barrier?</li>
+      <li>Which may provide assistance before desired thinking occurs?</li>
+      <li>Which is most affected by policy, expectations, or authority?</li>
+    </ol>
+  </section>
+
+  <section class="panel" id="placementsPanel" hidden>
+    <h2>Placement list</h2>
+    <table class="placements">
+      <thead><tr><th>Card</th><th>Learner's thinking, effort, and judgment preserved</th><th>Most likely response</th></tr></thead>
+      <tbody id="placementRows"></tbody>
+    </table>
+  </section>
+
+  <main>
+    <section class="deck" aria-labelledby="deckTitle">
+      <h2 id="deckTitle">Cards to place</h2>
+      <div class="zone" id="deck" data-zone="deck" role="button" tabindex="0" aria-label="Cards to place. Move a selected card back here."></div>
+    </section>
+
+    <section class="board" aria-labelledby="boardTitle">
+      <h2 id="boardTitle" class="sr-only">Sorting board</h2>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <footer>This board keeps nothing. Placements are not saved or sent anywhere, and they disappear when the page is closed or started over.</footer>
+
+  <div class="sr-only" id="announce" aria-live="assertive"></div>
+
+  <script>
+    // Approved 05F card set (ER01884), verbatim.
+    const CARDS = [
+      { id: 1, vantage: "Teacher", text: "A student uses AI to generate possible claims, chooses one, drafts the essay without AI, and discloses the brainstorming support." },
+      { id: 2, vantage: "Teacher", text: "A student submits an AI-assisted essay, then explains and defends the thesis, evidence, and revisions in a one-on-one conference." },
+      { id: 3, vantage: "Teacher", text: "A multilingual learner uses AI translation to understand assignment directions, then completes the disciplinary task without AI." },
+      { id: 4, vantage: "Teacher", text: "Before reading a source, a student asks AI for a summary and relies on it to begin the assignment; the original text remains available." },
+      { id: 5, vantage: "Teacher", text: "A school blocks generative AI because district guidance is unclear, while allowing individually approved accessibility supports." },
+      { id: 6, vantage: "Teacher", text: "A teacher uses AI to draft feedback on every essay, reviews and revises the feedback, and asks students to discuss how they used it." },
+      { id: 7, vantage: "Student", text: "A student asks AI to explain a difficult concept, then solves a new problem without AI and explains the reasoning." },
+      { id: 8, vantage: "Student", text: "A student asks AI to write the introduction, makes only light edits, writes the rest independently, and discloses the AI contribution." },
+      { id: 9, vantage: "Student", text: "A student with an IEP uses AI to turn the student’s own notes into an outline, then writes and revises the response without AI." },
+      { id: 10, vantage: "Student", text: "A student uses AI to generate counterarguments, revises the thesis after evaluating them, and explains which suggestions were accepted or rejected." }
+    ];
+    // Dimension 1 runs top to bottom (High first); dimension 2 runs left to right.
+    const D1 = { title: "How much of the learner’s own thinking, effort, and judgment appears to be preserved?",
+                 options: ["High", "Mixed or unclear", "Low", "Need more context"] };
+    const D2 = { title: "What response would you be most likely to take?",
+                 options: ["Allow or encourage", "Allow with conditions or limits", "Do not allow", "Need more context"] };
+
+    // Placement lives only in this page's memory: card id -> "deck" or "r,c".
+    let placement = {};
+    let order = [];
+    let selected = null;
+
+    const deckEl = document.getElementById("deck");
+    const gridEl = document.getElementById("grid");
+    const announce = (msg) => { document.getElementById("announce").textContent = msg; };
+
+    function shuffle(list) {
+      const a = list.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function zoneLabel(zone) {
+      if (zone === "deck") return "Cards to place";
+      const [r, c] = zone.split(",").map(Number);
+      return `${D1.options[r]} / ${D2.options[c]}`;
+    }
+
+    function buildGrid() {
+      const isContext = (i) => i === 3;
+      gridEl.innerHTML = "";
+      const axisY = document.createElement("div");
+      axisY.className = "axis-y";
+      axisY.textContent = D1.title;
+      gridEl.appendChild(axisY);
+      const axisX = document.createElement("div");
+      axisX.className = "axis-x";
+      axisX.textContent = D2.title;
+      gridEl.appendChild(axisX);
+      D2.options.forEach((label, c) => {
+        const h = document.createElement("div");
+        h.className = "col-head" + (isContext(c) ? " context" : "");
+        h.textContent = label;
+        gridEl.appendChild(h);
+      });
+      D1.options.forEach((rowLabel, r) => {
+        const h = document.createElement("div");
+        h.className = "row-head" + (isContext(r) ? " context" : "");
+        h.textContent = rowLabel;
+        gridEl.appendChild(h);
+        D2.options.forEach((colLabel, c) => {
+          const cell = document.createElement("div");
+          cell.className = "cell zone" + (isContext(r) || isContext(c) ? " context" : "");
+          cell.dataset.zone = `${r},${c}`;
+          cell.tabIndex = 0;
+          cell.setAttribute("role", "button");
+          cell.setAttribute("aria-label", `${rowLabel} / ${colLabel}`);
+          gridEl.appendChild(cell);
+        });
+      });
+    }
+
+    function cardEl(card) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "card";
+      b.dataset.id = card.id;
+      b.title = card.text;
+      b.setAttribute("aria-pressed", String(selected === card.id));
+      b.innerHTML = `<span class="meta"><span class="num">Card ${card.id}</span><span class="tag">${card.vantage}</span></span><span class="text"></span>`;
+      b.querySelector(".text").textContent = card.text;
+      return b;
+    }
+
+    function render() {
+      document.querySelectorAll(".zone").forEach((z) => {
+        z.querySelectorAll(".card, .empty").forEach((n) => n.remove());
+      });
+      order.forEach((id) => {
+        const card = CARDS.find((c) => c.id === id);
+        const zone = document.querySelector(`.zone[data-zone="${placement[id]}"]`);
+        zone.appendChild(cardEl(card));
+      });
+      const deckEmpty = !deckEl.querySelector(".card");
+      if (deckEmpty) {
+        const e = document.createElement("div");
+        e.className = "empty";
+        e.textContent = "All cards are on the board. Drop a card here to take it off.";
+        deckEl.appendChild(e);
+      }
+      document.body.classList.toggle("deck-empty", deckEmpty);
+      document.body.classList.toggle("has-selection", selected !== null);
+      const placed = CARDS.filter((c) => placement[c.id] !== "deck").length;
+      document.getElementById("progress").textContent = `${placed} of ${CARDS.length} placed`;
+      renderList();
+    }
+
+    function renderList() {
+      const rows = CARDS.map((c) => {
+        const z = placement[c.id];
+        if (z === "deck") return `<tr><td>Card ${c.id}</td><td class="unplaced" colspan="2">Not placed yet</td></tr>`;
+        const [r, col] = z.split(",").map(Number);
+        return `<tr><td>Card ${c.id}</td><td>${D1.options[r]}</td><td>${D2.options[col]}</td></tr>`;
+      });
+      document.getElementById("placementRows").innerHTML = rows.join("");
+    }
+
+    function move(id, zone) {
+      if (!zone || placement[id] === zone) return;
+      placement[id] = zone;
+      order = order.filter((x) => x !== id).concat(id);
+      selected = null;
+      render();
+      announce(`Card ${id} moved to ${zoneLabel(zone)}.`);
+      const moved = document.querySelector(`.card[data-id="${id}"]`);
+      if (moved) moved.focus({ preventScroll: true });
+    }
+
+    function select(id) {
+      selected = selected === id ? null : id;
+      render();
+      if (selected !== null) announce(`Card ${id} selected. Choose a place on the board.`);
+      const el = document.querySelector(`.card[data-id="${id}"]`);
+      if (el) el.focus({ preventScroll: true });
+    }
+
+    function start() {
+      order = shuffle(CARDS.map((c) => c.id));
+      placement = {};
+      order.forEach((id) => { placement[id] = "deck"; });
+      selected = null;
+      render();
+    }
+
+    // Click a card to select it, then click a place to move it there.
+    document.addEventListener("click", (e) => {
+      if (suppressClick) { suppressClick = false; return; }
+      const card = e.target.closest(".card");
+      if (card) { select(Number(card.dataset.id)); return; }
+      const zone = e.target.closest(".zone");
+      if (zone && selected !== null) move(selected, zone.dataset.zone);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && selected !== null) { selected = null; render(); announce("Selection cleared."); return; }
+      const zone = e.target.closest && e.target.closest(".zone");
+      if ((e.key === "Enter" || e.key === " ") && zone && !e.target.closest(".card") && selected !== null) {
+        e.preventDefault();
+        move(selected, zone.dataset.zone);
+      }
+    });
+
+    // Drag with mouse, pen, or touch. Pointer events also work through screen-control in a meeting.
+    let drag = null;
+    let suppressClick = false;
+    document.addEventListener("pointerdown", (e) => {
+      const card = e.target.closest(".card");
+      if (!card || e.button !== 0) return;
+      drag = { id: Number(card.dataset.id), el: card, x: e.clientX, y: e.clientY, ghost: null, over: null };
+    });
+    document.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      if (!drag.ghost) {
+        if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 6) return;
+        drag.ghost = drag.el.cloneNode(true);
+        drag.ghost.classList.add("ghost");
+        drag.ghost.removeAttribute("aria-pressed");
+        document.body.appendChild(drag.ghost);
+        drag.el.classList.add("dragging");
+      }
+      drag.ghost.style.left = `${e.clientX - 40}px`;
+      drag.ghost.style.top = `${e.clientY - 20}px`;
+      const under = document.elementFromPoint(e.clientX, e.clientY);
+      const zone = under && under.closest(".zone");
+      if (drag.over && drag.over !== zone) drag.over.classList.remove("target-ok");
+      if (zone) zone.classList.add("target-ok");
+      drag.over = zone;
+    });
+    function endDrag(e, cancelled) {
+      if (!drag) return;
+      const d = drag;
+      drag = null;
+      if (!d.ghost) return; // a plain click; the click handler selects the card
+      d.ghost.remove();
+      d.el.classList.remove("dragging");
+      if (d.over) d.over.classList.remove("target-ok");
+      suppressClick = true;
+      setTimeout(() => { suppressClick = false; }, 0);
+      if (!cancelled && d.over) move(d.id, d.over.dataset.zone);
+    }
+    document.addEventListener("pointerup", (e) => endDrag(e, false));
+    document.addEventListener("pointercancel", (e) => endDrag(e, true));
+
+    // Panels and reset
+    function toggle(buttonId, panelId) {
+      const b = document.getElementById(buttonId);
+      const p = document.getElementById(panelId);
+      b.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const open = p.hidden;
+        p.hidden = !open;
+        b.setAttribute("aria-pressed", String(open));
+      });
+    }
+    toggle("toggleQuestions", "questionsPanel");
+    toggle("togglePlacements", "placementsPanel");
+    document.getElementById("numbersOnly").addEventListener("click", (e) => {
+      e.stopPropagation();
+      const on = document.body.classList.toggle("numbers-only");
+      e.currentTarget.setAttribute("aria-pressed", String(on));
+    });
+    document.getElementById("reset").addEventListener("click", (e) => {
+      e.stopPropagation();
+      const placed = CARDS.some((c) => placement[c.id] !== "deck");
+      if (!placed || confirm("Shuffle the cards and clear the board? Current placements will be lost.")) {
+        start();
+        announce("Cards shuffled. The board is clear.");
+      }
+    });
+
+    // Warn before leaving with cards on the board, so the final board can be captured first.
+    window.addEventListener("beforeunload", (e) => {
+      if (CARDS.some((c) => placement[c.id] !== "deck")) { e.preventDefault(); e.returnValue = ""; }
+    });
+
+    buildGrid();
+    start();
+  </script>
+</body>
+</html>
