@@ -173,7 +173,7 @@
   <main>
     <section class="deck" aria-labelledby="deckTitle">
       <h2 id="deckTitle">Cards to place</h2>
-      <div class="zone" id="deck" data-zone="deck" role="button" tabindex="0" aria-label="Cards to place. Move a selected card back here."></div>
+      <div class="zone" id="deck" data-zone="deck" role="group" tabindex="0" aria-labelledby="deckTitle"></div>
     </section>
 
     <section class="board" aria-labelledby="boardTitle">
@@ -257,7 +257,7 @@
           cell.className = "cell zone" + (isContext(r) || isContext(c) ? " context" : "");
           cell.dataset.zone = `${r},${c}`;
           cell.tabIndex = 0;
-          cell.setAttribute("role", "button");
+          cell.setAttribute("role", "group"); // a group, not a button: cells hold card buttons
           cell.setAttribute("aria-label", `${rowLabel} / ${colLabel}`);
           gridEl.appendChild(cell);
         });
