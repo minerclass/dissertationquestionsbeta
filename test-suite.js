@@ -152,6 +152,19 @@ async function runTests() {
       errors++;
     }
   }
+  // The shared-screen board carries the same cards, the 05F markers, and the 05C framing of Dimension 2.
+  const boardHtml = fs.readFileSync(path.join(__dirname, 'card-sort/index.html'), 'utf8');
+  const boardCards = Array.from(boardHtml.matchAll(/text: "([^"]+)" \}/g), (match) => match[1]);
+  if (JSON.stringify(boardCards) !== JSON.stringify(expectedCards)) {
+    console.error("  [X] Card-sort board card set does not exactly match working attachment 05F.");
+    errors++;
+  }
+  const boardMissing = [...requiredMarkers, "If you were the teacher, what response would you be most likely to take?"]
+    .filter((marker) => !boardHtml.includes(marker));
+  if (boardMissing.length) {
+    console.error(`  [X] Card-sort board is missing markers: ${boardMissing.join(" | ")}`);
+    errors++;
+  }
   if (/cardSortItems|Card Sort|Card sort/.test(principalHtml)) {
     console.error("  [X] The 05B leader instrument incorrectly includes a card sort.");
     errors++;

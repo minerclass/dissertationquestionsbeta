@@ -39,6 +39,14 @@ The September chair-review working folder is not the approved packet where it di
 
 ## Change log
 
+### 2026-11-03 - Student wording on the card-sort board
+
+`card-sort/?group=student` shows the university-student (05C) framing of the Dimension 2 question: "If you were the teacher, what response would you be most likely to take?"
+- The plain `card-sort/` address still shows the 05F wording for classroom-facing educators (05A).
+- The cards, the Dimension 1 question, the response options, and the post-sort questions are the same in both versions.
+- Micah reported that Dr. Smith and Dr. Puentedura approved the card sort as within the spirit of the IRB approval. The researcher moves the cards as the participant directs.
+- The test suite now checks the board's cards and question wording against 05F.
+
 ### 2026-10-25 - Card-sort board for video sessions
 
 `card-sort/` is a standalone board with the ten approved 05F cards and both placement questions, for the researcher to share on screen in video interviews.

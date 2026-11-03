@@ -205,6 +205,11 @@
                  options: ["High", "Mixed or unclear", "Low", "Need more context"] };
     const D2 = { title: "What response would you be most likely to take?",
                  options: ["Allow or encourage", "Allow with conditions or limits", "Do not allow", "Need more context"] };
+    // University students (05C) answer Dimension 2 from the teacher's position: open the board with ?group=student.
+    // The response options stay the same, so placements compare across groups.
+    if (new URLSearchParams(location.search).get("group") === "student") {
+      D2.title = "If you were the teacher, what response would you be most likely to take?";
+    }
 
     // Placement lives only in this page's memory: card id -> "deck" or "r,c".
     let placement = {};
