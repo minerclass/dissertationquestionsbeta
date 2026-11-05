@@ -4,7 +4,7 @@ Static GitHub Pages site for reviewing role-specific interview and card-sort ins
 
 **Pedagogical Friction in the Age of Generative AI: A Mixed Methods Proposal**
 
-The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. Interview and survey-review invitations are on `recruitment/`. The anonymous survey is not open. Role-specific pages are navigable read-only copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
+The root site is a neutral project entrance and role-selection page. Micah passed the Chapters 1-3 dissertation proposal defense on August 13, 2026. NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. Interview invitations are on `recruitment/`. The anonymous survey is open, linked from `survey-landing/`. Survey-review sessions are finished. Role-specific pages are navigable read-only copies: wording is visible, but data entry, browser recording, local saving, and export are disabled.
 
 These instrument pages do not collect responses and do not report findings.
 
@@ -64,7 +64,7 @@ Current limits:
 - No server, database, account system, analytics service, or third-party transcription service is used by the role-specific pages.
 - The activation checklist and scope boundaries are recorded in `IRB_STATUS.md`.
 
-Do not use the role pages for live interviews, card sorting, or survey administration. The recruitment page carries the approved invitations. The anonymous survey stays closed until the approved form is live. Association channels still need their own permission before a post goes there.
+Do not use the role pages for live interviews, card sorting, or survey administration. The recruitment page carries the approved invitations. The anonymous survey is open, linked only from `survey-landing/`. Association channels still need their own permission before a post goes there.
 
 ## Files
 

@@ -6,13 +6,13 @@ The page is for participant orientation only. It does not collect survey respons
 
 ## Files
 
-- `index.html` - participant-facing landing page. The survey button stays disabled until the approved form is live.
+- `index.html` - participant-facing landing page. The survey button links to the approved Microsoft Form (opened 2026-11-05).
 - `styles.css` - local responsive styling
 - `README.md` - maintenance notes
 
 ## Activating the Survey Link
 
-Exempt approval is recorded (ER01884). Keep the survey URL out of the public HTML until the approved Microsoft Form is live and its anonymity settings are documented. Then replace the disabled survey notice with that link. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page. Do not link the earlier 27-question form.
+Exempt approval is recorded (ER01884). The approved Microsoft Form is live and its anonymity settings are documented, so the survey button links to it: https://forms.cloud.microsoft/r/UbTcf4EHKn. When the survey closes, put the disabled notice back and remove the link. Do not add form fields, response collection, analytics, cookies, or tracking scripts to this page. Do not link the earlier 27-question form.
 
 ## Updating IRB and Contact Information
 

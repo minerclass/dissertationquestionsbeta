@@ -19,6 +19,24 @@ here, in the repository, not in a local file.
 
 ---
 
+## 2026-11-05 - Open the anonymous survey on the public pages
+
+Source: Micah's instruction on this date (surface-arm/claude-code session) to send survey notice B today and to commit and push this update. Micah confirmed in that session that 05E validation is finished and retested, and that the main-survey export check, metadata record, and test-row deletion are done.
+
+- `survey-landing/index.html`: the disabled "Survey stays closed" notice became a link to the approved form (`https://forms.cloud.microsoft/r/UbTcf4EHKn`, the same link notice B carries). The hero button now reads "Go to the Survey." The status heading, recruitment status, IRB paragraph, and sharing FAQ now say the survey is open and survey-review sessions are finished.
+- `index.html`, `dissertation-sites/index.html`, `README.md`, `IRB_STATUS.md`, `survey-landing/README.md`: the "survey is not open" status lines were updated to match.
+- No instrument wording changed. No form fields, analytics, or tracking were added. `recruitment/` is unchanged.
+
+Verification:
+- Every replaced sentence was matched exactly once before editing. A search for "not open," "stays closed," and "survey-review invitations are open" finds no remaining instance outside this log.
+- The three edited HTML files parse with balanced tags. The survey link appears only on `survey-landing/index.html`.
+- Rendering and the CI accessibility check are checked after the push.
+
+Open items:
+- The role list still shows "Special education or multilingual learner/English learner educator" as one choice. On 2026-10-27 the form split that role into two choices. Split the list once Micah gives the exact labels.
+- `recruitment/` still shows notice D, although validation is finished.
+- When the survey closes, restore the disabled notice and remove the link (`survey-landing/README.md`).
+
 ## 2026-10-08 - Describe the role pages as approved, read-only in-session support
 
 Source: Micah's instruction on this date (surface-intel/claude-code session) to make the site consistent with approval.

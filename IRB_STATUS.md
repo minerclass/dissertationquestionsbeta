@@ -6,7 +6,7 @@ Last local verification: 2026-10-07; deployed revision remains subject to verifi
 
 NLU IRB approved the study as Exempt on October 7, 2026 (protocol ER01884), through October 7, 2027. The public role-specific pages display the approved 05A, 05B, 05C, and 05F wording. The researcher may show them during approved sessions as in-session support, as Attachment 06 allows. They remain read-only: participant data entry, browser recording, local saving, and file export stay disabled.
 
-On `recruitment/`, notices A, C, and D and the contact block match the submitted attachments 04 and 03 word for word. The page also has its title, an attribution line, section labels, and ordinary navigation. The page is not a recruitment channel, and no post links to it. The anonymous survey is not open. The current 27-question Microsoft Form is not the approved instrument and must not be linked. A technically live page does not collect responses.
+On `recruitment/`, notices A, C, and D and the contact block match the submitted attachments 04 and 03 word for word. The page also has its title, an attribution line, section labels, and ordinary navigation. The page is not a recruitment channel, and no post links to it. The anonymous survey opened on 2026-11-05 and is linked only from `survey-landing/`; notice B carries the form link itself. The current 27-question Microsoft Form is not the approved instrument and must not be linked. A technically live page does not collect responses.
 
 ## Approved packet
 
